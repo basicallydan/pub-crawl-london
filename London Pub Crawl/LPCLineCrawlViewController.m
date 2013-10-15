@@ -7,7 +7,7 @@
 @implementation LPCLineCrawlViewController
 
 AFHTTPSessionManager *sessionManager;
-NSDictionary *stationResult;
+NSMutableDictionary *stationResult;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,15 +25,20 @@ NSDictionary *stationResult;
         
         LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
         self.stations = [appDelegate.stationOrdersForLines objectForKey:lineCode];
-        stationResult = [[NSDictionary alloc] init];
+        stationResult = [[NSMutableDictionary alloc] init];
 
         for (NSString *station in self.stations) {
             NSArray *latLng = [appDelegate.stationCoordinates objectForKey:station];
-            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=1000&section=drinks", latLng[1], latLng[0]];
+            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=3000&section=drinks&sortByDistance=1", latLng[0], latLng[1]];
             [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSDictionary *result = (NSDictionary *)responseObject;
                 NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
-                [stationResult setValue:venues[0] forKey:station];
+                if (venues.count > 0 && ((NSArray *)venues[0]).count > 0) {
+                    NSDictionary *venue = venues[0][0];
+                    [stationResult setValue:venue forKey:station];
+                } else {
+                    NSLog(@"What?!");
+                }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 // Details!
             }];
@@ -93,8 +98,10 @@ NSDictionary *stationResult;
     if (index == self.stations.count - 1) {
         return nil;
     }
+    
+    LPCStationViewController *newViewController = [self viewControllerAtIndex:index];
 
-    return [self viewControllerAtIndex:index];
+    return newViewController;
 
 }
 
@@ -109,13 +116,24 @@ NSDictionary *stationResult;
     } else if (index == self.stations.count - 1) {
         image = [UIImage imageNamed:@"Jubilee-Line-End"];
     }
+    
+    if ([stationResult objectForKey:[self.stations objectAtIndex:index]]) {
+        NSDictionary *venue = [stationResult objectForKey:[self.stations objectAtIndex:index]];
+        childViewController.pubName = [venue valueForKeyPath:@"venue.name"];
+        childViewController.distance = [venue valueForKeyPath:@"venue.location.distance"];
+        NSNumber *pubLatitude = [venue valueForKeyPath:@"venue.location.lat"];
+        NSNumber *pubLongitude = [venue valueForKeyPath:@"venue.location.lng"];
+        childViewController.pubLocation = @[pubLatitude, pubLongitude];
+        childViewController.stationLocation = [appDelegate.stationCoordinates valueForKeyPath:[self.stations objectAtIndex:index]];
+    }
+    
     childViewController.lineImagePng = image;
     return childViewController;
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     // The number of items reflected in the page indicator.
-    return self.stations.count;
+    return 0;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {

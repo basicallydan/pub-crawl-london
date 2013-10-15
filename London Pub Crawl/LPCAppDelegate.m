@@ -20,9 +20,9 @@
     NSLog(@"There are %d stations and %d coordinates datas", self.stations.count, self.stationCoordinates.count);
 
     UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor darkGrayColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    pageControl.pageIndicatorTintColor = [UIColor clearColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor clearColor];
+    pageControl.backgroundColor = [UIColor clearColor];
 
     return YES;
 }

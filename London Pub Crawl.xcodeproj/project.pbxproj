@@ -18,6 +18,7 @@
 		370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */; };
 		370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */; };
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
+		37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A131D5180DC9C90048975C /* MapKit.framework */; };
 		37BF4397180D31EC0091BE5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF4396180D31EC0091BE5F /* Foundation.framework */; };
 		37BF4399180D31EC0091BE5F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF4398180D31EC0091BE5F /* CoreGraphics.framework */; };
 		37BF439B180D31EC0091BE5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF439A180D31EC0091BE5F /* UIKit.framework */; };
@@ -61,6 +62,7 @@
 		370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-End@2x.png"; sourceTree = "<group>"; };
 		370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start.png"; sourceTree = "<group>"; };
 		370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start@2x.png"; sourceTree = "<group>"; };
+		37A131D5180DC9C90048975C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37BF4393180D31EC0091BE5F /* London Pub Crawl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "London Pub Crawl.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BF4396180D31EC0091BE5F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37BF4398180D31EC0091BE5F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */,
 				37BF4399180D31EC0091BE5F /* CoreGraphics.framework in Frameworks */,
 				37BF439B180D31EC0091BE5F /* UIKit.framework in Frameworks */,
 				37BF4397180D31EC0091BE5F /* Foundation.framework in Frameworks */,
@@ -153,6 +156,7 @@
 		37BF4395180D31EC0091BE5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37A131D5180DC9C90048975C /* MapKit.framework */,
 				37BF4396180D31EC0091BE5F /* Foundation.framework */,
 				37BF4398180D31EC0091BE5F /* CoreGraphics.framework */,
 				37BF439A180D31EC0091BE5F /* UIKit.framework */,

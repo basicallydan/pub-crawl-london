@@ -20,13 +20,15 @@ function writeStationDataToFileIfDone() {
 lines.forEach(function (line) {
 	var uri = lineRequestURI.replace('{line}', line);
 	request({ url:uri, json:true}, function (err, response, body) {
-		if (err) {
+		if (err || response.status !== 200) {
 			return console.log('BOOM!\n', body);
 		}
+
+		console.log(response.status + ' recieved');
 		
 		body.forEach(function (station) {
 			// console.log(station.station_code + ' is ' + station.name + ' at ' + station.latitude + ', ' + station.longitude);
-			stationData[station.station_code.toUpperCase()] = [ station.latlon.x, station.latlon.y];
+			stationData[station.station_code.toUpperCase()] = [ station.latlon.y, station.latlon.x];
 		});
 		done += 1;
 		console.log(line + ' line done');
