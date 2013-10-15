@@ -27,7 +27,7 @@ AFHTTPSessionManager *sessionManager;
 
         for (NSString *station in self.stations) {
             NSArray *latLng = [appDelegate.stationCoordinates objectForKey:station];
-            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/search?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=YYYYMMDD", latLng[1], latLng[0]];
+            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/search?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015", latLng[1], latLng[0]];
             [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 // Check out the details
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
