@@ -3,6 +3,7 @@
 #import "LPCAppDelegate.h"
 #import "LPCLineTableViewCell.h"
 #import "LPCLineCrawlViewController.h"
+#import "LPCThemeManager.h"
 
 @implementation LPCViewController
 
@@ -11,6 +12,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -63,6 +65,12 @@
     cell.lineCode = [appDelegate.linesArray objectAtIndex:indexPath.row];
     cell.lineName = [appDelegate.lines objectForKey:cell.lineCode];
     cell.textLabel.text = cell.lineName;
+    
+    UIColor *cellColor = [LPCThemeManager colourForLine:cell.lineCode];
+    
+    cell.textLabel.textColor = [UIColor whiteColor];
+    
+    cell.backgroundColor = cellColor;
 }
 
 @end

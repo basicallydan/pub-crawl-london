@@ -26,7 +26,7 @@
         [self.pubMapView setRegion:reg];
         [self.pubMapView regionThatFits:reg];
         
-        [self.pubMapView addAnnotations:@[self.stationLocation, self.pubLocation]];
+//        [self.pubMapView addAnnotations:@[self.stationLocation, self.pubLocation]];
     }
 }
 
