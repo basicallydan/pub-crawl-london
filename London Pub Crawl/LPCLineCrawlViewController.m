@@ -7,6 +7,7 @@
 @implementation LPCLineCrawlViewController
 
 AFHTTPSessionManager *sessionManager;
+NSDictionary *stationResult;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,12 +25,15 @@ AFHTTPSessionManager *sessionManager;
         
         LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
         self.stations = [appDelegate.stationOrdersForLines objectForKey:lineCode];
+        stationResult = [[NSDictionary alloc] init];
 
         for (NSString *station in self.stations) {
             NSArray *latLng = [appDelegate.stationCoordinates objectForKey:station];
-            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/search?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015", latLng[1], latLng[0]];
+            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=1000&section=drinks", latLng[1], latLng[0]];
             [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                // Check out the details
+                NSDictionary *result = (NSDictionary *)responseObject;
+                NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
+                [stationResult setValue:venues[0] forKey:station];
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 // Details!
             }];
