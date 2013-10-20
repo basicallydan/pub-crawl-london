@@ -19,11 +19,17 @@ PODS:
   - AFNetworking/Serialization (2.0.0)
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
+  - MBXMapKit (0.1.0)
+  - UIColor-HexString (1.0.1)
 
 DEPENDENCIES:
   - AFNetworking (= 2.0)
+  - MBXMapKit
+  - UIColor-HexString (~> 1.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
+  MBXMapKit: e621aa3ab2c1925d2312ee293f3c147f837ac27c
+  UIColor-HexString: 8a3f512f71b6d94a2cf6bdeabcad2f3532f31b5a
 
 COCOAPODS: 0.26.2

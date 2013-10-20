@@ -1,5 +1,7 @@
 #import "LPCStationViewController.h"
 
+#import <UIColor-HexString/UIColor+HexString.h>
+
 @interface LPCStationViewController ()
 
 @end
@@ -16,6 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
+    [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
+    self.mapView = [[MBXMapView alloc] initWithFrame:self.view.frame mapID:@"basicallydan.map-ql3x67r6"];
+    [self.view insertSubview:self.mapView atIndex:0];
     self.stationNameLabel.text = self.stationName;
     self.pubNameLabel.text = self.pubName;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", self.distance];
@@ -23,8 +29,8 @@
     
     if (self.pubLocation && self.stationLocation) {
         MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
-        [self.pubMapView setRegion:reg];
-        [self.pubMapView regionThatFits:reg];
+        [self.mapView setRegion:reg];
+        [self.mapView regionThatFits:reg];
         
 //        [self.pubMapView addAnnotations:@[self.stationLocation, self.pubLocation]];
     }
@@ -40,7 +46,7 @@
     NSArray *first = [locations objectAtIndex:0];
     CLLocationCoordinate2D upper = CLLocationCoordinate2DMake([(NSNumber *)first[0] doubleValue], [(NSNumber *)first[1] doubleValue]);
     CLLocationCoordinate2D lower = (CLLocationCoordinate2D){.latitude = [(NSNumber *)first[0] doubleValue], .longitude = [(NSNumber *)first[1] doubleValue]};
-    CLLocationCoordinate2D a = CLLocationCoordinate2DMake(51.0, -0.1);
+//    CLLocationCoordinate2D a = CLLocationCoordinate2DMake(51.0, -0.1);
     
     for (int i = 0; i < locations.count; i++) {
         NSArray *locationObj = [locations objectAtIndex:i];

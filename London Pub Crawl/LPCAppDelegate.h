@@ -11,7 +11,7 @@
 @interface LPCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSDictionary *lines;
+@property (strong, nonatomic) NSArray *lines;
 @property (strong, nonatomic) NSDictionary *stationOrdersForLines;
 @property (strong, nonatomic) NSDictionary *stationCoordinates;
 @property (strong, nonatomic) NSDictionary *stations;

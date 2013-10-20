@@ -6,9 +6,9 @@
 {
     NSDictionary *allTheData = [self.class dictionaryWithContentsOfJSONString:@"tfl-tube-data.json"];
     self.stations = [allTheData valueForKey:@"stations"];
-    self.stationCoordinates = [allTheData valueForKey:@"coordinates"];
+//    self.stationCoordinates = [allTheData valueForKey:@"coordinates"];
     self.lines = [allTheData valueForKey:@"lines"];
-    self.stationOrdersForLines = [allTheData valueForKey:@"stationOrdersForLines"];
+//    self.stationOrdersForLines = [allTheData valueForKey:@"stationOrdersForLines"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
 
     for (NSString *line in self.lines) {
@@ -16,8 +16,6 @@
     }
 
     self.linesArray = temporaryLinesArray;
-
-    NSLog(@"There are %d stations and %d coordinates datas", self.stations.count, self.stationCoordinates.count);
 
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor clearColor];

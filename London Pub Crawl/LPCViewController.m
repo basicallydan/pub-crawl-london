@@ -4,6 +4,7 @@
 #import "LPCLineTableViewCell.h"
 #import "LPCLineCrawlViewController.h"
 #import "LPCThemeManager.h"
+#import <UIColor-HexString/UIColor+HexString.h>
 
 @implementation LPCViewController
 
@@ -25,11 +26,11 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     LPCLineTableViewCell *cellForRowAtIndexPath = (LPCLineTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"Selected the %@ line", cellForRowAtIndexPath.lineName);
 
-    LPCLineCrawlViewController *crawlViewController = [[LPCLineCrawlViewController alloc] initWithLineCode:cellForRowAtIndexPath.lineCode];
+    LPCLineCrawlViewController *crawlViewController = [[LPCLineCrawlViewController alloc] initWithLineCode:cellForRowAtIndexPath.lineIndex];
     [self presentViewController:crawlViewController animated:YES completion:nil];
 
 
@@ -62,11 +63,13 @@
 
 - (void)configureCell:(LPCLineTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    cell.lineCode = [appDelegate.linesArray objectAtIndex:indexPath.row];
-    cell.lineName = [appDelegate.lines objectForKey:cell.lineCode];
+    NSDictionary *line = [appDelegate.lines objectAtIndex:indexPath.row];
+    cell.lineIndex = indexPath.row;
+    cell.lineName = [line valueForKey:@"name"];
     cell.textLabel.text = cell.lineName;
     
-    UIColor *cellColor = [LPCThemeManager colourForLine:cell.lineCode];
+//    UIColor *cellColor = [LPCThemeManager colourForLine:cell.lineName];
+    UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     
     cell.textLabel.textColor = [UIColor whiteColor];
     

@@ -10,7 +10,7 @@
 
 @interface LPCLineTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) NSString *lineCode;
+@property (nonatomic) int lineIndex;
 @property (strong, nonatomic) NSString *lineName;
 
 @end

@@ -5,6 +5,6 @@
 @property (strong, nonatomic) UIPageViewController *pageController;
 @property (strong, nonatomic) NSArray *stations;
 
-- (id)initWithLineCode:(NSString *)lineCode;
+- (id)initWithLineCode:(int)lineIndex;
 
 @end
