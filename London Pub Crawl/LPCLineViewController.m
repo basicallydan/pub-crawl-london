@@ -1,10 +1,10 @@
-#import "LPCLineCrawlViewController.h"
+#import "LPCLineViewController.h"
 
 #import "LPCStationViewController.h"
 #import "LPCAppDelegate.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 
-@implementation LPCLineCrawlViewController
+@implementation LPCLineViewController
 
 AFHTTPSessionManager *sessionManager;
 NSMutableDictionary *stationResult;
@@ -21,36 +21,13 @@ NSMutableDictionary *stationResult;
 - (id)initWithLineCode:(int)lineIndex {
     self = [super init];
     if (self) {
-        sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
-        
-        LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-        self.stations = [[appDelegate.lines objectAtIndex:lineIndex] valueForKey:@"stations"];
         stationResult = [[NSMutableDictionary alloc] init];
-
-        for (NSString *s in self.stations) {
-            NSDictionary *station = [appDelegate.stations objectForKey:s];
-            NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
-            NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
-            NSArray *latLng = @[lat, lng];
-//            NSArray *latLng = [appDelegate.stations objectForKey:station];
-            NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=3000&section=drinks&sortByDistance=1", latLng[0], latLng[1]];
-            [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSDictionary *result = (NSDictionary *)responseObject;
-                NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
-                if (venues.count > 0 && ((NSArray *)venues[0]).count > 0) {
-                    NSDictionary *venue = venues[0][0];
-                    [stationResult setValue:venue forKey:[station valueForKey:@"code"]];
-                } else {
-                    NSLog(@"What?!");
-                }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                // Details!
-            }];
-        }
-
-        
     }
     return self;
+}
+
+- (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode {
+    [stationResult setValue:venue forKey:stationCode];
 }
 
 - (void)viewDidLoad

@@ -10,6 +10,4 @@
 
 @interface LPCThemeManager : NSObject
 
-+ (UIColor *)colourForLine:(NSString *)line;
-
 @end

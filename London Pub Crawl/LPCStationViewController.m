@@ -1,6 +1,7 @@
 #import "LPCStationViewController.h"
 
 #import <UIColor-HexString/UIColor+HexString.h>
+#import "NSArray+AsCLLocationCoordinate2D.h"
 
 @interface LPCStationViewController ()
 
@@ -18,9 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.mapView = [[MBXMapView alloc] initWithFrame:self.view.frame mapID:@"basicallydan.map-ql3x67r6"];
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
-    self.mapView = [[MBXMapView alloc] initWithFrame:self.view.frame mapID:@"basicallydan.map-ql3x67r6"];
     [self.view insertSubview:self.mapView atIndex:0];
     self.stationNameLabel.text = self.stationName;
     self.pubNameLabel.text = self.pubName;
@@ -29,6 +30,7 @@
     
     if (self.pubLocation && self.stationLocation) {
         MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
+        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
         [self.mapView setRegion:reg];
         [self.mapView regionThatFits:reg];
         
