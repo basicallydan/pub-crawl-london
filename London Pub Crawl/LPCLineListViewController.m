@@ -32,14 +32,16 @@
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
     
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    crawlViewController.stations = [[appDelegate.lines objectAtIndex:lineCell.lineIndex] valueForKey:@"stations"];
+    
+    NSDictionary *line = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
+    crawlViewController.stations = [line valueForKey:@"stations"];
+    crawlViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     
     for (NSString *s in crawlViewController.stations) {
         NSDictionary *station = [appDelegate.stations objectForKey:s];
         NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
         NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
         NSArray *latLng = @[lat, lng];
-        //            NSArray *latLng = [appDelegate.stations objectForKey:station];
         NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=3000&section=drinks&sortByDistance=1", latLng[0], latLng[1]];
         [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSDictionary *result = (NSDictionary *)responseObject;

@@ -1,5 +1,7 @@
 #import "LPCAppDelegate.h"
 
+#import <UIColor-HexString/UIColor+HexString.h>
+
 @implementation LPCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -23,6 +25,14 @@
     pageControl.backgroundColor = [UIColor clearColor];
 
     return YES;
+}
+
+- (UIColor *)colorForLine:(NSString *)lineCode {
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *line = [appDelegate.lines valueForKey:lineCode];
+    
+    UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
+    return cellColor;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

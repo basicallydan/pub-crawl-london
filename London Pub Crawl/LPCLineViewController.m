@@ -97,11 +97,12 @@ NSMutableDictionary *stationResult;
     NSArray *stationLatLng = @[lat, lng];
     
     childViewController.stationName = [station valueForKey:@"name"];
-    UIImage *image = [UIImage imageNamed: @"Jubilee-Line"];
+    childViewController.lineColour = self.lineColour;
+    
     if (index == 0) {
-        image = [UIImage imageNamed:@"Jubilee-Line-Start"];
+        childViewController.firstStop = YES;
     } else if (index == self.stations.count - 1) {
-        image = [UIImage imageNamed:@"Jubilee-Line-End"];
+        childViewController.lastStop = NO;
     }
     
     NSDictionary *venue = [stationResult objectForKey:[station valueForKey:@"code"]];
@@ -115,7 +116,7 @@ NSMutableDictionary *stationResult;
         childViewController.stationLocation = stationLatLng;
     }
     
-    childViewController.lineImagePng = image;
+//    childViewController.lineImagePng = image;
     return childViewController;
 }
 

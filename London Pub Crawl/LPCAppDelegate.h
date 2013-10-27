@@ -19,4 +19,6 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+- (UIColor *)colorForLine:(NSString *)lineCode;
+
 @end

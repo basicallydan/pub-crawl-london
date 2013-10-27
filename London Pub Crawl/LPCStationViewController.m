@@ -2,6 +2,7 @@
 
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "NSArray+AsCLLocationCoordinate2D.h"
+#import "LPCAppDelegate.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate>
 
@@ -29,7 +30,13 @@
     self.stationNameLabel.text = self.stationName;
     self.pubNameLabel.text = self.pubName;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", self.distance];
-    [self.lineImage setImage:self.lineImagePng];
+    if (self.firstStop) {
+        self.rightLineView.backgroundColor = self.lineColour;
+    } else if (self.lastStop) {
+        self.leftLineView.backgroundColor = self.lineColour;
+    } else {
+        self.fullWidthLineView.backgroundColor = self.lineColour;
+    }
     [self zoomToRelevantLocation];
 }
 
@@ -87,4 +94,7 @@
     return region;
 }
 
+- (IBAction)changeLine:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
