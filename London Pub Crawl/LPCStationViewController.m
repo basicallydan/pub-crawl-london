@@ -3,7 +3,7 @@
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "NSArray+AsCLLocationCoordinate2D.h"
 
-@interface LPCStationViewController ()
+@interface LPCStationViewController () <MKMapViewDelegate>
 
 @end
 
@@ -16,10 +16,13 @@
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.mapView = [[MBXMapView alloc] initWithFrame:self.view.frame mapID:@"basicallydan.map-ql3x67r6"];
+//    [self.mapView ]
+    self.mapView.delegate = self;
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
     [self.view insertSubview:self.mapView atIndex:0];
@@ -27,15 +30,28 @@
     self.pubNameLabel.text = self.pubName;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", self.distance];
     [self.lineImage setImage:self.lineImagePng];
-    
+    [self zoomToRelevantLocation];
+}
+
+# pragma mark - Private Methods
+
+- (void)zoomToRelevantLocation {
     if (self.pubLocation && self.stationLocation) {
         MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
-        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
+//        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
         [self.mapView setRegion:reg];
         [self.mapView regionThatFits:reg];
-        
-//        [self.pubMapView addAnnotations:@[self.stationLocation, self.pubLocation]];
     }
+}
+
+# pragma mark - MKMapViewDelegate methods
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    [self zoomToRelevantLocation];
+}
+
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
+    [self zoomToRelevantLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,13 +62,13 @@
 
 - (MKCoordinateRegion)regionFromLocations:(NSArray *)locations {
     NSArray *first = [locations objectAtIndex:0];
-    CLLocationCoordinate2D upper = CLLocationCoordinate2DMake([(NSNumber *)first[0] doubleValue], [(NSNumber *)first[1] doubleValue]);
-    CLLocationCoordinate2D lower = (CLLocationCoordinate2D){.latitude = [(NSNumber *)first[0] doubleValue], .longitude = [(NSNumber *)first[1] doubleValue]};
+    CLLocationCoordinate2D upper = [first asCLLocationCoordinate2D];
+    CLLocationCoordinate2D lower = [first asCLLocationCoordinate2D];
 //    CLLocationCoordinate2D a = CLLocationCoordinate2DMake(51.0, -0.1);
     
     for (int i = 0; i < locations.count; i++) {
         NSArray *locationObj = [locations objectAtIndex:i];
-        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([(NSNumber *)locationObj[0] doubleValue], [(NSNumber *)locationObj[1] doubleValue]);
+        CLLocationCoordinate2D location = [locationObj asCLLocationCoordinate2D];
         if(location.latitude > upper.latitude) upper.latitude = location.latitude;
         if(location.latitude < lower.latitude) lower.latitude = location.latitude;
         if(location.longitude > upper.longitude) upper.longitude = location.longitude;
