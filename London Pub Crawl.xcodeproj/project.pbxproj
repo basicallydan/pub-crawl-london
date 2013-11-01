@@ -20,6 +20,11 @@
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
 		376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */; };
 		376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */; };
+		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
+		376CD9B31823D51600D4C599 /* pub-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B11823D51600D4C599 /* pub-icon.png */; };
+		376CD9B41823D51600D4C599 /* pub-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B21823D51600D4C599 /* pub-icon@2x.png */; };
+		376CD9B71823D7C700D4C599 /* station-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B51823D7C700D4C599 /* station-icon.png */; };
+		376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B61823D7C700D4C599 /* station-icon@2x.png */; };
 		37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A131D5180DC9C90048975C /* MapKit.framework */; };
 		37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A131DB180DE9580048975C /* LPCThemeManager.m */; };
 		37BF4397180D31EC0091BE5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF4396180D31EC0091BE5F /* Foundation.framework */; };
@@ -69,6 +74,12 @@
 		376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
 		376CD9AB181D9FCD00D4C599 /* LPCCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCircleView.h; sourceTree = "<group>"; };
 		376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCircleView.m; sourceTree = "<group>"; };
+		376CD9AE1823C43600D4C599 /* LPCMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCMapAnnotation.h; sourceTree = "<group>"; };
+		376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCMapAnnotation.m; sourceTree = "<group>"; };
+		376CD9B11823D51600D4C599 /* pub-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pub-icon.png"; sourceTree = "<group>"; };
+		376CD9B21823D51600D4C599 /* pub-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pub-icon@2x.png"; sourceTree = "<group>"; };
+		376CD9B51823D7C700D4C599 /* station-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station-icon.png"; sourceTree = "<group>"; };
+		376CD9B61823D7C700D4C599 /* station-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station-icon@2x.png"; sourceTree = "<group>"; };
 		37A131D5180DC9C90048975C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37A131DA180DE9580048975C /* LPCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCThemeManager.h; sourceTree = "<group>"; };
 		37A131DB180DE9580048975C /* LPCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCThemeManager.m; sourceTree = "<group>"; };
@@ -132,6 +143,10 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				376CD9B51823D7C700D4C599 /* station-icon.png */,
+				376CD9B61823D7C700D4C599 /* station-icon@2x.png */,
+				376CD9B11823D51600D4C599 /* pub-icon.png */,
+				376CD9B21823D51600D4C599 /* pub-icon@2x.png */,
 				370FEA60180D7EB300692418 /* Jubilee-Line-End.png */,
 				370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */,
 				370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */,
@@ -190,6 +205,8 @@
 				370FEA58180D6EF400692418 /* LPCLineTableViewCell.m */,
 				370FEA51180D58DD00692418 /* LPCLineViewController.h */,
 				370FEA52180D58DD00692418 /* LPCLineViewController.m */,
+				376CD9AE1823C43600D4C599 /* LPCMapAnnotation.h */,
+				376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */,
 				370FEA54180D68F300692418 /* LPCStationViewController.h */,
 				370FEA55180D68F300692418 /* LPCStationViewController.m */,
 				370FEA5A180D757300692418 /* LPCStationViewController.xib */,
@@ -314,12 +331,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376CD9B31823D51600D4C599 /* pub-icon.png in Resources */,
 				370FEA50180D489C00692418 /* tfl-tube-data.json in Resources */,
 				370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */,
 				370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */,
 				37BF43AD180D31EC0091BE5F /* Main_iPad.storyboard in Resources */,
+				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,
 				37BF43AA180D31EC0091BE5F /* Main_iPhone.storyboard in Resources */,
+				376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */,
+				376CD9B41823D51600D4C599 /* pub-icon@2x.png in Resources */,
 				370FEA64180D7EB300692418 /* Jubilee-Line-End.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
 				370FEA5F180D7E7600692418 /* Jubilee-Line@2x.png in Resources */,
@@ -382,6 +403,7 @@
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */,
 				370FEA56180D68F300692418 /* LPCStationViewController.m in Sources */,
+				376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */,
 				370FEA53180D58DD00692418 /* LPCLineViewController.m in Sources */,
 				37BF43A3180D31EC0091BE5F /* main.m in Sources */,
 				376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */,
