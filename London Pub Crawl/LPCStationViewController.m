@@ -59,6 +59,12 @@
 
 - (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
     [self zoomToRelevantLocation];
+    [UIView animateWithDuration:0.4
+     animations:^{
+         //                 self.loadingView.center = midCenter;
+         self.loadingView.alpha = 0;
+     }
+     completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

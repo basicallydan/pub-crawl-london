@@ -22,6 +22,7 @@
 @property (strong, nonatomic) MBXMapView *mapView;
 @property (strong, nonatomic) NSArray *pubLocation;
 @property (strong, nonatomic) NSArray *stationLocation;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIView *leftLineView;
