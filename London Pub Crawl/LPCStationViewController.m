@@ -2,7 +2,6 @@
 
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "NSArray+AsCLLocationCoordinate2D.h"
-#import "LPCAppDelegate.h"
 #import "LPCMapAnnotation.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate>
@@ -40,6 +39,7 @@ BOOL isMapLoaded = NO;
     } else {
         self.fullWidthLineView.backgroundColor = self.lineColour;
     }
+    isMapLoaded = NO;
 }
 
 # pragma mark - Private Methods
@@ -52,7 +52,7 @@ BOOL isMapLoaded = NO;
     
     if (self.pubLocation && self.stationLocation) {
         MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
-//        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
+        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
         [self.mapView setRegion:reg];
         [self.mapView regionThatFits:reg];
     }
@@ -64,11 +64,10 @@ BOOL isMapLoaded = NO;
     stationAnnotation.coordinate = [self.stationLocation asCLLocationCoordinate2D];
     [self.mapView addAnnotation:stationAnnotation];
     [UIView animateWithDuration:0.4
-                     animations:^{
-                         //                 self.loadingView.center = midCenter;
-                         self.loadingView.alpha = 0;
-                     }
-                     completion:nil];
+         animations:^{
+             self.loadingView.alpha = 0;
+         }
+         completion:nil];
 }
 
 # pragma mark - MKMapViewDelegate methods
