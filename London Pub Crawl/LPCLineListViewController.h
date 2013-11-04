@@ -1,6 +1,8 @@
 #import <UIKit/UIKit.h>
 
-@interface LPCLineListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+#import "LPCStationViewController.h"
+
+@interface LPCLineListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, LPCStationViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

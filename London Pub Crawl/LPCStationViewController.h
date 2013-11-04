@@ -3,7 +3,16 @@
 #import <MapKit/MapKit.h>
 #import <MBXMapKit/MBXMapKit.h>
 
+@protocol LPCStationViewControllerDelegate <NSObject>
+
+- (void)didClickChangeLineThen:(void (^)())then;
+
+@end
+
 @interface LPCStationViewController : UIViewController
+
+@property (weak, nonatomic) id<LPCStationViewControllerDelegate> forkDelegate;
+@property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
 
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *stationName;

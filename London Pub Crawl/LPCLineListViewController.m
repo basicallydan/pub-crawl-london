@@ -27,17 +27,17 @@
 #pragma mark - Private Methods
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
-    LPCLineViewController *crawlViewController = [[LPCLineViewController alloc] initWithLineCode:lineCell.lineIndex];
+    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLineCode:lineCell.lineIndex];
     
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
     
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSDictionary *line = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
-    crawlViewController.stations = [line valueForKey:@"stations"];
-    crawlViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
+    lineViewController.stations = [line valueForKey:@"stations"];
+    lineViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     
-    for (NSString *s in crawlViewController.stations) {
+    for (NSString *s in lineViewController.stations) {
         NSDictionary *station = [appDelegate.stations objectForKey:s];
         NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
         NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
@@ -48,14 +48,16 @@
             NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
             if (venues.count > 0 && ((NSArray *)venues[0]).count > 0) {
                 NSDictionary *venue = venues[0][0];
-                [crawlViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
+                [lineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
             } else {
                 NSLog(@"What?!");
             }
             
-            if ([s isEqualToString:crawlViewController.stations[0]]) {
+            lineViewController.delegate = self;
+            
+            if ([s isEqualToString:lineViewController.stations[0]]) {
                 // We push once we have the first stop's venue
-                [self presentViewController:crawlViewController animated:YES completion:nil];
+                [self presentViewController:lineViewController animated:YES completion:nil];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             // Details!
@@ -109,6 +111,17 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     
     cell.backgroundColor = cellColor;
+}
+
+#pragma mark - LPCStationViewControllerDelegate
+
+- (void)didClickChangeLineThen:(void (^)())then {
+    if (self.presentedViewController.presentedViewController) {
+        [self.presentedViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+        [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    } else if (self.presentedViewController) {
+        [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

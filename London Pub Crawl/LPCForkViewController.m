@@ -1,6 +1,7 @@
 #import "LPCForkViewController.h"
 
 #import "LPCAppDelegate.h"
+#import "LPCStationViewController.h"
 
 @implementation LPCForkViewController
 
@@ -40,11 +41,22 @@
 
 - (IBAction)topRightForkAction:(id)sender {
     NSLog(@"Going to the bottom-right fork toward %@.", self.topForkStationCode);
-    [self.delegate didChooseBranchForDestination:self.topForkStationCode];
+    [self.forkDelegate didChooseBranchForDestination:self.topForkStationCode];
 }
 
 - (IBAction)bottomRightFormAction:(id)sender {
     NSLog(@"Going to the top-right fork toward %@.", self.bottomForkStationCode);
-    [self.delegate didChooseBranchForDestination:self.bottomForkStationCode];
+    [self.forkDelegate didChooseBranchForDestination:self.bottomForkStationCode];
 }
+
+#pragma mark - LPCStationViewControllerDelegate methods
+
+- (void)didClickChangeLineThen:(void (^)())then {
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (then) {
+            then();
+        }
+    }];    
+}
+
 @end

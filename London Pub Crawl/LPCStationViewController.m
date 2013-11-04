@@ -4,7 +4,7 @@
 #import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
 
-@interface LPCStationViewController () <MKMapViewDelegate>
+@interface LPCStationViewController () <MKMapViewDelegate, LPCStationViewControllerDelegate>
 
 @end
 
@@ -136,6 +136,28 @@ BOOL isMapLoaded = NO;
 }
 
 - (IBAction)changeLine:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // Dismiss this controller first
+    
+    if (self.topLevelDelegate) {
+        [self.topLevelDelegate didClickChangeLineThen:^{
+            // WHATEVER!
+        }];
+    }
+    
+//    if (self.forkDelegate) {
+//        [self.forkDelegate didClickChangeLineThen:^() {
+//            [self dismissViewControllerAnimated:YES completion:nil];
+//        }];
+//    }
+    
+    // If this station is part of a fork, tell that fork that we're done.
 }
+
+# pragma mark - LPCStationViewControllerDelegate methods
+- (void)didClickChangeLineThen:(void (^)())then {
+    if (!self.forkDelegate) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+}
+
 @end

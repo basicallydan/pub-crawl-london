@@ -15,6 +15,7 @@ AFHTTPSessionManager *sessionManager;
 NSMutableDictionary *stationResult;
 NSString *destinationBranch;
 NSDictionary *forkStations;
+LPCForkViewController *forkController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -108,7 +109,7 @@ NSDictionary *forkStations;
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index {
     id stationAtIndexOnline = [self.stations objectAtIndex:index];
     
-    if (destinationBranch) { // We're on a branch
+    if (self.parentForkController) { // We're on a branch
         
     }
     
@@ -145,12 +146,19 @@ NSDictionary *forkStations;
             childViewController.stationLocation = stationLatLng;
         }
         
+        // If this line view controller came about through being spawned from a fork view controller
+        if (self.parentForkController) {
+            childViewController.forkDelegate = self.parentForkController;
+        }
+        
+        childViewController.topLevelDelegate = self.delegate;
+        
         //    childViewController.lineImagePng = image;
         return childViewController;
     } else { // It's a fork!
         LPCForkViewController *childViewController = [[LPCForkViewController alloc] initWithNibName:@"LPCForkViewController" bundle:nil];
         childViewController.index = index;
-        childViewController.delegate = self;
+        childViewController.forkDelegate = self;
         forkStations = (NSDictionary *)stationAtIndexOnline;
         NSArray *forkDestinations = [forkStations allKeys];
         
@@ -158,6 +166,12 @@ NSDictionary *forkStations;
         childViewController.bottomForkStationCode = [forkDestinations objectAtIndex:1];
         
         childViewController.lineColour = self.lineColour;
+        
+//        childViewController.stationDelegate = self.parentForkController;
+        
+        childViewController.stationDelegate = self.delegate;
+        
+        forkController = childViewController;
         
         NSLog(@"At %d it's a fork.", index);
         return childViewController;
@@ -179,22 +193,24 @@ NSDictionary *forkStations;
 - (void)didLeaveBranch {
     destinationBranch = nil;
     forkStations = nil;
+    forkController = nil;
 }
 
 - (void)didChooseBranchForDestination:(NSString *)destinationStationCode {
     NSLog(@"Going to branch with destination %@", destinationStationCode);
     destinationBranch = destinationStationCode;
     
-    LPCLineViewController *crawlViewController = [[LPCLineViewController alloc] initWithLineCode:0];
+    LPCLineViewController *branchLineViewController = [[LPCLineViewController alloc] initWithLineCode:0];
     
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
     
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    crawlViewController.stations = [forkStations objectForKey:destinationStationCode];
-    crawlViewController.lineColour = self.lineColour;
+    branchLineViewController.stations = [forkStations objectForKey:destinationStationCode];
+    branchLineViewController.lineColour = self.lineColour;
+    branchLineViewController.parentForkController = forkController;
     
-    for (NSString *s in crawlViewController.stations) {
+    for (NSString *s in branchLineViewController.stations) {
         NSDictionary *station = [appDelegate.stations objectForKey:s];
         NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
         NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
@@ -205,14 +221,16 @@ NSDictionary *forkStations;
             NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
             if (venues.count > 0 && ((NSArray *)venues[0]).count > 0) {
                 NSDictionary *venue = venues[0][0];
-                [crawlViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
+                [branchLineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
             } else {
                 NSLog(@"What?!");
             }
             
-            if ([s isEqualToString:crawlViewController.stations[0]]) {
+            branchLineViewController.delegate = self.delegate;
+            
+            if ([s isEqualToString:branchLineViewController.stations[0]]) {
                 // We push once we have the first stop's venue
-                [self presentViewController:crawlViewController animated:YES completion:nil];
+                [self presentViewController:branchLineViewController animated:YES completion:nil];
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             // Details!

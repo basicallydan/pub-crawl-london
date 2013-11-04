@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+#import "LPCStationViewController.h"
+
 @protocol LPCForkViewControllerDelegate <NSObject>
 
 - (void)didLeaveBranch;
@@ -7,9 +9,10 @@
 
 @end
 
-@interface LPCForkViewController : UIViewController
+@interface LPCForkViewController : UIViewController <LPCStationViewControllerDelegate>
 
-@property (weak, nonatomic) id<LPCForkViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<LPCForkViewControllerDelegate> forkDelegate;
+@property (weak, nonatomic) id<LPCStationViewControllerDelegate> stationDelegate;
 
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *topForkStationCode;
