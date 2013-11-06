@@ -27,7 +27,7 @@
 #pragma mark - Private Methods
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
-    int startingStationIndex = 0;
+    int startingStationIndex = 27;
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithStationIndex:startingStationIndex];
     
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];

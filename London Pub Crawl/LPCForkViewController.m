@@ -28,9 +28,11 @@
     [self.bottomRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", [bottomStationDestination objectForKey:@"name"]] forState:UIControlStateNormal];
     
     // Set colours and other physical junk like that
-    self.leftLineView.backgroundColor = self.lineColour;
-    self.topRightLineView.backgroundColor = self.lineColour;
-    self.bottomRightLineView.backgroundColor = self.lineColour;
+//    self.leftLineView.backgroundColor = self.lineColour;
+//    self.topRightLineView.backgroundColor = self.lineColour;
+//    self.bottomRightLineView.backgroundColor = self.lineColour;
+    
+    [self.forkImageView setImage:[UIImage imageNamed:@"tube-line-fork-central-line"]];
 }
 
 - (void)didReceiveMemoryWarning

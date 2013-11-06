@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="bottomRightForkButton" destination="QgD-5o-IAb" id="fTU-TA-oUc"/>
                 <outlet property="bottomRightLineView" destination="fuY-62-ZAm" id="U1v-0W-2NU"/>
+                <outlet property="forkImageView" destination="SnO-di-6qz" id="Fv6-cI-8yr"/>
                 <outlet property="leftLineView" destination="dcy-Im-BWO" id="UM3-43-gDx"/>
                 <outlet property="topRightForkButton" destination="N31-qq-lks" id="fl6-jB-UgS"/>
                 <outlet property="topRightLineView" destination="MZO-7E-aD0" id="Jpu-va-POo"/>
@@ -52,6 +53,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-di-6qz">
+                            <rect key="frame" x="0.0" y="7" width="320" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
