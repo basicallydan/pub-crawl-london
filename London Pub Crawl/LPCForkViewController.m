@@ -2,6 +2,7 @@
 
 #import "LPCAppDelegate.h"
 #import "LPCStationViewController.h"
+#import "LPCThemeManager.h"
 
 @implementation LPCForkViewController
 
@@ -32,7 +33,7 @@
 //    self.topRightLineView.backgroundColor = self.lineColour;
 //    self.bottomRightLineView.backgroundColor = self.lineColour;
     
-    [self.forkImageView setImage:[UIImage imageNamed:@"tube-line-fork-central-line"]];
+    [self.forkImageView setImage:[LPCThemeManager tubeLineForkWithColor:self.lineColour]];
 }
 
 - (void)didReceiveMemoryWarning
