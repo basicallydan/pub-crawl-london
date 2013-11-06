@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIView *rightLineView;
 @property (weak, nonatomic) IBOutlet UIView *fullWidthLineView;
 @property (weak, nonatomic) IBOutlet UIView *circleRectView;
+@property (weak, nonatomic) IBOutlet UIButton *changeLineButton;
 - (IBAction)changeLine:(id)sender;
 
 @end

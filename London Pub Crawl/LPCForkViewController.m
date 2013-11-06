@@ -28,10 +28,9 @@
     [self.topRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", [topStationDestination objectForKey:@"name"]] forState:UIControlStateNormal];
     [self.bottomRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", [bottomStationDestination objectForKey:@"name"]] forState:UIControlStateNormal];
     
-    // Set colours and other physical junk like that
-//    self.leftLineView.backgroundColor = self.lineColour;
-//    self.topRightLineView.backgroundColor = self.lineColour;
-//    self.bottomRightLineView.backgroundColor = self.lineColour;
+    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
+    
+    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
     
     [self.forkImageView setImage:[LPCThemeManager tubeLineForkWithColor:self.lineColour]];
 }
@@ -52,4 +51,9 @@
     [self.forkDelegate didChooseBranchForDestination:self.bottomForkStationCode];
 }
 
+- (IBAction)changeLine:(id)sender {
+    if (self.topLevelDelegate) {
+        [self.topLevelDelegate didClickChangeLine];
+    }
+}
 @end

@@ -10,15 +10,21 @@
 			"color": "white",
 			"name": "Central",
 			"stations": [
-				"west-ruislip",
-				"ruislip-gardens",
-				"south-ruislip",
-				"northolt",
-				"greenford",
-				"perivale",
-				"hanger-lane",
-				"ealing-broadway",
-				"west-acton",
+				{
+					"west-ruislip" : [
+						"west-ruislip",
+						"ruislip-gardens",
+						"south-ruislip",
+						"northolt",
+						"greenford",
+						"perivale",
+						"hanger-lane"
+					],
+					"ealing-broadway" : [
+						"ealing-broadway",
+						"west-acton"
+					]
+				},
 				"north-acton",
 				"east-acton",
 				"white-city",
@@ -41,14 +47,31 @@
 				"stratford",
 				"leyton",
 				"leytonstone",
-				"snaresbrook",
-				"south-woodford",
-				"woodford",
-				"buckhurst-hill",
-				"loughton",
-				"debden",
-				"theydon-bois",
-				"epping"
+				{
+					"epping": [
+						"snaresbrook",
+						"south-woodford",
+						"woodford",
+						"buckhurst-hill",
+						"loughton",
+						"debden",
+						"theydon-bois",
+						"epping"
+					],
+					"woodford": [
+						"wanstead",
+						"redbridge",
+						"gants-hill",
+						"newbury-park",
+						"barkingside",
+						"fairlop",
+						"hainault",
+						"grange-hill",
+						"chigwell",
+						"roding-valley",
+						"woodford"
+					]
+				}
 			]
 		},
 		{

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPCStationViewController">
             <connections>
+                <outlet property="changeLineButton" destination="EKm-dS-sc6" id="3Z7-Nr-Zcg"/>
                 <outlet property="circleRectView" destination="EqS-sd-6dj" id="dcG-KV-EDK"/>
                 <outlet property="distanceLabel" destination="56V-92-ndJ" id="EdI-pw-8b2"/>
                 <outlet property="footerView" destination="02M-Rc-fik" id="Mdy-eT-oGe"/>
@@ -89,11 +90,12 @@
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKm-dS-sc6">
-                            <rect key="frame" x="20" y="202" width="280" height="49"/>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKm-dS-sc6">
+                            <rect key="frame" x="0.0" y="221" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration" label="A"/>
-                            <state key="normal" title="Change line">
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -103,7 +105,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="EKm-dS-sc6" secondAttribute="bottom" constant="20" id="fNT-8b-ioH"/>
+                        <constraint firstAttribute="bottom" secondItem="EKm-dS-sc6" secondAttribute="bottom" id="fNT-8b-ioH"/>
                     </constraints>
                 </view>
             </subviews>

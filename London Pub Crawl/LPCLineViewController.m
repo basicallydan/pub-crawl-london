@@ -170,7 +170,7 @@ int startingStationIndex;
         
 //        childViewController.stationDelegate = self.parentForkController;
         
-        childViewController.stationDelegate = self.delegate;
+        childViewController.topLevelDelegate = self.delegate;
         
         forkController = childViewController;
         

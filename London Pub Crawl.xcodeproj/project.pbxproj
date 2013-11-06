@@ -29,6 +29,10 @@
 		376CD9BD1827B22B00D4C599 /* LPCForkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9BB1827B22B00D4C599 /* LPCForkViewController.xib */; };
 		377D7B71182A6E480071B5D4 /* tube-line-fork-central-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B6F182A6E480071B5D4 /* tube-line-fork-central-line.png */; };
 		377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B70182A6E480071B5D4 /* tube-line-fork-central-line@2x.png */; };
+		377D7B7B182A96FE0071B5D4 /* tube-line-button-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B77182A96FE0071B5D4 /* tube-line-button-normal.png */; };
+		377D7B7C182A96FE0071B5D4 /* tube-line-button-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B78182A96FE0071B5D4 /* tube-line-button-normal@2x.png */; };
+		377D7B7D182A96FE0071B5D4 /* tube-line-button-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B79182A96FE0071B5D4 /* tube-line-button-pressed.png */; };
+		377D7B7E182A96FE0071B5D4 /* tube-line-button-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */; };
 		37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A131D5180DC9C90048975C /* MapKit.framework */; };
 		37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A131DB180DE9580048975C /* LPCThemeManager.m */; };
 		37BF4397180D31EC0091BE5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF4396180D31EC0091BE5F /* Foundation.framework */; };
@@ -89,6 +93,10 @@
 		376CD9BB1827B22B00D4C599 /* LPCForkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPCForkViewController.xib; sourceTree = "<group>"; };
 		377D7B6F182A6E480071B5D4 /* tube-line-fork-central-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-central-line.png"; sourceTree = "<group>"; };
 		377D7B70182A6E480071B5D4 /* tube-line-fork-central-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-central-line@2x.png"; sourceTree = "<group>"; };
+		377D7B77182A96FE0071B5D4 /* tube-line-button-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-normal.png"; sourceTree = "<group>"; };
+		377D7B78182A96FE0071B5D4 /* tube-line-button-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-normal@2x.png"; sourceTree = "<group>"; };
+		377D7B79182A96FE0071B5D4 /* tube-line-button-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-pressed.png"; sourceTree = "<group>"; };
+		377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-pressed@2x.png"; sourceTree = "<group>"; };
 		37A131D5180DC9C90048975C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37A131DA180DE9580048975C /* LPCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCThemeManager.h; sourceTree = "<group>"; };
 		37A131DB180DE9580048975C /* LPCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCThemeManager.m; sourceTree = "<group>"; };
@@ -145,6 +153,10 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				377D7B77182A96FE0071B5D4 /* tube-line-button-normal.png */,
+				377D7B78182A96FE0071B5D4 /* tube-line-button-normal@2x.png */,
+				377D7B79182A96FE0071B5D4 /* tube-line-button-pressed.png */,
+				377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */,
 				377D7B6F182A6E480071B5D4 /* tube-line-fork-central-line.png */,
 				377D7B70182A6E480071B5D4 /* tube-line-fork-central-line@2x.png */,
 				376CD9B51823D7C700D4C599 /* station-icon.png */,
@@ -339,7 +351,10 @@
 			files = (
 				376CD9B31823D51600D4C599 /* pub-icon.png in Resources */,
 				370FEA50180D489C00692418 /* tfl-tube-data.json in Resources */,
+				377D7B7B182A96FE0071B5D4 /* tube-line-button-normal.png in Resources */,
+				377D7B7E182A96FE0071B5D4 /* tube-line-button-pressed@2x.png in Resources */,
 				370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */,
+				377D7B7D182A96FE0071B5D4 /* tube-line-button-pressed.png in Resources */,
 				370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */,
 				37BF43AD180D31EC0091BE5F /* Main_iPad.storyboard in Resources */,
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
@@ -352,6 +367,7 @@
 				370FEA64180D7EB300692418 /* Jubilee-Line-End.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
 				377D7B71182A6E480071B5D4 /* tube-line-fork-central-line.png in Resources */,
+				377D7B7C182A96FE0071B5D4 /* tube-line-button-normal@2x.png in Resources */,
 				370FEA5F180D7E7600692418 /* Jubilee-Line@2x.png in Resources */,
 				370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */,
 				370FEA5E180D7E7600692418 /* Jubilee-Line.png in Resources */,

@@ -12,7 +12,7 @@
 @interface LPCForkViewController : UIViewController
 
 @property (weak, nonatomic) id<LPCForkViewControllerDelegate> forkDelegate;
-@property (weak, nonatomic) id<LPCStationViewControllerDelegate> stationDelegate;
+@property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
 
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *topForkStationCode;
@@ -28,5 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *bottomRightForkButton;
 - (IBAction)topRightForkAction:(id)sender;
 - (IBAction)bottomRightFormAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *changeLineButton;
+- (IBAction)changeLine:(id)sender;
 
 @end

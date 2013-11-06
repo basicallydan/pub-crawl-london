@@ -56,6 +56,8 @@
             
             lineViewController.delegate = self;
             
+//            [lineViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+            
             if ([s isEqualToString:lineViewController.stations[startingStationIndex]]) {
                 // We push once we have the first stop's venue
                 [self presentViewController:lineViewController animated:YES completion:nil];
