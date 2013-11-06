@@ -5,13 +5,12 @@
 
 @protocol LPCStationViewControllerDelegate <NSObject>
 
-- (void)didClickChangeLineThen:(void (^)())then;
+- (void)didClickChangeLine;
 
 @end
 
 @interface LPCStationViewController : UIViewController
 
-@property (weak, nonatomic) id<LPCStationViewControllerDelegate> forkDelegate;
 @property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
 
 @property (assign, nonatomic) NSInteger index;
@@ -23,7 +22,6 @@
 @property (strong, nonatomic) UIImage *lineImagePng;
 @property (strong, nonatomic) NSString *pubName;
 @property (strong, nonatomic) NSString *distance;
-//@property (strong, nonatomic) IBOutlet MBXMapView *pubMapView;
 @property (strong, nonatomic) MBXMapView *mapView;
 @property (strong, nonatomic) NSArray *pubLocation;
 @property (strong, nonatomic) NSArray *stationLocation;

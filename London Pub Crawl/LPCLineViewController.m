@@ -12,10 +12,11 @@
 @implementation LPCLineViewController
 
 AFHTTPSessionManager *sessionManager;
-NSMutableDictionary *stationResult;
+NSMutableDictionary *stationVenues;
 NSString *destinationBranch;
 NSDictionary *forkStations;
 LPCForkViewController *forkController;
+int startingStationIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,16 +27,21 @@ LPCForkViewController *forkController;
     return self;
 }
 
-- (id)initWithLineCode:(int)lineIndex {
+- (id)initWithStationIndex:(int)stationIndex {
     self = [super init];
     if (self) {
-        stationResult = [[NSMutableDictionary alloc] init];
+        if (!stationIndex) {
+            startingStationIndex = 0;
+        } else {
+            startingStationIndex = stationIndex;
+        }
+        stationVenues = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
 - (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode {
-    [stationResult setValue:venue forKey:stationCode];
+    [stationVenues setValue:venue forKey:stationCode];
 }
 
 - (void)viewDidLoad
@@ -47,13 +53,13 @@ LPCForkViewController *forkController;
     self.pageController.dataSource = self;
     [[self.pageController view] setFrame:[[self view] bounds]];
     
-    NSInteger startingInteger = 0;
-    
-    if ([self.stations count] >= 28) {
-        startingInteger = 27;
+    if (startingStationIndex > [self.stations count]) {
+        // If the requested index is bigger than the count, we'll start at the start. Why am I being protective here?
+        // TODO: Remove this code when happy to do so.
+        startingStationIndex = 0;
     }
 
-    UIViewController *initialViewController = [self viewControllerAtIndex:startingInteger];
+    UIViewController *initialViewController = [self viewControllerAtIndex:startingStationIndex];
 
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
 
@@ -135,7 +141,7 @@ LPCForkViewController *forkController;
             childViewController.lastStop = NO;
         }
         
-        NSDictionary *venue = [stationResult objectForKey:[station valueForKey:@"code"]];
+        NSDictionary *venue = [stationVenues objectForKey:[station valueForKey:@"code"]];
         
         if (venue) {
             childViewController.pubName = [venue valueForKeyPath:@"venue.name"];
@@ -144,11 +150,6 @@ LPCForkViewController *forkController;
             NSNumber *pubLongitude = [venue valueForKeyPath:@"venue.location.lng"];
             childViewController.pubLocation = @[pubLatitude, pubLongitude];
             childViewController.stationLocation = stationLatLng;
-        }
-        
-        // If this line view controller came about through being spawned from a fork view controller
-        if (self.parentForkController) {
-            childViewController.forkDelegate = self.parentForkController;
         }
         
         childViewController.topLevelDelegate = self.delegate;
@@ -200,7 +201,7 @@ LPCForkViewController *forkController;
     NSLog(@"Going to branch with destination %@", destinationStationCode);
     destinationBranch = destinationStationCode;
     
-    LPCLineViewController *branchLineViewController = [[LPCLineViewController alloc] initWithLineCode:0];
+    LPCLineViewController *branchLineViewController = [[LPCLineViewController alloc] initWithStationIndex:0];
     
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
     

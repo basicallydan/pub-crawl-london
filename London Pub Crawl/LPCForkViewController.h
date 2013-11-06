@@ -9,7 +9,7 @@
 
 @end
 
-@interface LPCForkViewController : UIViewController <LPCStationViewControllerDelegate>
+@interface LPCForkViewController : UIViewController
 
 @property (weak, nonatomic) id<LPCForkViewControllerDelegate> forkDelegate;
 @property (weak, nonatomic) id<LPCStationViewControllerDelegate> stationDelegate;

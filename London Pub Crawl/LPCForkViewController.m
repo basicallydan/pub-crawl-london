@@ -49,14 +49,4 @@
     [self.forkDelegate didChooseBranchForDestination:self.bottomForkStationCode];
 }
 
-#pragma mark - LPCStationViewControllerDelegate methods
-
-- (void)didClickChangeLineThen:(void (^)())then {
-    [self dismissViewControllerAnimated:YES completion:^{
-        if (then) {
-            then();
-        }
-    }];    
-}
-
 @end

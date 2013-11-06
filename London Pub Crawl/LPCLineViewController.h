@@ -13,7 +13,7 @@
 @property (strong, nonatomic) LPCLineViewController *parentLineViewController;
 @property (strong, nonatomic) LPCForkViewController *parentForkController;
 
-- (id)initWithLineCode:(int)lineIndex;
+- (id)initWithStationIndex:(int)stationIndex;
 - (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode;
 
 @end

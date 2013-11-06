@@ -27,7 +27,8 @@
 #pragma mark - Private Methods
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
-    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLineCode:lineCell.lineIndex];
+    int startingStationIndex = 0;
+    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithStationIndex:startingStationIndex];
     
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
     
@@ -55,7 +56,7 @@
             
             lineViewController.delegate = self;
             
-            if ([s isEqualToString:lineViewController.stations[0]]) {
+            if ([s isEqualToString:lineViewController.stations[startingStationIndex]]) {
                 // We push once we have the first stop's venue
                 [self presentViewController:lineViewController animated:YES completion:nil];
             }
@@ -115,7 +116,7 @@
 
 #pragma mark - LPCStationViewControllerDelegate
 
-- (void)didClickChangeLineThen:(void (^)())then {
+- (void)didClickChangeLine {
     if (self.presentedViewController.presentedViewController) {
         [self.presentedViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
         [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
