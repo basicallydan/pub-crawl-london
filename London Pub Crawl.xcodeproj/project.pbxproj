@@ -18,6 +18,7 @@
 		370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */; };
 		370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */; };
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
+		37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 37625035182BD4BA0061F1F4 /* station-pubs.json */; };
 		376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */; };
 		376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */; };
 		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
@@ -78,6 +79,7 @@
 		370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-End@2x.png"; sourceTree = "<group>"; };
 		370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start.png"; sourceTree = "<group>"; };
 		370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start@2x.png"; sourceTree = "<group>"; };
+		37625035182BD4BA0061F1F4 /* station-pubs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "station-pubs.json"; sourceTree = "<group>"; };
 		376CD9A4181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AsCLLocationCoordinate2D.h"; sourceTree = "<group>"; };
 		376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
 		376CD9AB181D9FCD00D4C599 /* LPCCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCircleView.h; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		37BF439D180D31EC0091BE5F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37625035182BD4BA0061F1F4 /* station-pubs.json */,
 				37BF439F180D31EC0091BE5F /* InfoPlist.strings */,
 				37BF439E180D31EC0091BE5F /* London Pub Crawl-Info.plist */,
 				37BF43A4180D31EC0091BE5F /* London Pub Crawl-Prefix.pch */,
@@ -367,6 +370,7 @@
 				370FEA64180D7EB300692418 /* Jubilee-Line-End.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
 				377D7B71182A6E480071B5D4 /* tube-line-fork-central-line.png in Resources */,
+				37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */,
 				377D7B7C182A96FE0071B5D4 /* tube-line-button-normal@2x.png in Resources */,
 				370FEA5F180D7E7600692418 /* Jubilee-Line@2x.png in Resources */,
 				370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */,

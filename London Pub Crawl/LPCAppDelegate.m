@@ -8,9 +8,8 @@
 {
     NSDictionary *allTheData = [self.class dictionaryWithContentsOfJSONString:@"tfl-tube-data.json"];
     self.stations = [allTheData valueForKey:@"stations"];
-//    self.stationCoordinates = [allTheData valueForKey:@"coordinates"];
     self.lines = [allTheData valueForKey:@"lines"];
-//    self.stationOrdersForLines = [allTheData valueForKey:@"stationOrdersForLines"];
+    self.pubs = [self.class dictionaryWithContentsOfJSONString:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
 
     for (NSString *line in self.lines) {

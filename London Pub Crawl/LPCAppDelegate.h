@@ -12,9 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSArray *lines;
-@property (strong, nonatomic) NSDictionary *stationOrdersForLines;
-@property (strong, nonatomic) NSDictionary *stationCoordinates;
 @property (strong, nonatomic) NSDictionary *stations;
+@property (strong, nonatomic) NSDictionary *pubs;
 @property (strong, nonatomic) NSArray *linesArray;
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;

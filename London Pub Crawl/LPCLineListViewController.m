@@ -30,8 +30,6 @@
     int startingStationIndex = 27;
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithStationIndex:startingStationIndex];
     
-    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
-    
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSDictionary *line = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
@@ -39,39 +37,21 @@
     lineViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     
     for (NSString *s in lineViewController.stations) {
-        NSDictionary *station = [appDelegate.stations objectForKey:s];
-        NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
-        NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
-        NSArray *latLng = @[lat, lng];
-        NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=3000&section=drinks&sortByDistance=1", latLng[0], latLng[1]];
-        [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSDictionary *result = (NSDictionary *)responseObject;
-            NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
-            if (venues.count > 0 && ((NSArray *)venues[0]).count > 0) {
-                NSDictionary *venue = venues[0][0];
-                [lineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
-            } else {
-                NSLog(@"What?!");
-            }
-            
-            lineViewController.delegate = self;
-            
-//            [lineViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-            
-            if ([s isEqualToString:lineViewController.stations[startingStationIndex]]) {
-                // We push once we have the first stop's venue
-                [self presentViewController:lineViewController animated:YES completion:nil];
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            // Details!
-        }];
+        if ([s isKindOfClass:[NSString class]]) {
+            NSDictionary *station = [appDelegate.stations objectForKey:s];
+            NSArray *venues = [appDelegate.pubs valueForKey:[station valueForKey:@"code"]];
+
+            NSDictionary *venue = venues[0];
+            [lineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
+        }
     }
+    
+    [self presentViewController:lineViewController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     LPCLineTableViewCell *cell = (LPCLineTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"Selected the %@ line", cell.lineName);
 
@@ -110,10 +90,10 @@
     cell.textLabel.text = cell.lineName;
     
     UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
-    
-    cell.textLabel.textColor = [UIColor whiteColor];
+    UIColor *textColor = [UIColor colorWithHexString:[line valueForKey:@"text-color"]];
     
     cell.backgroundColor = cellColor;
+    cell.textLabel.textColor = textColor;
 }
 
 #pragma mark - LPCStationViewControllerDelegate

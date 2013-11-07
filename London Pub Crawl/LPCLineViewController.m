@@ -144,10 +144,10 @@ int startingStationIndex;
         NSDictionary *venue = [stationVenues objectForKey:[station valueForKey:@"code"]];
         
         if (venue) {
-            childViewController.pubName = [venue valueForKeyPath:@"venue.name"];
-            childViewController.distance = [venue valueForKeyPath:@"venue.location.distance"];
-            NSNumber *pubLatitude = [venue valueForKeyPath:@"venue.location.lat"];
-            NSNumber *pubLongitude = [venue valueForKeyPath:@"venue.location.lng"];
+            childViewController.pubName = [venue valueForKeyPath:@"name"];
+            childViewController.distance = [venue valueForKeyPath:@"location.distance"];
+            NSNumber *pubLatitude = [venue valueForKeyPath:@"location.lat"];
+            NSNumber *pubLongitude = [venue valueForKeyPath:@"location.lng"];
             childViewController.pubLocation = @[pubLatitude, pubLongitude];
             childViewController.stationLocation = stationLatLng;
         }
@@ -203,8 +203,6 @@ int startingStationIndex;
     
     LPCLineViewController *branchLineViewController = [[LPCLineViewController alloc] initWithStationIndex:0];
     
-    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:@"https://api.foursquare.com"]];
-    
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     branchLineViewController.stations = [forkStations objectForKey:destinationStationCode];
@@ -213,30 +211,11 @@ int startingStationIndex;
     
     for (NSString *s in branchLineViewController.stations) {
         NSDictionary *station = [appDelegate.stations objectForKey:s];
-        NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
-        NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
-        NSArray *latLng = @[lat, lng];
-        NSString *searchURI = [NSString stringWithFormat:@"/v2/venues/explore?ll=%@,%@&client_id=SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH&client_secret=44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&v=20131015&limit=1&intent=match&radius=3000&section=drinks&sortByDistance=1", latLng[0], latLng[1]];
-        [sessionManager GET:searchURI parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSDictionary *result = (NSDictionary *)responseObject;
-            NSArray *venues = [result valueForKeyPath:@"response.groups.items"];
-            if (venues.count > 0 && ((NSArray *)venues[0]).count > 0) {
-                NSDictionary *venue = venues[0][0];
-                [branchLineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
-            } else {
-                NSLog(@"What?!");
-            }
-            
-            branchLineViewController.delegate = self.delegate;
-            
-            if ([s isEqualToString:branchLineViewController.stations[0]]) {
-                // We push once we have the first stop's venue
-                [self presentViewController:branchLineViewController animated:YES completion:nil];
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            // Details!
-        }];
+        NSArray *venues = [appDelegate.pubs valueForKey:[station valueForKey:@"code"]];
+        NSDictionary *venue = venues[0];
+        [branchLineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
     }
+    [self presentViewController:branchLineViewController animated:YES completion:nil];
 }
 
 @end
