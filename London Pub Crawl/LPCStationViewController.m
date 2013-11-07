@@ -23,8 +23,7 @@ BOOL isMapLoaded = NO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.mapView = [[MBXMapView alloc] initWithFrame:self.view.frame mapID:@"basicallydan.map-ql3x67r6"];
-//    [self.mapView ]
+    self.mapView = [[MBXMapView alloc] initWithFrame:self.mapViewportView.frame mapID:@"basicallydan.map-ql3x67r6"];
     self.mapView.delegate = self;
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
@@ -40,11 +39,29 @@ BOOL isMapLoaded = NO;
         self.fullWidthLineView.backgroundColor = self.lineColour;
     }
     
+    if ([self.tips count] == 0) {
+        self.tipAuthorLabel.hidden = YES;
+        self.tipLabel.hidden = YES;
+    } else {
+        self.tipAuthorLabel.hidden = NO;
+        self.tipLabel.hidden = NO;
+        
+        self.tipAuthorLabel.text = [NSString stringWithFormat:@"a tip from %@", [self.tips[0] valueForKey:@"user"]];
+        self.tipLabel.text = @"LOTS AND LOTS OF TEXT WHICH SHOULD WRAP WHEN I TELL IT TO WRAP LOLOLOL";
+        
+        self.tipLabel.numberOfLines = 0;
+        self.tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    }
+    
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
     
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
     
     isMapLoaded = NO;
+}
+
+- (void)viewDidLayoutSubviews {
+    [self.tipLabel sizeToFit];
 }
 
 # pragma mark - Private Methods
@@ -65,9 +82,10 @@ BOOL isMapLoaded = NO;
     LPCMapAnnotation *pubAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:0];
     pubAnnotation.coordinate = [self.pubLocation asCLLocationCoordinate2D];
     [self.mapView addAnnotation:pubAnnotation];
-    LPCMapAnnotation *stationAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:1];
-    stationAnnotation.coordinate = [self.stationLocation asCLLocationCoordinate2D];
-    [self.mapView addAnnotation:stationAnnotation];
+    // Do we need the station annotation?
+//    LPCMapAnnotation *stationAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:1];
+//    stationAnnotation.coordinate = [self.stationLocation asCLLocationCoordinate2D];
+//    [self.mapView addAnnotation:stationAnnotation];
     [UIView animateWithDuration:0.4
          animations:^{
              self.loadingView.alpha = 0;
@@ -130,13 +148,14 @@ BOOL isMapLoaded = NO;
     
     // FIND REGION
     MKCoordinateSpan locationSpan;
-    locationSpan.latitudeDelta = upper.latitude - lower.latitude;
-    locationSpan.longitudeDelta = upper.longitude - lower.longitude;
+    locationSpan.latitudeDelta = (upper.latitude - lower.latitude) * 1.9f;
+    locationSpan.longitudeDelta = (upper.longitude - lower.longitude) * 1.9f;
     CLLocationCoordinate2D locationCenter;
     locationCenter.latitude = (upper.latitude + lower.latitude) / 2;
     locationCenter.longitude = (upper.longitude + lower.longitude) / 2;
     
     MKCoordinateRegion region = MKCoordinateRegionMake(locationCenter, locationSpan);
+    
     return region;
 }
 

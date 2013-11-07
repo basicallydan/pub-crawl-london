@@ -148,6 +148,7 @@ int startingStationIndex;
             childViewController.distance = [venue valueForKeyPath:@"location.distance"];
             NSNumber *pubLatitude = [venue valueForKeyPath:@"location.lat"];
             NSNumber *pubLongitude = [venue valueForKeyPath:@"location.lng"];
+            childViewController.tips = [venue valueForKey:@"tips"];
             childViewController.pubLocation = @[pubLatitude, pubLongitude];
             childViewController.stationLocation = stationLatLng;
         }

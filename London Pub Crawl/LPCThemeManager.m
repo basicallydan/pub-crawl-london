@@ -13,6 +13,10 @@
 + (UIImage *)tubeLineForkWithColor:(UIColor *)color {
     UIImage *image = [UIImage imageNamed:@"tube-line-fork-central-line"];
     
+    return [self recolorImage:image withColor:color];
+}
+
++ (UIImage *)recolorImage:(UIImage *)image withColor:(UIColor *)color {
     CGRect rect;
     
     if ([UIScreen mainScreen].scale == 2.0) {

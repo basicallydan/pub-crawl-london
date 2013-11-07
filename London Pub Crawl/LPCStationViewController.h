@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *stationName;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
+@property (strong, nonatomic) NSArray *tips;
 @property (assign, nonatomic) BOOL firstStop;
 @property (assign, nonatomic) BOOL lastStop;
 @property (strong, nonatomic) UIImage *lineImagePng;
@@ -38,5 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIView *circleRectView;
 @property (weak, nonatomic) IBOutlet UIButton *changeLineButton;
 - (IBAction)changeLine:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *mapViewportView;
+@property (weak, nonatomic) IBOutlet UILabel *tipAuthorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 @end
