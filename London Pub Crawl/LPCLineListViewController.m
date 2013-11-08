@@ -28,12 +28,24 @@
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
     int startingStationIndex = 27;
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *line = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
+    
+    NSArray *lineStations = [line valueForKey:@"stations"];
+    
+    if ([lineStations[0] isKindOfClass:[NSString class]]) {
+        // This means we have a standard main-line start
+    } else {
+        // This means we will have to start on one of the branches
+        NSDictionary *startBranches = lineStations[0];
+        NSArray *branchStartChoices = [startBranches allKeys];
+        // TODO: Don't always just go with the first one you dummy
+        lineStations = [startBranches valueForKey:branchStartChoices[0]];
+    }
+    
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithStationIndex:startingStationIndex];
     
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    NSDictionary *line = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
-    lineViewController.stations = [line valueForKey:@"stations"];
+    lineViewController.stations = lineStations;
     lineViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     
     for (NSString *s in lineViewController.stations) {
@@ -69,6 +81,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     return appDelegate.lines.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.tableView.frame.size.height / [self tableView:tableView numberOfRowsInSection:indexPath.section];
+//    return [indexPath row] * 20;
 }
 
 - (LPCLineTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

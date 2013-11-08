@@ -50,6 +50,21 @@ BOOL isMapLoaded = NO;
         self.tipLabel.text = [self.tips[0] valueForKey:@"text"];
     }
     
+    if (self.branchName) {
+        if (self.branchStationIsAhead) {
+            [self.branchNameRightLabel setText:[NSString stringWithFormat:@"%@ branch", self.branchName]];
+            [self.branchNameRightLabel setTextColor:self.lineColour];
+            [self.branchNameLeftLabel removeFromSuperview];
+        } else {
+            [self.branchNameLeftLabel setText:[NSString stringWithFormat:@"%@ branch", self.branchName]];
+            [self.branchNameLeftLabel setTextColor:self.lineColour];
+            [self.branchNameRightLabel removeFromSuperview];
+        }
+    } else {
+        [self.branchNameLeftLabel removeFromSuperview];
+        [self.branchNameRightLabel removeFromSuperview];
+    }
+    
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
     
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
@@ -59,12 +74,6 @@ BOOL isMapLoaded = NO;
 
 - (void)viewDidLayoutSubviews {
     [self.tipLabel sizeToFit];
-    
-//    self.tipAuthorLabel.text = [NSString stringWithFormat:@"a tip from %@", [self.tips[0] valueForKey:@"user"]];
-//    self.tipLabel.text = @"LOTS AND LOTS OF TEXT WHICH SHOULD WRAP WHEN I TELL IT TO WRAP LOLOLOL";
-//    
-//    self.tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    self.tipLabel.numberOfLines = 0;
 }
 
 # pragma mark - Private Methods

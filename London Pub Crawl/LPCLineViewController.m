@@ -126,7 +126,9 @@ int startingStationIndex;
         childViewController.index = index;
         LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        NSDictionary *station = [appDelegate.stations objectForKey:[self.stations objectAtIndex:index]];
+        NSString *stationLongCode = [self.stations objectAtIndex:index];
+        
+        NSDictionary *station = [appDelegate.stations objectForKey:stationLongCode];
         
         NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
         NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
@@ -136,9 +138,26 @@ int startingStationIndex;
         childViewController.lineColour = self.lineColour;
         
         if (index == 0) {
-            childViewController.firstStop = YES;
+            if (!self.parentForkController) {
+                childViewController.firstStop = YES;
+            }
         } else if (index == self.stations.count - 1) {
             childViewController.lastStop = NO;
+        }
+        
+        if (self.branchStation) {
+            NSString *branchStationLongCode = [self.branchStation valueForKey:@"nestoria_code"];
+            childViewController.branchName = [self.branchStation valueForKey:@"name"];
+            
+            int currentStationPosition = [self.stations indexOfObject:stationLongCode];
+            int branchStationPosition = [self.stations indexOfObject:branchStationLongCode];
+            
+            if(currentStationPosition < branchStationPosition) {
+                // The current station before the "branch station"
+                childViewController.branchStationIsAhead = YES;
+            } else {
+                childViewController.branchStationIsAhead = NO;
+            }
         }
         
         NSDictionary *venue = [stationVenues objectForKey:[station valueForKey:@"code"]];
@@ -168,8 +187,6 @@ int startingStationIndex;
         childViewController.bottomForkStationCode = [forkDestinations objectAtIndex:1];
         
         childViewController.lineColour = self.lineColour;
-        
-//        childViewController.stationDelegate = self.parentForkController;
         
         childViewController.topLevelDelegate = self.delegate;
         
@@ -206,6 +223,7 @@ int startingStationIndex;
     
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    branchLineViewController.branchStation = [appDelegate.stations valueForKey:destinationStationCode];
     branchLineViewController.stations = [forkStations objectForKey:destinationStationCode];
     branchLineViewController.lineColour = self.lineColour;
     branchLineViewController.parentForkController = forkController;
@@ -216,6 +234,7 @@ int startingStationIndex;
         NSDictionary *venue = venues[0];
         [branchLineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
     }
+    
     [self presentViewController:branchLineViewController animated:YES completion:nil];
 }
 

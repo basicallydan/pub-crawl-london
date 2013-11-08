@@ -26,6 +26,9 @@
 @property (strong, nonatomic) MBXMapView *mapView;
 @property (strong, nonatomic) NSArray *pubLocation;
 @property (strong, nonatomic) NSArray *stationLocation;
+@property (strong, nonatomic) NSString *branchName;
+@property (assign, nonatomic) BOOL branchStationIsAhead;
+
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
 @property (strong, nonatomic) IBOutlet UIView *view;
@@ -38,9 +41,12 @@
 @property (weak, nonatomic) IBOutlet UIView *fullWidthLineView;
 @property (weak, nonatomic) IBOutlet UIView *circleRectView;
 @property (weak, nonatomic) IBOutlet UIButton *changeLineButton;
-- (IBAction)changeLine:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *mapViewportView;
 @property (weak, nonatomic) IBOutlet UILabel *tipAuthorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *branchNameRightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *branchNameLeftLabel;
+
+- (IBAction)changeLine:(id)sender;
 
 @end

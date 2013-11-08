@@ -1,12 +1,7 @@
 {
-	"api": "http://api.nestoria.co.uk/api?country=uk& tty=0&action=metadata&encoding=json&place_name=",
-	"category_field": "num_beds",
-	"metadata_suffix": "buy_monthly",
-	"country": "United Kingdom",
-	"currency": "£",
 	"lines": [
 		{
-			"background-color": "#dc241f",
+			"background-color": "#E41F1F",
 			"text-color": "#ffffff",
 			"name": "Central",
 			"stations": [
@@ -75,7 +70,7 @@
 			]
 		},
 		{
-			"background-color": "#0019a8",
+			"background-color": "#0450A1",
 			"text-color": "#ffffff",
 			"name": "Piccadilly",
 			"stations": [
@@ -141,7 +136,7 @@
 			]
 		},
 		{
-			"background-color": "#00a0ff",
+			"background-color": "#009FE0",
 			"text-color": "#ffffff",
 			"name": "Victoria",
 			"stations": [
@@ -164,7 +159,7 @@
 			]
 		},
 		{
-			"background-color": "#868f98",
+			"background-color": "#686E72",
 			"text-color": "#ffffff",
 			"name": "Jubilee",
 			"stations": [
@@ -206,21 +201,40 @@
 					"richmond" : [
 						"richmond",
 						"kew-gardens",
-						"gunnersbury"
+						"gunnersbury",
+						"turnham-green",
+						"stamford-brook",
+						"ravenscourt-park",
+						"hammersmith-distandpicc-line",
+						"barons-court",
+						"west-kensington"
 					],
 					"ealing-broadway" : [
 						"ealing-broadway",
 						"ealing-common",
 						"acton-town",
-						"chiswick-park"
+						"chiswick-park",
+						"turnham-green",
+						"stamford-brook",
+						"ravenscourt-park",
+						"hammersmith-distandpicc-line",
+						"barons-court",
+						"west-kensington"
+					],
+					"westminster" : [
+						"wimbledon",
+						"wimbledon-park",
+						"southfields",
+						"east-putney",
+						"putney-bridge",
+						"parsons-green",
+						"fulham-broadway",
+						"west-brompton"
+					],
+					"hammersmith" : [
+						"hammersmith"
 					]
 				},
-				"turnham-green",
-				"stamford-brook",
-				"ravenscourt-park",
-				"hammersmith-distandpicc-line",
-				"barons-court",
-				"west-kensington",
 				"earls-court",
 				{
 					"edgware-road-circle-line": [
@@ -267,24 +281,8 @@
 			]
 		},
 		{
-			"background-color": "#007229",
-			"text-color": "#ffffff",
-			"name": "District (Wimbledon)",
-			"stations": [
-				"wimbledon",
-				"wimbledon-park",
-				"southfields",
-				"east-putney",
-				"putney-bridge",
-				"parsons-green",
-				"fulham-broadway",
-				"west-brompton",
-				"earls-court"
-			]
-		},
-		{
-			"background-color": "#ffce00",
-			"text-color": "#000000",
+			"background-color": "#F8D42D",
+			"text-color": "#113892",
 			"name": "Circle",
 			"stations": [
 				"hammersmith-distandpicc-line",
@@ -325,7 +323,7 @@
 			]
 		},
 		{
-			"background-color": "#894e24",
+			"background-color": "#AE6118",
 			"text-color": "#ffffff",
 			"name": "Bakerloo",
 			"stations": [
@@ -357,8 +355,8 @@
 			]
 		},
 		{
-			"background-color": "#d799af",
-			"text-color": "#ffffff",
+			"background-color": "#E899A8",
+			"text-color": "#113892",
 			"name": "Hammersmith & City",
 			"stations": [
 				"hammersmith-handc-line",
@@ -394,7 +392,7 @@
 			]
 		},
 		{
-			"background-color": "#751056",
+			"background-color": "#893267",
 			"text-color": "#ffffff",
 			"name": "Metropolitan",
 			"stations": [
@@ -426,84 +424,75 @@
 		{
 			"background-color": "#000000",
 			"text-color": "#ffffff",
-			"name": "Northern (Edgware and Charing Cross)",
+			"name": "Northern",
 			"stations": [
-				"edgware",
-				"burnt-oak",
-				"colindale",
-				"hendon-central",
-				"brent-cross",
-				"golders-green",
-				"hampstead",
-				"belsize-park",
-				"chalk-farm",
-				"camden-town",
-				"mornington-crescent",
+				{
+					"edgware" : [
+						"edgware",
+						"burnt-oak",
+						"colindale",
+						"hendon-central",
+						"brent-cross",
+						"golders-green",
+						"hampstead",
+						"belsize-park",
+						"chalk-farm",
+						"camden-town",
+						"mornington-crescent",
+					],
+					"high-barnet": [
+						"high-barnet",
+						"totteridge-and-whetstone",
+						"woodside-park",
+						"west-finchley",
+						"finchley-central",
+						"east-finchley",
+						"highgate",
+						"archway",
+						"tufnell-park",
+						"kentish-town",
+						"camden-town"
+					]
+				},
 				"euston",
-				"warren-street",
-				"goodge-street",
-				"tottenham-court-road",
-				"leicester-square",
-				"charing-cross",
-				"embankment",
-				"waterloo",
-				"kennington",
-				"oval",
-				"stockwell",
-				"clapham-north",
-				"clapham-common",
-				"clapham-south",
-				"balham",
-				"tooting-bec",
-				"tooting-broadway",
-				"colliers-wood",
-				"south-wimbledon",
-				"morden"
+				{
+					"bank" : [
+						"kings-cross-st-pancras",
+						"angel",
+						"old-street",
+						"moorgate",
+						"bank",
+						"london-bridge",
+						"borough",
+						"elephant-and-castle",
+						"kennington",
+						"oval",
+						"stockwell",
+						"clapham-north",
+						"clapham-common",
+						"clapham-south",
+						"balham",
+						"tooting-bec",
+						"tooting-broadway",
+						"colliers-wood",
+						"south-wimbledon",
+						"morden"
+					],
+					"charing-cross" : [
+						"warren-street",
+						"goodge-street",
+						"tottenham-court-road",
+						"leicester-square",
+						"charing-cross",
+						"embankment",
+						"waterloo"
+					]
+				}
 			]
 		},
 		{
-			"background-color": "#000000",
-			"text-color": "#ffffff",
-			"name": "Northern (High Barnet and Bank)",
-			"stations": [
-				"high-barnet",
-				"totteridge-and-whetstone",
-				"woodside-park",
-				"west-finchley",
-				"finchley-central",
-				"east-finchley",
-				"highgate",
-				"archway",
-				"tufnell-park",
-				"kentish-town",
-				"camden-town",
-				"mornington-crescent",
-				"euston",
-				"kings-cross-st-pancras",
-				"angel",
-				"old-street",
-				"moorgate",
-				"bank",
-				"london-bridge",
-				"borough",
-				"elephant-and-castle",
-				"kennington",
-				"oval",
-				"stockwell",
-				"clapham-north",
-				"clapham-common",
-				"clapham-south",
-				"balham",
-				"tooting-bec",
-				"tooting-broadway",
-				"colliers-wood",
-				"south-wimbledon",
-				"morden"
-			]
-		},
-		{
-			"background-color": "#76d0bd",
-			"text-color": "#ffffff",
+			"background-color": "#70C3CE",
+			"text-color": "#113892",
 			"name": "Waterloo & City",
 			"stations": [
 				"bank",
@@ -1234,21 +1223,21 @@
 			"lat": "51.47124",
 			"lng": "-0.45226",
 			"name": "Heathrow Airport Term 1-3",
-			"nestoria_code": "heathrow"
+			"nestoria_code": "heathrow-airport-terminal-13"
 		},
 		"heathrow-airport-terminal-4": {
 			"code": "HR4",
 			"lat": "51.45853",
 			"lng": "-0.44576",
 			"name": "Heathrow Airport Terminal 4",
-			"nestoria_code": "heathrow"
+			"nestoria_code": "heathrow-airport-terminal-4"
 		},
 		"heathrow-airport-terminal-5": {
 			"code": "HR5",
 			"lat": "51.47006",
 			"lng": "-0.49055",
 			"name": "Heathrow Airport Terminal 5",
-			"nestoria_code": "heathrow"
+			"nestoria_code": "heathrow-airport-terminal-5"
 		},
 		"hendon-central": {
 			"code": "HCL",

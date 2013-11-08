@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPCStationViewController">
             <connections>
+                <outlet property="branchNameLeftLabel" destination="URP-xh-YJS" id="b1m-NT-mTt"/>
+                <outlet property="branchNameRightLabel" destination="ZLm-Fw-zwG" id="aLU-a2-B1P"/>
                 <outlet property="changeLineButton" destination="EKm-dS-sc6" id="3Z7-Nr-Zcg"/>
                 <outlet property="circleRectView" destination="EqS-sd-6dj" id="dcG-KV-EDK"/>
                 <outlet property="distanceLabel" destination="56V-92-ndJ" id="EdI-pw-8b2"/>
@@ -85,10 +87,34 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Branch Name Right" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-Fw-zwG">
+                            <rect key="frame" x="186" y="31" width="129" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="129" id="ffj-NJ-7H7"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Branch Name Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URP-xh-YJS">
+                            <rect key="frame" x="10" y="31" width="129" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="129" id="Dx5-Be-bxk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="URP-xh-YJS" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="31" id="XOh-WW-gFH"/>
                         <constraint firstAttribute="height" constant="117" id="fgB-he-aQh"/>
+                        <constraint firstItem="ZLm-Fw-zwG" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="31" id="ss0-AF-yYN"/>
+                        <constraint firstAttribute="trailing" secondItem="ZLm-Fw-zwG" secondAttribute="trailing" constant="10" id="tIS-wN-tNx"/>
+                        <constraint firstItem="URP-xh-YJS" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" constant="10" id="vqp-Gg-nOf"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02M-Rc-fik">
