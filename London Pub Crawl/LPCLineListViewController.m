@@ -46,6 +46,8 @@
         }
     }
     
+    lineViewController.delegate = self;
+    
     [self presentViewController:lineViewController animated:YES completion:nil];
 }
 

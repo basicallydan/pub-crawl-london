@@ -46,11 +46,8 @@ BOOL isMapLoaded = NO;
         self.tipAuthorLabel.hidden = NO;
         self.tipLabel.hidden = NO;
         
-        self.tipAuthorLabel.text = [NSString stringWithFormat:@"a tip from %@", [self.tips[0] valueForKey:@"user"]];
-        self.tipLabel.text = @"LOTS AND LOTS OF TEXT WHICH SHOULD WRAP WHEN I TELL IT TO WRAP LOLOLOL";
-        
-        self.tipLabel.numberOfLines = 0;
-        self.tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        self.tipAuthorLabel.text = [self.tips[0] valueForKey:@"user"];
+        self.tipLabel.text = [self.tips[0] valueForKey:@"text"];
     }
     
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
@@ -62,6 +59,12 @@ BOOL isMapLoaded = NO;
 
 - (void)viewDidLayoutSubviews {
     [self.tipLabel sizeToFit];
+    
+//    self.tipAuthorLabel.text = [NSString stringWithFormat:@"a tip from %@", [self.tips[0] valueForKey:@"user"]];
+//    self.tipLabel.text = @"LOTS AND LOTS OF TEXT WHICH SHOULD WRAP WHEN I TELL IT TO WRAP LOLOLOL";
+//    
+//    self.tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    self.tipLabel.numberOfLines = 0;
 }
 
 # pragma mark - Private Methods
