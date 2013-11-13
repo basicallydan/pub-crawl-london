@@ -14,6 +14,9 @@
 @property (strong, nonatomic) LPCForkViewController *parentForkController;
 @property (strong, nonatomic) NSDictionary *branchStation;
 
+@property (strong, nonatomic) NSString *topOfLineDirection;
+@property (strong, nonatomic) NSString *bottomOfLineDirection;
+
 - (id)initWithStationIndex:(int)stationIndex;
 - (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode;
 

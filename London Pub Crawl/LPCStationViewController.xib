@@ -6,10 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPCStationViewController">
             <connections>
-                <outlet property="branchNameLeftLabel" destination="URP-xh-YJS" id="b1m-NT-mTt"/>
-                <outlet property="branchNameRightLabel" destination="ZLm-Fw-zwG" id="aLU-a2-B1P"/>
                 <outlet property="changeLineButton" destination="EKm-dS-sc6" id="3Z7-Nr-Zcg"/>
                 <outlet property="circleRectView" destination="EqS-sd-6dj" id="dcG-KV-EDK"/>
+                <outlet property="destinationLeftLabel" destination="URP-xh-YJS" id="Ott-M2-g5d"/>
+                <outlet property="destinationRightLabel" destination="ZLm-Fw-zwG" id="a7G-aO-WA0"/>
                 <outlet property="distanceLabel" destination="56V-92-ndJ" id="EdI-pw-8b2"/>
                 <outlet property="footerView" destination="02M-Rc-fik" id="Mdy-eT-oGe"/>
                 <outlet property="fullWidthLineView" destination="DfY-KP-bYW" id="BHi-8M-woR"/>

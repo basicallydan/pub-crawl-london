@@ -158,6 +158,9 @@ int startingStationIndex;
             } else {
                 childViewController.branchStationIsAhead = NO;
             }
+        } else {
+            childViewController.directionBackward = self.topOfLineDirection;
+            childViewController.directionForward = self.bottomOfLineDirection;
         }
         
         NSDictionary *venue = [stationVenues objectForKey:[station valueForKey:@"code"]];
@@ -227,6 +230,7 @@ int startingStationIndex;
     branchLineViewController.stations = [forkStations objectForKey:destinationStationCode];
     branchLineViewController.lineColour = self.lineColour;
     branchLineViewController.parentForkController = forkController;
+    branchLineViewController.delegate = self.delegate;
     
     for (NSString *s in branchLineViewController.stations) {
         NSDictionary *station = [appDelegate.stations objectForKey:s];

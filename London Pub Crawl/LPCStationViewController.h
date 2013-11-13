@@ -28,6 +28,8 @@
 @property (strong, nonatomic) NSArray *stationLocation;
 @property (strong, nonatomic) NSString *branchName;
 @property (assign, nonatomic) BOOL branchStationIsAhead;
+@property (strong, nonatomic) NSString *directionForward;
+@property (strong, nonatomic) NSString *directionBackward;
 
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
@@ -44,8 +46,8 @@
 @property (weak, nonatomic) IBOutlet UIView *mapViewportView;
 @property (weak, nonatomic) IBOutlet UILabel *tipAuthorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
-@property (weak, nonatomic) IBOutlet UILabel *branchNameRightLabel;
-@property (weak, nonatomic) IBOutlet UILabel *branchNameLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
 
 - (IBAction)changeLine:(id)sender;
 

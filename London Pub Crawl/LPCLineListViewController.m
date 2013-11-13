@@ -50,6 +50,8 @@
     
     lineViewController.stations = lineStations;
     lineViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
+    lineViewController.bottomOfLineDirection = [line valueForKey:@"bottom-direction"]; // This is the direction we're heading in if we're going toward the end of the array of stations
+    lineViewController.topOfLineDirection = [line valueForKey:@"top-direction"]; // This is the direction we're heading in fi we're going toward the start of the array of stations
     
     for (NSString *s in lineViewController.stations) {
         if ([s isKindOfClass:[NSString class]]) {

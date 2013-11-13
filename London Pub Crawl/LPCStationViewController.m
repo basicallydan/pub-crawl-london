@@ -52,17 +52,20 @@ BOOL isMapLoaded = NO;
     
     if (self.branchName) {
         if (self.branchStationIsAhead) {
-            [self.branchNameRightLabel setText:[NSString stringWithFormat:@"%@ branch", self.branchName]];
-            [self.branchNameRightLabel setTextColor:self.lineColour];
-            [self.branchNameLeftLabel removeFromSuperview];
+            [self.destinationRightLabel setText:[NSString stringWithFormat:@"%@ branch", self.branchName]];
+            [self.destinationRightLabel setTextColor:self.lineColour];
+            [self.destinationLeftLabel removeFromSuperview];
         } else {
-            [self.branchNameLeftLabel setText:[NSString stringWithFormat:@"%@ branch", self.branchName]];
-            [self.branchNameLeftLabel setTextColor:self.lineColour];
-            [self.branchNameRightLabel removeFromSuperview];
+            [self.destinationLeftLabel setText:[NSString stringWithFormat:@"%@ branch", self.branchName]];
+            [self.destinationLeftLabel setTextColor:self.lineColour];
+            [self.destinationRightLabel removeFromSuperview];
         }
-    } else {
-        [self.branchNameLeftLabel removeFromSuperview];
-        [self.branchNameRightLabel removeFromSuperview];
+    } else if (self.directionBackward && self.directionForward) {
+        [self.destinationLeftLabel setText:self.directionBackward];
+        [self.destinationLeftLabel setTextColor:self.lineColour];
+        
+        [self.destinationRightLabel setText:self.directionForward];
+        [self.destinationRightLabel setTextColor:self.lineColour];
     }
     
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
