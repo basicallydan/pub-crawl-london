@@ -4,6 +4,8 @@
 			"background-color": "#E41F1F",
 			"text-color": "#ffffff",
 			"name": "Central",
+			"top-direction":"Westbound",
+			"bottom-direction":"Eastbound",
 			"stations": [
 				{
 					"west-ruislip" : [
@@ -73,6 +75,8 @@
 			"background-color": "#0450A1",
 			"text-color": "#ffffff",
 			"name": "Piccadilly",
+			"top-direction":"Eastbound",
+			"bottom-direction":"Westbound",
 			"stations": [
 				"cockfosters",
 				"oakwood",
@@ -139,6 +143,8 @@
 			"background-color": "#009FE0",
 			"text-color": "#ffffff",
 			"name": "Victoria",
+			"top-direction":"Northbound",
+			"bottom-direction":"Southbound",
 			"stations": [
 				"walthamstow-central",
 				"blackhorse-road",
@@ -162,6 +168,8 @@
 			"background-color": "#686E72",
 			"text-color": "#ffffff",
 			"name": "Jubilee",
+			"top-direction":"Northbound",
+			"bottom-direction":"Southbound",
 			"stations": [
 				"stanmore",
 				"canons-park",
@@ -196,6 +204,8 @@
 			"background-color": "#007229",
 			"text-color": "#ffffff",
 			"name": "District",
+			"top-direction":"Westbound",
+			"bottom-direction":"Eastbound",
 			"stations": [
 				{
 					"richmond" : [
@@ -284,6 +294,8 @@
 			"background-color": "#F8D42D",
 			"text-color": "#113892",
 			"name": "Circle",
+			"top-direction":"Anti-clockwise",
+			"bottom-direction":"Clockwise",
 			"stations": [
 				"hammersmith-distandpicc-line",
 				"goldhawk-road",
@@ -326,6 +338,8 @@
 			"background-color": "#AE6118",
 			"text-color": "#ffffff",
 			"name": "Bakerloo",
+			"top-direction":"Northbound",
+			"bottom-direction":"Southbound",
 			"stations": [
 				"harrow-and-wealdstone",
 				"kenton",
@@ -358,6 +372,8 @@
 			"background-color": "#E899A8",
 			"text-color": "#113892",
 			"name": "Hammersmith & City",
+			"top-direction":"Westbound",
+			"bottom-direction":"Eastbound",
 			"stations": [
 				"hammersmith-handc-line",
 				"goldhawk-road",
@@ -395,8 +411,17 @@
 			"background-color": "#893267",
 			"text-color": "#ffffff",
 			"name": "Metropolitan",
+			"top-direction":"Westbound",
+			"bottom-direction":"Eastbound",
 			"stations": [
-				"chesham",
+				{
+					"chesham": [
+						"chesham"
+					],
+					"amersham": [
+						"amersham"
+					]
+				},
 				"chalfont-and-latimer",
 				"chorleywood",
 				"rickmansworth",
@@ -425,6 +450,8 @@
 			"background-color": "#000000",
 			"text-color": "#ffffff",
 			"name": "Northern",
+			"top-direction":"Northbound",
+			"bottom-direction":"Southbound",
 			"stations": [
 				{
 					"edgware" : [
@@ -494,6 +521,8 @@
 			"background-color": "#70C3CE",
 			"text-color": "#113892",
 			"name": "Waterloo & City",
+			"top-direction":"Eastbound",
+			"bottom-direction":"Westbound",
 			"stations": [
 				"bank",
 				"waterloo"
