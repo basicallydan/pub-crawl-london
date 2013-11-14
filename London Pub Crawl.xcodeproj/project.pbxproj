@@ -19,6 +19,9 @@
 		370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */; };
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
 		37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 37625035182BD4BA0061F1F4 /* station-pubs.json */; };
+		3762503A1833CACB0061F1F4 /* LPCLineOptionModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 376250381833CACB0061F1F4 /* LPCLineOptionModalViewController.m */; };
+		3762503B1833CACB0061F1F4 /* LPCLineOptionModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376250391833CACB0061F1F4 /* LPCLineOptionModalViewController.xib */; };
+		3762504018352F520061F1F4 /* LPCLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762503F18352F520061F1F4 /* LPCLine.m */; };
 		376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */; };
 		376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */; };
 		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
@@ -80,6 +83,11 @@
 		370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start.png"; sourceTree = "<group>"; };
 		370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start@2x.png"; sourceTree = "<group>"; };
 		37625035182BD4BA0061F1F4 /* station-pubs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "station-pubs.json"; sourceTree = "<group>"; };
+		376250371833CACB0061F1F4 /* LPCLineOptionModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLineOptionModalViewController.h; sourceTree = "<group>"; };
+		376250381833CACB0061F1F4 /* LPCLineOptionModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineOptionModalViewController.m; sourceTree = "<group>"; };
+		376250391833CACB0061F1F4 /* LPCLineOptionModalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPCLineOptionModalViewController.xib; sourceTree = "<group>"; };
+		3762503E18352F520061F1F4 /* LPCLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLine.h; sourceTree = "<group>"; };
+		3762503F18352F520061F1F4 /* LPCLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLine.m; sourceTree = "<group>"; };
 		376CD9A4181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AsCLLocationCoordinate2D.h"; sourceTree = "<group>"; };
 		376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
 		376CD9AB181D9FCD00D4C599 /* LPCCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCircleView.h; sourceTree = "<group>"; };
@@ -175,6 +183,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		3762503D18352F390061F1F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3762503E18352F520061F1F4 /* LPCLine.h */,
+				3762503F18352F520061F1F4 /* LPCLine.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		37BF438A180D31EC0091BE5F = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +228,7 @@
 		37BF439C180D31EC0091BE5F /* London Pub Crawl */ = {
 			isa = PBXGroup;
 			children = (
+				3762503D18352F390061F1F4 /* Models */,
 				37BF43B1180D31EC0091BE5F /* Images.xcassets */,
 				37BF43A5180D31EC0091BE5F /* LPCAppDelegate.h */,
 				37BF43A6180D31EC0091BE5F /* LPCAppDelegate.m */,
@@ -221,6 +239,9 @@
 				376CD9BB1827B22B00D4C599 /* LPCForkViewController.xib */,
 				37BF43AE180D31EC0091BE5F /* LPCLineListViewController.h */,
 				37BF43AF180D31EC0091BE5F /* LPCLineListViewController.m */,
+				376250371833CACB0061F1F4 /* LPCLineOptionModalViewController.h */,
+				376250381833CACB0061F1F4 /* LPCLineOptionModalViewController.m */,
+				376250391833CACB0061F1F4 /* LPCLineOptionModalViewController.xib */,
 				370FEA57180D6EF400692418 /* LPCLineTableViewCell.h */,
 				370FEA58180D6EF400692418 /* LPCLineTableViewCell.m */,
 				370FEA51180D58DD00692418 /* LPCLineViewController.h */,
@@ -367,6 +388,7 @@
 				376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */,
 				376CD9B41823D51600D4C599 /* pub-icon@2x.png in Resources */,
 				376CD9BD1827B22B00D4C599 /* LPCForkViewController.xib in Resources */,
+				3762503B1833CACB0061F1F4 /* LPCLineOptionModalViewController.xib in Resources */,
 				370FEA64180D7EB300692418 /* Jubilee-Line-End.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
 				377D7B71182A6E480071B5D4 /* tube-line-fork-central-line.png in Resources */,
@@ -427,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
 				37BF43B0180D31EC0091BE5F /* LPCLineListViewController.m in Sources */,
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
@@ -436,6 +459,7 @@
 				370FEA53180D58DD00692418 /* LPCLineViewController.m in Sources */,
 				37BF43A3180D31EC0091BE5F /* main.m in Sources */,
 				376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */,
+				3762503A1833CACB0061F1F4 /* LPCLineOptionModalViewController.m in Sources */,
 				376CD9BC1827B22B00D4C599 /* LPCForkViewController.m in Sources */,
 				370FEA59180D6EF400692418 /* LPCLineTableViewCell.m in Sources */,
 			);

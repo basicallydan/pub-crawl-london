@@ -2,10 +2,16 @@
 
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "LPCAppDelegate.h"
+#import "LPCLine.h"
 #import "LPCLineTableViewCell.h"
 #import "LPCLineViewController.h"
+#import "LPCLineOptionModalViewController.h"
 #import "LPCThemeManager.h"
 #import <UIColor-HexString/UIColor+HexString.h>
+
+@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate>
+
+@end
 
 @implementation LPCLineListViewController
 
@@ -32,32 +38,45 @@
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
     int startingStationIndex = 27;
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSDictionary *line = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
+    NSDictionary *lineDictionary = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
     
-    NSArray *lineStations = [line valueForKey:@"stations"];
+    LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary];
+    
+    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
     
     if ([lineStations[0] isKindOfClass:[NSString class]]) {
         // This means we have a standard main-line start
+        [self showLineViewWithStations:lineStations onLine:lineDictionary atStation:startingStationIndex];
     } else {
         // This means we will have to start on one of the branches
+        
+        LPCLineOptionModalViewController *lineOptionController = [[LPCLineOptionModalViewController alloc] initWithStartingStations:line.leafStations];
+        lineOptionController.delegate = self;
+        
+        [self presentViewController:lineOptionController animated:YES completion:nil];
+        
         NSDictionary *startBranches = lineStations[0];
         NSArray *branchStartChoices = [startBranches allKeys];
         // TODO: Don't always just go with the first one you dummy
         lineStations = [startBranches valueForKey:branchStartChoices[0]];
     }
+}
+
+- (void)showLineViewWithStations:(NSArray *)lineStations onLine:(NSDictionary *)lineDictionary atStation:(int)startingStationIndex {
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithStationIndex:startingStationIndex];
     
     lineViewController.stations = lineStations;
-    lineViewController.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
-    lineViewController.bottomOfLineDirection = [line valueForKey:@"bottom-direction"]; // This is the direction we're heading in if we're going toward the end of the array of stations
-    lineViewController.topOfLineDirection = [line valueForKey:@"top-direction"]; // This is the direction we're heading in fi we're going toward the start of the array of stations
+    lineViewController.lineColour = [UIColor colorWithHexString:[lineDictionary valueForKey:@"background-color"]];
+    lineViewController.bottomOfLineDirection = [lineDictionary valueForKey:@"bottom-direction"]; // This is the direction we're heading in if we're going toward the end of the array of stations
+    lineViewController.topOfLineDirection = [lineDictionary valueForKey:@"top-direction"]; // This is the direction we're heading in fi we're going toward the start of the array of stations
     
     for (NSString *s in lineViewController.stations) {
         if ([s isKindOfClass:[NSString class]]) {
             NSDictionary *station = [appDelegate.stations objectForKey:s];
             NSArray *venues = [appDelegate.pubs valueForKey:[station valueForKey:@"code"]];
-
+            
             NSDictionary *venue = venues[0];
             [lineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
         }
@@ -66,6 +85,12 @@
     lineViewController.delegate = self;
     
     [self presentViewController:lineViewController animated:YES completion:nil];
+}
+
+#pragma mark - UILineOptionModalViewControllerDelegate 
+
+- (void)didSelectStartingStation:(NSString *)station {
+    NSLog(@"Selected %@ as the first station", station);
 }
 
 #pragma mark - UITableViewDelegate
