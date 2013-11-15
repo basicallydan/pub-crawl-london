@@ -1,12 +1,5 @@
-//
-//  LPCAppDelegate.h
-//  London Pub Crawl
-//
-//  Created by Dan on 15/10/2013.
-//  Copyright (c) 2013 LondonPubCrawl. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
+#import "LPCStation.h"
 
 @interface LPCAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,5 +12,7 @@
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 - (UIColor *)colorForLine:(NSString *)lineCode;
+
++ (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode;
 
 @end

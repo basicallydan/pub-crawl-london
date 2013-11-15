@@ -1,12 +1,6 @@
-//
-//  LPCLineOptionModalViewController.m
-//  London Pub Crawl
-//
-//  Created by Daniel Hough on 13/11/2013.
-//  Copyright (c) 2013 LondonPubCrawl. All rights reserved.
-//
-
 #import "LPCLineOptionModalViewController.h"
+
+#import "LPCStation.h"
 
 @interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
@@ -58,7 +52,17 @@ NSArray *allStations;
     // Remove all objects from the filtered search array
     [self.filteredStationArray removeAllObjects];
     // Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    NSMutableArray *filteredArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
+    [filteredArray removeObjectsInArray:startingStations];
+    
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = @[nameDescriptor];
+    [filteredArray sortUsingDescriptors:sortDescriptors];
+    
+    [self.filteredStationArray addObjectsFromArray:startingStations];
+    [self.filteredStationArray addObjectsFromArray:filteredArray];
+    
     self.filteredStationArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
 }
 
@@ -69,13 +73,15 @@ NSArray *allStations;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [startingStations count];
+    return [self.filteredStationArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     
-    cell.textLabel.text = [startingStations objectAtIndex:indexPath.row];
+    LPCStation *station = (LPCStation *)[self.filteredStationArray objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = station.name;
     
     return cell;
 }
@@ -94,6 +100,7 @@ NSArray *allStations;
 #pragma mark - UISearchDisplayDelegate
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // TODO: Store something to reflect changes to improve the experience and performance here
     return YES;
 }
 

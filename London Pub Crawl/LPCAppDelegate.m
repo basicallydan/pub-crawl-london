@@ -75,4 +75,11 @@
     return result;
 }
 
++ (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode {
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *stationDictionary = [appDelegate.stations objectForKey:nestoriaCode];
+    LPCStation *station = [[LPCStation alloc] initWithStation:stationDictionary];
+    return station;
+}
+
 @end
