@@ -50,7 +50,7 @@
     } else {
         // This means we will have to start on one of the branches
         
-        LPCLineOptionModalViewController *lineOptionController = [[LPCLineOptionModalViewController alloc] initWithStartingStations:line.leafStations];
+        LPCLineOptionModalViewController *lineOptionController = [[LPCLineOptionModalViewController alloc] initWithLine:line];
         lineOptionController.delegate = self;
         
         [self presentViewController:lineOptionController animated:YES completion:nil];

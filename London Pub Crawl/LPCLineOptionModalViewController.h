@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "LPCLine.h"
 
 @protocol LPCLineOptionModalViewControllerDelegate <NSObject>
 
@@ -9,9 +10,11 @@
 @interface LPCLineOptionModalViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *startingStationsTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSMutableArray *filteredStationArray;
 
 @property (strong, nonatomic) id<LPCLineOptionModalViewControllerDelegate> delegate;
 
-- (id)initWithStartingStations:(NSArray *)stations;
+- (id)initWithLine:(LPCLine *)line;
 
 @end
