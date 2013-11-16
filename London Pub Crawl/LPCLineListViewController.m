@@ -90,7 +90,9 @@
 #pragma mark - UILineOptionModalViewControllerDelegate 
 
 - (void)didSelectStartingStation:(NSString *)station {
-    NSLog(@"Selected %@ as the first station", station);
+    [self dismissViewControllerAnimated:NO completion:^{
+         NSLog(@"Selected %@ as the first station", station);
+    }];
 }
 
 #pragma mark - UITableViewDelegate

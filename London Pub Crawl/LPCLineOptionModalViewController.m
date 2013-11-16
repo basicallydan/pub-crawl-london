@@ -30,7 +30,17 @@ NSArray *allStations;
     allStations = line.allStations;
     self.filteredStationArray = [[NSMutableArray alloc] initWithCapacity:[line.allStations count]];
     
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF.nestoriaCode in %@)", [startingStations valueForKey:@"nestoriaCode"]];
+    NSArray *stationsWithoutStartingStations = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
+    
+    [self.filteredStationArray addObjectsFromArray:startingStations];
+    [self.filteredStationArray addObjectsFromArray:stationsWithoutStartingStations];
+    
     return self;
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad
@@ -73,7 +83,8 @@ NSArray *allStations;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.filteredStationArray count];
+    int number = [self.filteredStationArray count];
+    return number;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,6 +93,10 @@ NSArray *allStations;
     LPCStation *station = (LPCStation *)[self.filteredStationArray objectAtIndex:indexPath.row];
     
     cell.textLabel.text = station.name;
+    
+    if ([startingStations containsObject:station]) {
+        cell.textLabel.textColor = [UIColor blueColor];
+    }
     
     return cell;
 }

@@ -16,5 +16,6 @@
 @property (strong, nonatomic) id<LPCLineOptionModalViewControllerDelegate> delegate;
 
 - (id)initWithLine:(LPCLine *)line;
+- (IBAction)cancel:(id)sender;
 
 @end
