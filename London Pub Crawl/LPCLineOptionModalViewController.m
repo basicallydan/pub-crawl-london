@@ -24,8 +24,6 @@ NSArray *allStations;
 - (id)initWithLine:(LPCLine *)line {
     self = [self initWithNibName:@"LPCLineOptionModalViewController" bundle:nil];
     
-//    self.filteredStationArray = [[NSMutableArray alloc] initWithCapacity:line.allStations [
-    
     startingStations = line.leafStations;
     allStations = line.allStations;
     self.filteredStationArray = [[NSMutableArray alloc] initWithCapacity:[line.allStations count]];

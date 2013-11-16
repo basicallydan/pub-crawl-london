@@ -68,9 +68,9 @@ BOOL isMapLoaded = NO;
         [self.destinationRightLabel setTextColor:self.lineColour];
     }
     
-    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
-    
-    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
+//    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
+//    
+//    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
     
     isMapLoaded = NO;
 }
