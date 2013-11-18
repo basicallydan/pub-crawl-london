@@ -8,4 +8,6 @@
 @property (copy) NSString *branchCode;
 @property int branchLineIndex;
 
+- (LPCLinePosition *)nextPossiblePosition;
+
 @end

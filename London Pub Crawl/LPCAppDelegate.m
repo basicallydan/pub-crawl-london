@@ -75,10 +75,11 @@
     return result;
 }
 
-+ (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode {
++ (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode atPosition:(LPCLinePosition *)position {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *stationDictionary = [appDelegate.stations objectForKey:nestoriaCode];
     LPCStation *station = [[LPCStation alloc] initWithStation:stationDictionary];
+    station.linePosition = position;
     return station;
 }
 

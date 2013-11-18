@@ -12,6 +12,7 @@
 @property (strong, nonatomic) NSString *bottomOfLineDirection;
 
 - (id)initWithLine:(NSDictionary *)line;
-- (LPCStation *)stationAtPosition:(LPCLinePosition *)position;
+//- (LPCStation *)stationAtPosition:(LPCLinePosition *)position;
+- (LPCStation *)stationAfterPosition:(LPCLinePosition *)position;
 
 @end

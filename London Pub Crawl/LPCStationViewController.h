@@ -2,6 +2,7 @@
 
 #import <MapKit/MapKit.h>
 #import <MBXMapKit/MBXMapKit.h>
+#import "LPCStation.h"
 
 @protocol LPCStationViewControllerDelegate <NSObject>
 
@@ -30,6 +31,7 @@
 @property (assign, nonatomic) BOOL branchStationIsAhead;
 @property (strong, nonatomic) NSString *directionForward;
 @property (strong, nonatomic) NSString *directionBackward;
+@property (strong, nonatomic) LPCStation *station;
 
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;

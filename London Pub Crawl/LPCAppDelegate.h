@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "LPCStation.h"
+#import "LPCLinePosition.h"
 
 @interface LPCAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -13,6 +14,6 @@
 
 - (UIColor *)colorForLine:(NSString *)lineCode;
 
-+ (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode;
++ (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode atPosition:(LPCLinePosition *)position;
 
 @end

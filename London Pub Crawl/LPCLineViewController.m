@@ -113,7 +113,13 @@ LPCStation *currentStation;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     // TODO: After!
-    return nil;
+    LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
+    
+    LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.station.linePosition];
+    
+    UIViewController *nextViewController = [self viewControllerForStation:nextStation];
+    
+    return nextViewController;
     
     // We're about to go on a branch, but we're not on one at the moment
     if (!destinationBranch && forkStations && [forkStations count] > 0) {
@@ -139,6 +145,8 @@ LPCStation *currentStation;
     LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
 //        childViewController.index = index;
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    childViewController.station = st;
     
     childViewController.stationName = st.name;
     childViewController.lineColour = currentLine.lineColour;

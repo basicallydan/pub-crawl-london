@@ -25,14 +25,16 @@ LPCLine *selectedLine;
 - (id)initWithLine:(LPCLine *)line {
     self = [self initWithNibName:@"LPCLineOptionModalViewController" bundle:nil];
     
-    startingStations = line.leafStations;
     allStations = line.allStations;
     self.filteredStationArray = [[NSMutableArray alloc] initWithCapacity:[line.allStations count]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (SELF.nestoriaCode in %@)", [startingStations valueForKey:@"nestoriaCode"]];
-    NSArray *stationsWithoutStartingStations = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
+    NSPredicate *inclusionOfStartersPredicate = [NSPredicate predicateWithFormat:@"NOT (SELF.nestoriaCode in %@)", line.leafStations];
+    NSPredicate *exclusionOfStartersPredicate = [NSPredicate predicateWithFormat:@"NOT (SELF.nestoriaCode in %@)", line.leafStations];
     
-    [self.filteredStationArray addObjectsFromArray:startingStations];
+    NSArray *justStartingStations = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:inclusionOfStartersPredicate]];
+    NSArray *stationsWithoutStartingStations = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:exclusionOfStartersPredicate]];
+    
+    [self.filteredStationArray addObjectsFromArray:justStartingStations];
     [self.filteredStationArray addObjectsFromArray:stationsWithoutStartingStations];
     
     selectedLine = line;
@@ -65,13 +67,13 @@ LPCLine *selectedLine;
     // Filter the array using NSPredicate
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
     NSMutableArray *filteredArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
-    [filteredArray removeObjectsInArray:startingStations];
+//    [filteredArray removeObjectsInArray:startingStations];
     
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[nameDescriptor];
     [filteredArray sortUsingDescriptors:sortDescriptors];
     
-    [self.filteredStationArray addObjectsFromArray:startingStations];
+//    [self.filteredStationArray addObjectsFromArray:startingStations];
     [self.filteredStationArray addObjectsFromArray:filteredArray];
     
     self.filteredStationArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
@@ -95,7 +97,7 @@ LPCLine *selectedLine;
     
     cell.textLabel.text = station.name;
     
-    if ([startingStations containsObject:station]) {
+    if ([startingStations containsObject:station.nestoriaCode]) {
         cell.textLabel.textColor = [UIColor blueColor];
     }
     
@@ -103,7 +105,7 @@ LPCLine *selectedLine;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate didSelectStartingStation:[startingStations objectAtIndex:indexPath.row] forLine:selectedLine];
+    [self.delegate didSelectStartingStation:[self.filteredStationArray objectAtIndex:indexPath.row] forLine:selectedLine];
 }
 
 #pragma mark - UISearchBarDelegate
