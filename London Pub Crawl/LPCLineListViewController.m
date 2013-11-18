@@ -87,11 +87,29 @@
     [self presentViewController:lineViewController animated:YES completion:nil];
 }
 
+- (void)showLineViewStartingWith:(LPCLine *)line startingWith:(LPCStation *)station {
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station];
+    
+    for (LPCStation *s in line.allStations) {
+        NSArray *venues = [appDelegate.pubs valueForKey:s.code];
+        
+        NSDictionary *venue = venues[0];
+        [lineViewController addVenue:venue forStationCode:s.code];
+    }
+    
+    lineViewController.delegate = self;
+    
+    [self presentViewController:lineViewController animated:YES completion:nil];
+}
+
 #pragma mark - UILineOptionModalViewControllerDelegate 
 
-- (void)didSelectStartingStation:(NSString *)station {
+- (void)didSelectStartingStation:(LPCStation *)station forLine:(LPCLine *)line {
     [self dismissViewControllerAnimated:NO completion:^{
-         NSLog(@"Selected %@ as the first station", station);
+        NSLog(@"Selected %@ as the first station", station.name);
+        [self showLineViewStartingWith:line startingWith:station];
     }];
 }
 

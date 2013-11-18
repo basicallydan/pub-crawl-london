@@ -2,6 +2,7 @@
 
 #import "LPCForkViewController.h"
 #import "LPCStationViewController.h"
+#import "LPCLine.h";
 
 @interface LPCLineViewController : UIViewController <UIPageViewControllerDataSource>
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) NSString *bottomOfLineDirection;
 
 - (id)initWithStationIndex:(int)stationIndex;
+- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)stationNestoriaCode;
 - (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode;
 
 @end

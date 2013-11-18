@@ -10,6 +10,7 @@
 
 NSArray *startingStations;
 NSArray *allStations;
+LPCLine *selectedLine;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +34,8 @@ NSArray *allStations;
     
     [self.filteredStationArray addObjectsFromArray:startingStations];
     [self.filteredStationArray addObjectsFromArray:stationsWithoutStartingStations];
+    
+    selectedLine = line;
     
     return self;
 }
@@ -100,7 +103,7 @@ NSArray *allStations;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate didSelectStartingStation:[startingStations objectAtIndex:indexPath.row]];
+    [self.delegate didSelectStartingStation:[startingStations objectAtIndex:indexPath.row] forLine:selectedLine];
 }
 
 #pragma mark - UISearchBarDelegate

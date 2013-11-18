@@ -1,9 +1,10 @@
 #import <UIKit/UIKit.h>
 #import "LPCLine.h"
+#import "LPCStation.h"
 
 @protocol LPCLineOptionModalViewControllerDelegate <NSObject>
 
-- (void)didSelectStartingStation:(NSString *)station;
+- (void)didSelectStartingStation:(LPCStation *)station forLine:(LPCLine *)line;
 
 @end
 

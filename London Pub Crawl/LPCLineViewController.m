@@ -3,6 +3,7 @@
 #import "LPCAppDelegate.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "LPCForkViewController.h"
+#import "LPCLinePosition.h"
 #import "LPCStationViewController.h"
 
 @interface LPCLineViewController () <LPCForkViewControllerDelegate>
@@ -17,6 +18,9 @@ NSString *destinationBranch;
 NSDictionary *forkStations;
 LPCForkViewController *forkController;
 int startingStationIndex;
+LPCLinePosition *currentStationPointer;
+LPCLine *currentLine;
+LPCStation *currentStation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +44,18 @@ int startingStationIndex;
     return self;
 }
 
+- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station {
+    self = [super init];
+    currentStation = station;
+    currentLine = line;
+    
+    self.stations = line.allStations;
+    
+    stationVenues = [[NSMutableDictionary alloc] init];
+    
+    return self;
+}
+
 - (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode {
     [stationVenues setValue:venue forKey:stationCode];
 }
@@ -59,7 +75,9 @@ int startingStationIndex;
         startingStationIndex = 0;
     }
 
-    UIViewController *initialViewController = [self viewControllerAtIndex:startingStationIndex];
+//    UIViewController *initialViewController = [self viewControllerAtIndex:startingStationIndex];
+//    UIViewController *initialViewController = [self viewControllerAtPositionPointer:currentStationPointer];
+    UIViewController *initialViewController = [self viewControllerForStation:currentStation];
 
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
 
@@ -77,7 +95,9 @@ int startingStationIndex;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-
+    // TODO: Before!
+    return nil;
+    
     NSUInteger index = [(LPCStationViewController *)viewController index];
 
     if (index == 0) {
@@ -92,6 +112,8 @@ int startingStationIndex;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    // TODO: After!
+    return nil;
     
     // We're about to go on a branch, but we're not on one at the moment
     if (!destinationBranch && forkStations && [forkStations count] > 0) {
@@ -110,6 +132,59 @@ int startingStationIndex;
 
     return newViewController;
 
+}
+
+
+- (UIViewController *)viewControllerForStation:(LPCStation *)st {
+    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
+//        childViewController.index = index;
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    childViewController.stationName = st.name;
+    childViewController.lineColour = currentLine.lineColour;
+    
+//    if (index == 0) {
+//        if (!self.parentForkController) {
+//            childViewController.firstStop = YES;
+//        }
+//    } else if (index == self.stations.count - 1) {
+//        childViewController.lastStop = NO;
+//    }
+    
+    if (self.branchStation) {
+        NSString *branchStationLongCode = [self.branchStation valueForKey:@"nestoria_code"];
+        childViewController.branchName = [self.branchStation valueForKey:@"name"];
+        
+        int currentStationPosition = [self.stations indexOfObject:st.nestoriaCode];
+        int branchStationPosition = [self.stations indexOfObject:branchStationLongCode];
+        
+        if(currentStationPosition < branchStationPosition) {
+            // The current station before the "branch station"
+            childViewController.branchStationIsAhead = YES;
+        } else {
+            childViewController.branchStationIsAhead = NO;
+        }
+    } else {
+        childViewController.directionBackward = currentLine.topOfLineDirection;
+        childViewController.directionForward = currentLine.bottomOfLineDirection;
+    }
+    
+    NSDictionary *venue = [stationVenues objectForKey:st.code];
+    
+    if (venue) {
+        childViewController.pubName = [venue valueForKeyPath:@"name"];
+        childViewController.distance = [venue valueForKeyPath:@"location.distance"];
+        NSNumber *pubLatitude = [venue valueForKeyPath:@"location.lat"];
+        NSNumber *pubLongitude = [venue valueForKeyPath:@"location.lng"];
+        childViewController.tips = [venue valueForKey:@"tips"];
+        childViewController.pubLocation = @[pubLatitude, pubLongitude];
+        childViewController.stationLocation = st.coordinate;
+    }
+    
+    childViewController.topLevelDelegate = self.delegate;
+    
+    //    childViewController.lineImagePng = image;
+    return childViewController;
 }
 
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index {

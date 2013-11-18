@@ -23,8 +23,9 @@
 		3762503B1833CACB0061F1F4 /* LPCLineOptionModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376250391833CACB0061F1F4 /* LPCLineOptionModalViewController.xib */; };
 		3762504018352F520061F1F4 /* LPCLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762503F18352F520061F1F4 /* LPCLine.m */; };
 		3762504318363BA30061F1F4 /* LPCStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504218363BA30061F1F4 /* LPCStation.m */; };
+		37625049183A2F460061F1F4 /* LPCLinePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 37625048183A2F460061F1F4 /* LPCLinePosition.m */; };
+		3762504C183A45CB0061F1F4 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504B183A45CB0061F1F4 /* LPCCircleView.m */; };
 		376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */; };
-		376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */; };
 		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
 		376CD9B31823D51600D4C599 /* pub-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B11823D51600D4C599 /* pub-icon.png */; };
 		376CD9B41823D51600D4C599 /* pub-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B21823D51600D4C599 /* pub-icon@2x.png */; };
@@ -91,10 +92,12 @@
 		3762503F18352F520061F1F4 /* LPCLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLine.m; sourceTree = "<group>"; };
 		3762504118363BA30061F1F4 /* LPCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCStation.h; sourceTree = "<group>"; };
 		3762504218363BA30061F1F4 /* LPCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCStation.m; sourceTree = "<group>"; };
+		37625047183A2F460061F1F4 /* LPCLinePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLinePosition.h; sourceTree = "<group>"; };
+		37625048183A2F460061F1F4 /* LPCLinePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLinePosition.m; sourceTree = "<group>"; };
+		3762504A183A45CB0061F1F4 /* LPCCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCircleView.h; sourceTree = "<group>"; };
+		3762504B183A45CB0061F1F4 /* LPCCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCircleView.m; sourceTree = "<group>"; };
 		376CD9A4181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AsCLLocationCoordinate2D.h"; sourceTree = "<group>"; };
 		376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
-		376CD9AB181D9FCD00D4C599 /* LPCCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCircleView.h; sourceTree = "<group>"; };
-		376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCircleView.m; sourceTree = "<group>"; };
 		376CD9AE1823C43600D4C599 /* LPCMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCMapAnnotation.h; sourceTree = "<group>"; };
 		376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCMapAnnotation.m; sourceTree = "<group>"; };
 		376CD9B11823D51600D4C599 /* pub-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pub-icon.png"; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				3762503F18352F520061F1F4 /* LPCLine.m */,
 				3762504118363BA30061F1F4 /* LPCStation.h */,
 				3762504218363BA30061F1F4 /* LPCStation.m */,
+				37625047183A2F460061F1F4 /* LPCLinePosition.h */,
+				37625048183A2F460061F1F4 /* LPCLinePosition.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,12 +238,11 @@
 		37BF439C180D31EC0091BE5F /* London Pub Crawl */ = {
 			isa = PBXGroup;
 			children = (
-				3762503D18352F390061F1F4 /* Models */,
 				37BF43B1180D31EC0091BE5F /* Images.xcassets */,
 				37BF43A5180D31EC0091BE5F /* LPCAppDelegate.h */,
 				37BF43A6180D31EC0091BE5F /* LPCAppDelegate.m */,
-				376CD9AB181D9FCD00D4C599 /* LPCCircleView.h */,
-				376CD9AC181D9FCD00D4C599 /* LPCCircleView.m */,
+				3762504A183A45CB0061F1F4 /* LPCCircleView.h */,
+				3762504B183A45CB0061F1F4 /* LPCCircleView.m */,
 				376CD9B91827B22B00D4C599 /* LPCForkViewController.h */,
 				376CD9BA1827B22B00D4C599 /* LPCForkViewController.m */,
 				376CD9BB1827B22B00D4C599 /* LPCForkViewController.xib */,
@@ -260,6 +264,7 @@
 				37A131DB180DE9580048975C /* LPCThemeManager.m */,
 				37BF43AB180D31EC0091BE5F /* Main_iPad.storyboard */,
 				37BF43A8180D31EC0091BE5F /* Main_iPhone.storyboard */,
+				3762503D18352F390061F1F4 /* Models */,
 				376CD9A4181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.h */,
 				376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */,
 				370FEA68180D7F5200692418 /* Resources */,
@@ -464,9 +469,10 @@
 				376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */,
 				370FEA53180D58DD00692418 /* LPCLineViewController.m in Sources */,
 				37BF43A3180D31EC0091BE5F /* main.m in Sources */,
-				376CD9AD181D9FCD00D4C599 /* LPCCircleView.m in Sources */,
+				3762504C183A45CB0061F1F4 /* LPCCircleView.m in Sources */,
 				3762503A1833CACB0061F1F4 /* LPCLineOptionModalViewController.m in Sources */,
 				376CD9BC1827B22B00D4C599 /* LPCForkViewController.m in Sources */,
+				37625049183A2F460061F1F4 /* LPCLinePosition.m in Sources */,
 				370FEA59180D6EF400692418 /* LPCLineTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
