@@ -3,8 +3,13 @@
 #import "LPCAppDelegate.h"
 #import "LPCStationViewController.h"
 #import "LPCThemeManager.h"
+#import "LPCFork.h"
 
 @implementation LPCForkViewController
+
+LPCStation *topForkDestinationStation;
+LPCStation *bottomForkDestinationStation;
+LPCFork *currentFork;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -15,18 +20,24 @@
     return self;
 }
 
+- (id)initWithFork:(LPCFork *)fork {
+    self = [[LPCForkViewController alloc] initWithNibName:@"LPCForkViewController" bundle:nil];
+    
+    topForkDestinationStation = (LPCStation *)fork.destinationStations[0];
+    bottomForkDestinationStation = (LPCStation *)fork.destinationStations[1];
+    
+    currentFork = fork;
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    NSDictionary *topStationDestination = [appDelegate.stations objectForKey:self.topForkStationCode];
-    NSDictionary *bottomStationDestination = [appDelegate.stations objectForKey:self.bottomForkStationCode];
-    
     // What are the titles of things?
-    [self.topRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", [topStationDestination objectForKey:@"name"]] forState:UIControlStateNormal];
-    [self.bottomRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", [bottomStationDestination objectForKey:@"name"]] forState:UIControlStateNormal];
+    [self.topRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", topForkDestinationStation.name] forState:UIControlStateNormal];
+    [self.bottomRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", bottomForkDestinationStation.name] forState:UIControlStateNormal];
     
     [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
     
@@ -42,13 +53,13 @@
 }
 
 - (IBAction)topRightForkAction:(id)sender {
-    NSLog(@"Going to the bottom-right fork toward %@.", self.topForkStationCode);
-    [self.forkDelegate didChooseBranchForDestination:self.topForkStationCode];
+    NSLog(@"Going to the bottom-right fork toward %@.", topForkDestinationStation.name);
+    [self.forkDelegate didChooseStation:[currentFork firstStationForDestination:0]];
 }
 
 - (IBAction)bottomRightFormAction:(id)sender {
-    NSLog(@"Going to the top-right fork toward %@.", self.bottomForkStationCode);
-    [self.forkDelegate didChooseBranchForDestination:self.bottomForkStationCode];
+    NSLog(@"Going to the top-right fork toward %@.", bottomForkDestinationStation.name);
+    [self.forkDelegate didChooseStation:[currentFork firstStationForDestination:1]];
 }
 
 - (IBAction)changeLine:(id)sender {

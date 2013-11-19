@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "LPCFork.h"
 #import "LPCLinePosition.h"
 #import "LPCStation.h"
 
@@ -13,6 +14,9 @@
 
 - (id)initWithLine:(NSDictionary *)line;
 //- (LPCStation *)stationAtPosition:(LPCLinePosition *)position;
+- (BOOL)isForkAfterPosition:(LPCLinePosition *)position;
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position;
+- (LPCFork *)forkAfterPosition:(LPCLinePosition *)position;
+- (LPCStation *)stationWithCode:(NSString *)nestoriaCode;
 
 @end

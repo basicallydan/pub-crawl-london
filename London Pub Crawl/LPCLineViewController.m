@@ -2,6 +2,7 @@
 
 #import "LPCAppDelegate.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
+#import "LPCFork.h"
 #import "LPCForkViewController.h"
 #import "LPCLinePosition.h"
 #import "LPCStationViewController.h"
@@ -114,6 +115,22 @@ LPCStation *currentStation;
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     // TODO: After!
     LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
+    
+    if ([currentViewController isKindOfClass:[LPCForkViewController class]] ) {
+        return nil;
+    }
+    
+    if ([currentLine isForkAfterPosition:currentViewController.station.linePosition]) {
+        NSLog(@"It's a fork next!");
+        LPCFork *fork = [currentLine forkAfterPosition:currentViewController.station.linePosition];
+        LPCForkViewController *nextViewController = [[LPCForkViewController alloc] initWithFork:fork];
+        
+        nextViewController.lineColour = self.lineColour;
+        
+        nextViewController.forkDelegate = self;
+        
+        return nextViewController;
+    }
     
     LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.station.linePosition];
     
@@ -269,8 +286,8 @@ LPCStation *currentStation;
         forkStations = (NSDictionary *)stationAtIndexOnline;
         NSArray *forkDestinations = [forkStations allKeys];
         
-        childViewController.topForkStationCode = [forkDestinations objectAtIndex:0];
-        childViewController.bottomForkStationCode = [forkDestinations objectAtIndex:1];
+//        childViewController.topForkStationCode = [forkDestinations objectAtIndex:0];
+//        childViewController.bottomForkStationCode = [forkDestinations objectAtIndex:1];
         
         childViewController.lineColour = self.lineColour;
         
@@ -299,6 +316,11 @@ LPCStation *currentStation;
     destinationBranch = nil;
     forkStations = nil;
     forkController = nil;
+}
+
+- (void)didChooseStation:(LPCStation *)firstStationTowardDestination {
+    UIViewController *nextViewController = [self viewControllerForStation:firstStationTowardDestination];
+    [self.pageController setViewControllers:@[nextViewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
 
 - (void)didChooseBranchForDestination:(NSString *)destinationStationCode {

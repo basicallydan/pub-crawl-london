@@ -1,11 +1,13 @@
 #import <UIKit/UIKit.h>
 
 #import "LPCStationViewController.h"
+#import "LPCLinePosition.h"
+#import "LPCFork.h"
 
 @protocol LPCForkViewControllerDelegate <NSObject>
 
 - (void)didLeaveBranch;
-- (void)didChooseBranchForDestination:(NSString *)destinationStationCode;
+- (void)didChooseStation:(LPCStation *)firstStationTowardDestination;
 
 @end
 
@@ -14,9 +16,11 @@
 @property (weak, nonatomic) id<LPCForkViewControllerDelegate> forkDelegate;
 @property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
 
+- (id)initWithFork:(LPCFork *)fork;
+
 @property (assign, nonatomic) NSInteger index;
-@property (strong, nonatomic) NSString *topForkStationCode;
-@property (strong, nonatomic) NSString *bottomForkStationCode;
+//@property (strong, nonatomic) NSString *topForkStationCode;
+//@property (strong, nonatomic) NSString *bottomForkStationCode;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
 

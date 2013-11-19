@@ -13,8 +13,12 @@ NSDictionary *stationPointers;
     NSMutableArray *leafStations = [[NSMutableArray alloc] init];
     NSMutableArray *allStations = [[NSMutableArray alloc] init];
     
-    // todo: NOOOO! MUTABLE YOU DUMBASS
+    // stationPositions stores the same structure as the original dictionary but rather than objects as
+    // leaf nodes, it stores integers pointing to objects in allStations. I.e., it describres the
+    // structure of the line
     NSMutableDictionary *stationPositions = [[NSMutableDictionary alloc] init];
+    
+    // stationArrayPointers refers to where in allStations a station is stored
     NSMutableDictionary *stationArrayPointers = [[NSMutableDictionary alloc] init];
     
     int s;
@@ -89,9 +93,29 @@ NSDictionary *stationPointers;
 //    return self.allStations[stationIndex];
 //}
 
+- (BOOL)isForkAfterPosition:(LPCLinePosition *)position {
+    id stationIndex = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
+    if ([stationIndex isKindOfClass:[NSNumber class]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position {
     int stationIndex = [[self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]] integerValue];
     return self.allStations[stationIndex];
+}
+
+- (LPCFork *)forkAfterPosition:(LPCLinePosition *)position {
+    NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
+    LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self];
+//    LPCFork *fork = [[LPCFork alloc] init];
+    return fork;
+}
+
+- (LPCStation *)stationWithCode:(NSString *)nestoriaCode {
+    return [self.allStations objectAtIndex:[[stationPointers valueForKey:nestoriaCode] integerValue]];
 }
 
 @end

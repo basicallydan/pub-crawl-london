@@ -25,6 +25,7 @@
 		3762504318363BA30061F1F4 /* LPCStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504218363BA30061F1F4 /* LPCStation.m */; };
 		37625049183A2F460061F1F4 /* LPCLinePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 37625048183A2F460061F1F4 /* LPCLinePosition.m */; };
 		3762504C183A45CB0061F1F4 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504B183A45CB0061F1F4 /* LPCCircleView.m */; };
+		3762504F183BE9D30061F1F4 /* LPCFork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504E183BE9D30061F1F4 /* LPCFork.m */; };
 		376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */; };
 		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
 		376CD9B31823D51600D4C599 /* pub-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B11823D51600D4C599 /* pub-icon.png */; };
@@ -96,6 +97,8 @@
 		37625048183A2F460061F1F4 /* LPCLinePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLinePosition.m; sourceTree = "<group>"; };
 		3762504A183A45CB0061F1F4 /* LPCCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCircleView.h; sourceTree = "<group>"; };
 		3762504B183A45CB0061F1F4 /* LPCCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCircleView.m; sourceTree = "<group>"; };
+		3762504D183BE9D30061F1F4 /* LPCFork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCFork.h; sourceTree = "<group>"; };
+		3762504E183BE9D30061F1F4 /* LPCFork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCFork.m; sourceTree = "<group>"; };
 		376CD9A4181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AsCLLocationCoordinate2D.h"; sourceTree = "<group>"; };
 		376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
 		376CD9AE1823C43600D4C599 /* LPCMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCMapAnnotation.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				3762504218363BA30061F1F4 /* LPCStation.m */,
 				37625047183A2F460061F1F4 /* LPCLinePosition.h */,
 				37625048183A2F460061F1F4 /* LPCLinePosition.m */,
+				3762504D183BE9D30061F1F4 /* LPCFork.h */,
+				3762504E183BE9D30061F1F4 /* LPCFork.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				37BF43B0180D31EC0091BE5F /* LPCLineListViewController.m in Sources */,
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */,
+				3762504F183BE9D30061F1F4 /* LPCFork.m in Sources */,
 				370FEA56180D68F300692418 /* LPCStationViewController.m in Sources */,
 				3762504318363BA30061F1F4 /* LPCStation.m in Sources */,
 				376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */,
