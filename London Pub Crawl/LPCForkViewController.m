@@ -4,6 +4,7 @@
 #import "LPCStationViewController.h"
 #import "LPCThemeManager.h"
 #import "LPCFork.h"
+#import <UIColor-HexString/UIColor+HexString.h>
 
 @implementation LPCForkViewController
 
@@ -39,9 +40,9 @@ LPCFork *currentFork;
     [self.topRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", topForkDestinationStation.name] forState:UIControlStateNormal];
     [self.bottomRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", bottomForkDestinationStation.name] forState:UIControlStateNormal];
     
-    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
-    
-    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
+    [self.toolbar setBackgroundColor:[UIColor colorWithHexString:@"#221e1f"]];
+    self.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    [self.wayOutButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     [self.forkImageView setImage:[LPCThemeManager tubeLineForkWithColor:self.lineColour]];
 }

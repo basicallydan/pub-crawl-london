@@ -67,9 +67,9 @@ BOOL isMapLoaded = NO;
         [self.destinationRightLabel setTextColor:self.lineColour];
     }
     
-//    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-normal"] forState:UIControlStateNormal];
-//    
-//    [self.changeLineButton setImage:[UIImage imageNamed:@"tube-line-button-pressed"] forState:UIControlStateHighlighted];
+    [self.toolbar setBackgroundColor:[UIColor colorWithHexString:@"#221e1f"]];
+    self.toolbar.barStyle = UIBarStyleBlackTranslucent;
+    [self.wayOutButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     isMapLoaded = NO;
 }

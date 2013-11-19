@@ -32,7 +32,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *bottomRightForkButton;
 - (IBAction)topRightForkAction:(id)sender;
 - (IBAction)bottomRightFormAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *changeLineButton;
 - (IBAction)changeLine:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

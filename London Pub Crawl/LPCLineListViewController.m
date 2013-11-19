@@ -42,24 +42,17 @@
     
     LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary];
     
-    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
+//    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
     
-    if ([lineStations[0] isKindOfClass:[NSString class]]) {
-        // This means we have a standard main-line start
-        [self showLineViewWithStations:lineStations onLine:lineDictionary atStation:startingStationIndex];
-    } else {
-        // This means we will have to start on one of the branches
-        
-        LPCLineOptionModalViewController *lineOptionController = [[LPCLineOptionModalViewController alloc] initWithLine:line];
-        lineOptionController.delegate = self;
-        
-        [self presentViewController:lineOptionController animated:YES completion:nil];
-        
-        NSDictionary *startBranches = lineStations[0];
-        NSArray *branchStartChoices = [startBranches allKeys];
-        // TODO: Don't always just go with the first one you dummy
-        lineStations = [startBranches valueForKey:branchStartChoices[0]];
-    }
+    LPCLineOptionModalViewController *lineOptionController = [[LPCLineOptionModalViewController alloc] initWithLine:line];
+    lineOptionController.delegate = self;
+    
+    [self presentViewController:lineOptionController animated:YES completion:nil];
+    
+//    NSDictionary *startBranches = lineStations[0];
+//    NSArray *branchStartChoices = [startBranches allKeys];
+    // TODO: Don't always just go with the first one you dummy
+//    lineStations = [startBranches valueForKey:branchStartChoices[0]];
 }
 
 - (void)showLineViewWithStations:(NSArray *)lineStations onLine:(NSDictionary *)lineDictionary atStation:(int)startingStationIndex {

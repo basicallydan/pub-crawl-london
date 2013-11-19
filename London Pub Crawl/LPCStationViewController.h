@@ -51,5 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
 
 - (IBAction)changeLine:(id)sender;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
 
 @end

@@ -21,7 +21,9 @@
                 <outlet property="stationNameLabel" destination="tSM-lh-ny5" id="4pK-9b-JqF"/>
                 <outlet property="tipAuthorLabel" destination="L88-39-NVf" id="hA2-zu-myo"/>
                 <outlet property="tipLabel" destination="kiy-QG-fkK" id="aKD-w9-bm9"/>
+                <outlet property="toolbar" destination="yzW-Tc-zZN" id="cVO-Un-rsV"/>
                 <outlet property="view" destination="1" id="lRJ-dL-d2M"/>
+                <outlet property="wayOutButton" destination="tbp-Kg-XmV" id="6v9-x5-4ij"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
