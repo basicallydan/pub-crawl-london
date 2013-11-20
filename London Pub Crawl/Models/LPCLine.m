@@ -122,7 +122,7 @@ NSDictionary *stationPointers;
 
 - (BOOL)isForkAfterPosition:(LPCLinePosition *)position {
     id stationIndex = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
-    if ([stationIndex isKindOfClass:[NSNumber class]]) {
+    if ([stationIndex isKindOfClass:[NSNumber class]] || stationIndex == nil) {
         return NO;
     } else {
         return YES;
@@ -130,7 +130,12 @@ NSDictionary *stationPointers;
 }
 
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position {
-    int stationIndex = [[self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]] integerValue];
+    LPCLinePosition *nextPosition = [position nextPossiblePosition];
+    id stationPointer = [self.stationPositions valueForKeyPath:[nextPosition description]];
+    if (stationPointer == nil) {
+        return nil;
+    }
+    int stationIndex = [stationPointer integerValue];
     return self.allStations[stationIndex];
 }
 

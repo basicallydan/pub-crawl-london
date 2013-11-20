@@ -76,8 +76,6 @@ LPCStation *currentStation;
         startingStationIndex = 0;
     }
 
-//    UIViewController *initialViewController = [self viewControllerAtIndex:startingStationIndex];
-//    UIViewController *initialViewController = [self viewControllerAtPositionPointer:currentStationPointer];
     UIViewController *initialViewController = [self viewControllerForStation:currentStation];
 
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
@@ -107,6 +105,7 @@ LPCStation *currentStation;
             previousViewController.lineColour = self.lineColour;
             
             previousViewController.forkDelegate = self;
+            previousViewController.topLevelDelegate = self.delegate;
             
             return previousViewController;
         }
@@ -120,13 +119,14 @@ LPCStation *currentStation;
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
         
         if ([currentLine isForkBeforePosition:currentViewController.linePosition]) {
-            NSLog(@"It's a fork next!");
+            NSLog(@"It's a fork before!");
             LPCFork *fork = [currentLine forkBeforePosition:currentViewController.linePosition];
             LPCForkViewController *previousViewController = [[LPCForkViewController alloc] initWithFork:fork];
             
             previousViewController.lineColour = self.lineColour;
             
             previousViewController.forkDelegate = self;
+            previousViewController.topLevelDelegate = self.delegate;
             
             return previousViewController;
         }
@@ -154,11 +154,16 @@ LPCStation *currentStation;
         nextViewController.lineColour = self.lineColour;
         
         nextViewController.forkDelegate = self;
+        nextViewController.topLevelDelegate = self.delegate;
         
         return nextViewController;
     }
     
     LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.station.linePosition];
+    
+    if (!nextStation) {
+        return nil;
+    }
     
     UIViewController *nextViewController = [self viewControllerForStation:nextStation];
     
@@ -206,90 +211,6 @@ LPCStation *currentStation;
     childViewController.topLevelDelegate = self.delegate;
     
     return childViewController;
-}
-
-- (UIViewController *)viewControllerAtIndex:(NSUInteger)index {
-    id stationAtIndexOnline = [self.stations objectAtIndex:index];
-    
-    if ([stationAtIndexOnline isKindOfClass:[NSString class]]) { // it's just a station on the current line
-        NSLog(@"At %d it's a station.", index);
-        
-        LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
-        childViewController.index = index;
-        LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        NSString *stationLongCode = [self.stations objectAtIndex:index];
-        
-        NSDictionary *station = [appDelegate.stations objectForKey:stationLongCode];
-        
-        NSNumber *lat = [NSNumber numberWithDouble:[[station valueForKey:@"lat"] doubleValue]];
-        NSNumber *lng = [NSNumber numberWithDouble:[[station valueForKey:@"lng"] doubleValue]];
-        NSArray *stationLatLng = @[lat, lng];
-        
-        childViewController.stationName = [station valueForKey:@"name"];
-        childViewController.lineColour = self.lineColour;
-        
-        if (index == 0) {
-            if (!self.parentForkController) {
-                childViewController.firstStop = YES;
-            }
-        } else if (index == self.stations.count - 1) {
-            childViewController.lastStop = NO;
-        }
-        
-        if (self.branchStation) {
-            NSString *branchStationLongCode = [self.branchStation valueForKey:@"nestoria_code"];
-            childViewController.branchName = [self.branchStation valueForKey:@"name"];
-            
-            int currentStationPosition = [self.stations indexOfObject:stationLongCode];
-            int branchStationPosition = [self.stations indexOfObject:branchStationLongCode];
-            
-            if(currentStationPosition < branchStationPosition) {
-                // The current station before the "branch station"
-                childViewController.branchStationIsAhead = YES;
-            } else {
-                childViewController.branchStationIsAhead = NO;
-            }
-        } else {
-            childViewController.directionBackward = self.topOfLineDirection;
-            childViewController.directionForward = self.bottomOfLineDirection;
-        }
-        
-        NSDictionary *venue = [stationVenues objectForKey:[station valueForKey:@"code"]];
-        
-        if (venue) {
-            childViewController.pubName = [venue valueForKeyPath:@"name"];
-            childViewController.distance = [venue valueForKeyPath:@"location.distance"];
-            NSNumber *pubLatitude = [venue valueForKeyPath:@"location.lat"];
-            NSNumber *pubLongitude = [venue valueForKeyPath:@"location.lng"];
-            childViewController.tips = [venue valueForKey:@"tips"];
-            childViewController.pubLocation = @[pubLatitude, pubLongitude];
-            childViewController.stationLocation = stationLatLng;
-        }
-        
-        childViewController.topLevelDelegate = self.delegate;
-        
-        //    childViewController.lineImagePng = image;
-        return childViewController;
-    } else { // It's a fork!
-        LPCForkViewController *childViewController = [[LPCForkViewController alloc] initWithNibName:@"LPCForkViewController" bundle:nil];
-        childViewController.index = index;
-        childViewController.forkDelegate = self;
-        forkStations = (NSDictionary *)stationAtIndexOnline;
-        NSArray *forkDestinations = [forkStations allKeys];
-        
-//        childViewController.topForkStationCode = [forkDestinations objectAtIndex:0];
-//        childViewController.bottomForkStationCode = [forkDestinations objectAtIndex:1];
-        
-        childViewController.lineColour = self.lineColour;
-        
-        childViewController.topLevelDelegate = self.delegate;
-        
-        forkController = childViewController;
-        
-        NSLog(@"At %d it's a fork.", index);
-        return childViewController;
-    }
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {

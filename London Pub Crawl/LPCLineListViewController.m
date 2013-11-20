@@ -36,7 +36,6 @@
 #pragma mark - Private Methods
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
-    int startingStationIndex = 27;
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *lineDictionary = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
     
@@ -84,6 +83,8 @@
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station];
+    
+    lineViewController.lineColour = line.lineColour;
     
     for (LPCStation *s in line.allStations) {
         NSArray *venues = [appDelegate.pubs valueForKey:s.code];
