@@ -21,8 +21,10 @@ NSArray *forkInitialStations;
         LPCStation *firstStation = [line.allStations objectAtIndex:firstBranchStationIndex];
         if ([finalStation.nestoriaCode isEqualToString:forkDestinationStation]) {
             [firstStations addObject:firstStation];
+            self.direction = Right;
         } else {
             [firstStations addObject:finalStation];
+            self.direction = Left;
         }
     }
     

@@ -44,4 +44,11 @@
     return next;
 }
 
+- (LPCLinePosition *)positionOfParentFork {
+    LPCLinePosition *parent = [[LPCLinePosition alloc] init];
+    parent.mainLineIndex = self.mainLineIndex;
+    
+    return parent;
+}
+
 @end

@@ -100,7 +100,7 @@ LPCStation *currentStation;
         LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
         
         if ([currentLine isForkBeforePosition:currentViewController.station.linePosition]) {
-            NSLog(@"It's a fork next!");
+            NSLog(@"It's a fork behind us!");
             LPCFork *fork = [currentLine forkBeforePosition:currentViewController.station.linePosition];
             LPCForkViewController *previousViewController = [[LPCForkViewController alloc] initWithFork:fork];
             
@@ -163,44 +163,15 @@ LPCStation *currentStation;
     UIViewController *nextViewController = [self viewControllerForStation:nextStation];
     
     return nextViewController;
-    
-    // We're about to go on a branch, but we're not on one at the moment
-    if (!destinationBranch && forkStations && [forkStations count] > 0) {
-        return nil;
-    }
-
-    NSUInteger index = [(LPCStationViewController *)viewController index];
-
-    index++;
-
-    if (index == self.stations.count) {
-        return nil;
-    }
-    
-    UIViewController *newViewController = [self viewControllerAtIndex:index];
-
-    return newViewController;
-
 }
 
 
 - (UIViewController *)viewControllerForStation:(LPCStation *)st {
     LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
-//        childViewController.index = index;
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     childViewController.station = st;
     
     childViewController.stationName = st.name;
     childViewController.lineColour = currentLine.lineColour;
-    
-//    if (index == 0) {
-//        if (!self.parentForkController) {
-//            childViewController.firstStop = YES;
-//        }
-//    } else if (index == self.stations.count - 1) {
-//        childViewController.lastStop = NO;
-//    }
     
     if (self.branchStation) {
         NSString *branchStationLongCode = [self.branchStation valueForKey:@"nestoria_code"];
@@ -234,16 +205,11 @@ LPCStation *currentStation;
     
     childViewController.topLevelDelegate = self.delegate;
     
-    //    childViewController.lineImagePng = image;
     return childViewController;
 }
 
 - (UIViewController *)viewControllerAtIndex:(NSUInteger)index {
     id stationAtIndexOnline = [self.stations objectAtIndex:index];
-    
-    if (self.parentForkController) { // We're on a branch
-        
-    }
     
     if ([stationAtIndexOnline isKindOfClass:[NSString class]]) { // it's just a station on the current line
         NSLog(@"At %d it's a station.", index);
@@ -344,9 +310,14 @@ LPCStation *currentStation;
     forkController = nil;
 }
 
-- (void)didChooseStation:(LPCStation *)firstStationTowardDestination {
+- (void)didChooseStationRight:(LPCStation *)firstStationTowardDestination {
     UIViewController *nextViewController = [self viewControllerForStation:firstStationTowardDestination];
     [self.pageController setViewControllers:@[nextViewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+}
+
+- (void)didChooseStationLeft:(LPCStation *)firstStationTowardDestination {
+    UIViewController *nextViewController = [self viewControllerForStation:firstStationTowardDestination];
+    [self.pageController setViewControllers:@[nextViewController] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
 }
 
 - (void)didChooseBranchForDestination:(NSString *)destinationStationCode {

@@ -7,7 +7,8 @@
 @protocol LPCForkViewControllerDelegate <NSObject>
 
 - (void)didLeaveBranch;
-- (void)didChooseStation:(LPCStation *)firstStationTowardDestination;
+- (void)didChooseStationLeft:(LPCStation *)firstStationTowardDestination;
+- (void)didChooseStationRight:(LPCStation *)firstStationTowardDestination;
 
 @end
 

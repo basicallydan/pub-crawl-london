@@ -136,6 +136,9 @@ NSDictionary *stationPointers;
 
 - (LPCFork *)forkAfterPosition:(LPCLinePosition *)position {
     NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
+    if (!possibleBranches) {
+        possibleBranches = [self.stationPositions valueForKeyPath:[[position positionOfParentFork] description]];
+    }
     LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self];
     return fork;
 }

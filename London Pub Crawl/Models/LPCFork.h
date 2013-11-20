@@ -4,10 +4,17 @@
 
 @class LPCLine; // Import in the .m file
 
+typedef enum ForkDirection : NSInteger PlayerStateType;
+enum ForkDirection : NSInteger {
+    Left,
+    Right
+};
+
 @interface LPCFork : NSObject
 
 @property (strong, nonatomic) NSArray *destinationStations;
 @property (strong, nonatomic) LPCLinePosition *linePosition;
+@property (nonatomic) enum ForkDirection direction;
 
 - (id)initWithFork:(NSDictionary *)fork forLine:(LPCLine *)line;
 

@@ -55,12 +55,20 @@ LPCFork *currentFork;
 
 - (IBAction)topRightForkAction:(id)sender {
     NSLog(@"Going to the bottom-right fork toward %@.", topForkDestinationStation.name);
-    [self.forkDelegate didChooseStation:[currentFork firstStationForDestination:0]];
+    if (currentFork.direction == Left) {
+        [self.forkDelegate didChooseStationLeft:[currentFork firstStationForDestination:0]];
+    } else {
+        [self.forkDelegate didChooseStationRight:[currentFork firstStationForDestination:0]];
+    }
 }
 
 - (IBAction)bottomRightFormAction:(id)sender {
     NSLog(@"Going to the top-right fork toward %@.", bottomForkDestinationStation.name);
-    [self.forkDelegate didChooseStation:[currentFork firstStationForDestination:1]];
+    if (currentFork.direction == Left) {
+        [self.forkDelegate didChooseStationLeft:[currentFork firstStationForDestination:1]];
+    } else {
+        [self.forkDelegate didChooseStationRight:[currentFork firstStationForDestination:1]];
+    }
 }
 
 - (IBAction)changeLine:(id)sender {
