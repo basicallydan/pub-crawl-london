@@ -68,4 +68,10 @@ LPCFork *currentFork;
         [self.topLevelDelegate didClickChangeLine];
     }
 }
+
+#pragma mark - Getters
+- (LPCLinePosition *)linePosition {
+    return currentFork.linePosition;
+}
+
 @end

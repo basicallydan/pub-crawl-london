@@ -14,9 +14,15 @@
 
 - (id)initWithLine:(NSDictionary *)line;
 //- (LPCStation *)stationAtPosition:(LPCLinePosition *)position;
+
+- (BOOL)isForkBeforePosition:(LPCLinePosition *)position;
+- (LPCStation *)stationBeforePosition:(LPCLinePosition *)position;
+- (LPCFork *)forkBeforePosition:(LPCLinePosition *)position;
+
 - (BOOL)isForkAfterPosition:(LPCLinePosition *)position;
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position;
 - (LPCFork *)forkAfterPosition:(LPCLinePosition *)position;
+
 - (LPCStation *)stationWithCode:(NSString *)nestoriaCode;
 
 @end

@@ -96,24 +96,50 @@ LPCStation *currentStation;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    // TODO: Before!
-    return nil;
-    
-    NSUInteger index = [(LPCStationViewController *)viewController index];
-
-    if (index == 0) {
-        return nil;
+    if ([viewController isKindOfClass:[LPCStationViewController class]]) {
+        LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
+        
+        if ([currentLine isForkBeforePosition:currentViewController.station.linePosition]) {
+            NSLog(@"It's a fork next!");
+            LPCFork *fork = [currentLine forkBeforePosition:currentViewController.station.linePosition];
+            LPCForkViewController *previousViewController = [[LPCForkViewController alloc] initWithFork:fork];
+            
+            previousViewController.lineColour = self.lineColour;
+            
+            previousViewController.forkDelegate = self;
+            
+            return previousViewController;
+        }
+        
+        LPCStation *previousStation = [currentLine stationBeforePosition:currentViewController.station.linePosition];
+        
+        UIViewController *previousViewController = [self viewControllerForStation:previousStation];
+        
+        return previousViewController;
+    } else {
+        LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
+        
+        if ([currentLine isForkBeforePosition:currentViewController.linePosition]) {
+            NSLog(@"It's a fork next!");
+            LPCFork *fork = [currentLine forkBeforePosition:currentViewController.linePosition];
+            LPCForkViewController *previousViewController = [[LPCForkViewController alloc] initWithFork:fork];
+            
+            previousViewController.lineColour = self.lineColour;
+            
+            previousViewController.forkDelegate = self;
+            
+            return previousViewController;
+        }
+        
+        LPCStation *previousStation = [currentLine stationBeforePosition:currentViewController.linePosition];
+        
+        UIViewController *previousViewController = [self viewControllerForStation:previousStation];
+        
+        return previousViewController;
     }
-
-    index--;
-    
-    UIViewController *newViewController = [self viewControllerAtIndex:index];
-
-    return newViewController;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    // TODO: After!
     LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
     
     if ([currentViewController isKindOfClass:[LPCForkViewController class]] ) {

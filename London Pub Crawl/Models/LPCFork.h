@@ -7,6 +7,7 @@
 @interface LPCFork : NSObject
 
 @property (strong, nonatomic) NSArray *destinationStations;
+@property (strong, nonatomic) LPCLinePosition *linePosition;
 
 - (id)initWithFork:(NSDictionary *)fork forLine:(LPCLine *)line;
 

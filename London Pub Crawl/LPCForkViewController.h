@@ -23,6 +23,7 @@
 //@property (strong, nonatomic) NSString *bottomForkStationCode;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
+@property (readonly, nonatomic) LPCLinePosition *linePosition;
 
 @property (weak, nonatomic) IBOutlet UIView *leftLineView;
 @property (weak, nonatomic) IBOutlet UIView *topRightLineView;

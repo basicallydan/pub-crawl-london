@@ -88,10 +88,37 @@ NSDictionary *stationPointers;
     return self;
 }
 
-//- (LPCStation *)stationAtPosition:(LPCLinePosition *)position {
-//    int stationIndex = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
-//    return self.allStations[stationIndex];
-//}
+- (BOOL)isForkBeforePosition:(LPCLinePosition *)position {
+    LPCLinePosition *previousPosition = [position previousPossiblePosition];
+    
+    if (!previousPosition) {
+        return NO;
+    }
+    
+    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
+    if ([stationIndex isKindOfClass:[NSNumber class]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (LPCStation *)stationBeforePosition:(LPCLinePosition *)position {
+    LPCLinePosition *previousPosition = [position previousPossiblePosition];
+    if (!previousPosition) {
+        return nil;
+    }
+    int stationIndex = [[self.stationPositions valueForKeyPath:[previousPosition description]] integerValue];
+    return self.allStations[stationIndex];
+}
+
+- (LPCFork *)forkBeforePosition:(LPCLinePosition *)position {
+    LPCLinePosition *previousPosition = [position previousPossiblePosition];
+    NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[previousPosition description]];
+    LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self];
+    fork.linePosition = previousPosition;
+    return fork;
+}
 
 - (BOOL)isForkAfterPosition:(LPCLinePosition *)position {
     id stationIndex = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
@@ -110,7 +137,6 @@ NSDictionary *stationPointers;
 - (LPCFork *)forkAfterPosition:(LPCLinePosition *)position {
     NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
     LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self];
-//    LPCFork *fork = [[LPCFork alloc] init];
     return fork;
 }
 
