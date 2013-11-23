@@ -1,6 +1,7 @@
 #import "LPCStationViewController.h"
 
 #import <UIColor-HexString/UIColor+HexString.h>
+#import <UIImageView+WebCache.h>
 #import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
 
@@ -10,6 +11,8 @@
 
 @implementation LPCStationViewController
 
+NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer(%.04f,%.04f),pin-m-rail(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
+NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 BOOL isMapLoaded = NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,10 +29,12 @@ BOOL isMapLoaded = NO;
 //    self.mapView = [[MBXMapView alloc] initWithFrame:self.mapViewportView.frame mapID:@"basicallydan.map-ql3x67r6"];
 //    self.mapView.delegate = self;
     
-    NSString *imageRetina = nil;
+    NSString *mapBoxImageRetina = nil;
+    NSString *googleMapsImageRetina = nil;
     
     if ([UIScreen mainScreen].scale == 2.0) {
-        imageRetina = @"@2x";
+        mapBoxImageRetina = @"@2x";
+        googleMapsImageRetina = @"&scale=2";
     }
     
     int distanceInteger = [self.distance integerValue];
@@ -47,17 +52,20 @@ BOOL isMapLoaded = NO;
         zoomLevel = 12;
     }
     
-    NSString *mapImageUrl = [NSString stringWithFormat:@"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer(%.04f,%.04f),pin-m-rail(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png", [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, imageRetina];
+//    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, imageRetina];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCGoogleMapsURLTemplate, [self.pubLocation[0] floatValue], [self.pubLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, googleMapsImageRetina, @""];
+    // TODO: When deploying, put in the API key
     NSLog(@"Map URL is %@", mapImageUrl);
     
     UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
-    mapImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:mapImageUrl]]];
+    [mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
+//    mapImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:mapImageUrl]]];
     
     [UIView animateWithDuration:0.4
-                     animations:^{
-                         self.loadingView.alpha = 0;
-                     }
-                     completion:nil];
+         animations:^{
+             self.loadingView.alpha = 0;
+         }
+         completion:nil];
     
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];

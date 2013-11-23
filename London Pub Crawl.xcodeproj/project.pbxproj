@@ -57,6 +57,8 @@
 		37BF43BB180D31ED0091BE5F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF439A180D31EC0091BE5F /* UIKit.framework */; };
 		37BF43C3180D31ED0091BE5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37BF43C1180D31ED0091BE5F /* InfoPlist.strings */; };
 		37BF43C5180D31ED0091BE5F /* London_Pub_CrawlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF43C4180D31ED0091BE5F /* London_Pub_CrawlTests.m */; };
+		37F45A78184108E60025CC9B /* map-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A76184108E60025CC9B /* map-placeholder.png */; };
+		37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A77184108E60025CC9B /* map-placeholder@2x.png */; };
 		EAA99B8767694BFB85661A03 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A750CB56A43C5B6F882C5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +141,8 @@
 		37BF43C0180D31ED0091BE5F /* London Pub CrawlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "London Pub CrawlTests-Info.plist"; sourceTree = "<group>"; };
 		37BF43C2180D31ED0091BE5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37BF43C4180D31ED0091BE5F /* London_Pub_CrawlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = London_Pub_CrawlTests.m; sourceTree = "<group>"; };
+		37F45A76184108E60025CC9B /* map-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder.png"; sourceTree = "<group>"; };
+		37F45A77184108E60025CC9B /* map-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder@2x.png"; sourceTree = "<group>"; };
 		4DCF27477E104A96B73E0C6D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B94A750CB56A43C5B6F882C5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,6 +176,8 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37F45A76184108E60025CC9B /* map-placeholder.png */,
+				37F45A77184108E60025CC9B /* map-placeholder@2x.png */,
 				377D7B77182A96FE0071B5D4 /* tube-line-button-normal.png */,
 				377D7B78182A96FE0071B5D4 /* tube-line-button-normal@2x.png */,
 				377D7B79182A96FE0071B5D4 /* tube-line-button-pressed.png */,
@@ -398,6 +404,7 @@
 				37BF43AD180D31EC0091BE5F /* Main_iPad.storyboard in Resources */,
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
 				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
+				37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */,
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,
 				37BF43AA180D31EC0091BE5F /* Main_iPhone.storyboard in Resources */,
 				376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */,
@@ -408,6 +415,7 @@
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
 				377D7B71182A6E480071B5D4 /* tube-line-fork-central-line.png in Resources */,
 				37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */,
+				37F45A78184108E60025CC9B /* map-placeholder.png in Resources */,
 				377D7B7C182A96FE0071B5D4 /* tube-line-button-normal@2x.png in Resources */,
 				370FEA5F180D7E7600692418 /* Jubilee-Line@2x.png in Resources */,
 				370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */,

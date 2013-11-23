@@ -12,6 +12,9 @@
 
 @interface LPCStationViewController : UIViewController
 
+extern NSString *const kLPCMapBoxURLTemplate;
+extern NSString *const kLPCGoogleMapsURLTemplate;
+
 @property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
 
 @property (assign, nonatomic) NSInteger index;
