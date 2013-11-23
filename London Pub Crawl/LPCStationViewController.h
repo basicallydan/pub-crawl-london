@@ -24,7 +24,7 @@
 @property (strong, nonatomic) UIImage *lineImagePng;
 @property (strong, nonatomic) NSString *pubName;
 @property (strong, nonatomic) NSString *distance;
-@property (strong, nonatomic) MBXMapView *mapView;
+@property (strong, atomic) MBXMapView *mapView;
 @property (strong, nonatomic) NSArray *pubLocation;
 @property (strong, nonatomic) NSArray *stationLocation;
 @property (strong, nonatomic) NSString *branchName;

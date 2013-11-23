@@ -22,11 +22,48 @@ BOOL isMapLoaded = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mapView = [[MBXMapView alloc] initWithFrame:self.mapViewportView.frame mapID:@"basicallydan.map-ql3x67r6"];
-    self.mapView.delegate = self;
-    [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
-    [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#BBFFFFFF"]];
-    [self.view insertSubview:self.mapView atIndex:0];
+    
+//    self.mapView = [[MBXMapView alloc] initWithFrame:self.mapViewportView.frame mapID:@"basicallydan.map-ql3x67r6"];
+//    self.mapView.delegate = self;
+    
+    NSString *imageRetina = nil;
+    
+    if ([UIScreen mainScreen].scale == 2.0) {
+        imageRetina = @"@2x";
+    }
+    
+    int distanceInteger = [self.distance integerValue];
+    int zoomLevel = 13;
+    
+    if (distanceInteger < 50) {
+        zoomLevel = 17;
+    } else if (distanceInteger < 200) {
+        zoomLevel = 16;
+    } else if (distanceInteger < 400) {
+        zoomLevel = 15;
+    } else if (distanceInteger < 500) {
+        zoomLevel = 14;
+    } else if (distanceInteger > 700) {
+        zoomLevel = 12;
+    }
+    
+    NSString *mapImageUrl = [NSString stringWithFormat:@"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer(%.04f,%.04f),pin-m-rail(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png", [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, imageRetina];
+    NSLog(@"Map URL is %@", mapImageUrl);
+    
+    UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
+    mapImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:mapImageUrl]]];
+    
+    [UIView animateWithDuration:0.4
+                     animations:^{
+                         self.loadingView.alpha = 0;
+                     }
+                     completion:nil];
+    
+    [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
+    [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
+    
+//    [self.view insertSubview:self.mapView atIndex:0];
+    [self.view insertSubview:mapImageView atIndex:0];
     self.stationNameLabel.text = self.stationName;
     self.pubNameLabel.text = self.pubName;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", self.distance];
@@ -86,20 +123,16 @@ BOOL isMapLoaded = NO;
     }
     isMapLoaded = YES;
     
-    if (self.pubLocation && self.stationLocation) {
-        MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
-        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
-        [self.mapView setRegion:reg];
-        [self.mapView regionThatFits:reg];
-    }
-    
-    LPCMapAnnotation *pubAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:0];
-    pubAnnotation.coordinate = [self.pubLocation asCLLocationCoordinate2D];
-    [self.mapView addAnnotation:pubAnnotation];
-    // Do we need the station annotation?
-//    LPCMapAnnotation *stationAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:1];
-//    stationAnnotation.coordinate = [self.stationLocation asCLLocationCoordinate2D];
-//    [self.mapView addAnnotation:stationAnnotation];
+//    if (self.pubLocation && self.stationLocation) {
+//        MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
+//        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
+//        [self.mapView setRegion:reg];
+//        [self.mapView regionThatFits:reg];
+//    }
+//    
+//    LPCMapAnnotation *pubAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:0];
+//    pubAnnotation.coordinate = [self.pubLocation asCLLocationCoordinate2D];
+//    [self.mapView addAnnotation:pubAnnotation];
     [UIView animateWithDuration:0.4
          animations:^{
              self.loadingView.alpha = 0;
@@ -111,6 +144,7 @@ BOOL isMapLoaded = NO;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    return nil;
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
