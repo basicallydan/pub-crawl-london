@@ -51,4 +51,18 @@
     return parent;
 }
 
+- (BOOL)beforePosition:(LPCLinePosition *)otherPosition {
+    if (otherPosition.branchCode) {
+        if (self.branchCode && otherPosition.branchCode) {
+            if (self.branchLineIndex == otherPosition.branchLineIndex) {
+                return self.branchLineIndex > 0;
+            }
+            return [self.branchCode isEqualToString:otherPosition.branchCode] && self.branchLineIndex < otherPosition.branchLineIndex;
+        } else {
+            return self.mainLineIndex < otherPosition.mainLineIndex;
+        }
+    }
+    return NO;
+}
+
 @end

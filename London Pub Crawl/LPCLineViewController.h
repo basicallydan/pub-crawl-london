@@ -13,7 +13,7 @@
 @property (strong, nonatomic) NSArray *stations;
 @property (strong, nonatomic) LPCLineViewController *parentLineViewController;
 @property (strong, nonatomic) LPCForkViewController *parentForkController;
-@property (strong, nonatomic) NSDictionary *branchStation;
+@property (strong, nonatomic) LPCStation *branchStation;
 
 @property (strong, nonatomic) NSString *topOfLineDirection;
 @property (strong, nonatomic) NSString *bottomOfLineDirection;

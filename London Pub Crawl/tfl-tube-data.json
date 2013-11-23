@@ -214,7 +214,6 @@
 						"turnham-green",
 						"stamford-brook",
 						"ravenscourt-park",
-						"hammersmith-distandpicc-line",
 						"barons-court",
 						"west-kensington"
 					],
@@ -226,7 +225,6 @@
 						"turnham-green",
 						"stamford-brook",
 						"ravenscourt-park",
-						"hammersmith-distandpicc-line",
 						"barons-court",
 						"west-kensington"
 					],
@@ -240,8 +238,8 @@
 						"fulham-broadway",
 						"west-brompton"
 					],
-					"hammersmith" : [
-						"hammersmith"
+					"hammersmith-distandpicc-line" : [
+						"hammersmith-distandpicc-line"
 					]
 				},
 				"earls-court",

@@ -122,6 +122,11 @@ NSDictionary *stationPointers;
 
 - (BOOL)isForkAfterPosition:(LPCLinePosition *)position {
     id stationIndex = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
+    
+    if (stationIndex == nil && position.branchCode) {
+        stationIndex = [self.stationPositions valueForKeyPath:[[[position positionOfParentFork] nextPossiblePosition] description]];
+    }
+    
     if ([stationIndex isKindOfClass:[NSNumber class]] || stationIndex == nil) {
         return NO;
     } else {

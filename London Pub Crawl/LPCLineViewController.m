@@ -112,6 +112,10 @@ LPCStation *currentStation;
         
         LPCStation *previousStation = [currentLine stationBeforePosition:currentViewController.station.linePosition];
         
+        if (!previousStation) {
+            return nil;
+        }
+        
         UIViewController *previousViewController = [self viewControllerForStation:previousStation];
         
         return previousViewController;
@@ -132,6 +136,10 @@ LPCStation *currentStation;
         }
         
         LPCStation *previousStation = [currentLine stationBeforePosition:currentViewController.linePosition];
+        
+        if (!previousStation) {
+            return nil;
+        }
         
         UIViewController *previousViewController = [self viewControllerForStation:previousStation];
         
@@ -178,14 +186,11 @@ LPCStation *currentStation;
     childViewController.stationName = st.name;
     childViewController.lineColour = currentLine.lineColour;
     
-    if (self.branchStation) {
-        NSString *branchStationLongCode = [self.branchStation valueForKey:@"nestoria_code"];
-        childViewController.branchName = [self.branchStation valueForKey:@"name"];
+    if (st.linePosition.branchCode) {
+        LPCStation *branchStation = [currentLine stationWithCode:st.linePosition.branchCode];
+        childViewController.branchName = branchStation.name;
         
-        int currentStationPosition = [self.stations indexOfObject:st.nestoriaCode];
-        int branchStationPosition = [self.stations indexOfObject:branchStationLongCode];
-        
-        if(currentStationPosition < branchStationPosition) {
+        if([st.linePosition beforePosition:branchStation.linePosition]) {
             // The current station before the "branch station"
             childViewController.branchStationIsAhead = YES;
         } else {

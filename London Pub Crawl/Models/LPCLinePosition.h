@@ -12,4 +12,6 @@
 - (LPCLinePosition *)nextPossiblePosition;
 - (LPCLinePosition *)positionOfParentFork;
 
+- (BOOL)beforePosition:(LPCLinePosition *)otherPosition;
+
 @end
