@@ -148,34 +148,57 @@ LPCStation *currentStation;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
-    
-    if ([currentViewController isKindOfClass:[LPCForkViewController class]] ) {
-        return nil;
-    }
-    
-    if ([currentLine isForkAfterPosition:currentViewController.station.linePosition]) {
-        NSLog(@"It's a fork next!");
-        LPCFork *fork = [currentLine forkAfterPosition:currentViewController.station.linePosition];
-        LPCForkViewController *nextViewController = [[LPCForkViewController alloc] initWithFork:fork];
+    if ([viewController isKindOfClass:[LPCStationViewController class]]) {
+        LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
         
-        nextViewController.lineColour = self.lineColour;
+        if ([currentLine isForkAfterPosition:currentViewController.station.linePosition]) {
+            NSLog(@"It's a fork next!");
+            LPCFork *fork = [currentLine forkAfterPosition:currentViewController.station.linePosition];
+            LPCForkViewController *nextViewController = [[LPCForkViewController alloc] initWithFork:fork];
+            
+            nextViewController.lineColour = self.lineColour;
+            
+            nextViewController.forkDelegate = self;
+            nextViewController.topLevelDelegate = self.delegate;
+            
+            return nextViewController;
+        }
         
-        nextViewController.forkDelegate = self;
-        nextViewController.topLevelDelegate = self.delegate;
+        LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.station.linePosition];
+        
+        if (!nextStation) {
+            return nil;
+        }
+        
+        UIViewController *nextViewController = [self viewControllerForStation:nextStation];
+        
+        return nextViewController;
+    } else {
+        LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
+        
+        if ([currentLine isForkAfterPosition:currentViewController.linePosition]) {
+            NSLog(@"It's a fork next!");
+            LPCFork *fork = [currentLine forkAfterPosition:currentViewController.linePosition];
+            LPCForkViewController *nextViewController = [[LPCForkViewController alloc] initWithFork:fork];
+            
+            nextViewController.lineColour = self.lineColour;
+            
+            nextViewController.forkDelegate = self;
+            nextViewController.topLevelDelegate = self.delegate;
+            
+            return nextViewController;
+        }
+        
+        LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.linePosition];
+        
+        if (!nextStation) {
+            return nil;
+        }
+        
+        UIViewController *nextViewController = [self viewControllerForStation:nextStation];
         
         return nextViewController;
     }
-    
-    LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.station.linePosition];
-    
-    if (!nextStation) {
-        return nil;
-    }
-    
-    UIViewController *nextViewController = [self viewControllerForStation:nextStation];
-    
-    return nextViewController;
 }
 
 

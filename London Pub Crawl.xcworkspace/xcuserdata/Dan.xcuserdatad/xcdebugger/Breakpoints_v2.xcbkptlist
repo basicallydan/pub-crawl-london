@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/LPCLineViewController.m"
-            timestampString = "406921151.47775"
+            timestampString = "407017202.214334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "-viewControllerForStation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -144,16 +144,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/LPCLineViewController.m"
-            timestampString = "406921344.800067"
+            filePath = "London Pub Crawl/Models/LPCLine.m"
+            timestampString = "407016907.334103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-pageViewController:viewControllerAfterViewController:"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-isForkAfterPosition:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "London Pub Crawl/Models/LPCLine.m"
+            timestampString = "407016906.249687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-isForkAfterPosition:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "London Pub Crawl/Models/LPCLine.m"
+            timestampString = "407016933.438366"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-stationAfterPosition:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -163,13 +195,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/Models/LPCLine.m"
-            timestampString = "406921516.024232"
+            filePath = "London Pub Crawl/LPCLineViewController.m"
+            timestampString = "407017244.801651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "-isForkAfterPosition:"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "-pageViewController:viewControllerAfterViewController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
