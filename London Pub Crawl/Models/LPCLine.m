@@ -89,14 +89,32 @@ NSDictionary *stationPointers;
 }
 
 - (BOOL)isForkBeforePosition:(LPCLinePosition *)position {
-    LPCLinePosition *previousPosition = [position previousPossiblePosition];
+//    LPCLinePosition *previousPosition = [position previousPossiblePosition];
+//    
+//    if (!previousPosition) {
+//        return NO;
+//    }
+//    
+//    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
+//    if ([stationIndex isKindOfClass:[NSNumber class]]) {
+//        return NO;
+//    } else {
+//        return YES;
+//    }
     
-    if (!previousPosition) {
-        return NO;
+    id stationIndex = [self.stationPositions valueForKeyPath:[[position previousPossiblePosition] description]];
+    
+    if (![stationIndex isKindOfClass:[NSNumber class]] && position.branchCode) {
+        LPCLinePosition *parentForkPosition = [position positionOfParentFork];
+        LPCFork *parentFork = [[LPCFork alloc] initWithFork:[self.stationPositions valueForKeyPath:[parentForkPosition description]] forLine:self];
+        if (parentFork.direction == Right && position.branchLineIndex == 0) {
+            return YES;
+        } else {
+            return NO;
+        }
     }
     
-    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
-    if ([stationIndex isKindOfClass:[NSNumber class]]) {
+    if ([stationIndex isKindOfClass:[NSNumber class]] || stationIndex == nil) {
         return NO;
     } else {
         return YES;
@@ -108,8 +126,11 @@ NSDictionary *stationPointers;
     if (!previousPosition) {
         return nil;
     }
-    int stationIndex = [[self.stationPositions valueForKeyPath:[previousPosition description]] integerValue];
-    return self.allStations[stationIndex];
+    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
+    if (!stationIndex || ![stationIndex isKindOfClass:[NSNumber class]]) {
+        return nil;
+    }
+    return self.allStations[[stationIndex integerValue]];
 }
 
 - (LPCFork *)forkBeforePosition:(LPCLinePosition *)position {
