@@ -6,6 +6,7 @@
 #import "LPCForkViewController.h"
 #import "LPCLinePosition.h"
 #import "LPCStationViewController.h"
+#import "LPCVenue.h"
 
 @interface LPCLineViewController () <LPCForkViewControllerDelegate>
 
@@ -52,13 +53,14 @@ LPCStation *currentStation;
     
     self.stations = line.allStations;
     
-    stationVenues = [[NSMutableDictionary alloc] init];
+    // Initial capacity is number of stations
+    stationVenues = [[NSMutableDictionary alloc] initWithCapacity:[line.allStations count]];
     
     return self;
 }
 
-- (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode {
-    [stationVenues setValue:venue forKey:stationCode];
+- (void)addVenues:(NSArray *)venues forStationCode:(NSString *)stationCode {
+    [stationVenues setValue:venues forKey:stationCode];
 }
 
 - (void)viewDidLoad
@@ -224,17 +226,11 @@ LPCStation *currentStation;
         childViewController.directionForward = currentLine.bottomOfLineDirection;
     }
     
-    NSDictionary *venue = [stationVenues objectForKey:st.code];
+    NSArray *venues = [stationVenues objectForKey:st.code];
+
+    childViewController.venues = venues;
     
-    if (venue) {
-        childViewController.pubName = [venue valueForKeyPath:@"name"];
-        childViewController.distance = [venue valueForKeyPath:@"location.distance"];
-        NSNumber *pubLatitude = [venue valueForKeyPath:@"location.lat"];
-        NSNumber *pubLongitude = [venue valueForKeyPath:@"location.lng"];
-        childViewController.tips = [venue valueForKey:@"tips"];
-        childViewController.pubLocation = @[pubLatitude, pubLongitude];
-        childViewController.stationLocation = st.coordinate;
-    }
+    childViewController.stationLocation = st.coordinate;
     
     childViewController.topLevelDelegate = self.delegate;
     
@@ -267,30 +263,6 @@ LPCStation *currentStation;
 - (void)didChooseStationLeft:(LPCStation *)firstStationTowardDestination {
     UIViewController *nextViewController = [self viewControllerForStation:firstStationTowardDestination];
     [self.pageController setViewControllers:@[nextViewController] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-}
-
-- (void)didChooseBranchForDestination:(NSString *)destinationStationCode {
-    NSLog(@"Going to branch with destination %@", destinationStationCode);
-    destinationBranch = destinationStationCode;
-    
-    LPCLineViewController *branchLineViewController = [[LPCLineViewController alloc] initWithStationIndex:0];
-    
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    branchLineViewController.branchStation = [appDelegate.stations valueForKey:destinationStationCode];
-    branchLineViewController.stations = [forkStations objectForKey:destinationStationCode];
-    branchLineViewController.lineColour = self.lineColour;
-    branchLineViewController.parentForkController = forkController;
-    branchLineViewController.delegate = self.delegate;
-    
-    for (NSString *s in branchLineViewController.stations) {
-        NSDictionary *station = [appDelegate.stations objectForKey:s];
-        NSArray *venues = [appDelegate.pubs valueForKey:[station valueForKey:@"code"]];
-        NSDictionary *venue = venues[0];
-        [branchLineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
-    }
-    
-    [self presentViewController:branchLineViewController animated:YES completion:nil];
 }
 
 @end

@@ -4,6 +4,7 @@
 #import <UIImageView+WebCache.h>
 #import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
+#import "LPCVenue.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate>
 
@@ -18,6 +19,7 @@ BOOL isMapLoaded = NO;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
     }
     return self;
@@ -37,7 +39,7 @@ BOOL isMapLoaded = NO;
         googleMapsImageRetina = @"&scale=2";
     }
     
-    int distanceInteger = [self.distance integerValue];
+    long distanceInteger = [self.distance integerValue];
     int zoomLevel = 13;
     
     if (distanceInteger < 50) {
@@ -70,11 +72,9 @@ BOOL isMapLoaded = NO;
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     
-//    [self.view insertSubview:self.mapView atIndex:0];
     [self.view insertSubview:mapImageView atIndex:0];
     self.stationNameLabel.text = self.stationName;
-    self.pubNameLabel.text = self.pubName;
-    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", self.distance];
+    
     if (self.firstStop) {
         self.rightLineView.backgroundColor = self.lineColour;
     } else if (self.lastStop) {
@@ -83,16 +83,7 @@ BOOL isMapLoaded = NO;
         self.fullWidthLineView.backgroundColor = self.lineColour;
     }
     
-    if ([self.tips count] == 0) {
-        self.tipAuthorLabel.hidden = YES;
-        self.tipLabel.hidden = YES;
-    } else {
-        self.tipAuthorLabel.hidden = NO;
-        self.tipLabel.hidden = NO;
-        
-        self.tipAuthorLabel.text = [self.tips[0] valueForKey:@"user"];
-        self.tipLabel.text = [self.tips[0] valueForKey:@"text"];
-    }
+    [self populateVenueDetailsWithVenue:self.venues[0]];
     
     if (self.branchName) {
         if (self.branchStationIsAhead) {
@@ -117,6 +108,26 @@ BOOL isMapLoaded = NO;
     [self.wayOutButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     isMapLoaded = NO;
+}
+
+- (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
+    self.pubNameLabel.text = venue.name;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
+    
+    if ([venue.tips count] == 0) {
+        self.tipAuthorLabel.hidden = YES;
+        self.tipLabel.hidden = YES;
+    } else {
+        self.tipAuthorLabel.hidden = NO;
+        self.tipLabel.hidden = NO;
+        
+        self.tipAuthorLabel.text = [venue.tips[0] valueForKey:@"user"];
+        self.tipLabel.text = [venue.tips[0] valueForKey:@"text"];
+    }
+    
+    self.addressLabel.text = venue.formattedAddress;
+    
+    self.pubLocation = venue.latLng;
 }
 
 - (void)viewDidLayoutSubviews {

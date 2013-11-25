@@ -59,6 +59,7 @@
 		37BF43C5180D31ED0091BE5F /* London_Pub_CrawlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF43C4180D31ED0091BE5F /* London_Pub_CrawlTests.m */; };
 		37F45A78184108E60025CC9B /* map-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A76184108E60025CC9B /* map-placeholder.png */; };
 		37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A77184108E60025CC9B /* map-placeholder@2x.png */; };
+		37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F45A7E1843ABB70025CC9B /* LPCVenue.m */; };
 		EAA99B8767694BFB85661A03 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A750CB56A43C5B6F882C5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,8 @@
 		37BF43C4180D31ED0091BE5F /* London_Pub_CrawlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = London_Pub_CrawlTests.m; sourceTree = "<group>"; };
 		37F45A76184108E60025CC9B /* map-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder.png"; sourceTree = "<group>"; };
 		37F45A77184108E60025CC9B /* map-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder@2x.png"; sourceTree = "<group>"; };
+		37F45A7D1843ABB70025CC9B /* LPCVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenue.h; sourceTree = "<group>"; };
+		37F45A7E1843ABB70025CC9B /* LPCVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenue.m; sourceTree = "<group>"; };
 		4DCF27477E104A96B73E0C6D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B94A750CB56A43C5B6F882C5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -209,6 +212,8 @@
 				37625048183A2F460061F1F4 /* LPCLinePosition.m */,
 				3762504D183BE9D30061F1F4 /* LPCFork.h */,
 				3762504E183BE9D30061F1F4 /* LPCFork.m */,
+				37F45A7D1843ABB70025CC9B /* LPCVenue.h */,
+				37F45A7E1843ABB70025CC9B /* LPCVenue.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */,
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
 				37BF43B0180D31EC0091BE5F /* LPCLineListViewController.m in Sources */,

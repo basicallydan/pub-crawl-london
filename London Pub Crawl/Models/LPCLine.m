@@ -166,8 +166,7 @@ NSDictionary *stationPointers;
     if (stationPointer == nil) {
         return nil;
     }
-    int stationIndex = [stationPointer integerValue];
-    return self.allStations[stationIndex];
+    return self.allStations[[stationPointer integerValue]];
 }
 
 - (LPCFork *)forkAfterPosition:(LPCLinePosition *)position {

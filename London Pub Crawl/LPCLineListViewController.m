@@ -8,6 +8,7 @@
 #import "LPCLineOptionModalViewController.h"
 #import "LPCThemeManager.h"
 #import <UIColor-HexString/UIColor+HexString.h>
+#import "LPCVenue.h"
 
 @interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate>
 
@@ -54,31 +55,6 @@
 //    lineStations = [startBranches valueForKey:branchStartChoices[0]];
 }
 
-- (void)showLineViewWithStations:(NSArray *)lineStations onLine:(NSDictionary *)lineDictionary atStation:(int)startingStationIndex {
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithStationIndex:startingStationIndex];
-    
-    lineViewController.stations = lineStations;
-    lineViewController.lineColour = [UIColor colorWithHexString:[lineDictionary valueForKey:@"background-color"]];
-    lineViewController.bottomOfLineDirection = [lineDictionary valueForKey:@"bottom-direction"]; // This is the direction we're heading in if we're going toward the end of the array of stations
-    lineViewController.topOfLineDirection = [lineDictionary valueForKey:@"top-direction"]; // This is the direction we're heading in fi we're going toward the start of the array of stations
-    
-    for (NSString *s in lineViewController.stations) {
-        if ([s isKindOfClass:[NSString class]]) {
-            NSDictionary *station = [appDelegate.stations objectForKey:s];
-            NSArray *venues = [appDelegate.pubs valueForKey:[station valueForKey:@"code"]];
-            
-            NSDictionary *venue = venues[0];
-            [lineViewController addVenue:venue forStationCode:[station valueForKey:@"code"]];
-        }
-    }
-    
-    lineViewController.delegate = self;
-    
-    [self presentViewController:lineViewController animated:YES completion:nil];
-}
-
 - (void)showLineViewStartingWith:(LPCLine *)line startingWith:(LPCStation *)station {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -88,10 +64,15 @@
     
     for (LPCStation *s in line.allStations) {
         NSArray *venues = [appDelegate.pubs valueForKey:s.code];
-        
-        NSDictionary *venue = venues[0];
-        [lineViewController addVenue:venue forStationCode:s.code];
+        NSMutableArray *mappedVenues = [[NSMutableArray alloc] initWithCapacity:[venues count]];
+        int v = 0;
+        for (v = 0; v < [venues count]; v++) {
+            [mappedVenues addObject:[[LPCVenue alloc] initWithPubData:venues[v]]];
+        }
+        [lineViewController addVenues:[NSArray arrayWithArray:mappedVenues] forStationCode:s.code];
     }
+    
+    
     
     lineViewController.delegate = self;
     

@@ -14,8 +14,8 @@ NSArray *forkInitialStations;
         NSDictionary *branchStations = [fork valueForKey:forkDestinationStation];
         NSArray *branchStationKeys = [[branchStations allKeys] sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
         
-        int finalBranchStationIndex = [[branchStations valueForKey:[branchStationKeys lastObject]] integerValue];
-        int firstBranchStationIndex = [[branchStations valueForKey:[branchStationKeys firstObject]] integerValue];
+        long finalBranchStationIndex = [[branchStations valueForKey:[branchStationKeys lastObject]] integerValue];
+        long firstBranchStationIndex = [[branchStations valueForKey:[branchStationKeys firstObject]] integerValue];
         
         LPCStation *finalStation = [line.allStations objectAtIndex:finalBranchStationIndex];
         LPCStation *firstStation = [line.allStations objectAtIndex:firstBranchStationIndex];

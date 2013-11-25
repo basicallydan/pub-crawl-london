@@ -35,6 +35,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) NSString *directionForward;
 @property (strong, nonatomic) NSString *directionBackward;
 @property (strong, nonatomic) LPCStation *station;
+@property (strong, nonatomic) NSArray *venues;
 
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
@@ -52,6 +53,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 - (IBAction)changeLine:(id)sender;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;

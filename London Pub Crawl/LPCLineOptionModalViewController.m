@@ -86,7 +86,7 @@ LPCLine *selectedLine;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int number = [self.filteredStationArray count];
+    long number = [self.filteredStationArray count];
     return number;
 }
 
