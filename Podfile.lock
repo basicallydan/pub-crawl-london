@@ -19,6 +19,7 @@ PODS:
   - AFNetworking/Serialization (2.0.0)
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
+  - CMMapLauncher (0.0.1)
   - MBXMapKit (0.1.0)
   - SDWebImage (3.5):
     - SDWebImage/Core
@@ -27,12 +28,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.0)
+  - CMMapLauncher (= 0.0.1)
   - MBXMapKit
   - SDWebImage (= 3.5)
   - UIColor-HexString (~> 1.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
+  CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
   MBXMapKit: e621aa3ab2c1925d2312ee293f3c147f837ac27c
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
   UIColor-HexString: 8a3f512f71b6d94a2cf6bdeabcad2f3532f31b5a

@@ -15,7 +15,6 @@
                 <outlet property="fullWidthLineView" destination="DfY-KP-bYW" id="BHi-8M-woR"/>
                 <outlet property="headerView" destination="Obc-ul-Y9s" id="u5d-Mx-1S7"/>
                 <outlet property="leftLineView" destination="rmd-EJ-p5B" id="EEG-Lv-JFD"/>
-                <outlet property="loadingView" destination="dLz-df-Lj8" id="fxy-4s-n08"/>
                 <outlet property="mapViewportView" destination="QPy-kJ-yqJ" id="PWR-j3-E1M"/>
                 <outlet property="pubNameLabel" destination="6jA-zI-3lY" id="PiN-AV-gDU"/>
                 <outlet property="rightLineView" destination="rmd-EJ-p5B" id="NX9-uy-cdo"/>
@@ -32,17 +31,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLz-df-Lj8" userLabel="Overlay View">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BQz-9y-gJw">
-                            <rect key="frame" x="150" y="184" width="20" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </activityIndicatorView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                </view>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPy-kJ-yqJ" userLabel="Map View Area">
                     <rect key="frame" x="0.0" y="145" width="320" height="144"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -220,8 +208,6 @@
                 <constraint firstItem="QPy-kJ-yqJ" firstAttribute="top" secondItem="1" secondAttribute="top" constant="145" id="3eJ-L8-D2h"/>
                 <constraint firstAttribute="bottom" secondItem="yzW-Tc-zZN" secondAttribute="bottom" id="GZO-y5-FhU"/>
                 <constraint firstAttribute="trailing" secondItem="02M-Rc-fik" secondAttribute="trailing" id="L0D-9b-eWh"/>
-                <constraint firstItem="dLz-df-Lj8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="N7S-fb-byg"/>
-                <constraint firstItem="yzW-Tc-zZN" firstAttribute="top" secondItem="dLz-df-Lj8" secondAttribute="bottom" id="NcW-Sl-1az"/>
                 <constraint firstItem="yzW-Tc-zZN" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="bottom" id="Pdt-or-ajh"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="QLd-ve-Ls8"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="bottom" constant="160" id="XX1-lg-Dii"/>
@@ -231,9 +217,7 @@
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="moe-SS-vwg"/>
                 <constraint firstAttribute="bottom" secondItem="QPy-kJ-yqJ" secondAttribute="bottom" constant="279" id="pwQ-Rs-Yup"/>
                 <constraint firstAttribute="trailing" secondItem="yzW-Tc-zZN" secondAttribute="trailing" id="r9a-um-GTs"/>
-                <constraint firstAttribute="trailing" secondItem="dLz-df-Lj8" secondAttribute="trailing" id="rqF-G3-FZt"/>
                 <constraint firstAttribute="trailing" secondItem="QPy-kJ-yqJ" secondAttribute="trailing" id="t0P-RE-tRt"/>
-                <constraint firstItem="dLz-df-Lj8" firstAttribute="top" secondItem="1" secondAttribute="top" id="z52-6E-RQd"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

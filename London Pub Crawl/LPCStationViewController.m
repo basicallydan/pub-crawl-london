@@ -5,8 +5,9 @@
 #import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
 #import "LPCVenue.h"
+#import <CMMapLauncher/CMMapLauncher.h>
 
-@interface LPCStationViewController () <MKMapViewDelegate>
+@interface LPCStationViewController () <MKMapViewDelegate, UIActionSheetDelegate>
 
 @end
 
@@ -15,6 +16,8 @@
 NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer(%.04f,%.04f),pin-m-rail(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 BOOL isMapLoaded = NO;
+int zoomLevel;
+LPCVenue *currentVenue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,19 +42,26 @@ BOOL isMapLoaded = NO;
         googleMapsImageRetina = @"&scale=2";
     }
     
-    long distanceInteger = [self.distance integerValue];
-    int zoomLevel = 13;
+    [self populateVenueDetailsWithVenue:self.venues[0]];
     
-    if (distanceInteger < 50) {
-        zoomLevel = 17;
-    } else if (distanceInteger < 200) {
-        zoomLevel = 16;
-    } else if (distanceInteger < 400) {
-        zoomLevel = 15;
-    } else if (distanceInteger < 500) {
-        zoomLevel = 14;
-    } else if (distanceInteger > 700) {
-        zoomLevel = 12;
+    long distanceInteger = [self.distance integerValue];
+    
+    if (currentVenue.mapZoomLevel != nil) {
+        zoomLevel = [currentVenue.mapZoomLevel intValue];
+    } else {
+        zoomLevel = 13;
+        
+        if (distanceInteger < 50) {
+            zoomLevel = 17;
+        } else if (distanceInteger < 200) {
+            zoomLevel = 16;
+        } else if (distanceInteger < 400) {
+            zoomLevel = 15;
+        } else if (distanceInteger < 500) {
+            zoomLevel = 14;
+        } else if (distanceInteger > 700) {
+            zoomLevel = 12;
+        }
     }
     
 //    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, imageRetina];
@@ -61,18 +71,14 @@ BOOL isMapLoaded = NO;
     
     UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
     [mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
-//    mapImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:mapImageUrl]]];
-    
-    [UIView animateWithDuration:0.4
-         animations:^{
-             self.loadingView.alpha = 0;
-         }
-         completion:nil];
+    UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
+    mapImageView.userInteractionEnabled = YES;
+    [mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
     
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     
-    [self.view insertSubview:mapImageView atIndex:0];
+    [self.view insertSubview:mapImageView atIndex:1];
     self.stationNameLabel.text = self.stationName;
     
     if (self.firstStop) {
@@ -82,8 +88,6 @@ BOOL isMapLoaded = NO;
     } else {
         self.fullWidthLineView.backgroundColor = self.lineColour;
     }
-    
-    [self populateVenueDetailsWithVenue:self.venues[0]];
     
     if (self.branchName) {
         if (self.branchStationIsAhead) {
@@ -128,6 +132,8 @@ BOOL isMapLoaded = NO;
     self.addressLabel.text = venue.formattedAddress;
     
     self.pubLocation = venue.latLng;
+    
+    currentVenue = venue;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -141,22 +147,55 @@ BOOL isMapLoaded = NO;
         return;
     }
     isMapLoaded = YES;
+}
+
+- (void)respondToLongPressOfMapImage:(UILongPressGestureRecognizer *)recognizer {
+//    NSLog(@"Long pressed Image");
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [self openActionSheet:nil];
+        return;
+    }
+}
+
+-(void)openActionSheet:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     
-//    if (self.pubLocation && self.stationLocation) {
-//        MKCoordinateRegion reg = [self regionFromLocations:@[self.stationLocation, self.pubLocation]];
-//        [self.mapView setCenterCoordinate:[self.stationLocation asCLLocationCoordinate2D] zoomLevel:12 animated:NO];
-//        [self.mapView setRegion:reg];
-//        [self.mapView regionThatFits:reg];
-//    }
-//    
-//    LPCMapAnnotation *pubAnnotation = [[LPCMapAnnotation alloc] initWithCoordinate:[self.pubLocation asCLLocationCoordinate2D] andType:0];
-//    pubAnnotation.coordinate = [self.pubLocation asCLLocationCoordinate2D];
-//    [self.mapView addAnnotation:pubAnnotation];
-    [UIView animateWithDuration:0.4
-         animations:^{
-             self.loadingView.alpha = 0;
-         }
-         completion:nil];
+    [actionSheet addButtonWithTitle:@"Apple Maps"];
+    
+    [actionSheet addButtonWithTitle:@"Google Maps"];
+    
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppCitymapper]) {
+        [actionSheet addButtonWithTitle:@"Citymapper"];
+    }
+    
+    [actionSheet addButtonWithTitle:@"Never mind"];
+    
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+//    [actionSheet showInView:self.view];
+}
+
+# pragma mark - UIActionSheetDelegate methods
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //coordinates for the place we want to display
+    CLLocationCoordinate2D venueLocation = CLLocationCoordinate2DMake([self.pubLocation[0] floatValue], [self.pubLocation[1] floatValue]);
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Apple Maps"]) {
+        [CMMapLauncher launchMapApp:CMMapAppAppleMaps forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Google Maps"]) {
+        if ([CMMapLauncher isMapAppInstalled:CMMapAppGoogleMaps]) {
+            [CMMapLauncher launchMapApp:CMMapAppGoogleMaps forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+        } else {
+            // Open up web Google Maps instead
+            NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@@%1.6f,%1.6f&z=%d", self.pubName, venueLocation.latitude, venueLocation.longitude, zoomLevel];
+            NSURL *url = [NSURL URLWithString:stringURL];
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Citymapper"]) {
+        [CMMapLauncher launchMapApp:CMMapAppCitymapper forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Never mind"]) {
+        [actionSheet dismissWithClickedButtonIndex:[actionSheet numberOfButtons] - 1 animated:YES];
+    }
 }
 
 # pragma mark - MKMapViewDelegate methods

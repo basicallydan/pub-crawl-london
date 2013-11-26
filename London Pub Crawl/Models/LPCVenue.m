@@ -10,6 +10,9 @@
     self.distance =[pubData valueForKeyPath:@"location.distance"];
     NSNumber *pubLatitude = [pubData valueForKeyPath:@"location.lat"];
     NSNumber *pubLongitude = [pubData valueForKeyPath:@"location.lng"];
+    if ([pubData valueForKeyPath:@"location.mapZoomLevel"] != nil) {
+        self.mapZoomLevel = [pubData valueForKeyPath:@"location.mapZoomLevel"];
+    }
     self.tips = [pubData valueForKey:@"tips"];
     self.latLng = @[pubLatitude, pubLongitude];
     self.priceTier = [pubData valueForKeyPath:@"price.tier"];

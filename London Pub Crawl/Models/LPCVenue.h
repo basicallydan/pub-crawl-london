@@ -9,6 +9,7 @@
 @property (strong, nonatomic) NSNumber *distance;
 @property (strong, nonatomic) NSNumber *priceTier;
 @property (strong, nonatomic) NSString *priceMessage;
+@property (strong, nonatomic) NSNumber *mapZoomLevel;
 
 - (id)initWithPubData:(NSDictionary *)pubData;
 
