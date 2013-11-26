@@ -11,7 +11,7 @@
 @implementation LPCThemeManager
 
 + (UIImage *)tubeLineForkWithColor:(UIColor *)color {
-    UIImage *image = [UIImage imageNamed:@"tube-line-fork-central-line"];
+    UIImage *image = [UIImage imageNamed:@"tube-line-fork-double-sided"];
     
     return [self recolorImage:image withColor:color];
 }

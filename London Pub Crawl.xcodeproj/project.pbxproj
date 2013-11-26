@@ -40,6 +40,8 @@
 		377D7B7C182A96FE0071B5D4 /* tube-line-button-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B78182A96FE0071B5D4 /* tube-line-button-normal@2x.png */; };
 		377D7B7D182A96FE0071B5D4 /* tube-line-button-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B79182A96FE0071B5D4 /* tube-line-button-pressed.png */; };
 		377D7B7E182A96FE0071B5D4 /* tube-line-button-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */; };
+		37944F6218450D9A0005379D /* tube-line-fork-double-sided.png in Resources */ = {isa = PBXBuildFile; fileRef = 37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */; };
+		37944F6318450D9A0005379D /* tube-line-fork-double-sided@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */; };
 		37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A131D5180DC9C90048975C /* MapKit.framework */; };
 		37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A131DB180DE9580048975C /* LPCThemeManager.m */; };
 		37BF4397180D31EC0091BE5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF4396180D31EC0091BE5F /* Foundation.framework */; };
@@ -119,6 +121,8 @@
 		377D7B78182A96FE0071B5D4 /* tube-line-button-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-normal@2x.png"; sourceTree = "<group>"; };
 		377D7B79182A96FE0071B5D4 /* tube-line-button-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-pressed.png"; sourceTree = "<group>"; };
 		377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-pressed@2x.png"; sourceTree = "<group>"; };
+		37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-double-sided.png"; sourceTree = "<group>"; };
+		37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-double-sided@2x.png"; sourceTree = "<group>"; };
 		37A131D5180DC9C90048975C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37A131DA180DE9580048975C /* LPCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCThemeManager.h; sourceTree = "<group>"; };
 		37A131DB180DE9580048975C /* LPCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCThemeManager.m; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */,
+				37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */,
 				37F45A76184108E60025CC9B /* map-placeholder.png */,
 				37F45A77184108E60025CC9B /* map-placeholder@2x.png */,
 				377D7B77182A96FE0071B5D4 /* tube-line-button-normal.png */,
@@ -399,6 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37944F6218450D9A0005379D /* tube-line-fork-double-sided.png in Resources */,
 				376CD9B31823D51600D4C599 /* pub-icon.png in Resources */,
 				370FEA50180D489C00692418 /* tfl-tube-data.json in Resources */,
 				377D7B7B182A96FE0071B5D4 /* tube-line-button-normal.png in Resources */,
@@ -410,6 +417,7 @@
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
 				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
 				37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */,
+				37944F6318450D9A0005379D /* tube-line-fork-double-sided@2x.png in Resources */,
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,
 				37BF43AA180D31EC0091BE5F /* Main_iPhone.storyboard in Resources */,
 				376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */,

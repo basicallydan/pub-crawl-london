@@ -44,7 +44,10 @@ LPCFork *currentFork;
     self.toolbar.barStyle = UIBarStyleBlackTranslucent;
     [self.wayOutButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
-    [self.forkImageView setImage:[LPCThemeManager tubeLineForkWithColor:self.lineColour]];
+    UIImage *forkImage = [LPCThemeManager tubeLineForkWithColor:self.lineColour];
+    
+    [self.forkImageView setImage:forkImage];
+    
     if (currentFork.direction == Left) {
         self.forkImageView.transform = CGAffineTransformMakeRotation(M_PI); // flip the image view
     }
