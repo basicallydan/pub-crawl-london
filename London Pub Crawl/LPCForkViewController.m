@@ -37,8 +37,10 @@ LPCFork *currentFork;
     [super viewDidLoad];
     
     // What are the titles of things?
-    [self.topRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", topForkDestinationStation.name] forState:UIControlStateNormal];
-    [self.bottomRightForkButton setTitle:[NSString stringWithFormat:@"Toward %@", bottomForkDestinationStation.name] forState:UIControlStateNormal];
+    [self.topRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
+    [self.bottomRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
+    [self.topLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
+    [self.bottomLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
     
     [self.toolbar setBackgroundColor:[UIColor colorWithHexString:@"#221e1f"]];
     self.toolbar.barStyle = UIBarStyleBlackTranslucent;
@@ -51,6 +53,28 @@ LPCFork *currentFork;
     if (currentFork.direction == Left) {
         self.forkImageView.transform = CGAffineTransformMakeRotation(M_PI); // flip the image view
     }
+    
+    if (currentFork.direction == Right) {
+        [self.destinationLeftLabel setText:self.directionBackward];
+        [self.destinationLeftLabel setTextColor:self.lineColour];
+        
+        [self.destinationRightLabel removeFromSuperview];
+        self.topLeftForkSelector.hidden = YES;
+        self.topLeftForkSelector.userInteractionEnabled = NO;
+        self.bottomLeftForkSelector.hidden = YES;
+        self.bottomLeftForkSelector.userInteractionEnabled = NO;
+    } else {
+        [self.destinationRightLabel setText:self.directionForward];
+        [self.destinationRightLabel setTextColor:self.lineColour];
+        
+        [self.destinationLeftLabel removeFromSuperview];
+        self.topRightForkSelector.hidden = YES;
+        self.topRightForkSelector.userInteractionEnabled = NO;
+        self.bottomRightForkSelector.hidden = YES;
+        self.bottomRightForkSelector.userInteractionEnabled = NO;
+    }
+    
+    [self assignActionsToButtons];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,8 +83,26 @@ LPCFork *currentFork;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)topRightForkAction:(id)sender {
-    NSLog(@"Going to the bottom-right fork toward %@.", topForkDestinationStation.name);
+- (IBAction)changeLine:(id)sender {
+    if (self.topLevelDelegate) {
+        [self.topLevelDelegate didClickChangeLine];
+    }
+}
+
+# pragma mark - Private Methods
+
+- (void)assignActionsToButtons {
+    UIGestureRecognizer *topRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectTopFork)];
+    [self.topRightForkSelector addGestureRecognizer:topRecogniser];
+    [self.topLeftForkSelector addGestureRecognizer:topRecogniser];
+    
+    UIGestureRecognizer *bottomRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectBottomFork)];
+    [self.bottomRightForkSelector addGestureRecognizer:bottomRecogniser];
+    [self.bottomLeftForkSelector addGestureRecognizer:bottomRecogniser];
+}
+
+- (void)didSelectTopFork {
+    NSLog(@"Going to the top fork toward %@.", topForkDestinationStation.name);
     if (currentFork.direction == Left) {
         [self.forkDelegate didChooseStationLeft:[currentFork firstStationForDestination:0]];
     } else {
@@ -68,18 +110,12 @@ LPCFork *currentFork;
     }
 }
 
-- (IBAction)bottomRightFormAction:(id)sender {
-    NSLog(@"Going to the top-right fork toward %@.", bottomForkDestinationStation.name);
+- (void)didSelectBottomFork {
+    NSLog(@"Going to the bottom fork toward %@.", bottomForkDestinationStation.name);
     if (currentFork.direction == Left) {
         [self.forkDelegate didChooseStationLeft:[currentFork firstStationForDestination:1]];
     } else {
         [self.forkDelegate didChooseStationRight:[currentFork firstStationForDestination:1]];
-    }
-}
-
-- (IBAction)changeLine:(id)sender {
-    if (self.topLevelDelegate) {
-        [self.topLevelDelegate didClickChangeLine];
     }
 }
 

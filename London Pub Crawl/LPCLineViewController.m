@@ -106,6 +106,9 @@ LPCStation *currentStation;
             
             previousViewController.lineColour = self.lineColour;
             
+            previousViewController.directionBackward = currentLine.topOfLineDirection;
+            previousViewController.directionForward = currentLine.bottomOfLineDirection;
+            
             previousViewController.forkDelegate = self;
             previousViewController.topLevelDelegate = self.delegate;
             
@@ -130,6 +133,9 @@ LPCStation *currentStation;
             LPCForkViewController *previousViewController = [[LPCForkViewController alloc] initWithFork:fork];
             
             previousViewController.lineColour = self.lineColour;
+            
+            previousViewController.directionBackward = currentLine.topOfLineDirection;
+            previousViewController.directionForward = currentLine.bottomOfLineDirection;
             
             previousViewController.forkDelegate = self;
             previousViewController.topLevelDelegate = self.delegate;
@@ -160,6 +166,9 @@ LPCStation *currentStation;
             
             nextViewController.lineColour = self.lineColour;
             
+            nextViewController.directionBackward = currentLine.topOfLineDirection;
+            nextViewController.directionForward = currentLine.bottomOfLineDirection;
+            
             nextViewController.forkDelegate = self;
             nextViewController.topLevelDelegate = self.delegate;
             
@@ -184,6 +193,9 @@ LPCStation *currentStation;
             LPCForkViewController *nextViewController = [[LPCForkViewController alloc] initWithFork:fork];
             
             nextViewController.lineColour = self.lineColour;
+            
+            nextViewController.directionBackward = currentLine.topOfLineDirection;
+            nextViewController.directionForward = currentLine.bottomOfLineDirection;
             
             nextViewController.forkDelegate = self;
             nextViewController.topLevelDelegate = self.delegate;

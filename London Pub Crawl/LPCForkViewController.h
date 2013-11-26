@@ -25,17 +25,33 @@
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
 @property (readonly, nonatomic) LPCLinePosition *linePosition;
+@property (strong, nonatomic) NSString *directionForward;
+@property (strong, nonatomic) NSString *directionBackward;
 
 @property (weak, nonatomic) IBOutlet UIView *leftLineView;
 @property (weak, nonatomic) IBOutlet UIView *topRightLineView;
 @property (weak, nonatomic) IBOutlet UIView *bottomRightLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *forkImageView;
-@property (weak, nonatomic) IBOutlet UIButton *topRightForkButton;
-@property (weak, nonatomic) IBOutlet UIButton *bottomRightForkButton;
+//@property (weak, nonatomic) IBOutlet UIButton *topRightForkButton;
+//@property (weak, nonatomic) IBOutlet UIButton *bottomRightForkButton;
 - (IBAction)topRightForkAction:(id)sender;
 - (IBAction)bottomRightFormAction:(id)sender;
 - (IBAction)changeLine:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
+@property (weak, nonatomic) IBOutlet UIView *topRightForkSelector;
+@property (weak, nonatomic) IBOutlet UILabel *topRightForkSelectorLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomRightForkSelector;
+@property (weak, nonatomic) IBOutlet UILabel *bottomRightForkSelectorLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *topLeftForkSelector;
+@property (weak, nonatomic) IBOutlet UILabel *topLeftForkSelectorLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomLeftForkSelector;
+@property (weak, nonatomic) IBOutlet UILabel *bottomLeftForkSelectorLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
+
 
 @end
