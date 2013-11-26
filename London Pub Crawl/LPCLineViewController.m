@@ -127,22 +127,6 @@ LPCStation *currentStation;
     } else {
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
         
-        if ([currentLine isForkBeforePosition:currentViewController.linePosition]) {
-            NSLog(@"It's a fork before!");
-            LPCFork *fork = [currentLine forkBeforePosition:currentViewController.linePosition];
-            LPCForkViewController *previousViewController = [[LPCForkViewController alloc] initWithFork:fork];
-            
-            previousViewController.lineColour = self.lineColour;
-            
-            previousViewController.directionBackward = currentLine.topOfLineDirection;
-            previousViewController.directionForward = currentLine.bottomOfLineDirection;
-            
-            previousViewController.forkDelegate = self;
-            previousViewController.topLevelDelegate = self.delegate;
-            
-            return previousViewController;
-        }
-        
         LPCStation *previousStation = [currentLine stationBeforePosition:currentViewController.linePosition];
         
         if (!previousStation) {
@@ -186,22 +170,6 @@ LPCStation *currentStation;
         return nextViewController;
     } else {
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
-        
-        if ([currentLine isForkAfterPosition:currentViewController.linePosition]) {
-            NSLog(@"It's a fork next!");
-            LPCFork *fork = [currentLine forkAfterPosition:currentViewController.linePosition];
-            LPCForkViewController *nextViewController = [[LPCForkViewController alloc] initWithFork:fork];
-            
-            nextViewController.lineColour = self.lineColour;
-            
-            nextViewController.directionBackward = currentLine.topOfLineDirection;
-            nextViewController.directionForward = currentLine.bottomOfLineDirection;
-            
-            nextViewController.forkDelegate = self;
-            nextViewController.topLevelDelegate = self.delegate;
-            
-            return nextViewController;
-        }
         
         LPCStation *nextStation = [currentLine stationAfterPosition:currentViewController.linePosition];
         

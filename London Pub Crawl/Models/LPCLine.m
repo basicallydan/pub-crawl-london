@@ -163,7 +163,7 @@ NSDictionary *stationPointers;
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position {
     LPCLinePosition *nextPosition = [position nextPossiblePosition];
     id stationPointer = [self.stationPositions valueForKeyPath:[nextPosition description]];
-    if (stationPointer == nil) {
+    if (![stationPointer isKindOfClass:[NSNumber class]]) {
         return nil;
     }
     return self.allStations[[stationPointer integerValue]];

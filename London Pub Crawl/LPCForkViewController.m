@@ -93,12 +93,18 @@ LPCFork *currentFork;
 
 - (void)assignActionsToButtons {
     UIGestureRecognizer *topRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectTopFork)];
-    [self.topRightForkSelector addGestureRecognizer:topRecogniser];
-    [self.topLeftForkSelector addGestureRecognizer:topRecogniser];
+    if (currentFork.direction == Right) {
+        [self.topRightForkSelector addGestureRecognizer:topRecogniser];
+    } else {
+        [self.topLeftForkSelector addGestureRecognizer:topRecogniser];
+    }
     
     UIGestureRecognizer *bottomRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectBottomFork)];
-    [self.bottomRightForkSelector addGestureRecognizer:bottomRecogniser];
-    [self.bottomLeftForkSelector addGestureRecognizer:bottomRecogniser];
+    if (currentFork.direction == Right) {
+        [self.bottomRightForkSelector addGestureRecognizer:bottomRecogniser];
+    } else {
+        [self.bottomLeftForkSelector addGestureRecognizer:bottomRecogniser];
+    }
 }
 
 - (void)didSelectTopFork {
