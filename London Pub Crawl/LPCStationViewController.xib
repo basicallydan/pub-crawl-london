@@ -94,16 +94,22 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance in Metres" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56V-92-ndJ">
-                            <rect key="frame" x="194" y="7" width="106" height="10"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1200m from the station" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56V-92-ndJ">
+                            <rect key="frame" x="200" y="5" width="100" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="4dM-ib-ugg"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xab-37-N6k">
-                            <rect key="frame" x="20" y="7" width="176" height="10"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Address Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xab-37-N6k">
+                            <rect key="frame" x="20" y="5" width="178" height="14"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="178" id="YgO-35-ago"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -113,7 +119,11 @@
                     <constraints>
                         <constraint firstItem="URP-xh-YJS" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" constant="20" id="7ir-KN-yiH"/>
                         <constraint firstItem="ZLm-Fw-zwG" firstAttribute="top" secondItem="rmd-EJ-p5B" secondAttribute="bottom" constant="2" id="KFK-Wa-9Ah"/>
+                        <constraint firstAttribute="trailing" secondItem="56V-92-ndJ" secondAttribute="trailing" constant="20" id="eBB-W2-Fsx"/>
+                        <constraint firstItem="xab-37-N6k" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="5" id="ea0-he-HCl"/>
                         <constraint firstAttribute="height" constant="117" id="fgB-he-aQh"/>
+                        <constraint firstItem="xab-37-N6k" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" constant="20" id="ijm-f9-raW"/>
+                        <constraint firstItem="56V-92-ndJ" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="5" id="j2p-CF-yGc"/>
                         <constraint firstAttribute="trailing" secondItem="ZLm-Fw-zwG" secondAttribute="trailing" constant="20" id="lXv-fv-gPm"/>
                     </constraints>
                 </view>

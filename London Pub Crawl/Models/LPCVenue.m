@@ -6,7 +6,16 @@
     self.name = [pubData valueForKeyPath:@"name"];
     NSString *streetAddress = [pubData valueForKeyPath:@"location.address"];
     NSString *postcode = [pubData valueForKeyPath:@"location.postcode"];
-    self.formattedAddress = [NSString stringWithFormat:@"%@, %@", streetAddress, postcode];
+    self.formattedAddress = streetAddress;
+    if (streetAddress && postcode) {
+        self.formattedAddress = [NSString stringWithFormat:@"%@, %@", streetAddress, postcode];
+    } else if (streetAddress) {
+        self.formattedAddress = streetAddress;
+    } else if (postcode) {
+        self.formattedAddress = postcode;
+    } else {
+        self.formattedAddress = @"No address given :(";
+    }
     self.distance =[pubData valueForKeyPath:@"location.distance"];
     NSNumber *pubLatitude = [pubData valueForKeyPath:@"location.lat"];
     NSNumber *pubLongitude = [pubData valueForKeyPath:@"location.lng"];

@@ -32,12 +32,14 @@ NSDictionary *stationPointers;
             
             LPCStation *st = [LPCAppDelegate stationWithNestoriaCode:station atPosition:position];
             
-            [allStations addObject:st];
-            [stationArrayPointers setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKey:st.nestoriaCode];
-            [stationPositions setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKeyPath:[position description]];
-            
-            if ([stationPositions valueForKey:st.nestoriaCode]) {
-                NSLog(@"%@ is in there more than once!", st.nestoriaCode);
+            if (![stationArrayPointers valueForKey:st.nestoriaCode]) {
+                [allStations addObject:st];
+                [stationArrayPointers setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKey:st.nestoriaCode];
+                [stationPositions setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKeyPath:[position description]];
+            } else {
+                int existingStationArrayPointer = [[stationArrayPointers valueForKey:st.nestoriaCode] integerValue];
+                NSLog(@"%@ is in there more than once, using station at position %d!", st.nestoriaCode, existingStationArrayPointer);
+                [stationPositions setValue:[NSNumber numberWithInteger:existingStationArrayPointer] forKeyPath:[position description]];
             }
             
         } else {
@@ -45,30 +47,40 @@ NSDictionary *stationPointers;
             
             // Get all the 'leaf' stations - i.e. the ones at the ends of the line or ends of branches
             for (id leafStation in [branches allKeys]) {
-                [stationPositions setValue:[[NSMutableDictionary alloc] init] forKeyPath:[NSString stringWithFormat:@"%d.%@", s, leafStation]];
-                [leafStations addObject:leafStation];
+                if ([leafStation isEqualToString:@"_parent"]) {
+                    [stationPositions setValue:[branches valueForKey:leafStation] forKeyPath:[NSString stringWithFormat:@"%d.%@", s, leafStation]];
+                } else {
+                    [stationPositions setValue:[[NSMutableDictionary alloc] init] forKeyPath:[NSString stringWithFormat:@"%d.%@", s, leafStation]];
+                    [leafStations addObject:leafStation];
+                }
             }
             
             // Get all of the stations, in full
             for (NSString *branch in branches) {
                 NSArray *branchStations = [branches valueForKey:branch];
                 int bs;
-                for (bs = 0; bs < [branchStations count]; bs++) {
-                    LPCLinePosition *position = [[LPCLinePosition alloc] init];
-                    NSString *branchStation = branchStations[bs];
+                if ([branch isEqualToString:@"_parent"]) {
                     
-                    position.mainLineIndex = s;
-                    position.branchCode = branch;
-                    position.branchLineIndex = bs;
-                    
-                    LPCStation *st = [LPCAppDelegate stationWithNestoriaCode:branchStation atPosition:position];
-                    
-                    [allStations addObject:st];
-                    [stationArrayPointers setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKey:st.nestoriaCode];
-                    [stationPositions setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKeyPath:[position description]];
-                    
-                    if ([stationPositions valueForKey:st.nestoriaCode]) {
-                        NSLog(@"%@ is in there more than once!", st.nestoriaCode);
+                } else {
+                    for (bs = 0; bs < [branchStations count]; bs++) {
+                        LPCLinePosition *position = [[LPCLinePosition alloc] init];
+                        NSString *branchStation = branchStations[bs];
+                        
+                        position.mainLineIndex = s;
+                        position.branchCode = branch;
+                        position.branchLineIndex = bs;
+                        
+                        LPCStation *st = [LPCAppDelegate stationWithNestoriaCode:branchStation atPosition:position];
+                        
+                        if (![stationArrayPointers valueForKey:st.nestoriaCode]) {
+                            [allStations addObject:st];
+                            [stationArrayPointers setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKey:st.nestoriaCode];
+                            [stationPositions setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKeyPath:[position description]];
+                        } else {
+                            int existingStationArrayPointer = [[stationArrayPointers valueForKey:st.nestoriaCode] integerValue];
+                            NSLog(@"%@ is in there more than once, using station at position %d!", st.nestoriaCode, existingStationArrayPointer);
+                            [stationPositions setValue:[NSNumber numberWithInteger:existingStationArrayPointer] forKeyPath:[position description]];
+                        }
                     }
                 }
             }
@@ -166,6 +178,7 @@ NSDictionary *stationPointers;
     if (![stationPointer isKindOfClass:[NSNumber class]]) {
         return nil;
     }
+    
     return self.allStations[[stationPointer integerValue]];
 }
 
@@ -174,7 +187,7 @@ NSDictionary *stationPointers;
     if (!possibleBranches) {
         possibleBranches = [self.stationPositions valueForKeyPath:[[position positionOfParentFork] description]];
     }
-    LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self];
+    LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self withPosition:[position positionOfParentFork]];
     fork.linePosition = [position positionOfParentFork];
     return fork;
 }

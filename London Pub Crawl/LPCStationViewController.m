@@ -6,6 +6,7 @@
 #import "LPCMapAnnotation.h"
 #import "LPCVenue.h"
 #import <CMMapLauncher/CMMapLauncher.h>
+#import "UIColor+HexStringFromColor.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate, UIActionSheetDelegate>
 
@@ -13,7 +14,7 @@
 
 @implementation LPCStationViewController
 
-NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer(%.04f,%.04f),pin-m-rail(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
+NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 BOOL isMapLoaded = NO;
 int zoomLevel;
@@ -44,7 +45,7 @@ LPCVenue *currentVenue;
     
     [self populateVenueDetailsWithVenue:self.venues[0]];
     
-    long distanceInteger = [self.distance integerValue];
+    long distanceInteger = [currentVenue.distance integerValue];
     
     if (currentVenue.mapZoomLevel != nil) {
         zoomLevel = [currentVenue.mapZoomLevel intValue];
@@ -64,8 +65,9 @@ LPCVenue *currentVenue;
         }
     }
     
-//    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, imageRetina];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCGoogleMapsURLTemplate, [self.pubLocation[0] floatValue], [self.pubLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, googleMapsImageRetina, @""];
+    NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, mapBoxImageRetina];
+//    NSString *mapImageUrl = [NSString stringWithFormat:kLPCGoogleMapsURLTemplate, [self.pubLocation[0] floatValue], [self.pubLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, googleMapsImageRetina, @""];
     // TODO: When deploying, put in the API key
     NSLog(@"Map URL is %@", mapImageUrl);
     
@@ -187,7 +189,7 @@ LPCVenue *currentVenue;
             [CMMapLauncher launchMapApp:CMMapAppGoogleMaps forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
         } else {
             // Open up web Google Maps instead
-            NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@@%1.6f,%1.6f&z=%d", self.pubName, venueLocation.latitude, venueLocation.longitude, zoomLevel];
+            NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@@%1.6f,%1.6f&z=%d", currentVenue.name, venueLocation.latitude, venueLocation.longitude, zoomLevel];
             NSURL *url = [NSURL URLWithString:stringURL];
             [[UIApplication sharedApplication] openURL:url];
         }

@@ -10,6 +10,8 @@
 
 LPCStation *topForkDestinationStation;
 LPCStation *bottomForkDestinationStation;
+NSString *topForkDirection;
+NSString *bottomForkDirection;
 LPCFork *currentFork;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,8 +26,17 @@ LPCFork *currentFork;
 - (id)initWithFork:(LPCFork *)fork {
     self = [[LPCForkViewController alloc] initWithNibName:@"LPCForkViewController" bundle:nil];
     
-    topForkDestinationStation = (LPCStation *)fork.destinationStations[0];
-    bottomForkDestinationStation = (LPCStation *)fork.destinationStations[1];
+    if ([fork.destinationStations[0] isKindOfClass:[LPCStation class]]) {
+        topForkDestinationStation = (LPCStation *)fork.destinationStations[0];
+    } else {
+        topForkDirection = fork.destinationStations[0];
+    }
+    
+    if ([fork.destinationStations[1] isKindOfClass:[LPCStation class]]) {
+        bottomForkDestinationStation = (LPCStation *)fork.destinationStations[1];
+    } else {
+        bottomForkDirection = fork.destinationStations[1];
+    }
     
     currentFork = fork;
     
@@ -37,10 +48,21 @@ LPCFork *currentFork;
     [super viewDidLoad];
     
     // What are the titles of things?
-    [self.topRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
-    [self.bottomRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
-    [self.topLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
-    [self.bottomLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
+    if (topForkDestinationStation) {
+        [self.topRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
+        [self.topLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
+    } else {
+        [self.topRightForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
+        [self.topLeftForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
+    }
+    
+    if (bottomForkDestinationStation) {
+            [self.bottomRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
+            [self.bottomLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
+    } else {
+        [self.bottomRightForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
+        [self.bottomLeftForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
+    }
     
     [self.toolbar setBackgroundColor:[UIColor colorWithHexString:@"#221e1f"]];
     self.toolbar.barStyle = UIBarStyleBlackTranslucent;
