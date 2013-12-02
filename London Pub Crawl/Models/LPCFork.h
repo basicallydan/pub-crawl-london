@@ -16,8 +16,7 @@ enum ForkDirection : NSInteger {
 @property (strong, nonatomic) LPCLinePosition *linePosition;
 @property (nonatomic) enum ForkDirection direction;
 
-- (id)initWithFork:(NSDictionary *)fork forLine:(LPCLine *)line;
-- (id)initWithFork:(NSDictionary *)fork forLine:(LPCLine *)line withPosition:(LPCLinePosition *)position;
+- (id)initWithBranches:(NSDictionary *)branches forLine:(LPCLine *)line withPosition:(LPCLinePosition *)position;
 
 - (LPCStation *)firstStationForDestination:(int)destinationIndex;
 

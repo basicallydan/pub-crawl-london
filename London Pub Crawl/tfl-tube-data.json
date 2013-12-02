@@ -428,13 +428,30 @@
 						"watford",
 						"croxley"
 					],
-					"_parent": 0
+					"_parent": {
+						"direction": "top"
+					}
 				},
 				"moor-park",
 				"northwood",
 				"northwood-hills",
 				"pinner",
 				"north-harrow",
+				{
+					"uxbridge" : [
+						"uxbridge",
+						"hillingdon",
+						"ickenham",
+						"ruislip",
+						"ruislip-manor",
+						"eastcote",
+						"rayners-lane",
+						"west-harrow"
+					],
+					"_parent" : {
+						"direction": "top"
+					}
+				},
 				"harrow-on-the-hill",
 				"northwick-park",
 				"preston-road",
@@ -468,9 +485,7 @@
 						"golders-green",
 						"hampstead",
 						"belsize-park",
-						"chalk-farm",
-						"camden-town",
-						"mornington-crescent",
+						"chalk-farm"
 					],
 					"high-barnet": [
 						"high-barnet",
@@ -482,10 +497,11 @@
 						"highgate",
 						"archway",
 						"tufnell-park",
-						"kentish-town",
-						"camden-town"
+						"kentish-town"
 					]
 				},
+				"mornington-crescent",
+				"camden-town",
 				"euston",
 				{
 					"bank" : [
@@ -496,19 +512,7 @@
 						"bank",
 						"london-bridge",
 						"borough",
-						"elephant-and-castle",
-						"kennington",
-						"oval",
-						"stockwell",
-						"clapham-north",
-						"clapham-common",
-						"clapham-south",
-						"balham",
-						"tooting-bec",
-						"tooting-broadway",
-						"colliers-wood",
-						"south-wimbledon",
-						"morden"
+						"elephant-and-castle"
 					],
 					"charing-cross" : [
 						"warren-street",
@@ -519,7 +523,19 @@
 						"embankment",
 						"waterloo"
 					]
-				}
+				},
+				"kennington",
+				"oval",
+				"stockwell",
+				"clapham-north",
+				"clapham-common",
+				"clapham-south",
+				"balham",
+				"tooting-bec",
+				"tooting-broadway",
+				"colliers-wood",
+				"south-wimbledon",
+				"morden"
 			]
 		},
 		{

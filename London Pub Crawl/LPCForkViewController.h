@@ -50,8 +50,10 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomLeftForkSelector;
 @property (weak, nonatomic) IBOutlet UILabel *bottomLeftForkSelectorLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
-@property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *branchNameLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *branchNameRightLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *mainLineStationLeftLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mainLineStationRightLabel;
 
 @end

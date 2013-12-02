@@ -44,10 +44,10 @@ NSDictionary *stationPointers;
             
         } else {
             NSDictionary *branches = station;
-            
             // Get all the 'leaf' stations - i.e. the ones at the ends of the line or ends of branches
             for (id leafStation in [branches allKeys]) {
                 if ([leafStation isEqualToString:@"_parent"]) {
+                    // WTF?
                     [stationPositions setValue:[branches valueForKey:leafStation] forKeyPath:[NSString stringWithFormat:@"%d.%@", s, leafStation]];
                 } else {
                     [stationPositions setValue:[[NSMutableDictionary alloc] init] forKeyPath:[NSString stringWithFormat:@"%d.%@", s, leafStation]];
@@ -101,24 +101,11 @@ NSDictionary *stationPointers;
 }
 
 - (BOOL)isForkBeforePosition:(LPCLinePosition *)position {
-//    LPCLinePosition *previousPosition = [position previousPossiblePosition];
-//    
-//    if (!previousPosition) {
-//        return NO;
-//    }
-//    
-//    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
-//    if ([stationIndex isKindOfClass:[NSNumber class]]) {
-//        return NO;
-//    } else {
-//        return YES;
-//    }
-    
     id stationIndex = [self.stationPositions valueForKeyPath:[[position previousPossiblePosition] description]];
     
     if (![stationIndex isKindOfClass:[NSNumber class]] && position.branchCode) {
         LPCLinePosition *parentForkPosition = [position positionOfParentFork];
-        LPCFork *parentFork = [[LPCFork alloc] initWithFork:[self.stationPositions valueForKeyPath:[parentForkPosition description]] forLine:self];
+        LPCFork *parentFork = [[LPCFork alloc] initWithBranches:[self.stationPositions valueForKeyPath:[parentForkPosition description]] forLine:self withPosition:parentForkPosition];
         if (parentFork.direction == Right && position.branchLineIndex == 0) {
             return YES;
         } else {
@@ -148,7 +135,7 @@ NSDictionary *stationPointers;
 - (LPCFork *)forkBeforePosition:(LPCLinePosition *)position {
     LPCLinePosition *previousPosition = [position previousPossiblePosition];
     NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[previousPosition description]];
-    LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self];
+    LPCFork *fork = [[LPCFork alloc] initWithBranches:possibleBranches forLine:self withPosition:previousPosition];
     fork.linePosition = previousPosition;
     return fork;
 }
@@ -158,7 +145,7 @@ NSDictionary *stationPointers;
     
     if (stationIndex == nil && position.branchCode) {
         LPCLinePosition *parentForkPosition = [position positionOfParentFork];
-        LPCFork *parentFork = [[LPCFork alloc] initWithFork:[self.stationPositions valueForKeyPath:[parentForkPosition description]] forLine:self];
+        LPCFork *parentFork = [[LPCFork alloc] initWithBranches:[self.stationPositions valueForKeyPath:[parentForkPosition description]] forLine:self withPosition:parentForkPosition];
         if (parentFork.direction == Left && position.branchLineIndex > 0) {
             return YES;
         }
@@ -176,6 +163,15 @@ NSDictionary *stationPointers;
     LPCLinePosition *nextPosition = [position nextPossiblePosition];
     id stationPointer = [self.stationPositions valueForKeyPath:[nextPosition description]];
     if (![stationPointer isKindOfClass:[NSNumber class]]) {
+        if (position.branchCode) {
+            nextPosition = [[position positionOfParentFork] nextPossiblePosition];
+            stationPointer = [self.stationPositions valueForKeyPath:[nextPosition description]];
+        } else {
+            return nil;
+        }
+    }
+    
+    if (![stationPointer isKindOfClass:[NSNumber class]]) {
         return nil;
     }
     
@@ -183,12 +179,12 @@ NSDictionary *stationPointers;
 }
 
 - (LPCFork *)forkAfterPosition:(LPCLinePosition *)position {
-    NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[[position nextPossiblePosition] description]];
+    LPCLinePosition *forkPosition = [position nextPossiblePosition];
+    NSDictionary *possibleBranches = [self.stationPositions valueForKeyPath:[forkPosition description]];
     if (!possibleBranches) {
         possibleBranches = [self.stationPositions valueForKeyPath:[[position positionOfParentFork] description]];
     }
-    LPCFork *fork = [[LPCFork alloc] initWithFork:possibleBranches forLine:self withPosition:[position positionOfParentFork]];
-    fork.linePosition = [position positionOfParentFork];
+    LPCFork *fork = [[LPCFork alloc] initWithBranches:possibleBranches forLine:self withPosition:forkPosition];
     return fork;
 }
 

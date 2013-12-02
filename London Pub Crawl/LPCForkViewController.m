@@ -26,13 +26,13 @@ LPCFork *currentFork;
 - (id)initWithFork:(LPCFork *)fork {
     self = [[LPCForkViewController alloc] initWithNibName:@"LPCForkViewController" bundle:nil];
     
-    if ([fork.destinationStations[0] isKindOfClass:[LPCStation class]]) {
+    if (fork.destinationStations[0] && [fork.destinationStations[0] isKindOfClass:[LPCStation class]]) {
         topForkDestinationStation = (LPCStation *)fork.destinationStations[0];
     } else {
         topForkDirection = fork.destinationStations[0];
     }
     
-    if ([fork.destinationStations[1] isKindOfClass:[LPCStation class]]) {
+    if ([fork.destinationStations count] > 1 && [fork.destinationStations[1] isKindOfClass:[LPCStation class]]) {
         bottomForkDestinationStation = (LPCStation *)fork.destinationStations[1];
     } else {
         bottomForkDirection = fork.destinationStations[1];
@@ -52,16 +52,26 @@ LPCFork *currentFork;
         [self.topRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
         [self.topLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", topForkDestinationStation.name]];
     } else {
-        [self.topRightForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
-        [self.topLeftForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
+        if ([topForkDirection isEqualToString:@"top"]) {
+            [self.topRightForkSelectorLabel setText:self.directionBackward];
+            [self.topLeftForkSelectorLabel setText:self.directionBackward];
+        } else {
+            [self.topRightForkSelectorLabel setText:self.directionForward];
+            [self.topLeftForkSelectorLabel setText:self.directionForward];
+        }
     }
     
     if (bottomForkDestinationStation) {
             [self.bottomRightForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
             [self.bottomLeftForkSelectorLabel setText:[NSString stringWithFormat:@"%@", bottomForkDestinationStation.name]];
     } else {
-        [self.bottomRightForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
-        [self.bottomLeftForkSelectorLabel setText:[NSString stringWithFormat:@"Main line"]];
+        if ([bottomForkDirection isEqualToString:@"top"]) {
+            [self.bottomRightForkSelectorLabel setText:self.directionForward];
+            [self.bottomLeftForkSelectorLabel setText:self.directionForward];
+        } else {
+            [self.bottomRightForkSelectorLabel setText:self.directionBackward];
+            [self.bottomLeftForkSelectorLabel setText:self.directionBackward];
+        }
     }
     
     [self.toolbar setBackgroundColor:[UIColor colorWithHexString:@"#221e1f"]];
@@ -77,19 +87,25 @@ LPCFork *currentFork;
     }
     
     if (currentFork.direction == Right) {
-        [self.destinationLeftLabel setText:self.directionBackward];
-        [self.destinationLeftLabel setTextColor:self.lineColour];
+        [self.branchNameLeftLabel setText:self.directionBackward];
+        [self.branchNameLeftLabel setTextColor:self.lineColour];
+        [self.mainLineStationLeftLabel setText:self.directionBackward];
         
-        [self.destinationRightLabel removeFromSuperview];
+        [self.mainLineStationRightLabel removeFromSuperview];
+        [self.branchNameRightLabel removeFromSuperview];
+        
         self.topLeftForkSelector.hidden = YES;
         self.topLeftForkSelector.userInteractionEnabled = NO;
         self.bottomLeftForkSelector.hidden = YES;
         self.bottomLeftForkSelector.userInteractionEnabled = NO;
     } else {
-        [self.destinationRightLabel setText:self.directionForward];
-        [self.destinationRightLabel setTextColor:self.lineColour];
+        [self.branchNameRightLabel setText:self.directionForward];
+        [self.branchNameRightLabel setTextColor:self.lineColour];
+        [self.mainLineStationRightLabel setText:self.directionForward];
         
-        [self.destinationLeftLabel removeFromSuperview];
+        [self.mainLineStationLeftLabel removeFromSuperview];
+        [self.branchNameLeftLabel removeFromSuperview];
+        
         self.topRightForkSelector.hidden = YES;
         self.topRightForkSelector.userInteractionEnabled = NO;
         self.bottomRightForkSelector.hidden = YES;

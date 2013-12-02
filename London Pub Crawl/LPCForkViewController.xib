@@ -10,9 +10,11 @@
                 <outlet property="bottomLeftForkSelectorLabel" destination="n7H-YE-YgO" id="qNT-PG-raa"/>
                 <outlet property="bottomRightForkSelector" destination="0rG-Sw-6Lk" id="L20-WV-XIU"/>
                 <outlet property="bottomRightForkSelectorLabel" destination="mfX-sa-lOp" id="tFw-ap-WYV"/>
-                <outlet property="destinationLeftLabel" destination="X6J-9L-EWZ" id="P5k-xV-dP0"/>
-                <outlet property="destinationRightLabel" destination="ZU9-xr-K9s" id="aWd-Vj-DcA"/>
+                <outlet property="branchNameLeftLabel" destination="X6J-9L-EWZ" id="wGn-3G-Izw"/>
+                <outlet property="branchNameRightLabel" destination="ZU9-xr-K9s" id="Eh4-NZ-p7P"/>
                 <outlet property="forkImageView" destination="SnO-di-6qz" id="Fv6-cI-8yr"/>
+                <outlet property="mainLineStationLeftLabel" destination="4um-02-4ST" id="tWi-1Q-H8I"/>
+                <outlet property="mainLineStationRightLabel" destination="0aO-RJ-4cU" id="lYk-O1-o8k"/>
                 <outlet property="toolbar" destination="PhP-dT-Amw" id="tyX-se-GiP"/>
                 <outlet property="topLeftForkSelector" destination="SmX-9h-W8S" id="YM2-ls-VdI"/>
                 <outlet property="topLeftForkSelectorLabel" destination="67y-2g-G2P" id="yge-ag-BsN"/>
@@ -48,15 +50,19 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GvX-hr-b6V">
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GvX-hr-b6V">
                     <rect key="frame" x="0.0" y="100" width="320" height="424"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-di-6qz">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-di-6qz" userLabel="Fork Image">
                             <rect key="frame" x="0.0" y="182" width="320" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="320" id="EfK-h0-SnL"/>
+                                <constraint firstAttribute="height" constant="32" id="J3v-2l-YJy"/>
+                            </constraints>
                         </imageView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rG-Sw-6Lk" userLabel="Bottom Right Fork View">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rG-Sw-6Lk" userLabel="Bottom Right Fork View">
                             <rect key="frame" x="160" y="222" width="160" height="182"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -77,7 +83,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0jl-CU-SuE" userLabel="Bottom Left Fork View">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0jl-CU-SuE" userLabel="Bottom Left Fork View">
                             <rect key="frame" x="0.0" y="222" width="160" height="182"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -152,8 +158,37 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Next Station Right" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aO-RJ-4cU" userLabel="Right Main Line Destination">
+                            <rect key="frame" x="160" y="170" width="140" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="Qrd-mK-8NA"/>
+                                <constraint firstAttribute="width" constant="140" id="Tvv-gT-Bgm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Next Station Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4um-02-4ST" userLabel="Left Main Line Destination">
+                            <rect key="frame" x="20" y="170" width="140" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="3bt-Q1-pvE"/>
+                                <constraint firstAttribute="width" constant="140" id="hC8-A2-LP0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="0jl-CU-SuE" firstAttribute="top" secondItem="4um-02-4ST" secondAttribute="bottom" constant="31" id="N6J-Ud-tUt"/>
+                        <constraint firstAttribute="bottom" secondItem="SnO-di-6qz" secondAttribute="bottom" constant="210" id="QrZ-lT-J4q"/>
+                        <constraint firstAttribute="trailing" secondItem="SnO-di-6qz" secondAttribute="trailing" id="Sri-Py-xB8"/>
+                        <constraint firstItem="4um-02-4ST" firstAttribute="leading" secondItem="GvX-hr-b6V" secondAttribute="leading" constant="20" id="YZU-Td-nRY"/>
+                        <constraint firstItem="0rG-Sw-6Lk" firstAttribute="top" secondItem="0aO-RJ-4cU" secondAttribute="bottom" constant="31" id="b9e-Ma-tP5"/>
+                        <constraint firstItem="SnO-di-6qz" firstAttribute="leading" secondItem="GvX-hr-b6V" secondAttribute="leading" id="t2v-qu-qLK"/>
+                    </constraints>
                 </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhP-dT-Amw">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>

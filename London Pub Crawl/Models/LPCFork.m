@@ -6,64 +6,29 @@
 
 NSArray *forkInitialStations;
 
-- (id)initWithFork:(NSDictionary *)fork forLine:(LPCLine *)line {
-    NSMutableArray *destinationStations = [[NSMutableArray alloc] init];
-    NSMutableArray *firstStations = [[NSMutableArray alloc] init];
-    for (NSString *forkDestinationStation in fork) {
-        if ([forkDestinationStation isEqualToString:@"_parent"]) {
-            if ([fork valueForKey:forkDestinationStation] == 0) {
-                // We're going back up
-                [firstStations addObject:[line stationBeforePosition:self.linePosition]];
-                [destinationStations addObject:@"_up"];
-            } else {
-                // We're going down
-                [firstStations addObject:[line stationAfterPosition:self.linePosition]];
-                [destinationStations addObject:@"_up"];
-            }
-        } else {
-            [destinationStations addObject:[line stationWithCode:forkDestinationStation]];
-            NSDictionary *branchStations = [fork valueForKey:forkDestinationStation];
-            NSArray *branchStationKeys = [[branchStations allKeys] sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
-            
-            long finalBranchStationIndex = [[branchStations valueForKey:[branchStationKeys lastObject]] integerValue];
-            long firstBranchStationIndex = [[branchStations valueForKey:[branchStationKeys firstObject]] integerValue];
-            
-            LPCStation *finalStation = [line.allStations objectAtIndex:finalBranchStationIndex];
-            LPCStation *firstStation = [line.allStations objectAtIndex:firstBranchStationIndex];
-            if ([finalStation.nestoriaCode isEqualToString:forkDestinationStation]) {
-                [firstStations addObject:firstStation];
-                self.direction = Right;
-            } else {
-                [firstStations addObject:finalStation];
-                self.direction = Left;
-            }
-        }
-    }
-    
-    forkInitialStations = [NSArray arrayWithArray:firstStations];
-    self.destinationStations = [NSArray arrayWithArray:destinationStations];
-    return self;
-}
-
-- (id)initWithFork:(NSDictionary *)fork forLine:(LPCLine *)line withPosition:(LPCLinePosition *)position {
+- (id)initWithBranches:(NSDictionary *)branches forLine:(LPCLine *)line withPosition:(LPCLinePosition *)position {
     self.linePosition = position;
     NSMutableArray *destinationStations = [[NSMutableArray alloc] init];
     NSMutableArray *firstStations = [[NSMutableArray alloc] init];
-    for (NSString *forkDestinationStation in fork) {
-        if ([forkDestinationStation isEqualToString:@"_parent"]) {
-            int forkDirection = [[fork objectForKey:forkDestinationStation] integerValue];
-            if (forkDirection == 0) {
+    // Go through each of our options
+    for (NSString *branchDestination in branches) {
+        if ([branchDestination isEqualToString:@"_parent"]) {
+            // This option is to stay on/return to the main line
+            if ([[branches valueForKeyPath:@"_parent.direction"] isEqualToString:@"top"]) {
                 // We're going back up
-                [firstStations addObject:[line stationBeforePosition:self.linePosition]];
-                [destinationStations addObject:@"_up"];
+                LPCStation *previousStationBeforeFork = [line stationBeforePosition:self.linePosition];
+                if (previousStationBeforeFork) {
+                    [firstStations addObject:previousStationBeforeFork];
+                    [destinationStations addObject:@"top"];
+                }
             } else {
                 // We're going down
                 [firstStations addObject:[line stationAfterPosition:self.linePosition]];
-                [destinationStations addObject:@"_up"];
+                [destinationStations addObject:@"bottom"];
             }
         } else {
-            [destinationStations addObject:[line stationWithCode:forkDestinationStation]];
-            NSDictionary *branchStations = [fork valueForKey:forkDestinationStation];
+            [destinationStations addObject:[line stationWithCode:branchDestination]];
+            NSDictionary *branchStations = [branches valueForKey:branchDestination];
             NSArray *branchStationKeys = [[branchStations allKeys] sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
             
             long finalBranchStationIndex = [[branchStations valueForKey:[branchStationKeys lastObject]] integerValue];
@@ -71,7 +36,7 @@ NSArray *forkInitialStations;
             
             LPCStation *finalStation = [line.allStations objectAtIndex:finalBranchStationIndex];
             LPCStation *firstStation = [line.allStations objectAtIndex:firstBranchStationIndex];
-            if ([finalStation.nestoriaCode isEqualToString:forkDestinationStation]) {
+            if ([finalStation.nestoriaCode isEqualToString:branchDestination] && [branchStationKeys count] > 1) {
                 [firstStations addObject:firstStation];
                 self.direction = Right;
             } else {
