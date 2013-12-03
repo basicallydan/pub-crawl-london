@@ -61,6 +61,8 @@
         } else {
             return self.mainLineIndex < otherPosition.mainLineIndex;
         }
+    } else {
+        return self.mainLineIndex < otherPosition.mainLineIndex;
     }
     return NO;
 }

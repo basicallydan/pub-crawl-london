@@ -6,7 +6,7 @@
 
 NSArray *forkInitialStations;
 
-- (id)initWithBranches:(NSDictionary *)branches forLine:(LPCLine *)line withPosition:(LPCLinePosition *)position {
+- (id)initWithBranches:(NSDictionary *)branches forLine:(LPCLine *)line withPosition:(LPCLinePosition *)position fromPosition:(LPCLinePosition *)previousPosition {
     self.linePosition = position;
     NSMutableArray *destinationStations = [[NSMutableArray alloc] init];
     NSMutableArray *firstStations = [[NSMutableArray alloc] init];
@@ -39,9 +39,18 @@ NSArray *forkInitialStations;
             if ([finalStation.nestoriaCode isEqualToString:branchDestination] && [branchStationKeys count] > 1) {
                 [firstStations addObject:firstStation];
                 self.direction = Right;
-            } else {
+            } else if ([finalStation.nestoriaCode isEqualToString:firstStation.nestoriaCode]) {
                 [firstStations addObject:finalStation];
                 self.direction = Left;
+            } else {
+                // So, it's somewhere in the middle. Let's determine direction based on where we are coming from
+                if ([previousPosition beforePosition:position]) {
+                    self.direction = Right;
+                    [firstStations addObject:firstStation];
+                } else {
+                    self.direction = Left;
+                    [firstStations addObject:finalStation];
+                }
             }
         }
     }
@@ -52,6 +61,9 @@ NSArray *forkInitialStations;
 }
 
 - (LPCStation *)firstStationForDestination:(int)destinationIndex {
+    if (self.direction == Left) {
+        
+    }
     return (LPCStation *)forkInitialStations[destinationIndex];
 }
 
