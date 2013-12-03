@@ -1,13 +1,12 @@
 #import "LPCLine.h"
 
-#import "LPCAppDelegate.h"
 #import <UIColor-HexString/UIColor+HexString.h>
 
 @implementation LPCLine
 
 NSDictionary *stationPointers;
 
-- (id)initWithLine:(NSDictionary *)line {
+- (id)initWithLine:(NSDictionary *)line andStations:(NSDictionary *)stations {
     NSArray *lineStations = [line valueForKey:@"stations"];
     
     NSMutableArray *leafStations = [[NSMutableArray alloc] init];
@@ -30,7 +29,9 @@ NSDictionary *stationPointers;
             LPCLinePosition *position = [[LPCLinePosition alloc] init];
             position.mainLineIndex = s;
             
-            LPCStation *st = [LPCAppDelegate stationWithNestoriaCode:station atPosition:position];
+            NSDictionary *stationDictionary = [stations objectForKey:station];
+            LPCStation *st = [[LPCStation alloc] initWithStation:stationDictionary];
+            st.linePosition = position;
             
             if (![stationArrayPointers valueForKey:st.nestoriaCode]) {
                 [allStations addObject:st];
@@ -70,7 +71,9 @@ NSDictionary *stationPointers;
                         position.branchCode = branch;
                         position.branchLineIndex = bs;
                         
-                        LPCStation *st = [LPCAppDelegate stationWithNestoriaCode:branchStation atPosition:position];
+                        NSDictionary *stationDictionary = [stations objectForKey:branchStation];
+                        LPCStation *st = [[LPCStation alloc] initWithStation:stationDictionary];
+                        st.linePosition = position;
                         
                         if (![stationArrayPointers valueForKey:st.nestoriaCode]) {
                             [allStations addObject:st];
@@ -101,12 +104,24 @@ NSDictionary *stationPointers;
 }
 
 - (BOOL)isForkBeforePosition:(LPCLinePosition *)position {
-    id stationIndex = [self.stationPositions valueForKeyPath:[[position previousPossiblePosition] description]];
     
-    if (![stationIndex isKindOfClass:[NSNumber class]] && position.branchCode) {
-        LPCLinePosition *parentForkPosition = [position positionOfParentFork];
-        LPCFork *parentFork = [[LPCFork alloc] initWithBranches:[self.stationPositions valueForKeyPath:[parentForkPosition description]] forLine:self withPosition:parentForkPosition fromPosition:position];
-        if (parentFork.direction == Right && position.branchLineIndex == 0) {
+    LPCLinePosition *previousPosition;
+    
+    if (position.branchCode) {
+        // This position is on a branch
+        previousPosition = [position positionOfParentFork];
+    } else {
+        previousPosition = [position previousPossiblePosition];
+    }
+    
+    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
+    
+    // So, if it's a dictionary type, then it's a branch
+    if (stationIndex != nil && [stationIndex isKindOfClass:[NSDictionary class]]) {
+//        LPCFork *parentFork = [[LPCFork alloc] initWithBranches:[self.stationPositions valueForKeyPath:[previousPosition description]] forLine:self withPosition:previousPosition fromPosition:position];
+        if ([position afterPosition:previousPosition] && position.branchLineIndex == 0) {
+            return YES;
+        } else if ([self branchEndsWithPosition:position]) {
             return YES;
         } else {
             return NO;
@@ -190,6 +205,18 @@ NSDictionary *stationPointers;
 
 - (LPCStation *)stationWithCode:(NSString *)nestoriaCode {
     return [self.allStations objectAtIndex:[[stationPointers valueForKey:nestoriaCode] integerValue]];
+}
+
+- (int)countOfStationsOnBranchOfStationPosition:(LPCLinePosition *)position {
+    NSArray *stations = [self.stationPositions valueForKeyPath:[NSString stringWithFormat:@"%d.%@", position.mainLineIndex, position.branchCode]];
+    return [stations count];
+}
+
+- (BOOL)branchEndsWithPosition:(LPCLinePosition *)position {
+    if (!position.branchCode) {
+        [NSException raise:@"Position is not on a branch" format:@"%@ is not a branch position", position];
+    }
+    return [self countOfStationsOnBranchOfStationPosition:position] - 1 == position.branchLineIndex;
 }
 
 @end

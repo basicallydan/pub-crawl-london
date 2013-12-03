@@ -59,12 +59,16 @@
             }
             return [self.branchCode isEqualToString:otherPosition.branchCode] && self.branchLineIndex < otherPosition.branchLineIndex;
         } else {
-            return self.mainLineIndex < otherPosition.mainLineIndex;
+            return self.mainLineIndex <= otherPosition.mainLineIndex;
         }
     } else {
-        return self.mainLineIndex < otherPosition.mainLineIndex;
+        return self.mainLineIndex <= otherPosition.mainLineIndex;
     }
     return NO;
+}
+
+- (BOOL)afterPosition:(LPCLinePosition *)otherPosition {
+    return [otherPosition beforePosition:self];
 }
 
 @end

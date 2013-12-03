@@ -32,10 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *topRightLineView;
 @property (weak, nonatomic) IBOutlet UIView *bottomRightLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *forkImageView;
-//@property (weak, nonatomic) IBOutlet UIButton *topRightForkButton;
-//@property (weak, nonatomic) IBOutlet UIButton *bottomRightForkButton;
-- (IBAction)topRightForkAction:(id)sender;
-- (IBAction)bottomRightFormAction:(id)sender;
+
 - (IBAction)changeLine:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;

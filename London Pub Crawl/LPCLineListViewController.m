@@ -40,7 +40,7 @@
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *lineDictionary = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
     
-    LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary];
+    LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary andStations:appDelegate.stations];
     
 //    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
     
