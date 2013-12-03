@@ -180,6 +180,22 @@ NSDictionary *stationDictionary;
     XCTAssertTrue([line isForkAfterPosition:position], @"There should be a fork after Euston");
 }
 
+//-(void)testThatThereIsAStationAfterTheForkAfterLondonBridge {
+//    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+//    position.mainLineIndex = 3;
+//    position.branchCode = @"bank";
+//    position.branchLineIndex = 2;
+//    LPCFork *fork = [line forkAfterPosition:position];
+//    XCTAssertTrue([line isStationAfterFork:fork], @"There should be a station after the fork when approaching from London Bridge");
+//}
+
+-(void)testThatThereIsNoStationAfterTheForkAfterEuston {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 2;
+    LPCFork *fork = [line forkAfterPosition:position];
+    XCTAssertFalse([line isStationAfterFork:fork], @"There should be no station after the fork when approaching from Euston");
+}
+
 - (void)testForForkBeforeMoorgateOnBankBranch {
     LPCLinePosition *position = [[LPCLinePosition alloc] init];
     position.mainLineIndex = 3;
@@ -188,12 +204,53 @@ NSDictionary *stationDictionary;
     XCTAssertTrue([line isForkBeforePosition:position], @"There should be a fork before Moorgate on the Bank Branch");
 }
 
+- (void)testForForkAfterMoorgateOnBankBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 3;
+    position.branchCode = @"bank";
+    position.branchLineIndex = 0;
+    XCTAssertFalse([line isForkAfterPosition:position], @"There should be no fork after Moorgate on the Bank Branch");
+}
+
 - (void)testForNoForkBeforeBankOnBankBranch {
     LPCLinePosition *position = [[LPCLinePosition alloc] init];
     position.mainLineIndex = 3;
     position.branchCode = @"bank";
     position.branchLineIndex = 1;
     XCTAssertFalse([line isForkBeforePosition:position], @"There should be no fork before Bank on the Bank Branch");
+}
+
+- (void)testForNoForkBeforeEdgwareOnEdgwareBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 0;
+    position.branchCode = @"edgware";
+    position.branchLineIndex = 0;
+    XCTAssertFalse([line isForkBeforePosition:position], @"There should be no fork before Edgware on the Edgware Branch");
+}
+
+- (void)testForForkAfterColindaleOnEdgwareBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 0;
+    position.branchCode = @"edgware";
+    position.branchLineIndex = 1;
+    XCTAssertTrue([line isForkAfterPosition:position], @"There should be a fork after Colindale on the Edgware Branch");
+}
+
+-(void)testForForkAfterLondonBridgeOnBankBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 3;
+    position.branchCode = @"bank";
+    position.branchLineIndex = 2;
+    XCTAssertTrue([line isForkAfterPosition:position], @"There should be a fork after London Bridge on the Bank Branch");
+}
+
+-(void)testThatForkAfterLondonBridgeIsGoingLeft {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 3;
+    position.branchCode = @"bank";
+    position.branchLineIndex = 2;
+    LPCFork *fork = [line forkAfterPosition:position];
+    XCTAssertEqual(fork.direction, Left, @"The fork after London Bridge on the Bank Branch should be pointing left");
 }
 
 @end

@@ -58,8 +58,18 @@
                 return self.branchLineIndex > 0;
             }
             return [self.branchCode isEqualToString:otherPosition.branchCode] && self.branchLineIndex < otherPosition.branchLineIndex;
+        
         } else {
             return self.mainLineIndex <= otherPosition.mainLineIndex;
+        }
+    } else if (self.branchCode) {
+        // The other one is on a branch but the other isn't
+        if (self.mainLineIndex == otherPosition.mainLineIndex) {
+            // self is on the branch that the other position forks onto
+            if (self.branchLineIndex > 0) {
+                // It's at the tail end of a branch
+                return YES;
+            }
         }
     } else {
         return self.mainLineIndex <= otherPosition.mainLineIndex;

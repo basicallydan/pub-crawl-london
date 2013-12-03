@@ -24,6 +24,8 @@
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position;
 - (LPCFork *)forkAfterPosition:(LPCLinePosition *)position;
 
+- (BOOL)isStationAfterFork:(LPCFork *)fork;
+
 - (LPCStation *)stationWithCode:(NSString *)nestoriaCode;
 
 @end
