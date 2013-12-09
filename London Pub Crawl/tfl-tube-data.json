@@ -1040,14 +1040,14 @@
 			"lat": "51.5203",
 			"lng": "-0.17015",
 			"name": "Edgware Road (Bakerloo)",
-			"nestoria_code": "edgware-road"
+			"nestoria_code": "edgware-road-bakerloo"
 		},
 		"edgware-road-circle-line": {
 			"code": "ERC",
 			"lat": "51.51986",
 			"lng": "-0.16783",
 			"name": "Edgware Road (Circle Line)",
-			"nestoria_code": "edgware-road"
+			"nestoria_code": "edgware-road-circle-line"
 		},
 		"elephant-and-castle": {
 			"code": "EAC",

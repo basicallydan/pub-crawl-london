@@ -106,7 +106,6 @@ NSDictionary *stationPointers;
 - (BOOL)isForkBeforePosition:(LPCLinePosition *)position {
     LPCLinePosition *previousPosition;
     
-    
     if (position.branchCode && position.branchLineIndex == 0) {
         // This position is on a branch
         if ([self branchEndsWithPosition:position]) {
@@ -122,7 +121,6 @@ NSDictionary *stationPointers;
     
     // So, if it's a dictionary type, then it's a branch
     if (stationIndex != nil && [stationIndex isKindOfClass:[NSDictionary class]]) {
-        LPCFork *parentFork = [[LPCFork alloc] initWithBranches:[self.stationPositions valueForKeyPath:[previousPosition description]] forLine:self withPosition:previousPosition fromPosition:position];
         if ([position afterPosition:previousPosition] && position.branchLineIndex == 0) {
             if ([self isStationBeforePosition:previousPosition]) {
                 return YES;
@@ -166,11 +164,13 @@ NSDictionary *stationPointers;
     LPCLinePosition *nextPosition;
     
     if (position.branchCode && [self branchEndsWithPosition:position]) {
-        if (position.branchLineIndex == 0) {
-            return NO;
-        }
+        return NO;
+        // This may be enough?
+//        if (position.branchLineIndex == 0) {
+//            return NO;
+//        }
         // This position is on a branch
-        nextPosition = [position positionOfParentFork];
+//        nextPosition = [position positionOfParentFork];
     } else {
         nextPosition = [position nextPossiblePosition];
     }
@@ -322,7 +322,7 @@ NSDictionary *stationPointers;
     
     if ([firstStation.nestoriaCode isEqualToString:position.branchCode]) {
         return position.branchLineIndex == 0;
-    } else {
+    } else if ([lastStation.nestoriaCode isEqualToString:position.branchCode]) {
         return [stationsOnBranch count] - 1 == position.branchLineIndex;
     }
     return NO;
