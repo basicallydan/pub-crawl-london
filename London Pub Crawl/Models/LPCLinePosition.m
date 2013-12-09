@@ -81,4 +81,8 @@
     return [otherPosition beforePosition:self];
 }
 
+- (BOOL)isPartOfForkAtPosition:(LPCLinePosition *)otherPosition {
+    return self.branchCode && otherPosition.mainLineIndex == self.mainLineIndex;
+}
+
 @end

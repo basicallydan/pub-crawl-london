@@ -44,11 +44,19 @@ NSArray *forkInitialStations;
                 self.direction = Left;
             } else {
                 // So, it's somewhere in the middle. Let's determine direction based on where we are coming from
-                if ([previousPosition beforePosition:position]) {
-                    self.direction = Right;
+                if ([previousPosition beforePosition:self.linePosition]) {
+                    if ([previousPosition isPartOfForkAtPosition:self.linePosition]) {
+                        self.direction = Left;
+                    } else {
+                        self.direction = Right;
+                    }
                     [firstStations addObject:firstStation];
                 } else {
-                    self.direction = Left;
+                    if ([previousPosition isPartOfForkAtPosition:self.linePosition]) {
+                        self.direction = Right;
+                    } else {
+                        self.direction = Left;
+                    }
                     [firstStations addObject:finalStation];
                 }
             }

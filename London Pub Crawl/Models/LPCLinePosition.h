@@ -14,5 +14,6 @@
 
 - (BOOL)beforePosition:(LPCLinePosition *)otherPosition;
 - (BOOL)afterPosition:(LPCLinePosition *)otherPosition;
+- (BOOL)isPartOfForkAtPosition:(LPCLinePosition *)otherPosition;
 
 @end

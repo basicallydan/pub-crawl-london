@@ -253,4 +253,13 @@ NSDictionary *stationDictionary;
     XCTAssertEqual(fork.direction, Left, @"The fork after London Bridge on the Bank Branch should be pointing left");
 }
 
+-(void)testThatForkBeforeMoorgateIsGoingRight {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 3;
+    position.branchCode = @"bank";
+    position.branchLineIndex = 0;
+    LPCFork *fork = [line forkBeforePosition:position];
+    XCTAssertEqual(fork.direction, Right, @"The fork after Moorgate on the Bank Branch should be pointing right");
+}
+
 @end
