@@ -18,8 +18,9 @@
 		370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */; };
 		370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */; };
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
+		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
 		375787C4184C9B4F005386CB /* UIColor+HexStringFromColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */; };
-		375787C9184DDA39005386CB /* LPCLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C8184DDA39005386CB /* LPCLineTests.m */; };
+		375787C9184DDA39005386CB /* LPCNorthernLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C8184DDA39005386CB /* LPCNorthernLineTests.m */; };
 		37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 37625035182BD4BA0061F1F4 /* station-pubs.json */; };
 		3762503A1833CACB0061F1F4 /* LPCLineOptionModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 376250381833CACB0061F1F4 /* LPCLineOptionModalViewController.m */; };
 		3762503B1833CACB0061F1F4 /* LPCLineOptionModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376250391833CACB0061F1F4 /* LPCLineOptionModalViewController.xib */; };
@@ -91,9 +92,10 @@
 		370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-End@2x.png"; sourceTree = "<group>"; };
 		370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start.png"; sourceTree = "<group>"; };
 		370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start@2x.png"; sourceTree = "<group>"; };
+		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
 		375787C2184C9B4F005386CB /* UIColor+HexStringFromColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexStringFromColor.h"; sourceTree = "<group>"; };
 		375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexStringFromColor.m"; sourceTree = "<group>"; };
-		375787C8184DDA39005386CB /* LPCLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineTests.m; sourceTree = "<group>"; };
+		375787C8184DDA39005386CB /* LPCNorthernLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCNorthernLineTests.m; sourceTree = "<group>"; };
 		37625035182BD4BA0061F1F4 /* station-pubs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "station-pubs.json"; sourceTree = "<group>"; };
 		376250371833CACB0061F1F4 /* LPCLineOptionModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLineOptionModalViewController.h; sourceTree = "<group>"; };
 		376250381833CACB0061F1F4 /* LPCLineOptionModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineOptionModalViewController.m; sourceTree = "<group>"; };
@@ -316,7 +318,8 @@
 		37BF43BE180D31ED0091BE5F /* London Pub CrawlTests */ = {
 			isa = PBXGroup;
 			children = (
-				375787C8184DDA39005386CB /* LPCLineTests.m */,
+				373CB7C618561BE900066054 /* LPCDistrictLineTests.m */,
+				375787C8184DDA39005386CB /* LPCNorthernLineTests.m */,
 				37BF43BF180D31ED0091BE5F /* Supporting Files */,
 			);
 			path = "London Pub CrawlTests";
@@ -515,7 +518,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				375787C9184DDA39005386CB /* LPCLineTests.m in Sources */,
+				375787C9184DDA39005386CB /* LPCNorthernLineTests.m in Sources */,
+				373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

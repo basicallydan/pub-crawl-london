@@ -34,14 +34,17 @@ NSArray *forkInitialStations;
             long finalBranchStationIndex = [[branchStations valueForKey:[branchStationKeys lastObject]] integerValue];
             long firstBranchStationIndex = [[branchStations valueForKey:[branchStationKeys firstObject]] integerValue];
             
-            LPCStation *finalStation = [line.allStations objectAtIndex:finalBranchStationIndex];
-            LPCStation *firstStation = [line.allStations objectAtIndex:firstBranchStationIndex];
-            if ([finalStation.nestoriaCode isEqualToString:branchDestination] && [branchStationKeys count] > 1) {
-                [firstStations addObject:firstStation];
+            LPCStation *bottomStation = [line.allStations objectAtIndex:finalBranchStationIndex];
+            LPCStation *topStation = [line.allStations objectAtIndex:firstBranchStationIndex];
+            if ([bottomStation.nestoriaCode isEqualToString:branchDestination] && [branchStationKeys count] > 1) {
+                [firstStations addObject:topStation];
                 self.direction = Right;
-            } else if ([finalStation.nestoriaCode isEqualToString:firstStation.nestoriaCode]) {
-                [firstStations addObject:finalStation];
+            } else if ([bottomStation.nestoriaCode isEqualToString:topStation.nestoriaCode]) {
+                [firstStations addObject:bottomStation];
                 self.direction = Left;
+            } else if ([topStation.nestoriaCode isEqualToString:branchDestination]) {
+                self.direction = Left;
+                [firstStations addObject:bottomStation];
             } else {
                 // So, it's somewhere in the middle. Let's determine direction based on where we are coming from
                 if ([previousPosition beforePosition:self.linePosition]) {
@@ -50,14 +53,14 @@ NSArray *forkInitialStations;
                     } else {
                         self.direction = Right;
                     }
-                    [firstStations addObject:firstStation];
+                    [firstStations addObject:topStation];
                 } else {
                     if ([previousPosition isPartOfForkAtPosition:self.linePosition]) {
                         self.direction = Right;
                     } else {
                         self.direction = Left;
                     }
-                    [firstStations addObject:finalStation];
+                    [firstStations addObject:bottomStation];
                 }
             }
         }

@@ -2,14 +2,14 @@
 
 #import "LPCLine.h"
 
-@interface LPCLineTests : XCTestCase
+@interface LPCNorthernLineTests : XCTestCase
 
 @end
 
-@implementation LPCLineTests
+@implementation LPCNorthernLineTests
 
 LPCLine *line;
-NSDictionary *lineDictionary;
+NSDictionary *fakeNorthernLineDictionary;
 
 NSDictionary *stationDictionary;
 
@@ -117,7 +117,7 @@ NSDictionary *stationDictionary;
             @"nestoria_code": @"oval"
         }
     };
-    lineDictionary =
+    fakeNorthernLineDictionary =
     @{
         @"background-color": @"#000000",
         @"text-color": @"#ffffff",
@@ -153,8 +153,7 @@ NSDictionary *stationDictionary;
             @"oval"
         ]
     };
-    line = [[LPCLine alloc] initWithLine:lineDictionary andStations:stationDictionary];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    line = [[LPCLine alloc] initWithLine:fakeNorthernLineDictionary andStations:stationDictionary];
 }
 
 - (void)tearDown

@@ -210,25 +210,22 @@
 					"richmond" : [
 						"richmond",
 						"kew-gardens",
-						"gunnersbury",
-						"turnham-green",
-						"stamford-brook",
-						"ravenscourt-park",
-						"barons-court",
-						"west-kensington"
+						"gunnersbury"
 					],
 					"ealing-broadway" : [
 						"ealing-broadway",
 						"ealing-common",
 						"acton-town",
-						"chiswick-park",
-						"turnham-green",
-						"stamford-brook",
-						"ravenscourt-park",
-						"barons-court",
-						"west-kensington"
-					],
-					"westminster" : [
+						"chiswick-park"
+					]
+				},
+				"turnham-green",
+				"stamford-brook",
+				"ravenscourt-park",
+				"barons-court",
+				"west-kensington",
+				{
+					"wimbledon" : [
 						"wimbledon",
 						"wimbledon-park",
 						"southfields",
@@ -238,9 +235,9 @@
 						"fulham-broadway",
 						"west-brompton"
 					],
-					"hammersmith-distandpicc-line" : [
-						"hammersmith-distandpicc-line"
-					]
+					"_parent": {
+						"direction": "top"
+					}
 				},
 				"earls-court",
 				{
@@ -251,40 +248,41 @@
 						"paddington",
 						"edgware-road-circle-line"
 					],
-					"upminster": [
-						"south-kensington",
-						"sloane-square",
-						"victoria",
-						"st-jamess-park",
-						"westminster",
-						"embankment",
-						"temple",
-						"blackfriars",
-						"mansion-house",
-						"cannon-street",
-						"monument",
-						"tower-hill",
-						"aldgate-east",
-						"whitechapel",
-						"stepney-green",
-						"mile-end",
-						"bow-road",
-						"bromley-by-bow",
-						"west-ham",
-						"plaistow",
-						"upton-park",
-						"east-ham",
-						"barking",
-						"upney",
-						"becontree",
-						"dagenham-heathway",
-						"dagenham-east",
-						"elm-park",
-						"hornchurch",
-						"upminster-bridge",
-						"upminster"
-					]
-				}
+					"_parent": {
+						"direction": "bottom"
+					}
+				},
+				"south-kensington",
+				"sloane-square",
+				"victoria",
+				"st-jamess-park",
+				"westminster",
+				"embankment",
+				"temple",
+				"blackfriars",
+				"mansion-house",
+				"cannon-street",
+				"monument",
+				"tower-hill",
+				"aldgate-east",
+				"whitechapel",
+				"stepney-green",
+				"mile-end",
+				"bow-road",
+				"bromley-by-bow",
+				"west-ham",
+				"plaistow",
+				"upton-park",
+				"east-ham",
+				"barking",
+				"upney",
+				"becontree",
+				"dagenham-heathway",
+				"dagenham-east",
+				"elm-park",
+				"hornchurch",
+				"upminster-bridge",
+				"upminster"
 			]
 		},
 		{
