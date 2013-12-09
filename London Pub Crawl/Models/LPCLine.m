@@ -106,8 +106,13 @@ NSDictionary *stationPointers;
 - (BOOL)isForkBeforePosition:(LPCLinePosition *)position {
     LPCLinePosition *previousPosition;
     
+    
     if (position.branchCode && position.branchLineIndex == 0) {
         // This position is on a branch
+        if ([self branchEndsWithPosition:position]) {
+            return NO;
+        }
+        
         previousPosition = [position positionOfParentFork];
     } else {
         previousPosition = [position previousPossiblePosition];
@@ -161,6 +166,9 @@ NSDictionary *stationPointers;
     LPCLinePosition *nextPosition;
     
     if (position.branchCode && [self branchEndsWithPosition:position]) {
+        if (position.branchLineIndex == 0) {
+            return NO;
+        }
         // This position is on a branch
         nextPosition = [position positionOfParentFork];
     } else {
@@ -182,6 +190,10 @@ NSDictionary *stationPointers;
         } else {
             return NO;
         }
+    }
+    
+    if (stationIndex == nil) {
+        stationIndex = [self.stationPositions valueForKeyPath:[[nextPosition positionOfParentFork] description]];
     }
     
     if ([stationIndex isKindOfClass:[NSNumber class]] || stationIndex == nil) {
@@ -235,6 +247,8 @@ NSDictionary *stationPointers;
     LPCFork *fork = [[LPCFork alloc] initWithBranches:possibleBranches forLine:self withPosition:forkPosition fromPosition:position];
     return fork;
 }
+
+
 
 - (BOOL)isStationAfterFork:(LPCFork *)fork {
     BOOL stationAfterPosition = [self isStationAfterPosition:fork.linePosition];
@@ -299,7 +313,19 @@ NSDictionary *stationPointers;
     if (!position.branchCode) {
         [NSException raise:@"Position is not on a branch" format:@"%@ is not a branch position", position];
     }
-    return [self countOfStationsOnBranchOfStationPosition:position] - 1 == position.branchLineIndex;
+    NSDictionary *stationsOnBranch = [self.stationPositions valueForKeyPath:[NSString stringWithFormat:@"%d.%@", position.mainLineIndex, position.branchCode]];
+    int count = [stationsOnBranch count];
+    NSString *stringLast = [NSString stringWithFormat:@"%d", (count - 1)];
+    
+    LPCStation *firstStation = [self.allStations objectAtIndex:[[stationsOnBranch valueForKey:@"0"] integerValue]];
+    LPCStation *lastStation = [self.allStations objectAtIndex:[[stationsOnBranch valueForKey:stringLast] integerValue]];
+    
+    if ([firstStation.nestoriaCode isEqualToString:position.branchCode]) {
+        return position.branchLineIndex == 0;
+    } else {
+        return [stationsOnBranch count] - 1 == position.branchLineIndex;
+    }
+    return NO;
 }
 
 @end

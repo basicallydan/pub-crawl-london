@@ -169,4 +169,20 @@ NSDictionary *stationDictionary;
     XCTAssertEqual([fork firstStationForDestination:1].nestoriaCode, @"woodside-park", "The first station on the top branch should be Woodside Park");
 }
 
+- (void)testThatThereAreNoForksBeforeHighBarnetOnTheHighBarnetBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 2;
+    position.branchCode = @"high-barnet";
+    position.branchLineIndex = 0;
+    XCTAssertFalse([line isForkBeforePosition:position], @"There should be no fork before High Barnet");
+}
+
+- (void)testThatThereAreNoForksAfterHighBarnetOnTheHighBarnetBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 2;
+    position.branchCode = @"high-barnet";
+    position.branchLineIndex = 0;
+    XCTAssertFalse([line isForkAfterPosition:position], @"There should be no fork after High Barnet");
+}
+
 @end
