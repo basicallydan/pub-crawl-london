@@ -193,6 +193,14 @@ NSDictionary *stationDictionary;
     XCTAssertFalse([line isForkAfterPosition:position], @"There should be no fork after London Bridge");
 }
 
+- (void)testThatThereAreNoStationsAfterLondonBridgeOnTheLondonBridgeBranch {
+    LPCLinePosition *position = [[LPCLinePosition alloc] init];
+    position.mainLineIndex = 4;
+    position.branchCode = @"london-bridge";
+    position.branchLineIndex = 2;
+    XCTAssertNil([line stationAfterPosition:position], @"There should be no station after London Bridge");
+}
+
 - (void)testThatTheForkBeforeKenningtonIsCorrect {
     LPCLinePosition *position = [[LPCLinePosition alloc] init];
     position.mainLineIndex = 5;

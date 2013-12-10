@@ -219,6 +219,10 @@ NSDictionary *stationPointers;
 }
 
 - (LPCStation *)stationAfterPosition:(LPCLinePosition *)position {
+    if (![self isStationAfterPosition:position]) {
+        return nil;
+    }
+    
     LPCLinePosition *nextPosition = [position nextPossiblePosition];
     id stationPointer = [self.stationPositions valueForKeyPath:[nextPosition description]];
     if (![stationPointer isKindOfClass:[NSNumber class]]) {
@@ -288,6 +292,9 @@ NSDictionary *stationPointers;
     
     if (position.branchCode) {
         // This position is on a branch
+        if ([self branchEndsWithPosition:position]) {
+            return NO;
+        }
         nextPosition = [position positionOfParentFork];
     } else {
         nextPosition = [position nextPossiblePosition];
