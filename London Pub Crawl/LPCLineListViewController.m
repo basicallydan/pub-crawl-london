@@ -9,6 +9,7 @@
 #import "LPCThemeManager.h"
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "LPCVenue.h"
+#import "LPCVenueRetrievalHandler.h"
 
 @interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate>
 
@@ -62,14 +63,22 @@
     
     lineViewController.lineColour = line.lineColour;
     
+    LPCVenueRetrievalHandler *venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
+    
     for (LPCStation *s in line.allStations) {
-        NSArray *venues = [appDelegate.pubs valueForKey:s.code];
-        NSMutableArray *mappedVenues = [[NSMutableArray alloc] initWithCapacity:[venues count]];
-        int v = 0;
-        for (v = 0; v < [venues count]; v++) {
-            [mappedVenues addObject:[[LPCVenue alloc] initWithPubData:venues[v]]];
+//        NSArray *venues = [appDelegate.pubs valueForKey:s.code];
+        NSArray *venues = [venueRetrievalHandler venuesForStation:s completion:^(NSArray *venues) {
+            [lineViewController addVenues:[NSArray arrayWithArray:venues] forStationCode:s.code];
+        }];
+//        NSMutableArray *mappedVenues = [[NSMutableArray alloc] initWithCapacity:[venues count]];
+//        int v = 0;
+//        for (v = 0; v < [venues count]; v++) {
+//            [mappedVenues addObject:[[LPCVenue alloc] initWithPubData:venues[v]]];
+//        }
+        if (venues) {
+            [lineViewController addVenues:[NSArray arrayWithArray:venues] forStationCode:s.code];
         }
-        [lineViewController addVenues:[NSArray arrayWithArray:mappedVenues] forStationCode:s.code];
+
     }
     
     
