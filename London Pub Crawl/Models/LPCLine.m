@@ -273,9 +273,13 @@ NSDictionary *stationPointers;
     LPCStation *station = [self.allStations objectAtIndex:index];
     
     if ([self isStationAfterPosition:station.linePosition] == NO == [self isForkAfterPosition:station.linePosition]) {
+        // If there's nowt afterwards it should be a terminating station
+        station.firstStation = NO;
         station.terminatingStation = YES;
     } else if ([self isStationBeforePosition:station.linePosition] == NO == [self isForkBeforePosition:station.linePosition]) {
+        // If there's nowt before it's a first station
         station.firstStation = YES;
+        station.terminatingStation = YES;
     }
     
     return station;
@@ -307,6 +311,9 @@ NSDictionary *stationPointers;
     id stationIndex;
     
     nextPosition = [position nextPossiblePosition];
+    
+//    return [self isStationAtPosition:nextPosition];
+    
     stationIndex = [self.stationPositions valueForKeyPath:[nextPosition description]];
     
     if (stationIndex == nil && position.branchCode) {
