@@ -128,40 +128,6 @@ NSDictionary *stationPointers;
     previousPosition = [position positionOfParentFork];
     
     return [self isForkAtPosition:previousPosition];
-//    LPCLinePosition *previousPosition;
-//    
-//    if (position.branchCode && position.branchLineIndex == 0) {
-//        // This position is on a branch
-//        if ([self branchEndsWithPosition:position]) {
-//            return NO;
-//        }
-//        
-//        previousPosition = [position positionOfParentFork];
-//    } else {
-//        previousPosition = [position previousPossiblePosition];
-//    }
-//    
-//    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
-//    
-//    // So, if it's a dictionary type, then it's a branch
-//    if (stationIndex != nil && [stationIndex isKindOfClass:[NSDictionary class]]) {
-//        if ([position afterPosition:previousPosition] && position.branchLineIndex == 0) {
-//            if ([self isStationBeforePosition:previousPosition]) {
-//                return YES;
-//            }
-//            return NO;
-//        } else if ([self branchEndsWithPosition:position]) {
-//            return YES;
-//        } else {
-//            return NO;
-//        }
-//    }
-//    
-//    if ([stationIndex isKindOfClass:[NSNumber class]] || stationIndex == nil) {
-//        return NO;
-//    } else {
-//        return YES;
-//    }
 }
 
 - (LPCStation *)stationBeforePosition:(LPCLinePosition *)position {
@@ -296,40 +262,6 @@ NSDictionary *stationPointers;
     } else {
         return NO;
     }
-    
-//    // So it's neither a fork nor a station. Are we on a branch?
-//    if (!position.branchCode) {
-//        return NO;
-//    }
-//    
-//    // Since we're on a branch, does it end with this position?
-//    if ([self branchEndsWithPosition:position]) {
-//        return NO;
-//    }
-//    
-//    // Let's go to the fork then
-//    previousPosition = [position positionOfParentFork];
-//    
-//    return [self isForkAtPosition:previousPosition];
-
-//    LPCLinePosition *previousPosition;
-//    
-//    if (position.branchCode) {
-//        // This position is on a branch
-//        previousPosition = [position positionOfParentFork];
-//    } else {
-//        previousPosition = [position previousPossiblePosition];
-//    }
-//    
-//    id stationIndex = [self.stationPositions valueForKeyPath:[previousPosition description]];
-//    
-//    if (stationIndex == nil) {
-//        return NO;
-//    } else if ([stationIndex isKindOfClass:[NSNumber class]]) {
-//        return stationIndex > 0;
-//    }
-//    
-//    return NO;
 }
 
 - (BOOL)isStationAfterPosition:(LPCLinePosition *)position {
