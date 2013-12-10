@@ -85,8 +85,10 @@ LPCVenue *currentVenue;
     
     if (self.station.firstStation) {
         self.rightLineView.backgroundColor = self.lineColour;
+        [self.destinationLeftLabel removeFromSuperview];
     } else if (self.station.terminatingStation) {
         self.leftLineView.backgroundColor = self.lineColour;
+        [self.destinationRightLabel removeFromSuperview];
     } else {
         self.fullWidthLineView.backgroundColor = self.lineColour;
     }

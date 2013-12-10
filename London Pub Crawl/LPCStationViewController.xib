@@ -14,7 +14,7 @@
                 <outlet property="footerView" destination="02M-Rc-fik" id="Mdy-eT-oGe"/>
                 <outlet property="fullWidthLineView" destination="DfY-KP-bYW" id="BHi-8M-woR"/>
                 <outlet property="headerView" destination="Obc-ul-Y9s" id="u5d-Mx-1S7"/>
-                <outlet property="leftLineView" destination="rmd-EJ-p5B" id="EEG-Lv-JFD"/>
+                <outlet property="leftLineView" destination="VRr-oX-PZ2" id="XWP-fa-cuh"/>
                 <outlet property="mapViewportView" destination="QPy-kJ-yqJ" id="PWR-j3-E1M"/>
                 <outlet property="pubNameLabel" destination="6jA-zI-3lY" id="PiN-AV-gDU"/>
                 <outlet property="rightLineView" destination="rmd-EJ-p5B" id="NX9-uy-cdo"/>
@@ -54,7 +54,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-oX-PZ2" userLabel="Left-hand tube line">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-oX-PZ2" userLabel="Left-hand tube line">
                             <rect key="frame" x="0.0" y="88" width="160" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -121,6 +121,7 @@
                         <constraint firstItem="ZLm-Fw-zwG" firstAttribute="top" secondItem="rmd-EJ-p5B" secondAttribute="bottom" constant="2" id="KFK-Wa-9Ah"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="ODN-MX-N4B"/>
                         <constraint firstAttribute="bottom" secondItem="ZLm-Fw-zwG" secondAttribute="bottom" id="OPD-ar-4DT"/>
+                        <constraint firstItem="URP-xh-YJS" firstAttribute="top" secondItem="VRr-oX-PZ2" secondAttribute="bottom" constant="2" id="Zzd-lf-qAG"/>
                         <constraint firstAttribute="trailing" secondItem="56V-92-ndJ" secondAttribute="trailing" constant="20" id="eBB-W2-Fsx"/>
                         <constraint firstItem="xab-37-N6k" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="5" id="ea0-he-HCl"/>
                         <constraint firstAttribute="height" constant="117" id="fgB-he-aQh"/>
