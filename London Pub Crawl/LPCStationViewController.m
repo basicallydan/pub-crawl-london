@@ -83,9 +83,9 @@ LPCVenue *currentVenue;
     [self.view insertSubview:mapImageView atIndex:1];
     self.stationNameLabel.text = self.stationName;
     
-    if (self.firstStop) {
+    if (self.station.firstStation) {
         self.rightLineView.backgroundColor = self.lineColour;
-    } else if (self.lastStop) {
+    } else if (self.station.terminatingStation) {
         self.leftLineView.backgroundColor = self.lineColour;
     } else {
         self.fullWidthLineView.backgroundColor = self.lineColour;

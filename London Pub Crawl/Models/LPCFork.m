@@ -34,8 +34,8 @@ NSArray *forkInitialStations;
             long finalBranchStationIndex = [[branchStations valueForKey:[branchStationKeys lastObject]] integerValue];
             long firstBranchStationIndex = [[branchStations valueForKey:[branchStationKeys firstObject]] integerValue];
             
-            LPCStation *bottomStation = [line.allStations objectAtIndex:finalBranchStationIndex];
-            LPCStation *topStation = [line.allStations objectAtIndex:firstBranchStationIndex];
+            LPCStation *bottomStation = [line stationAtIndex:finalBranchStationIndex];
+            LPCStation *topStation = [line stationAtIndex:firstBranchStationIndex];
             if ([bottomStation.nestoriaCode isEqualToString:branchDestination] && [branchStationKeys count] > 1) {
                 [firstStations addObject:topStation];
                 self.direction = Right;

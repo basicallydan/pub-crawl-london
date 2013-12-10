@@ -27,5 +27,6 @@
 - (BOOL)isStationAfterFork:(LPCFork *)fork;
 
 - (LPCStation *)stationWithCode:(NSString *)nestoriaCode;
+- (LPCStation *)stationAtIndex:(NSUInteger)index;
 
 @end

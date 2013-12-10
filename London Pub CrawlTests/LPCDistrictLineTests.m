@@ -206,7 +206,16 @@ NSDictionary *stationDictionary;
     position.mainLineIndex = 5;
     LPCFork *fork = [line forkBeforePosition:position];
     XCTAssertEqual(fork.direction, Right, @"The fork before Kennington should be pointing right");
-    
+}
+
+-(void)testThatEdgwareIsAFirstStation {
+    LPCStation *station = [line stationWithCode:@"edgware"];
+    XCTAssertTrue(station.firstStation, @"The station before Colindale (Edgware) should be a First");
+}
+
+-(void)testThatLondonBridgeIsATerminatingStation {
+    LPCStation *station = [line stationWithCode:@"london-bridge"];
+    XCTAssertTrue(station.terminatingStation, @"The station at the end of the London Bridge branch (London Bridge) should be a terminating station");
 }
 
 @end

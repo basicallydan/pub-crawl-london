@@ -167,10 +167,10 @@ NSDictionary *stationDictionary;
     XCTAssertEqual([line.allStations count], 14U);
 }
 
-- (void)testForForkBeforeEuston {
+- (void)testForNoForkBeforeEuston {
     LPCLinePosition *position = [[LPCLinePosition alloc] init];
     position.mainLineIndex = 2;
-    XCTAssertFalse([line isForkBeforePosition:position], @"There should be a fork after Euston");
+    XCTAssertFalse([line isForkBeforePosition:position], @"There should be no fork before Euston");
 }
 
 - (void)testForForkAfterEuston {
@@ -259,6 +259,16 @@ NSDictionary *stationDictionary;
     position.branchLineIndex = 0;
     LPCFork *fork = [line forkBeforePosition:position];
     XCTAssertEqual(fork.direction, Right, @"The fork after Moorgate on the Bank Branch should be pointing right");
+}
+
+-(void)testThatEdgwareIsAFirstStation {
+    LPCStation *station = [line stationWithCode:@"edgware"];
+    XCTAssertTrue(station.firstStation, @"The station before Colindale (Edgware) should be a First");
+}
+
+-(void)testThatOvalIsATerminatingStation {
+    LPCStation *station = [line stationWithCode:@"oval"];
+    XCTAssertTrue(station.terminatingStation, @"The station before Colindale (Edgware) should be a Terminating Station");
 }
 
 @end

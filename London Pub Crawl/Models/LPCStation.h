@@ -9,6 +9,8 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *coordinate;
 @property (strong, nonatomic) LPCLinePosition *linePosition;
+@property (nonatomic) BOOL firstStation;
+@property (nonatomic) BOOL terminatingStation;
 
 - (id)initWithStation:(NSDictionary *)station;
 
