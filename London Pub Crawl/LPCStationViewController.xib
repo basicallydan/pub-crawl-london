@@ -31,10 +31,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QPy-kJ-yqJ" userLabel="Map View Area">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPy-kJ-yqJ" userLabel="Map View Area">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="204" id="ecW-6j-m2G"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obc-ul-Y9s" userLabel="Info View">
                     <rect key="frame" x="0.0" y="204" width="320" height="117"/>
@@ -54,20 +57,31 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-oX-PZ2" userLabel="Left-hand tube line">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-oX-PZ2" userLabel="Left-hand tube line">
                             <rect key="frame" x="0.0" y="88" width="160" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="160" id="5Nc-6J-mtT"/>
+                                <constraint firstAttribute="height" constant="12" id="zWK-15-Scu"/>
+                            </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rmd-EJ-p5B" userLabel="Right-hand tube line.">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmd-EJ-p5B" userLabel="Right-hand tube line.">
                             <rect key="frame" x="160" y="88" width="160" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="RDr-Et-LN9"/>
+                                <constraint firstAttribute="width" constant="160" id="VCW-UV-CXa"/>
+                            </constraints>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DfY-KP-bYW" userLabel="Full-width Tube Line">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfY-KP-bYW" userLabel="Full-width Tube Line">
                             <rect key="frame" x="0.0" y="88" width="320" height="12"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="pyl-oA-GHG"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EqS-sd-6dj" userLabel="Tube Station Circle View" customClass="LPCCircleView">
                             <rect key="frame" x="142" y="76" width="36" height="36"/>
@@ -87,9 +101,6 @@
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Branch Name Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URP-xh-YJS">
                             <rect key="frame" x="20" y="102" width="119" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="15" id="hSP-h2-l8e"/>
-                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -118,10 +129,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="URP-xh-YJS" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" constant="20" id="7ir-KN-yiH"/>
+                        <constraint firstItem="rmd-EJ-p5B" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="88" id="Jkh-za-poU"/>
+                        <constraint firstItem="VRr-oX-PZ2" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" id="Jnh-uy-dPo"/>
                         <constraint firstItem="ZLm-Fw-zwG" firstAttribute="top" secondItem="rmd-EJ-p5B" secondAttribute="bottom" constant="2" id="KFK-Wa-9Ah"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="ODN-MX-N4B"/>
                         <constraint firstAttribute="bottom" secondItem="ZLm-Fw-zwG" secondAttribute="bottom" id="OPD-ar-4DT"/>
+                        <constraint firstAttribute="trailing" secondItem="DfY-KP-bYW" secondAttribute="trailing" id="RtE-9Y-cYe"/>
                         <constraint firstItem="URP-xh-YJS" firstAttribute="top" secondItem="VRr-oX-PZ2" secondAttribute="bottom" constant="2" id="Zzd-lf-qAG"/>
+                        <constraint firstItem="VRr-oX-PZ2" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="88" id="aa8-kd-ACp"/>
                         <constraint firstAttribute="trailing" secondItem="56V-92-ndJ" secondAttribute="trailing" constant="20" id="eBB-W2-Fsx"/>
                         <constraint firstItem="xab-37-N6k" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="5" id="ea0-he-HCl"/>
                         <constraint firstAttribute="height" constant="117" id="fgB-he-aQh"/>
@@ -129,6 +144,9 @@
                         <constraint firstItem="xab-37-N6k" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" constant="20" id="ijm-f9-raW"/>
                         <constraint firstItem="56V-92-ndJ" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="5" id="j2p-CF-yGc"/>
                         <constraint firstAttribute="trailing" secondItem="ZLm-Fw-zwG" secondAttribute="trailing" constant="20" id="lXv-fv-gPm"/>
+                        <constraint firstItem="DfY-KP-bYW" firstAttribute="leading" secondItem="Obc-ul-Y9s" secondAttribute="leading" id="o0Z-I9-WWR"/>
+                        <constraint firstItem="DfY-KP-bYW" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="top" constant="88" id="tQ2-Yh-zZZ"/>
+                        <constraint firstAttribute="trailing" secondItem="rmd-EJ-p5B" secondAttribute="trailing" id="xhp-Wd-yPk"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02M-Rc-fik" userLabel="Footer View">
@@ -199,12 +217,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="QPy-kJ-yqJ" firstAttribute="top" secondItem="1" secondAttribute="top" id="5d2-ZN-mZL"/>
                 <constraint firstAttribute="bottom" secondItem="yzW-Tc-zZN" secondAttribute="bottom" id="GZO-y5-FhU"/>
+                <constraint firstAttribute="trailing" secondItem="QPy-kJ-yqJ" secondAttribute="trailing" id="H78-PC-K4W"/>
+                <constraint firstAttribute="trailing" secondItem="Obc-ul-Y9s" secondAttribute="trailing" id="I0j-md-RMe"/>
+                <constraint firstItem="QPy-kJ-yqJ" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="JUB-qL-7Gq"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="QLd-ve-Ls8"/>
+                <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="US4-AB-G6J"/>
+                <constraint firstItem="Obc-ul-Y9s" firstAttribute="top" secondItem="1" secondAttribute="top" constant="204" id="VV9-3R-ToE"/>
                 <constraint firstItem="yzW-Tc-zZN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ZZh-0l-yzu"/>
                 <constraint firstAttribute="trailing" secondItem="Obc-ul-Y9s" secondAttribute="trailing" id="eBo-EA-8lB"/>
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="moe-SS-vwg"/>
-                <constraint firstAttribute="bottom" secondItem="Obc-ul-Y9s" secondAttribute="bottom" constant="247" id="qrL-JT-wga"/>
+                <constraint firstItem="02M-Rc-fik" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="bottom" id="nwZ-YU-2ZT"/>
                 <constraint firstAttribute="trailing" secondItem="yzW-Tc-zZN" secondAttribute="trailing" id="r9a-um-GTs"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

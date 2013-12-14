@@ -54,7 +54,7 @@
                     <rect key="frame" x="0.0" y="100" width="320" height="424"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-di-6qz" userLabel="Fork Image">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-di-6qz" userLabel="Fork Image">
                             <rect key="frame" x="0.0" y="182" width="320" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -62,7 +62,7 @@
                                 <constraint firstAttribute="height" constant="32" id="J3v-2l-YJy"/>
                             </constraints>
                         </imageView>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rG-Sw-6Lk" userLabel="Bottom Right Fork View">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rG-Sw-6Lk" userLabel="Bottom Right Fork View">
                             <rect key="frame" x="160" y="222" width="160" height="182"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -83,7 +83,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0jl-CU-SuE" userLabel="Bottom Left Fork View">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0jl-CU-SuE" userLabel="Bottom Left Fork View">
                             <rect key="frame" x="0.0" y="222" width="160" height="182"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -158,7 +158,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Next Station Right" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aO-RJ-4cU" userLabel="Right Main Line Destination">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Next Station Right" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aO-RJ-4cU" userLabel="Right Main Line Destination">
                             <rect key="frame" x="160" y="170" width="140" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -169,7 +169,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Next Station Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4um-02-4ST" userLabel="Left Main Line Destination">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Next Station Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4um-02-4ST" userLabel="Left Main Line Destination">
                             <rect key="frame" x="20" y="170" width="140" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -182,11 +182,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="0jl-CU-SuE" firstAttribute="top" secondItem="4um-02-4ST" secondAttribute="bottom" constant="31" id="N6J-Ud-tUt"/>
-                        <constraint firstAttribute="bottom" secondItem="SnO-di-6qz" secondAttribute="bottom" constant="210" id="QrZ-lT-J4q"/>
                         <constraint firstAttribute="trailing" secondItem="SnO-di-6qz" secondAttribute="trailing" id="Sri-Py-xB8"/>
                         <constraint firstItem="4um-02-4ST" firstAttribute="leading" secondItem="GvX-hr-b6V" secondAttribute="leading" constant="20" id="YZU-Td-nRY"/>
-                        <constraint firstItem="0rG-Sw-6Lk" firstAttribute="top" secondItem="0aO-RJ-4cU" secondAttribute="bottom" constant="31" id="b9e-Ma-tP5"/>
+                        <constraint firstItem="SnO-di-6qz" firstAttribute="top" secondItem="GvX-hr-b6V" secondAttribute="top" constant="182" id="avR-om-8gw"/>
                         <constraint firstItem="SnO-di-6qz" firstAttribute="leading" secondItem="GvX-hr-b6V" secondAttribute="leading" id="t2v-qu-qLK"/>
                     </constraints>
                 </view>
