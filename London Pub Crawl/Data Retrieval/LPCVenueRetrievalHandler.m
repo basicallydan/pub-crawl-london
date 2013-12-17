@@ -101,17 +101,18 @@ NSManagedObjectModel *managedObjectModel;
     
     NSURL *URL = [NSURL URLWithString:@"https://api.foursquare.com"];
     
-    NSString *urlPathTemplate = @"/v2/venues/search?client_id=%@&client_secret=%@&v=20131216&ll=%@,%@&section=drinks";
-    NSString *urlPath = [NSString stringWithFormat:urlPathTemplate, @"SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH", @"44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&limit=6", station.coordinate[0], station.coordinate[1]];
+    NSString *urlPathTemplate = @"/v2/venues/explore?client_id=%@&client_secret=%@&v=20131216&ll=%@,%@&section=drinks";
+    NSString *urlPath = [NSString stringWithFormat:urlPathTemplate, @"SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH", @"44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&limit=6&sortByDistance=1", station.coordinate[0], station.coordinate[1]];
     
     NSMutableArray *resources = [[NSMutableArray alloc] init];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
     [manager GET:urlPath parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *response = [responseObject valueForKeyPath:@"response.venues"];
+        NSArray *venueGroups = [responseObject valueForKeyPath:@"response.groups"];
+        NSDictionary *response = [venueGroups[0] valueForKey:@"items"];
         
         for (NSDictionary *venue in response) {
-            Venue *v = [[Venue alloc] initWithPubData:venue];
+            Venue *v = [[Venue alloc] initWithFoursquarePubData:venue];
             [resources addObject:v];
         }
         

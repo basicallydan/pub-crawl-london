@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSNumber *mapZoomLevel;
 
 - (id)initWithPubData:(NSDictionary *)pubData;
+- (id)initWithFoursquarePubData:(NSDictionary *)pubData;
 
 @end

@@ -7,6 +7,7 @@
 #import "LPCLinePosition.h"
 #import "LPCStationViewController.h"
 #import "LPCVenue.h"
+#import "LPCVenueRetrievalHandler.h"
 
 @interface LPCLineViewController () <LPCForkViewControllerDelegate>
 
@@ -23,6 +24,7 @@ int startingStationIndex;
 LPCLinePosition *currentStationPointer;
 LPCLine *currentLine;
 LPCStation *currentStation;
+LPCVenueRetrievalHandler *venueRetrievalHandler;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +57,8 @@ LPCStation *currentStation;
     
     // Initial capacity is number of stations
     stationVenues = [[NSMutableDictionary alloc] initWithCapacity:[line.allStations count]];
+    
+    venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
     
     return self;
 }
@@ -207,8 +211,14 @@ LPCStation *currentStation;
     }
     
     NSArray *venues = [stationVenues objectForKey:st.code];
-
-    childViewController.venues = venues;
+    
+    if (venues && [venues count] > 0) {
+        childViewController.venues = venues;
+    } else {
+        [self retrieveVenuesForStation:st completion:^(NSArray *venues) {
+            [childViewController updateVenuesAndRefresh:venues];
+        }];
+    }
     
     childViewController.stationLocation = st.coordinate;
     
@@ -225,6 +235,20 @@ LPCStation *currentStation;
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     // The selected item reflected in the page indicator.
     return 0;
+}
+
+# pragma mark - Private Methods
+
+- (void)retrieveVenuesForStation:(LPCStation *)station completion:(void (^)(NSArray *))completion {
+    NSArray *venues = [venueRetrievalHandler venuesForStation:station completion:^(NSArray *venues) {
+        [self addVenues:[NSArray arrayWithArray:venues] forStationCode:station.code];
+        completion(venues);
+    }];
+    
+    if (venues) {
+        [self addVenues:[NSArray arrayWithArray:venues] forStationCode:station.code];
+        completion(venues);
+    }
 }
 
 # pragma mark - LPCForkViewControllerDelegate methods

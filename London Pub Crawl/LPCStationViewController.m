@@ -32,54 +32,11 @@ LPCVenue *currentVenue;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.mapView = [[MBXMapView alloc] initWithFrame:self.mapViewportView.frame mapID:@"basicallydan.map-ql3x67r6"];
-//    self.mapView.delegate = self;
-    
-    NSString *mapBoxImageRetina = nil;
-    NSString *googleMapsImageRetina = nil;
-    
-    if ([UIScreen mainScreen].scale == 2.0) {
-        mapBoxImageRetina = @"@2x";
-        googleMapsImageRetina = @"&scale=2";
+    if ([self.venues count] > 0) {
+        [self populateVenueDetailsWithVenue:self.venues[0]];
+        [self loadMapImage];
     }
     
-    [self populateVenueDetailsWithVenue:self.venues[0]];
-    
-    long distanceInteger = [currentVenue.distance integerValue];
-    
-    if (currentVenue.mapZoomLevel != nil) {
-        zoomLevel = [currentVenue.mapZoomLevel intValue];
-    } else {
-        zoomLevel = 13;
-        
-        if (distanceInteger < 50) {
-            zoomLevel = 17;
-        } else if (distanceInteger < 200) {
-            zoomLevel = 16;
-        } else if (distanceInteger < 400) {
-            zoomLevel = 15;
-        } else if (distanceInteger < 500) {
-            zoomLevel = 14;
-        } else if (distanceInteger > 700) {
-            zoomLevel = 12;
-        }
-    }
-    
-    NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, mapBoxImageRetina];
-    
-    NSLog(@"Map URL is %@", mapImageUrl);
-    
-    UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
-    [mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
-    UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
-    mapImageView.userInteractionEnabled = YES;
-    [mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
-    
-    [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
-    [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
-    
-    [self.view insertSubview:mapImageView atIndex:1];
     self.stationNameLabel.text = self.stationName;
     
     if (self.station.firstStation) {
@@ -117,6 +74,14 @@ LPCVenue *currentVenue;
     isMapLoaded = NO;
 }
 
+- (void)updateVenuesAndRefresh:(NSArray *)venues {
+    self.venues = venues;
+    [self populateVenueDetailsWithVenue:self.venues[0]];
+    [self loadMapImage];
+}
+
+# pragma mark - Private Methods
+
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
@@ -128,7 +93,7 @@ LPCVenue *currentVenue;
         self.tipAuthorLabel.hidden = NO;
         self.tipLabel.hidden = NO;
         
-        self.tipAuthorLabel.text = [venue.tips[0] valueForKey:@"user"];
+        self.tipAuthorLabel.text = [venue.tips[0] valueForKeyPath:@"user.firstName"];
         self.tipLabel.text = [venue.tips[0] valueForKey:@"text"];
     }
     
@@ -137,6 +102,52 @@ LPCVenue *currentVenue;
     self.pubLocation = venue.latLng;
     
     currentVenue = venue;
+}
+
+- (void)loadMapImage {
+    NSString *mapBoxImageRetina = nil;
+    NSString *googleMapsImageRetina = nil;
+    
+    if ([UIScreen mainScreen].scale == 2.0) {
+        mapBoxImageRetina = @"@2x";
+        googleMapsImageRetina = @"&scale=2";
+    }
+    
+    long distanceInteger = [currentVenue.distance integerValue];
+    
+    if (currentVenue.mapZoomLevel != nil) {
+        zoomLevel = [currentVenue.mapZoomLevel intValue];
+    } else {
+        zoomLevel = 13;
+        
+        if (distanceInteger < 50) {
+            zoomLevel = 17;
+        } else if (distanceInteger < 200) {
+            zoomLevel = 16;
+        } else if (distanceInteger < 400) {
+            zoomLevel = 15;
+        } else if (distanceInteger < 500) {
+            zoomLevel = 14;
+        } else if (distanceInteger > 700) {
+            zoomLevel = 12;
+        }
+    }
+    
+    NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, mapBoxImageRetina];
+    
+    NSLog(@"Map URL is %@", mapImageUrl);
+    
+    UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
+    [mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
+    UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
+    mapImageView.userInteractionEnabled = YES;
+    [mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
+    
+    [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
+    [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
+    
+    [self.view insertSubview:mapImageView atIndex:1];
 }
 
 - (void)viewDidLayoutSubviews {

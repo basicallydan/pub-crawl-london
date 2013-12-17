@@ -49,11 +49,6 @@
     lineOptionController.delegate = self;
     
     [self presentViewController:lineOptionController animated:YES completion:nil];
-    
-//    NSDictionary *startBranches = lineStations[0];
-//    NSArray *branchStartChoices = [startBranches allKeys];
-    // TODO: Don't always just go with the first one you dummy
-//    lineStations = [startBranches valueForKey:branchStartChoices[0]];
 }
 
 - (void)showLineViewStartingWith:(LPCLine *)line startingWith:(LPCStation *)station {
@@ -75,20 +70,6 @@
         
         // Now that the first station has it's stuff, load it
         [self presentViewController:lineViewController animated:YES completion:nil];
-    }
-    
-    for (LPCStation *s in line.allStations) {
-        if ([s.nestoriaCode isEqualToString:station.nestoriaCode]) {
-            // Already started handling got the stuff for the first one, so skip it.
-            break;
-        }
-        NSArray *venues = [venueRetrievalHandler venuesForStation:s completion:^(NSArray *venues) {
-            [lineViewController addVenues:[NSArray arrayWithArray:venues] forStationCode:s.code];
-        }];
-        
-        if (venues) {
-            [lineViewController addVenues:[NSArray arrayWithArray:venues] forStationCode:s.code];
-        }
     }
 }
 

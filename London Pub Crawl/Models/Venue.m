@@ -41,4 +41,31 @@
     return self;
 }
 
+- (id)initWithFoursquarePubData:(NSDictionary *)pubData {
+    self.name = [pubData valueForKeyPath:@"venue.name"];
+    NSString *streetAddress = [pubData valueForKeyPath:@"venue.location.address"];
+    NSString *postcode = [pubData valueForKeyPath:@"venue.location.postcode"];
+    self.formattedAddress = streetAddress;
+    if (streetAddress && postcode) {
+        self.formattedAddress = [NSString stringWithFormat:@"%@, %@", streetAddress, postcode];
+    } else if (streetAddress) {
+        self.formattedAddress = streetAddress;
+    } else if (postcode) {
+        self.formattedAddress = postcode;
+    } else {
+        self.formattedAddress = @"No address given :(";
+    }
+    self.distance =[pubData valueForKeyPath:@"venue.location.distance"];
+    NSNumber *pubLatitude = [pubData valueForKeyPath:@"venue.location.lat"];
+    NSNumber *pubLongitude = [pubData valueForKeyPath:@"venue.location.lng"];
+    if ([pubData valueForKeyPath:@"venue.location.mapZoomLevel"] != nil) {
+        self.mapZoomLevel = [pubData valueForKeyPath:@"venue.location.mapZoomLevel"];
+    }
+    self.tips = [pubData valueForKey:@"tips"];
+    self.latLng = @[pubLatitude, pubLongitude];
+    self.priceTier = [pubData valueForKeyPath:@"venue.price.tier"];
+    self.priceMessage = [pubData valueForKeyPath:@"venue.price.message"];
+    return self;
+}
+
 @end

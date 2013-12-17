@@ -34,6 +34,8 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) LPCStation *station;
 @property (strong, nonatomic) NSArray *venues;
 
+- (void)updateVenuesAndRefresh:(NSArray *)venues;
+
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
 @property (strong, nonatomic) IBOutlet UIView *view;
