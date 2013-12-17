@@ -12,19 +12,17 @@
     self.lines = [allTheData valueForKey:@"lines"];
     self.pubs = [self.class dictionaryWithContentsOfJSONString:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
-    
-    LPCVenueRetrievalHandler *venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
 
     for (NSString *line in self.lines) {
         [temporaryLinesArray addObject:line];
     }
     
-    for (NSString *station in self.pubs) {
-        NSArray *pubs = [self.pubs objectForKey:station];
-        for (NSDictionary *pub in pubs) {
-            [venueRetrievalHandler addVenue:pub forStationCode:station];
-        }
-    }
+//    for (NSString *station in self.pubs) {
+//        NSArray *pubs = [self.pubs objectForKey:station];
+//        for (NSDictionary *pub in pubs) {
+//            [venueRetrievalHandler addVenue:pub forStationCode:station];
+//        }
+//    }
 
     self.linesArray = temporaryLinesArray;
 

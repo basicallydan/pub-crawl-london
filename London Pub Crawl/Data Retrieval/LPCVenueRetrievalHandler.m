@@ -133,7 +133,7 @@ NSManagedObjectModel *managedObjectModel;
 
 - (void)addVenue:(NSDictionary *)venue forStationCode:(NSString *)stationCode {
     NSArray *venueArray = [venues objectForKey:stationCode];
-    LPCVenue *newVenue = [[LPCVenue alloc] initWithPubData:venue];
+    Venue *newVenue = [[LPCVenue alloc] initWithPubData:venue];
     if (!venueArray) {
         [venues setObject:[[NSArray alloc] initWithObjects:newVenue, nil] forKey:stationCode];
     } else {

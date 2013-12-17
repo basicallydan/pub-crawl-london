@@ -4,7 +4,7 @@
 #import <UIImageView+WebCache.h>
 #import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
-#import "LPCVenue.h"
+#import "Venue.h"
 #import <CMMapLauncher/CMMapLauncher.h>
 #import "UIColor+HexStringFromColor.h"
 
@@ -18,7 +18,7 @@ NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basical
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 BOOL isMapLoaded = NO;
 int zoomLevel;
-LPCVenue *currentVenue;
+Venue *currentVenue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -82,24 +82,24 @@ LPCVenue *currentVenue;
 
 # pragma mark - Private Methods
 
-- (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
+- (void)populateVenueDetailsWithVenue:(Venue *)venue {
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
     
-    if ([venue.tips count] == 0) {
+    if ([[venue arrayOfTips] count] == 0) {
         self.tipAuthorLabel.hidden = YES;
         self.tipLabel.hidden = YES;
     } else {
         self.tipAuthorLabel.hidden = NO;
         self.tipLabel.hidden = NO;
         
-        self.tipAuthorLabel.text = [venue.tips[0] valueForKeyPath:@"user.firstName"];
-        self.tipLabel.text = [venue.tips[0] valueForKey:@"text"];
+        self.tipAuthorLabel.text = [[venue arrayOfTips][0] valueForKeyPath:@"user.firstName"];
+        self.tipLabel.text = [[venue arrayOfTips][0] valueForKey:@"text"];
     }
     
     self.addressLabel.text = venue.formattedAddress;
     
-    self.pubLocation = venue.latLng;
+    self.pubLocation = [venue arrayOfCoordinates];
     
     currentVenue = venue;
 }
@@ -115,9 +115,9 @@ LPCVenue *currentVenue;
     
     long distanceInteger = [currentVenue.distance integerValue];
     
-    if (currentVenue.mapZoomLevel != nil) {
-        zoomLevel = [currentVenue.mapZoomLevel intValue];
-    } else {
+//    if (currentVenue.mapZoomLevel != nil) {
+//        zoomLevel = [currentVenue.mapZoomLevel intValue];
+//    } else {
         zoomLevel = 13;
         
         if (distanceInteger < 50) {
@@ -131,7 +131,7 @@ LPCVenue *currentVenue;
         } else if (distanceInteger > 700) {
             zoomLevel = 12;
         }
-    }
+//    }
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
     NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, mapBoxImageRetina];
