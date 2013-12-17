@@ -74,16 +74,17 @@ NSManagedObjectModel *managedObjectModel;
 }
 
 - (NSArray *)findStoredVenuesForStation:(LPCStation *)station {
+    NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Venue" inManagedObjectContext:[self managedObjectContext]];
     [fetchRequest setEntity:entity];
     
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stationCode=%@", station.nestoriaCode];
-    [fetchRequest setPredicate:predicate];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.stationCode = %@)", station.code];
+//    [fetchRequest setPredicate:predicate];
     
     NSError *error;
-    NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     if (fetchedObjects == nil) {
         return nil;
     }
@@ -107,16 +108,24 @@ NSManagedObjectModel *managedObjectModel;
     NSMutableArray *resources = [[NSMutableArray alloc] init];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
+    
     [manager GET:urlPath parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *venueGroups = [responseObject valueForKeyPath:@"response.groups"];
         NSDictionary *response = [venueGroups[0] valueForKey:@"items"];
+        NSManagedObjectContext *context = [self managedObjectContext];
         
         for (NSDictionary *venue in response) {
-            Venue *v = [[Venue alloc] initWithFoursquarePubData:venue];
+            NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Venue" inManagedObjectContext:context];
+            Venue *v = [[Venue alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
+            [v populateWithFoursquarePubData:venue];
+            v.stationCode = station.code;
+            [context save:nil];
             [resources addObject:v];
         }
         
-        completion([NSArray arrayWithArray:resources]);
+        if (completion) {
+            completion([NSArray arrayWithArray:resources]);
+        }
     } failure:nil];
     
     return nil;

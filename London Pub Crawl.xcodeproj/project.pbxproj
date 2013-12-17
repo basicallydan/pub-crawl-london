@@ -47,6 +47,7 @@
 		377D7B7E182A96FE0071B5D4 /* tube-line-button-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */; };
 		37944F6218450D9A0005379D /* tube-line-fork-double-sided.png in Resources */ = {isa = PBXBuildFile; fileRef = 37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */; };
 		37944F6318450D9A0005379D /* tube-line-fork-double-sided@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */; };
+		3794732E1860B7880020E2E7 /* LPCVenueRetrievalHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794732D1860B7880020E2E7 /* LPCVenueRetrievalHandlerTests.m */; };
 		37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A131D5180DC9C90048975C /* MapKit.framework */; };
 		37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A131DB180DE9580048975C /* LPCThemeManager.m */; };
 		37BF4397180D31EC0091BE5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BF4396180D31EC0091BE5F /* Foundation.framework */; };
@@ -135,6 +136,7 @@
 		377D7B7A182A96FE0071B5D4 /* tube-line-button-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-button-pressed@2x.png"; sourceTree = "<group>"; };
 		37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-double-sided.png"; sourceTree = "<group>"; };
 		37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-double-sided@2x.png"; sourceTree = "<group>"; };
+		3794732D1860B7880020E2E7 /* LPCVenueRetrievalHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenueRetrievalHandlerTests.m; sourceTree = "<group>"; };
 		37A131D5180DC9C90048975C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37A131DA180DE9580048975C /* LPCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCThemeManager.h; sourceTree = "<group>"; };
 		37A131DB180DE9580048975C /* LPCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCThemeManager.m; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		37BF43BE180D31ED0091BE5F /* London Pub CrawlTests */ = {
 			isa = PBXGroup;
 			children = (
+				3794732D1860B7880020E2E7 /* LPCVenueRetrievalHandlerTests.m */,
 				373CB7C618561BE900066054 /* LPCDistrictLineTests.m */,
 				375787C8184DDA39005386CB /* LPCNorthernLineTests.m */,
 				37BF43BF180D31ED0091BE5F /* Supporting Files */,
@@ -550,6 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3794732E1860B7880020E2E7 /* LPCVenueRetrievalHandlerTests.m in Sources */,
 				375787C9184DDA39005386CB /* LPCNorthernLineTests.m in Sources */,
 				373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */,
 			);

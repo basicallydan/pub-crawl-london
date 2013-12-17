@@ -3,7 +3,6 @@
 
 @implementation Venue
 
-@synthesize address;
 @synthesize formattedAddress;
 @synthesize distance;
 @synthesize priceMessage;
@@ -12,7 +11,6 @@
 @synthesize stationCode;
 @synthesize tips;
 @synthesize latLng;
-@synthesize mapZoomLevel;
 
 - (id)initWithPubData:(NSDictionary *)pubData {
     self.name = [pubData valueForKeyPath:@"name"];
@@ -32,7 +30,7 @@
     NSNumber *pubLatitude = [pubData valueForKeyPath:@"location.lat"];
     NSNumber *pubLongitude = [pubData valueForKeyPath:@"location.lng"];
     if ([pubData valueForKeyPath:@"location.mapZoomLevel"] != nil) {
-        self.mapZoomLevel = [pubData valueForKeyPath:@"location.mapZoomLevel"];
+        // self.mapZoomLevel = [pubData valueForKeyPath:@"location.mapZoomLevel"];
     }
     self.tips = [pubData valueForKey:@"tips"];
     self.latLng = @[pubLatitude, pubLongitude];
@@ -41,7 +39,7 @@
     return self;
 }
 
-- (id)initWithFoursquarePubData:(NSDictionary *)pubData {
+- (void)populateWithFoursquarePubData:(NSDictionary *)pubData {
     self.name = [pubData valueForKeyPath:@"venue.name"];
     NSString *streetAddress = [pubData valueForKeyPath:@"venue.location.address"];
     NSString *postcode = [pubData valueForKeyPath:@"venue.location.postcode"];
@@ -59,13 +57,12 @@
     NSNumber *pubLatitude = [pubData valueForKeyPath:@"venue.location.lat"];
     NSNumber *pubLongitude = [pubData valueForKeyPath:@"venue.location.lng"];
     if ([pubData valueForKeyPath:@"venue.location.mapZoomLevel"] != nil) {
-        self.mapZoomLevel = [pubData valueForKeyPath:@"venue.location.mapZoomLevel"];
+        // self.mapZoomLevel = [pubData valueForKeyPath:@"venue.location.mapZoomLevel"];
     }
     self.tips = [pubData valueForKey:@"tips"];
     self.latLng = @[pubLatitude, pubLongitude];
     self.priceTier = [pubData valueForKeyPath:@"venue.price.tier"];
     self.priceMessage = [pubData valueForKeyPath:@"venue.price.message"];
-    return self;
 }
 
 @end
