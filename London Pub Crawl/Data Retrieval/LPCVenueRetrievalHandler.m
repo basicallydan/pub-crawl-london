@@ -110,28 +110,12 @@ NSManagedObjectModel *managedObjectModel;
     [manager GET:urlPath parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *response = [responseObject valueForKeyPath:@"response.venues"];
         
-//        [[Venue alloc] enti]
-        
         for (NSDictionary *venue in response) {
             Venue *v = [[Venue alloc] initWithPubData:venue];
             [resources addObject:v];
         }
         
         completion([NSArray arrayWithArray:resources]);
-        
-//        NSLog(response);
-//
-//        [manager SUBSCRIBE:@"/resources" usingBlock:^(NSArray *operations, NSError *error) {
-//            for (AFJSONPatchOperation *operation in operations) {
-//                switch (operation.type) {
-//                    case AFJSONAddOperationType:
-//                        [resources addObject:operation.value];
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        } error:nil];
     } failure:nil];
     
     return nil;

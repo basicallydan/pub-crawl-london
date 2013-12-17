@@ -60,32 +60,36 @@
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station];
-    
+    lineViewController.delegate = self;
     lineViewController.lineColour = line.lineColour;
     
     LPCVenueRetrievalHandler *venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
     
+    NSArray *firstStationVenues = [venueRetrievalHandler venuesForStation:station completion:^(NSArray *firstStationVenues) {
+        [lineViewController addVenues:[NSArray arrayWithArray:firstStationVenues] forStationCode:station.code];
+        
+        [self presentViewController:lineViewController animated:YES completion:nil];
+    }];
+    if (firstStationVenues) {
+        [lineViewController addVenues:[NSArray arrayWithArray:firstStationVenues] forStationCode:station.code];
+        
+        // Now that the first station has it's stuff, load it
+        [self presentViewController:lineViewController animated:YES completion:nil];
+    }
+    
     for (LPCStation *s in line.allStations) {
-//        NSArray *venues = [appDelegate.pubs valueForKey:s.code];
+        if ([s.nestoriaCode isEqualToString:station.nestoriaCode]) {
+            // Already started handling got the stuff for the first one, so skip it.
+            break;
+        }
         NSArray *venues = [venueRetrievalHandler venuesForStation:s completion:^(NSArray *venues) {
             [lineViewController addVenues:[NSArray arrayWithArray:venues] forStationCode:s.code];
         }];
-//        NSMutableArray *mappedVenues = [[NSMutableArray alloc] initWithCapacity:[venues count]];
-//        int v = 0;
-//        for (v = 0; v < [venues count]; v++) {
-//            [mappedVenues addObject:[[LPCVenue alloc] initWithPubData:venues[v]]];
-//        }
+        
         if (venues) {
             [lineViewController addVenues:[NSArray arrayWithArray:venues] forStationCode:s.code];
         }
-
     }
-    
-    
-    
-    lineViewController.delegate = self;
-    
-    [self presentViewController:lineViewController animated:YES completion:nil];
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
