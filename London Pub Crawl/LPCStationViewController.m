@@ -67,8 +67,7 @@ LPCVenue *currentVenue;
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
     NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, mapBoxImageRetina];
-//    NSString *mapImageUrl = [NSString stringWithFormat:kLPCGoogleMapsURLTemplate, [self.pubLocation[0] floatValue], [self.pubLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, googleMapsImageRetina, @""];
-    // TODO: When deploying, put in the API key
+    
     NSLog(@"Map URL is %@", mapImageUrl);
     
     UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];

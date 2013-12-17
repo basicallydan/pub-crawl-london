@@ -1,8 +1,10 @@
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface LPCVenue : NSObject
 
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *formattedAddress;
 @property (strong, nonatomic) NSArray *latLng;
 @property (strong, nonatomic) NSArray *tips;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37006A57185F1EC3000E0732 /* LPCDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37006A55185F1EC3000E0732 /* LPCDataModel.xcdatamodeld */; };
+		37006A66185F4361000E0732 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37006A65185F4361000E0732 /* Venue.m */; };
 		370FEA50180D489C00692418 /* tfl-tube-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA4F180D489C00692418 /* tfl-tube-data.json */; };
 		370FEA53180D58DD00692418 /* LPCLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 370FEA52180D58DD00692418 /* LPCLineViewController.m */; };
 		370FEA56180D68F300692418 /* LPCStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 370FEA55180D68F300692418 /* LPCStationViewController.m */; };
@@ -79,6 +81,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37006A56185F1EC3000E0732 /* LPCDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LPCDataModel.xcdatamodel; sourceTree = "<group>"; };
+		37006A64185F4361000E0732 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		37006A65185F4361000E0732 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		370FEA4F180D489C00692418 /* tfl-tube-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tfl-tube-data.json"; sourceTree = "<group>"; };
 		370FEA51180D58DD00692418 /* LPCLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLineViewController.h; sourceTree = "<group>"; };
 		370FEA52180D58DD00692418 /* LPCLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineViewController.m; sourceTree = "<group>"; };
@@ -188,6 +193,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37006A54185F1E6A000E0732 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				37006A55185F1EC3000E0732 /* LPCDataModel.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +241,8 @@
 				3762504E183BE9D30061F1F4 /* LPCFork.m */,
 				37F45A7D1843ABB70025CC9B /* LPCVenue.h */,
 				37F45A7E1843ABB70025CC9B /* LPCVenue.m */,
+				37006A64185F4361000E0732 /* Venue.h */,
+				37006A65185F4361000E0732 /* Venue.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,6 +283,7 @@
 		37BF439C180D31EC0091BE5F /* London Pub Crawl */ = {
 			isa = PBXGroup;
 			children = (
+				37006A54185F1E6A000E0732 /* Data */,
 				37FD3F0F18575FC2009B6306 /* Data Retrieval */,
 				37BF43B1180D31EC0091BE5F /* Images.xcassets */,
 				37BF43A5180D31EC0091BE5F /* LPCAppDelegate.h */,
@@ -513,7 +529,9 @@
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */,
 				37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */,
+				37006A57185F1EC3000E0732 /* LPCDataModel.xcdatamodeld in Sources */,
 				3762504F183BE9D30061F1F4 /* LPCFork.m in Sources */,
+				37006A66185F4361000E0732 /* Venue.m in Sources */,
 				370FEA56180D68F300692418 /* LPCStationViewController.m in Sources */,
 				3762504318363BA30061F1F4 /* LPCStation.m in Sources */,
 				376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */,
@@ -758,6 +776,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		37006A55185F1EC3000E0732 /* LPCDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				37006A56185F1EC3000E0732 /* LPCDataModel.xcdatamodel */,
+			);
+			currentVersion = 37006A56185F1EC3000E0732 /* LPCDataModel.xcdatamodel */;
+			path = LPCDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 37BF438B180D31EC0091BE5F /* Project object */;
 }
