@@ -94,7 +94,8 @@ NSManagedObjectModel *managedObjectModel;
 
 - (NSArray *)venuesForStation:(LPCStation *)station completion:(void (^)(NSArray *))completion {
 //    NSArray *matchingVenues = [venues objectForKey:station.code];
-    NSArray *matchingVenues = [self findStoredVenuesForStation:station];
+//    NSArray *matchingVenues = [self findStoredVenuesForStation:station];
+    NSArray *matchingVenues = @[];
     if (matchingVenues && [matchingVenues count] > 0) {
 //        [[self managedObjectContext] ]
         return matchingVenues;

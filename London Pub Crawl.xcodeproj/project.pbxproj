@@ -20,6 +20,7 @@
 		370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */; };
 		370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */; };
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
+		373581321861C9D300026E5C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 373581311861C9D300026E5C /* FontAwesome.ttf */; };
 		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
 		375787C4184C9B4F005386CB /* UIColor+HexStringFromColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */; };
 		375787C9184DDA39005386CB /* LPCNorthernLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C8184DDA39005386CB /* LPCNorthernLineTests.m */; };
@@ -99,6 +100,7 @@
 		370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-End@2x.png"; sourceTree = "<group>"; };
 		370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start.png"; sourceTree = "<group>"; };
 		370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start@2x.png"; sourceTree = "<group>"; };
+		373581311861C9D300026E5C /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
 		375787C2184C9B4F005386CB /* UIColor+HexStringFromColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexStringFromColor.h"; sourceTree = "<group>"; };
 		375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexStringFromColor.m"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				373581311861C9D300026E5C /* FontAwesome.ttf */,
 				37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */,
 				37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */,
 				37F45A76184108E60025CC9B /* map-placeholder.png */,
@@ -456,6 +459,7 @@
 				37BF43AD180D31EC0091BE5F /* Main_iPad.storyboard in Resources */,
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
 				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
+				373581321861C9D300026E5C /* FontAwesome.ttf in Resources */,
 				37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */,
 				37944F6318450D9A0005379D /* tube-line-fork-double-sided@2x.png in Resources */,
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,

@@ -6,6 +6,8 @@
 #import "LPCMapAnnotation.h"
 #import "Venue.h"
 #import <CMMapLauncher/CMMapLauncher.h>
+#import <FontAwesome+iOS/UIFont+FontAwesome.h>
+#import <FontAwesome+iOS/NSString+FontAwesome.h>
 #import "UIColor+HexStringFromColor.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate, UIActionSheetDelegate>
@@ -83,6 +85,20 @@ Venue *currentVenue;
 # pragma mark - Private Methods
 
 - (void)populateVenueDetailsWithVenue:(Venue *)venue {
+    self.nextPubButton.hidden = NO;
+    
+    NSString *titleString = [NSString fontAwesomeIconStringForEnum:FAIconRefresh];
+    
+    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:titleString];
+    
+    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+    
+    // Set the font to bold from the beginning of the string to the ","
+    [titleText addAttributes:[NSDictionary dictionaryWithObject:fontAwesomeFont forKey:NSFontAttributeName] range:NSMakeRange(0, [titleString length])];
+    
+    // Set the attributed string as the buttons' title text
+    [self.nextPubButton setAttributedTitle:titleText forState:UIControlStateNormal];
+    
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
     
@@ -285,6 +301,9 @@ Venue *currentVenue;
     if (self.topLevelDelegate) {
         [self.topLevelDelegate didClickChangeLine];
     }
+}
+
+- (IBAction)changePub:(id)sender {
 }
 
 @end

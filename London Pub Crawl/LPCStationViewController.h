@@ -52,8 +52,10 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *nextPubButton;
 
 - (IBAction)changeLine:(id)sender;
+- (IBAction)changePub:(id)sender;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
 
