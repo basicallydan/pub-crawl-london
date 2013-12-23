@@ -213,7 +213,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     NSArray *venues = [stationVenues objectForKey:st.code];
     
     if (venues && [venues count] > 0) {
-        childViewController.venues = venues;
+        [childViewController updateVenues:venues];
     } else {
         [self retrieveVenuesForStation:st completion:^(NSArray *venues) {
             [childViewController updateVenuesAndRefresh:venues];

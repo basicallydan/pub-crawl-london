@@ -5,9 +5,9 @@
 #import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
 #import "Venue.h"
+#import "LPCVenue.h"
 #import <CMMapLauncher/CMMapLauncher.h>
-#import <FontAwesome+iOS/UIFont+FontAwesome.h>
-#import <FontAwesome+iOS/NSString+FontAwesome.h>
+#import "NSString+FontAwesome.h"
 #import "UIColor+HexStringFromColor.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate, UIActionSheetDelegate>
@@ -20,7 +20,10 @@ NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basical
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 BOOL isMapLoaded = NO;
 int zoomLevel;
-Venue *currentVenue;
+NSArray *venues;
+LPCVenue *currentVenue;
+int currentVenueIndex = 0;
+UIImageView *mapImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,8 +37,9 @@ Venue *currentVenue;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([self.venues count] > 0) {
-        [self populateVenueDetailsWithVenue:self.venues[0]];
+    if ([venues count] > 0) {
+        currentVenue = [venues objectAtIndex:currentVenueIndex];
+        [self populateVenueDetailsWithVenue:currentVenue];
         [self loadMapImage];
     }
     
@@ -76,22 +80,38 @@ Venue *currentVenue;
     isMapLoaded = NO;
 }
 
-- (void)updateVenuesAndRefresh:(NSArray *)venues {
-    self.venues = venues;
-    [self populateVenueDetailsWithVenue:self.venues[0]];
+- (void)updateVenues:(NSArray *)coreDataVenues {
+    NSMutableArray *v = [[NSMutableArray alloc] initWithCapacity:[coreDataVenues count]];
+    for (Venue *coreDataVenue in coreDataVenues) {
+        LPCVenue *venue = [[LPCVenue alloc] init];
+        venue.name = coreDataVenue.name;
+        venue.distance = coreDataVenue.distance;
+        venue.latLng = [coreDataVenue arrayOfCoordinates];
+        venue.tips = [coreDataVenue arrayOfTips];
+        venue.address = coreDataVenue.formattedAddress;
+        venue.priceMessage = coreDataVenue.priceMessage;
+        venue.priceTier = coreDataVenue.priceTier;
+        [v addObject:venue];
+    }
+    venues = v;
+}
+
+- (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues {
+    [self updateVenues:coreDataVenues];
+    [self populateVenueDetailsWithVenue:currentVenue];
     [self loadMapImage];
 }
 
 # pragma mark - Private Methods
 
-- (void)populateVenueDetailsWithVenue:(Venue *)venue {
+- (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
     self.nextPubButton.hidden = NO;
+    
+    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
     
     NSString *titleString = [NSString fontAwesomeIconStringForEnum:FAIconRefresh];
     
     NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:titleString];
-    
-    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
     
     // Set the font to bold from the beginning of the string to the ","
     [titleText addAttributes:[NSDictionary dictionaryWithObject:fontAwesomeFont forKey:NSFontAttributeName] range:NSMakeRange(0, [titleString length])];
@@ -102,20 +122,20 @@ Venue *currentVenue;
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
     
-    if ([[venue arrayOfTips] count] == 0) {
+    if ([venue.tips count] == 0) {
         self.tipAuthorLabel.hidden = YES;
         self.tipLabel.hidden = YES;
     } else {
         self.tipAuthorLabel.hidden = NO;
         self.tipLabel.hidden = NO;
         
-        self.tipAuthorLabel.text = [[venue arrayOfTips][0] valueForKeyPath:@"user.firstName"];
-        self.tipLabel.text = [[venue arrayOfTips][0] valueForKey:@"text"];
+        self.tipAuthorLabel.text = [venue.tips[0] valueForKeyPath:@"user.firstName"];
+        self.tipLabel.text = [venue.tips[0] valueForKey:@"text"];
     }
     
     self.addressLabel.text = venue.formattedAddress;
     
-    self.pubLocation = [venue arrayOfCoordinates];
+    self.pubLocation = venue.latLng;
     
     currentVenue = venue;
 }
@@ -154,7 +174,10 @@ Venue *currentVenue;
     
     NSLog(@"Map URL is %@", mapImageUrl);
     
-    UIImageView *mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
+    if (!mapImageView) {
+        mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
+    }
+    
     [mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
     mapImageView.userInteractionEnabled = YES;
@@ -304,6 +327,15 @@ Venue *currentVenue;
 }
 
 - (IBAction)changePub:(id)sender {
+    currentVenueIndex++;
+    
+    if (currentVenueIndex >= [venues count]) {
+        currentVenueIndex = 0;
+    }
+    currentVenue = [venues objectAtIndex:currentVenueIndex];
+    
+    [self populateVenueDetailsWithVenue:currentVenue];
+    [self loadMapImage];
 }
 
 @end

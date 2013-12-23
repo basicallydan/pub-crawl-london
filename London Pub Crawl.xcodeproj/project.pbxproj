@@ -20,7 +20,6 @@
 		370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */; };
 		370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */; };
 		370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */; };
-		373581321861C9D300026E5C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 373581311861C9D300026E5C /* FontAwesome.ttf */; };
 		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
 		375787C4184C9B4F005386CB /* UIColor+HexStringFromColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */; };
 		375787C9184DDA39005386CB /* LPCNorthernLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C8184DDA39005386CB /* LPCNorthernLineTests.m */; };
@@ -32,6 +31,9 @@
 		37625049183A2F460061F1F4 /* LPCLinePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 37625048183A2F460061F1F4 /* LPCLinePosition.m */; };
 		3762504C183A45CB0061F1F4 /* LPCCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504B183A45CB0061F1F4 /* LPCCircleView.m */; };
 		3762504F183BE9D30061F1F4 /* LPCFork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504E183BE9D30061F1F4 /* LPCFork.m */; };
+		3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3769ACFB1868509000D6F2B0 /* NSString+FontAwesome.m */; };
+		3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3769ACFD1868509000D6F2B0 /* UIFont+FontAwesome.m */; };
+		3769AD02186854E500D6F2B0 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3769AD01186854E500D6F2B0 /* FontAwesome.ttf */; };
 		376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */; };
 		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
 		376CD9B31823D51600D4C599 /* pub-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 376CD9B11823D51600D4C599 /* pub-icon.png */; };
@@ -90,7 +92,7 @@
 		370FEA51180D58DD00692418 /* LPCLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLineViewController.h; sourceTree = "<group>"; };
 		370FEA52180D58DD00692418 /* LPCLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineViewController.m; sourceTree = "<group>"; };
 		370FEA54180D68F300692418 /* LPCStationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCStationViewController.h; sourceTree = "<group>"; };
-		370FEA55180D68F300692418 /* LPCStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCStationViewController.m; sourceTree = "<group>"; };
+		370FEA55180D68F300692418 /* LPCStationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LPCStationViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		370FEA57180D6EF400692418 /* LPCLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLineTableViewCell.h; sourceTree = "<group>"; };
 		370FEA58180D6EF400692418 /* LPCLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineTableViewCell.m; sourceTree = "<group>"; };
 		370FEA5A180D757300692418 /* LPCStationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPCStationViewController.xib; sourceTree = "<group>"; };
@@ -100,7 +102,6 @@
 		370FEA61180D7EB300692418 /* Jubilee-Line-End@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-End@2x.png"; sourceTree = "<group>"; };
 		370FEA62180D7EB300692418 /* Jubilee-Line-Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start.png"; sourceTree = "<group>"; };
 		370FEA63180D7EB300692418 /* Jubilee-Line-Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jubilee-Line-Start@2x.png"; sourceTree = "<group>"; };
-		373581311861C9D300026E5C /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
 		375787C2184C9B4F005386CB /* UIColor+HexStringFromColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexStringFromColor.h"; sourceTree = "<group>"; };
 		375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexStringFromColor.m"; sourceTree = "<group>"; };
@@ -119,6 +120,11 @@
 		3762504B183A45CB0061F1F4 /* LPCCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCircleView.m; sourceTree = "<group>"; };
 		3762504D183BE9D30061F1F4 /* LPCFork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCFork.h; sourceTree = "<group>"; };
 		3762504E183BE9D30061F1F4 /* LPCFork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCFork.m; sourceTree = "<group>"; };
+		3769ACFA1868509000D6F2B0 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		3769ACFB1868509000D6F2B0 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		3769ACFC1868509000D6F2B0 /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
+		3769ACFD1868509000D6F2B0 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		3769AD01186854E500D6F2B0 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		376CD9A4181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AsCLLocationCoordinate2D.h"; sourceTree = "<group>"; };
 		376CD9A5181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
 		376CD9AE1823C43600D4C599 /* LPCMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCMapAnnotation.h; sourceTree = "<group>"; };
@@ -208,7 +214,7 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				373581311861C9D300026E5C /* FontAwesome.ttf */,
+				3769AD01186854E500D6F2B0 /* FontAwesome.ttf */,
 				37944F6018450D9A0005379D /* tube-line-fork-double-sided.png */,
 				37944F6118450D9A0005379D /* tube-line-fork-double-sided@2x.png */,
 				37F45A76184108E60025CC9B /* map-placeholder.png */,
@@ -252,6 +258,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3769ACF91868509000D6F2B0 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3769ACFA1868509000D6F2B0 /* NSString+FontAwesome.h */,
+				3769ACFB1868509000D6F2B0 /* NSString+FontAwesome.m */,
+				3769ACFC1868509000D6F2B0 /* UIFont+FontAwesome.h */,
+				3769ACFD1868509000D6F2B0 /* UIFont+FontAwesome.m */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		37BF438A180D31EC0091BE5F = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +305,7 @@
 		37BF439C180D31EC0091BE5F /* London Pub Crawl */ = {
 			isa = PBXGroup;
 			children = (
+				3769ACF91868509000D6F2B0 /* Lib */,
 				37006A54185F1E6A000E0732 /* Data */,
 				37FD3F0F18575FC2009B6306 /* Data Retrieval */,
 				37BF43B1180D31EC0091BE5F /* Images.xcassets */,
@@ -459,7 +477,7 @@
 				37BF43AD180D31EC0091BE5F /* Main_iPad.storyboard in Resources */,
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
 				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
-				373581321861C9D300026E5C /* FontAwesome.ttf in Resources */,
+				3769AD02186854E500D6F2B0 /* FontAwesome.ttf in Resources */,
 				37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */,
 				37944F6318450D9A0005379D /* tube-line-fork-double-sided@2x.png in Resources */,
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,
@@ -533,6 +551,8 @@
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
 				37BF43B0180D31EC0091BE5F /* LPCLineListViewController.m in Sources */,
+				3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */,
+				3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */,
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */,
 				37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */,
