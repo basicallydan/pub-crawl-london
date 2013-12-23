@@ -23,7 +23,6 @@ int zoomLevel;
 NSArray *venues;
 LPCVenue *currentVenue;
 int currentVenueIndex = 0;
-UIImageView *mapImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -107,17 +106,17 @@ UIImageView *mapImageView;
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
     self.nextPubButton.hidden = NO;
     
-    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
-    
-    NSString *titleString = [NSString fontAwesomeIconStringForEnum:FAIconRefresh];
-    
-    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:titleString];
+//    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:10];
+//    
+//    NSString *titleString = [NSString fontAwesomeIconStringForEnum:FAIconRefresh];
+//    
+//    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:titleString];
     
     // Set the font to bold from the beginning of the string to the ","
-    [titleText addAttributes:[NSDictionary dictionaryWithObject:fontAwesomeFont forKey:NSFontAttributeName] range:NSMakeRange(0, [titleString length])];
+//    [titleText addAttributes:[NSDictionary dictionaryWithObject:fontAwesomeFont forKey:NSFontAttributeName] range:NSMakeRange(0, [titleString length])];
     
     // Set the attributed string as the buttons' title text
-    [self.nextPubButton setAttributedTitle:titleText forState:UIControlStateNormal];
+//    [self.nextPubButton setAttributedTitle:titleText forState:UIControlStateNormal];
     
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
@@ -170,23 +169,17 @@ UIImageView *mapImageView;
 //    }
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapViewportView.frame.size.width, self.mapViewportView.frame.size.height, mapBoxImageRetina];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
     
     NSLog(@"Map URL is %@", mapImageUrl);
     
-    if (!mapImageView) {
-        mapImageView = [[UIImageView alloc] initWithFrame:self.mapViewportView.frame];
-    }
-    
-    [mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
+    [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
-    mapImageView.userInteractionEnabled = YES;
-    [mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
+    self.mapImageView.userInteractionEnabled = YES;
+    [self.mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
     
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
-    
-    [self.view insertSubview:mapImageView atIndex:1];
 }
 
 - (void)viewDidLayoutSubviews {

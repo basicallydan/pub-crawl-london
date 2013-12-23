@@ -46,7 +46,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (weak, nonatomic) IBOutlet UIView *rightLineView;
 @property (weak, nonatomic) IBOutlet UIView *fullWidthLineView;
 @property (weak, nonatomic) IBOutlet UIView *circleRectView;
-@property (weak, nonatomic) IBOutlet UIView *mapViewportView;
+@property (weak, nonatomic) IBOutlet UIImageView *mapImageView;
 @property (weak, nonatomic) IBOutlet UILabel *tipAuthorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
