@@ -106,18 +106,6 @@ int currentVenueIndex = 0;
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
     self.nextPubButton.hidden = NO;
     
-//    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:10];
-//    
-//    NSString *titleString = [NSString fontAwesomeIconStringForEnum:FAIconRefresh];
-//    
-//    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:titleString];
-    
-    // Set the font to bold from the beginning of the string to the ","
-//    [titleText addAttributes:[NSDictionary dictionaryWithObject:fontAwesomeFont forKey:NSFontAttributeName] range:NSMakeRange(0, [titleString length])];
-    
-    // Set the attributed string as the buttons' title text
-//    [self.nextPubButton setAttributedTitle:titleText forState:UIControlStateNormal];
-    
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
     

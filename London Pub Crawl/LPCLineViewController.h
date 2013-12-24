@@ -18,8 +18,7 @@
 @property (strong, nonatomic) NSString *topOfLineDirection;
 @property (strong, nonatomic) NSString *bottomOfLineDirection;
 
-- (id)initWithStationIndex:(int)stationIndex;
-- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)stationNestoriaCode;
+- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)stationNestoriaCode completion:(void (^)())completion;
 - (void)addVenues:(NSArray *)venues forStationCode:(NSString *)stationCode;
 
 @end

@@ -52,23 +52,24 @@
 }
 
 - (void)showLineViewStartingWith:(LPCLine *)line startingWith:(LPCStation *)station {
-    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station];
+    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station completion:nil];
     lineViewController.delegate = self;
     lineViewController.lineColour = line.lineColour;
+    [self presentViewController:lineViewController animated:YES completion:nil];
     
-    LPCVenueRetrievalHandler *venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
+//    LPCVenueRetrievalHandler *venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
     
-    NSArray *firstStationVenues = [venueRetrievalHandler venuesForStation:station completion:^(NSArray *firstStationVenues) {
-        [lineViewController addVenues:[NSArray arrayWithArray:firstStationVenues] forStationCode:station.code];
-        
-        [self presentViewController:lineViewController animated:YES completion:nil];
-    }];
-    if (firstStationVenues) {
-        [lineViewController addVenues:[NSArray arrayWithArray:firstStationVenues] forStationCode:station.code];
-        
-        // Now that the first station has it's stuff, load it
-        [self presentViewController:lineViewController animated:YES completion:nil];
-    }
+//    NSArray *firstStationVenues = [venueRetrievalHandler venuesForStation:station completion:^(NSArray *firstStationVenues) {
+//        [lineViewController addVenues:[NSArray arrayWithArray:firstStationVenues] forStationCode:station.code];
+//
+//        [self presentViewController:lineViewController animated:YES completion:nil];
+//    }];
+//    if (firstStationVenues) {
+//        [lineViewController addVenues:[NSArray arrayWithArray:firstStationVenues] forStationCode:station.code];
+//        
+//        // Now that the first station has it's stuff, load it
+//        [self presentViewController:lineViewController animated:YES completion:nil];
+//    }
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 

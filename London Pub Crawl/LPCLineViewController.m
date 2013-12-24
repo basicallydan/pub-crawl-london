@@ -25,6 +25,7 @@ LPCLinePosition *currentStationPointer;
 LPCLine *currentLine;
 LPCStation *currentStation;
 LPCVenueRetrievalHandler *venueRetrievalHandler;
+UIViewController *initialViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,20 +36,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     return self;
 }
 
-- (id)initWithStationIndex:(int)stationIndex {
-    self = [super init];
-    if (self) {
-        if (!stationIndex) {
-            startingStationIndex = 0;
-        } else {
-            startingStationIndex = stationIndex;
-        }
-        stationVenues = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
-
-- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station {
+- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station completion:(void (^)())completion {
     self = [super init];
     currentStation = station;
     currentLine = line;
@@ -59,6 +47,8 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     stationVenues = [[NSMutableDictionary alloc] initWithCapacity:[line.allStations count]];
     
     venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
+    
+    initialViewController = [self viewControllerForStation:station];
     
     return self;
 }
@@ -210,15 +200,15 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
         childViewController.directionForward = currentLine.bottomOfLineDirection;
     }
     
-    NSArray *venues = [stationVenues objectForKey:st.code];
-    
-    if (venues && [venues count] > 0) {
-        [childViewController updateVenues:venues];
-    } else {
+//    NSArray *venues = [stationVenues objectForKey:st.code];
+//    
+//    if (venues && [venues count] > 0) {
+//        [childViewController updateVenues:venues];
+//    } else {
         [self retrieveVenuesForStation:st completion:^(NSArray *venues) {
             [childViewController updateVenuesAndRefresh:venues];
         }];
-    }
+//    }
     
     childViewController.stationLocation = st.coordinate;
     
