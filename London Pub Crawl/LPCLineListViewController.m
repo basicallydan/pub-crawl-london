@@ -52,8 +52,6 @@
 }
 
 - (void)showLineViewStartingWith:(LPCLine *)line startingWith:(LPCStation *)station {
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station];
     lineViewController.delegate = self;
     lineViewController.lineColour = line.lineColour;
