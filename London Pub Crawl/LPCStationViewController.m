@@ -9,6 +9,7 @@
 #import <CMMapLauncher/CMMapLauncher.h>
 #import "NSString+FontAwesome.h"
 #import "UIColor+HexStringFromColor.h"
+#import "LPCVenueRetrievalHandler.h"
 
 @interface LPCStationViewController () <MKMapViewDelegate, UIActionSheetDelegate>
 
@@ -23,13 +24,19 @@ int zoomLevel;
 NSArray *venues;
 LPCVenue *currentVenue;
 int currentVenueIndex = 0;
+LPCVenueRetrievalHandler *venueRetrievalHandler;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
+        venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
+        currentVenueIndex = 0;
+        venues = nil;
+        currentVenue = nil;
     }
+    
     return self;
 }
 
@@ -79,6 +86,18 @@ int currentVenueIndex = 0;
     isMapLoaded = NO;
 }
 
+- (void)loadVenues {
+    NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
+        if (!venues || [venues count] < 1) {
+            [self updateVenuesAndRefresh:remoteVenues];
+        }
+    }];
+    
+    if (storedVenues) {
+        [self updateVenuesAndRefresh:storedVenues];
+    }
+}
+
 - (void)updateVenues:(NSArray *)coreDataVenues {
     NSMutableArray *v = [[NSMutableArray alloc] initWithCapacity:[coreDataVenues count]];
     for (Venue *coreDataVenue in coreDataVenues) {
@@ -97,6 +116,7 @@ int currentVenueIndex = 0;
 
 - (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues {
     [self updateVenues:coreDataVenues];
+    currentVenue = [venues objectAtIndex:currentVenueIndex];
     [self populateVenueDetailsWithVenue:currentVenue];
     [self loadMapImage];
 }

@@ -182,6 +182,8 @@ UIViewController *initialViewController;
     LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
     childViewController.station = st;
     
+    [childViewController loadVenues];
+    
     childViewController.stationName = st.name;
     childViewController.lineColour = currentLine.lineColour;
     
@@ -199,16 +201,6 @@ UIViewController *initialViewController;
         childViewController.directionBackward = currentLine.topOfLineDirection;
         childViewController.directionForward = currentLine.bottomOfLineDirection;
     }
-    
-//    NSArray *venues = [stationVenues objectForKey:st.code];
-//    
-//    if (venues && [venues count] > 0) {
-//        [childViewController updateVenues:venues];
-//    } else {
-        [self retrieveVenuesForStation:st completion:^(NSArray *venues) {
-            [childViewController updateVenuesAndRefresh:venues];
-        }];
-//    }
     
     childViewController.stationLocation = st.coordinate;
     

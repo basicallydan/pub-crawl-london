@@ -33,6 +33,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) NSString *directionBackward;
 @property (strong, nonatomic) LPCStation *station;
 
+- (void)loadVenues;
 - (void)updateVenues:(NSArray *)coreDataVenues;
 - (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues;
 

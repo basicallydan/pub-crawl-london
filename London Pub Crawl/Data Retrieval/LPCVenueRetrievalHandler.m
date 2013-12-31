@@ -76,12 +76,12 @@ NSManagedObjectModel *managedObjectModel;
 - (NSArray *)findStoredVenuesForStation:(LPCStation *)station {
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setReturnsObjectsAsFaults:NO];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Venue" inManagedObjectContext:[self managedObjectContext]];
     [fetchRequest setEntity:entity];
     
-    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.stationCode = %@)", station.code];
-//    [fetchRequest setPredicate:predicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(SELF.stationCode = %@)", station.code];
+    [fetchRequest setPredicate:predicate];
     
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
@@ -93,11 +93,8 @@ NSManagedObjectModel *managedObjectModel;
 }
 
 - (NSArray *)venuesForStation:(LPCStation *)station completion:(void (^)(NSArray *))completion {
-//    NSArray *matchingVenues = [venues objectForKey:station.code];
-//    NSArray *matchingVenues = [self findStoredVenuesForStation:station];
-    NSArray *matchingVenues = @[];
+    NSArray *matchingVenues = [self findStoredVenuesForStation:station];
     if (matchingVenues && [matchingVenues count] > 0) {
-//        [[self managedObjectContext] ]
         return matchingVenues;
     }
     
