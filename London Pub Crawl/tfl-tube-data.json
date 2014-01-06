@@ -535,17 +535,6 @@
 				"south-wimbledon",
 				"morden"
 			]
-		},
-		{
-			"background-color": "#70C3CE",
-			"text-color": "#113892",
-			"name": "Waterloo & City",
-			"top-direction":"Eastbound",
-			"bottom-direction":"Westbound",
-			"stations": [
-				"bank",
-				"waterloo"
-			]
 		}
 	],
 	"name": "London",

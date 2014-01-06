@@ -4,6 +4,7 @@
 #import "LPCAppDelegate.h"
 #import "LPCLine.h"
 #import "LPCLineTableViewCell.h"
+#import "LPCOptionsCell.h"
 #import "LPCLineViewController.h"
 #import "LPCLineOptionModalViewController.h"
 #import "LPCThemeManager.h"
@@ -17,11 +18,12 @@
 
 @implementation LPCLineListViewController
 
+CGFloat const maxRowHeight = 101.45f;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -84,25 +86,38 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    return appDelegate.lines.count;
+    // One final bit for the options cell
+    return appDelegate.lines.count + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.tableView.frame.size.height / [self tableView:tableView numberOfRowsInSection:indexPath.section];
+    // The following will hide the options cell just below the fold
+    return self.tableView.frame.size.height / ([self tableView:tableView numberOfRowsInSection:indexPath.section] - 1);
 //    return [indexPath row] * 20;
 }
 
-- (LPCLineTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * const CellIdentifier = @"Cell";
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == ([self tableView:tableView numberOfRowsInSection:indexPath.section] - 1)) {
+        NSString *cellIdentifier = @"OptionsCell";
+        
+        LPCOptionsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[LPCOptionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        return cell;
+    } else {
+        NSString *cellIdentifier = @"LineCell";
 
-    LPCLineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[LPCLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        LPCLineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[LPCLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+
+        [self configureCell:cell forRowAtIndexPath:indexPath];
+
+        return cell;
     }
-
-    [self configureCell:cell forRowAtIndexPath:indexPath];
-
-    return cell;
 }
 
 - (void)configureCell:(LPCLineTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
