@@ -18,7 +18,6 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
 
 @property (assign, nonatomic) NSInteger index;
-@property (strong, nonatomic) NSString *stationName;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
 @property (strong, nonatomic) NSArray *tips;
@@ -26,14 +25,13 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (assign, nonatomic) BOOL lastStop;
 @property (strong, atomic) MBXMapView *mapView;
 @property (strong, nonatomic) NSArray *pubLocation;
-@property (strong, nonatomic) NSArray *stationLocation;
 @property (strong, nonatomic) NSString *branchName;
 @property (assign, nonatomic) BOOL branchStationIsAhead;
 @property (strong, nonatomic) NSString *directionForward;
 @property (strong, nonatomic) NSString *directionBackward;
 @property (strong, nonatomic) LPCStation *station;
 
-- (void)loadVenues;
+- (id)initWithStation:(LPCStation *)station;
 - (void)updateVenues:(NSArray *)coreDataVenues;
 - (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues;
 

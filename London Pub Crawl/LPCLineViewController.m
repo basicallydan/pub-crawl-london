@@ -179,12 +179,8 @@ UIViewController *initialViewController;
 
 
 - (UIViewController *)viewControllerForStation:(LPCStation *)st {
-    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
-    childViewController.station = st;
+    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st];
     
-    [childViewController loadVenues];
-    
-    childViewController.stationName = st.name;
     childViewController.lineColour = currentLine.lineColour;
     
     if (st.linePosition.branchCode) {
@@ -201,8 +197,6 @@ UIViewController *initialViewController;
         childViewController.directionBackward = currentLine.topOfLineDirection;
         childViewController.directionForward = currentLine.bottomOfLineDirection;
     }
-    
-    childViewController.stationLocation = st.coordinate;
     
     childViewController.topLevelDelegate = self.delegate;
     

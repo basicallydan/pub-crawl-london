@@ -40,6 +40,16 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     return self;
 }
 
+- (id)initWithStation:(LPCStation *)station {
+    self = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
+    
+    self.station = station;
+    
+    [self loadVenues];
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -49,7 +59,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
         [self loadMapImage];
     }
     
-    self.stationNameLabel.text = self.stationName;
+    self.stationNameLabel.text = self.station.name;
     
     if (self.station.firstStation) {
         self.rightLineView.backgroundColor = self.lineColour;
@@ -177,7 +187,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 //    }
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], [self.stationLocation[1] floatValue], [self.stationLocation[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
     
     NSLog(@"Map URL is %@", mapImageUrl);
     
