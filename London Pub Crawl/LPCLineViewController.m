@@ -213,20 +213,6 @@ UIViewController *initialViewController;
     return 0;
 }
 
-# pragma mark - Private Methods
-
-- (void)retrieveVenuesForStation:(LPCStation *)station completion:(void (^)(NSArray *))completion {
-    NSArray *venues = [venueRetrievalHandler venuesForStation:station completion:^(NSArray *venues) {
-        [self addVenues:[NSArray arrayWithArray:venues] forStationCode:station.code];
-        completion(venues);
-    }];
-    
-    if (venues) {
-        [self addVenues:[NSArray arrayWithArray:venues] forStationCode:station.code];
-        completion(venues);
-    }
-}
-
 # pragma mark - LPCForkViewControllerDelegate methods
 
 - (void)didLeaveBranch {

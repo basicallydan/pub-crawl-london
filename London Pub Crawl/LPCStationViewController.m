@@ -11,7 +11,7 @@
 #import "UIColor+HexStringFromColor.h"
 #import "LPCVenueRetrievalHandler.h"
 
-@interface LPCStationViewController () <MKMapViewDelegate, UIActionSheetDelegate>
+@interface LPCStationViewController () <UIActionSheetDelegate>
 
 @end
 
@@ -53,12 +53,6 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([venues count] > 0) {
-        currentVenue = [venues objectAtIndex:currentVenueIndex];
-        [self populateVenueDetailsWithVenue:currentVenue];
-        [self loadMapImage];
-    }
-    
     self.stationNameLabel.text = self.station.name;
     
     if (self.station.firstStation) {
@@ -94,7 +88,11 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     [self.wayOutButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     isMapLoaded = NO;
+    
+    [self refreshVenues];
 }
+
+# pragma mark - Private Methods
 
 - (void)loadVenues {
     NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
@@ -116,7 +114,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
         venue.distance = coreDataVenue.distance;
         venue.latLng = [coreDataVenue arrayOfCoordinates];
         venue.tips = [coreDataVenue arrayOfTips];
-        venue.address = coreDataVenue.formattedAddress;
+        venue.formattedAddress = coreDataVenue.formattedAddress;
         venue.priceMessage = coreDataVenue.priceMessage;
         venue.priceTier = coreDataVenue.priceTier;
         [v addObject:venue];
@@ -124,14 +122,18 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     venues = v;
 }
 
-- (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues {
-    [self updateVenues:coreDataVenues];
-    currentVenue = [venues objectAtIndex:currentVenueIndex];
-    [self populateVenueDetailsWithVenue:currentVenue];
-    [self loadMapImage];
+- (void)refreshVenues {
+    if ([venues count] > 0) {
+        currentVenue = [venues objectAtIndex:currentVenueIndex];
+        [self populateVenueDetailsWithVenue:currentVenue];
+        [self loadMapImage];
+    }
 }
 
-# pragma mark - Private Methods
+- (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues {
+    [self updateVenues:coreDataVenues];
+    [self refreshVenues];
+}
 
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
     self.nextPubButton.hidden = NO;
@@ -167,7 +169,8 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     }
     
     long distanceInteger = [currentVenue.distance integerValue];
-    
+
+//  TODO: Put something in to deal with custom zoom levels
 //    if (currentVenue.mapZoomLevel != nil) {
 //        zoomLevel = [currentVenue.mapZoomLevel intValue];
 //    } else {
@@ -214,7 +217,6 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 }
 
 - (void)respondToLongPressOfMapImage:(UILongPressGestureRecognizer *)recognizer {
-//    NSLog(@"Long pressed Image");
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self openActionSheet:nil];
         return;
@@ -235,11 +237,9 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     [actionSheet addButtonWithTitle:@"Never mind"];
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-//    [actionSheet showInView:self.view];
 }
 
 # pragma mark - UIActionSheetDelegate methods
-
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     //coordinates for the place we want to display
@@ -262,71 +262,10 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     }
 }
 
-# pragma mark - MKMapViewDelegate methods
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
-    return nil;
-    if ([annotation isKindOfClass:[MKUserLocation class]]) {
-        return nil;
-    }
-    static NSString *identifier = @"Location";
-    LPCMapAnnotation *mapAnnotation = (LPCMapAnnotation *)annotation;
-    
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-    if (annotationView == nil) {
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-    } else {
-        annotationView.annotation = annotation;
-    }
-    
-    if (mapAnnotation.type == 0) { // Pub
-        annotationView.image = [UIImage imageNamed:[NSString stringWithFormat:@"pub-icon.png"]];
-    } else { // Station
-        annotationView.image = [UIImage imageNamed:[NSString stringWithFormat:@"station-icon.png"]];
-    }
-    annotationView.enabled = YES;
-    annotationView.canShowCallout = NO;
-    
-    return annotationView;
-}
-
-- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
-    [self zoomToRelevantLocation];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (MKCoordinateRegion)regionFromLocations:(NSArray *)locations {
-    NSArray *first = [locations objectAtIndex:0];
-    CLLocationCoordinate2D upper = [first asCLLocationCoordinate2D];
-    CLLocationCoordinate2D lower = [first asCLLocationCoordinate2D];
-//    CLLocationCoordinate2D a = CLLocationCoordinate2DMake(51.0, -0.1);
-    
-    for (int i = 0; i < locations.count; i++) {
-        NSArray *locationObj = [locations objectAtIndex:i];
-        CLLocationCoordinate2D location = [locationObj asCLLocationCoordinate2D];
-        if(location.latitude > upper.latitude) upper.latitude = location.latitude;
-        if(location.latitude < lower.latitude) lower.latitude = location.latitude;
-        if(location.longitude > upper.longitude) upper.longitude = location.longitude;
-        if(location.longitude < lower.longitude) lower.longitude = location.longitude;
-    }
-    
-    // FIND REGION
-    MKCoordinateSpan locationSpan;
-    locationSpan.latitudeDelta = (upper.latitude - lower.latitude) * 1.9f;
-    locationSpan.longitudeDelta = (upper.longitude - lower.longitude) * 1.9f;
-    CLLocationCoordinate2D locationCenter;
-    locationCenter.latitude = (upper.latitude + lower.latitude) / 2;
-    locationCenter.longitude = (upper.longitude + lower.longitude) / 2;
-    
-    MKCoordinateRegion region = MKCoordinateRegionMake(locationCenter, locationSpan);
-    
-    return region;
 }
 
 - (IBAction)changeLine:(id)sender {

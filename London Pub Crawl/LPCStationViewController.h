@@ -23,7 +23,6 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) NSArray *tips;
 @property (assign, nonatomic) BOOL firstStop;
 @property (assign, nonatomic) BOOL lastStop;
-@property (strong, atomic) MBXMapView *mapView;
 @property (strong, nonatomic) NSArray *pubLocation;
 @property (strong, nonatomic) NSString *branchName;
 @property (assign, nonatomic) BOOL branchStationIsAhead;
@@ -32,8 +31,6 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) LPCStation *station;
 
 - (id)initWithStation:(LPCStation *)station;
-- (void)updateVenues:(NSArray *)coreDataVenues;
-- (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues;
 
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;

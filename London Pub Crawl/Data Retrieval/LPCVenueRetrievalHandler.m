@@ -95,6 +95,7 @@ NSManagedObjectModel *managedObjectModel;
 - (NSArray *)venuesForStation:(LPCStation *)station completion:(void (^)(NSArray *))completion {
     NSArray *matchingVenues = [self findStoredVenuesForStation:station];
     if (matchingVenues && [matchingVenues count] > 0) {
+        NSLog(@"Returning %d venues from cache", [matchingVenues count]);
         return matchingVenues;
     }
     
@@ -122,6 +123,7 @@ NSManagedObjectModel *managedObjectModel;
         }
         
         if (completion) {
+            NSLog(@"Returning %d venues from foursquare", [resources count]);
             completion([NSArray arrayWithArray:resources]);
         }
     } failure:nil];
