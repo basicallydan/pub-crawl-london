@@ -17,11 +17,14 @@
                 <outlet property="leftLineView" destination="VRr-oX-PZ2" id="XWP-fa-cuh"/>
                 <outlet property="mapImageView" destination="bfg-J1-eEi" id="lpf-Vl-qDu"/>
                 <outlet property="nextPubButton" destination="GO6-dd-lhN" id="JXB-d7-rSi"/>
+                <outlet property="noTipsLabel" destination="QNQ-HG-KuB" id="xuC-KY-3PM"/>
+                <outlet property="noTipsNextPubButton" destination="RP9-vA-XzK" id="W9X-7A-UDi"/>
                 <outlet property="pubNameLabel" destination="6jA-zI-3lY" id="PiN-AV-gDU"/>
                 <outlet property="rightLineView" destination="rmd-EJ-p5B" id="NX9-uy-cdo"/>
                 <outlet property="stationNameLabel" destination="tSM-lh-ny5" id="4pK-9b-JqF"/>
                 <outlet property="tipAuthorLabel" destination="L88-39-NVf" id="hA2-zu-myo"/>
                 <outlet property="tipLabel" destination="kiy-QG-fkK" id="aKD-w9-bm9"/>
+                <outlet property="tipView" destination="Vgb-mt-l1d" id="YfF-F4-bgI"/>
                 <outlet property="toolbar" destination="yzW-Tc-zZN" id="cVO-Un-rsV"/>
                 <outlet property="view" destination="1" id="lRJ-dL-d2M"/>
                 <outlet property="wayOutButton" destination="tbp-Kg-XmV" id="6v9-x5-4ij"/>
@@ -225,12 +228,41 @@
                                 <constraint firstAttribute="width" constant="280" id="a7F-YU-RK6"/>
                             </constraints>
                         </scrollView>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D'oh! This pub has no tips." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNQ-HG-KuB" userLabel="No tips here label">
+                            <rect key="frame" x="20" y="2" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="OZK-lY-0t6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP9-vA-XzK" userLabel="Tips: Change Pub Button">
+                            <rect key="frame" x="76" y="22" width="167" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="hq9-y0-ZmR"/>
+                            </constraints>
+                            <state key="normal" title="Let's see another, then.">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="changePub:" destination="-1" eventType="touchUpInside" id="E3p-Um-UJ9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="QNQ-HG-KuB" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" constant="2" id="8uN-2j-we7"/>
+                        <constraint firstItem="RP9-vA-XzK" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" constant="22" id="EHA-Cx-MJk"/>
                         <constraint firstAttribute="width" constant="320" id="HNd-DA-11C"/>
+                        <constraint firstAttribute="trailing" secondItem="RP9-vA-XzK" secondAttribute="trailing" constant="77" id="KOk-2i-2Vh"/>
                         <constraint firstItem="Vgb-mt-l1d" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" id="Kmi-vC-xyz"/>
+                        <constraint firstItem="QNQ-HG-KuB" firstAttribute="leading" secondItem="02M-Rc-fik" secondAttribute="leading" constant="20" id="ZuP-sc-6NL"/>
+                        <constraint firstItem="RP9-vA-XzK" firstAttribute="leading" secondItem="02M-Rc-fik" secondAttribute="leading" constant="76" id="phV-9N-du2"/>
                         <constraint firstAttribute="bottom" secondItem="Vgb-mt-l1d" secondAttribute="bottom" id="shU-dR-vH8"/>
+                        <constraint firstAttribute="trailing" secondItem="QNQ-HG-KuB" secondAttribute="trailing" constant="20" id="so8-Xv-ZUf"/>
                     </constraints>
                 </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzW-Tc-zZN">

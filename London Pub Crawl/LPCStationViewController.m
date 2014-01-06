@@ -161,6 +161,20 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     self.pubLocation = venue.latLng;
     
     currentVenue = venue;
+    
+    if (!venue.tips || ![venue.tips count] || [venue.tips count] == 0) {
+        self.noTipsLabel.hidden = NO;
+        self.tipView.hidden = YES;
+        if ([venues count] > 1) {
+            self.noTipsNextPubButton.hidden = NO;
+        } else {
+            self.noTipsNextPubButton.hidden = YES;
+        }
+    } else {
+        self.noTipsLabel.hidden = YES;
+        self.tipView.hidden = NO;
+        self.noTipsNextPubButton.hidden = YES;
+    }
 }
 
 - (void)loadMapImage {
