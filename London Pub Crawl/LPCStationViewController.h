@@ -20,10 +20,8 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
-@property (strong, nonatomic) NSArray *tips;
 @property (assign, nonatomic) BOOL firstStop;
 @property (assign, nonatomic) BOOL lastStop;
-@property (strong, nonatomic) NSArray *pubLocation;
 @property (strong, nonatomic) NSString *branchName;
 @property (assign, nonatomic) BOOL branchStationIsAhead;
 @property (strong, nonatomic) NSString *directionForward;
@@ -55,6 +53,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 
 - (IBAction)changeLine:(id)sender;
 - (IBAction)changePub:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
 

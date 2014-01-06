@@ -158,8 +158,6 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     
     self.addressLabel.text = venue.formattedAddress;
     
-    self.pubLocation = venue.latLng;
-    
     currentVenue = venue;
     
     if (!venue.tips || ![venue.tips count] || [venue.tips count] == 0) {
@@ -208,7 +206,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 //    }
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [self.pubLocation[1] floatValue], [self.pubLocation[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
     
     NSLog(@"Map URL is %@", mapImageUrl);
     
@@ -261,7 +259,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     //coordinates for the place we want to display
-    CLLocationCoordinate2D venueLocation = CLLocationCoordinate2DMake([self.pubLocation[0] floatValue], [self.pubLocation[1] floatValue]);
+    CLLocationCoordinate2D venueLocation = CLLocationCoordinate2DMake([currentVenue.latLng[0] floatValue], [currentVenue.latLng[1] floatValue]);
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Apple Maps"]) {
         [CMMapLauncher launchMapApp:CMMapAppAppleMaps forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Google Maps"]) {
