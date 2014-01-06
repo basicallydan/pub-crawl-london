@@ -128,6 +128,12 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
         [self populateVenueDetailsWithVenue:currentVenue];
         [self loadMapImage];
     }
+    
+    if ([venues count] == 1) {
+        self.nextPubButton.hidden = YES;
+    } else if ([venues count] > 1) {
+        self.nextPubButton.hidden = NO;
+    }
 }
 
 - (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues {
@@ -136,8 +142,6 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 }
 
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
-    self.nextPubButton.hidden = NO;
-    
     self.pubNameLabel.text = venue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
     
