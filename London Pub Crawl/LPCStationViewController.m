@@ -261,7 +261,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 }
 
 -(void)openActionSheet:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
     
     [actionSheet addButtonWithTitle:@"Apple Maps"];
     
@@ -271,7 +271,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         [actionSheet addButtonWithTitle:@"Citymapper"];
     }
     
-    [actionSheet addButtonWithTitle:@"Never mind"];
+//    [actionSheet addButtonWithTitle:@"Never mind"];
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
@@ -294,8 +294,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         }
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Citymapper"]) {
         [CMMapLauncher launchMapApp:CMMapAppCitymapper forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
-    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Never mind"]) {
-        [actionSheet dismissWithClickedButtonIndex:[actionSheet numberOfButtons] - 1 animated:YES];
     }
 }
 
