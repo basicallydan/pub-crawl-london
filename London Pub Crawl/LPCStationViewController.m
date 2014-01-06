@@ -23,7 +23,11 @@
     int currentVenueIndex;
     int currentTipIndex;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
+    UIImageView *helpImageOverlay;
 }
+
+#define isiPhone5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
+
 NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 
@@ -89,6 +93,12 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.toolbar setBackgroundColor:[UIColor colorWithHexString:@"#221e1f"]];
     self.toolbar.barStyle = UIBarStyleBlackTranslucent;
     [self.wayOutButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
+    UIFont *fontAwesomeFont = [UIFont fontWithName:kFontAwesomeFamilyName size:20.0];
+    
+    [self.showHelpButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, fontAwesomeFont, NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [self.showHelpButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, fontAwesomeFont, NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [self.showHelpButton setTitle:[NSString fontAwesomeIconStringForEnum:FAIconQuestionSign]];
     
     isMapLoaded = NO;
     
@@ -324,5 +334,41 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     [self populateTipViewWithCurrentTip];
 }
+
+- (IBAction)showHelpOverlay:(id)sender {
+    if (isiPhone5) {
+        helpImageOverlay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station-help-iphone-5.png"]];
+    } else {
+        helpImageOverlay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station-help-iphone-4.png"]];
+    }
+    helpImageOverlay.alpha = 0.0f;
+    [self.view addSubview:helpImageOverlay];
+    [UIView beginAnimations:@"fade in" context:nil];
+    [UIView setAnimationDuration:0.4];
+    helpImageOverlay.alpha = 1.0f;
+    [UIView commitAnimations];
+    
+    helpImageOverlay.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *imageViewGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToTapOfHelpImage:)];
+    imageViewGestureRecogniser.cancelsTouchesInView = NO;
+    
+    [helpImageOverlay addGestureRecognizer:imageViewGestureRecogniser];
+}
+
+- (void)respondToTapOfHelpImage:(UITapGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (helpImageOverlay) {
+            [UIView animateWithDuration:0.4 animations:^{
+                helpImageOverlay.alpha = 1.0; helpImageOverlay.alpha = 0.0;
+            } completion:^(BOOL success) {
+                if (success) {
+                    [helpImageOverlay removeFromSuperview];
+                }
+            }];
+        }
+    }
+}
+
 
 @end

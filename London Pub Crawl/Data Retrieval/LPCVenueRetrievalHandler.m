@@ -1,6 +1,7 @@
 #import "LPCVenueRetrievalHandler.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "Venue.h"
+#import <PonyDebugger/PonyDebugger.h>
 
 @implementation LPCVenueRetrievalHandler
 
@@ -33,6 +34,11 @@ NSManagedObjectModel *managedObjectModel;
         [managedObjectContext setPersistentStoreCoordinator:coordinator];
         [managedObjectContext setUndoManager:nil];
     }
+    
+//    // PonyDebugger Code
+//    PDDebugger *debugger = [PDDebugger defaultInstance];
+//    [debugger addManagedObjectContext:managedObjectContext withName:@"LPC MOC"];
+    
     return managedObjectContext;
 }
 

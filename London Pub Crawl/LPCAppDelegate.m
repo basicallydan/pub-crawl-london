@@ -2,6 +2,7 @@
 
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "LPCVenueRetrievalHandler.h"
+#import <PonyDebugger/PonyDebugger.h>
 
 @implementation LPCAppDelegate
 
@@ -31,6 +32,12 @@
     pageControl.currentPageIndicatorTintColor = [UIColor clearColor];
     pageControl.backgroundColor = [UIColor clearColor];
 
+//    // PonyDebugger code
+//    PDDebugger *debugger = [PDDebugger defaultInstance];
+//    [debugger autoConnect];
+//    [debugger connectToURL:[NSURL URLWithString:@"ws://192.168.1.101:9000/device"]];
+//    [debugger enableCoreDataDebugging];
+    
     return YES;
 }
 

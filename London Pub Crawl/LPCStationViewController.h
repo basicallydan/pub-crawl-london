@@ -55,8 +55,10 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 - (IBAction)changeLine:(id)sender;
 - (IBAction)changePub:(id)sender;
 - (IBAction)changeTip:(id)sender;
+- (IBAction)showHelpOverlay:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *showHelpButton;
 
 @end

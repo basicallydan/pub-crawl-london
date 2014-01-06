@@ -21,15 +21,19 @@ PODS:
     - AFNetworking/NSURLConnection
   - CMMapLauncher (0.0.1)
   - MBXMapKit (0.1.0)
+  - PonyDebugger (0.3.1):
+    - SocketRocket
   - SDWebImage (3.5):
     - SDWebImage/Core
   - SDWebImage/Core (3.5)
+  - SocketRocket (0.3.1-beta2)
   - UIColor-HexString (1.0.1)
 
 DEPENDENCIES:
   - AFNetworking (= 2.0)
   - CMMapLauncher (= 0.0.1)
   - MBXMapKit
+  - PonyDebugger (~> 0.3.1)
   - SDWebImage (= 3.5)
   - UIColor-HexString (~> 1.0.1)
 
@@ -37,7 +41,9 @@ SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
   MBXMapKit: e621aa3ab2c1925d2312ee293f3c147f837ac27c
+  PonyDebugger: d31607145d785b2315cd6f6a4ebaa378eb0c1340
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
+  SocketRocket: 7ac946bcce46287a791dfff3c1f8daa692821dae
   UIColor-HexString: 8a3f512f71b6d94a2cf6bdeabcad2f3532f31b5a
 
 COCOAPODS: 0.26.2
