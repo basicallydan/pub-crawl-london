@@ -17,6 +17,7 @@
                 <outlet property="leftLineView" destination="VRr-oX-PZ2" id="XWP-fa-cuh"/>
                 <outlet property="mapImageView" destination="bfg-J1-eEi" id="lpf-Vl-qDu"/>
                 <outlet property="nextPubButton" destination="GO6-dd-lhN" id="JXB-d7-rSi"/>
+                <outlet property="nextTipButton" destination="r3M-Or-91f" id="tiO-rt-UDY"/>
                 <outlet property="noTipsLabel" destination="QNQ-HG-KuB" id="xuC-KY-3PM"/>
                 <outlet property="noTipsNextPubButton" destination="RP9-vA-XzK" id="W9X-7A-UDi"/>
                 <outlet property="pubNameLabel" destination="6jA-zI-3lY" id="PiN-AV-gDU"/>
@@ -134,7 +135,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GO6-dd-lhN">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GO6-dd-lhN" userLabel="Change Pub Button">
                             <rect key="frame" x="251" y="77" width="49" height="11"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
@@ -249,6 +250,17 @@
                             </state>
                             <connections>
                                 <action selector="changePub:" destination="-1" eventType="touchUpInside" id="E3p-Um-UJ9"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3M-Or-91f">
+                            <rect key="frame" x="257" y="-2" width="43" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="9"/>
+                            <state key="normal" title="Change tip">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="changeTip:" destination="-1" eventType="touchUpInside" id="YO5-5M-ptR"/>
                             </connections>
                         </button>
                     </subviews>

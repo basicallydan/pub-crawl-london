@@ -46,6 +46,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (weak, nonatomic) IBOutlet UIScrollView *tipView;
 @property (weak, nonatomic) IBOutlet UILabel *tipAuthorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UIButton *nextTipButton;
 @property (weak, nonatomic) IBOutlet UILabel *destinationRightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLeftLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -53,6 +54,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 
 - (IBAction)changeLine:(id)sender;
 - (IBAction)changePub:(id)sender;
+- (IBAction)changeTip:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;

@@ -15,24 +15,27 @@
 
 @end
 
-@implementation LPCStationViewController
-
+@implementation LPCStationViewController {
+    BOOL isMapLoaded;
+    int zoomLevel;
+    NSArray *venues;
+    LPCVenue *currentVenue;
+    int currentVenueIndex;
+    int currentTipIndex;
+    LPCVenueRetrievalHandler *venueRetrievalHandler;
+}
 NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
-BOOL isMapLoaded = NO;
-int zoomLevel;
-NSArray *venues;
-LPCVenue *currentVenue;
-int currentVenueIndex = 0;
-LPCVenueRetrievalHandler *venueRetrievalHandler;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
+        isMapLoaded = NO;
         venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
         currentVenueIndex = 0;
+        currentTipIndex = 0;
         venues = nil;
         currentVenue = nil;
     }
@@ -95,6 +98,7 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 # pragma mark - Private Methods
 
 - (void)loadVenues {
+    NSLog(@"Loading venues for %@", self.station.name);
     NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
         if (!venues || [venues count] < 1) {
             [self updateVenuesAndRefresh:remoteVenues];
@@ -142,37 +146,44 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
 }
 
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
-    self.pubNameLabel.text = venue.name;
-    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
-    
-    if ([venue.tips count] == 0) {
-        self.tipAuthorLabel.hidden = YES;
-        self.tipLabel.hidden = YES;
-    } else {
-        self.tipAuthorLabel.hidden = NO;
-        self.tipLabel.hidden = NO;
-        
-        self.tipAuthorLabel.text = [venue.tips[0] valueForKeyPath:@"user.firstName"];
-        self.tipLabel.text = [venue.tips[0] valueForKey:@"text"];
-    }
-    
-    self.addressLabel.text = venue.formattedAddress;
-    
     currentVenue = venue;
+    currentTipIndex = 0;
     
-    if (!venue.tips || ![venue.tips count] || [venue.tips count] == 0) {
+    self.pubNameLabel.text = currentVenue.name;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", currentVenue.distance];
+    
+    if (!currentVenue.tips || ![currentVenue.tips count] || [currentVenue.tips count] == 0) {
         self.noTipsLabel.hidden = NO;
+        self.nextTipButton.hidden = YES;
         self.tipView.hidden = YES;
         if ([venues count] > 1) {
             self.noTipsNextPubButton.hidden = NO;
         } else {
             self.noTipsNextPubButton.hidden = YES;
         }
-    } else {
-        self.noTipsLabel.hidden = YES;
-        self.tipView.hidden = NO;
-        self.noTipsNextPubButton.hidden = YES;
+    } else { // So, there are some tips
+        [self populateTipViewWithCurrentTip];
     }
+    
+    self.addressLabel.text = currentVenue.formattedAddress;
+}
+
+- (void)populateTipViewWithCurrentTip {
+    self.noTipsLabel.hidden = YES;
+    self.nextTipButton.hidden = NO;
+    self.tipView.hidden = NO;
+    self.noTipsNextPubButton.hidden = YES;
+    
+    if ([[currentVenue tips] count] > 1) {
+        self.nextTipButton.hidden = NO;
+    } else {
+        self.nextTipButton.hidden = YES;
+    }
+    
+    NSDictionary *currentTip = currentVenue.tips[currentTipIndex];
+    
+    self.tipAuthorLabel.text = [currentTip valueForKeyPath:@"user.firstName"];
+    self.tipLabel.text = [currentTip valueForKey:@"text"];
 }
 
 - (void)loadMapImage {
@@ -302,6 +313,16 @@ LPCVenueRetrievalHandler *venueRetrievalHandler;
     
     [self populateVenueDetailsWithVenue:currentVenue];
     [self loadMapImage];
+}
+
+- (IBAction)changeTip:(id)sender {
+    currentTipIndex++;
+    
+    if (currentTipIndex >= [currentVenue.tips count]) {
+        currentTipIndex = 0;
+    }
+    
+    [self populateTipViewWithCurrentTip];
 }
 
 @end
