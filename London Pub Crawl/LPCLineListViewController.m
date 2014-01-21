@@ -145,4 +145,9 @@ CGFloat const maxRowHeight = 101.45f;
     }
 }
 
+- (IBAction)helpButtonPressed:(id)sender {
+}
+
+- (IBAction)happilyButtonPressed:(id)sender {
+}
 @end

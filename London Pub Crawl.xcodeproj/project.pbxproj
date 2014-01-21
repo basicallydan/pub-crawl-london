@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		37006A57185F1EC3000E0732 /* LPCDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37006A55185F1EC3000E0732 /* LPCDataModel.xcdatamodeld */; };
 		37006A66185F4361000E0732 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37006A65185F4361000E0732 /* Venue.m */; };
+		370E5172188E8A05004C8AC1 /* LPCBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 370E5170188E8A05004C8AC1 /* LPCBrowserViewController.m */; };
+		370E5173188E8A05004C8AC1 /* LPCBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 370E5171188E8A05004C8AC1 /* LPCBrowserViewController.xib */; };
 		370FEA50180D489C00692418 /* tfl-tube-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 370FEA4F180D489C00692418 /* tfl-tube-data.json */; };
 		370FEA53180D58DD00692418 /* LPCLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 370FEA52180D58DD00692418 /* LPCLineViewController.m */; };
 		370FEA56180D68F300692418 /* LPCStationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 370FEA55180D68F300692418 /* LPCStationViewController.m */; };
@@ -98,6 +100,9 @@
 		37006A56185F1EC3000E0732 /* LPCDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LPCDataModel.xcdatamodel; sourceTree = "<group>"; };
 		37006A64185F4361000E0732 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		37006A65185F4361000E0732 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		370E516F188E8A05004C8AC1 /* LPCBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCBrowserViewController.h; sourceTree = "<group>"; };
+		370E5170188E8A05004C8AC1 /* LPCBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCBrowserViewController.m; sourceTree = "<group>"; };
+		370E5171188E8A05004C8AC1 /* LPCBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPCBrowserViewController.xib; sourceTree = "<group>"; };
 		370FEA4F180D489C00692418 /* tfl-tube-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tfl-tube-data.json"; sourceTree = "<group>"; };
 		370FEA51180D58DD00692418 /* LPCLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCLineViewController.h; sourceTree = "<group>"; };
 		370FEA52180D58DD00692418 /* LPCLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLineViewController.m; sourceTree = "<group>"; };
@@ -342,6 +347,9 @@
 				3769ACF91868509000D6F2B0 /* Lib */,
 				37BF43A5180D31EC0091BE5F /* LPCAppDelegate.h */,
 				37BF43A6180D31EC0091BE5F /* LPCAppDelegate.m */,
+				370E516F188E8A05004C8AC1 /* LPCBrowserViewController.h */,
+				370E5170188E8A05004C8AC1 /* LPCBrowserViewController.m */,
+				370E5171188E8A05004C8AC1 /* LPCBrowserViewController.xib */,
 				3762504A183A45CB0061F1F4 /* LPCCircleView.h */,
 				3762504B183A45CB0061F1F4 /* LPCCircleView.m */,
 				376CD9B91827B22B00D4C599 /* LPCForkViewController.h */,
@@ -521,6 +529,7 @@
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,
 				37BF43AA180D31EC0091BE5F /* Main_iPhone.storyboard in Resources */,
 				376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */,
+				370E5173188E8A05004C8AC1 /* LPCBrowserViewController.xib in Resources */,
 				376CD9B41823D51600D4C599 /* pub-icon@2x.png in Resources */,
 				376CD9BD1827B22B00D4C599 /* LPCForkViewController.xib in Resources */,
 				3762503B1833CACB0061F1F4 /* LPCLineOptionModalViewController.xib in Resources */,
@@ -594,6 +603,7 @@
 				37BF43B0180D31EC0091BE5F /* LPCLineListViewController.m in Sources */,
 				3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */,
 				3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */,
+				370E5172188E8A05004C8AC1 /* LPCBrowserViewController.m in Sources */,
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */,
 				37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */,
