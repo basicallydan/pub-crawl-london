@@ -113,6 +113,10 @@ CGFloat const maxRowHeight = 101.45f;
         if (!cell) {
             cell = [[LPCLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        
+        UIView *selectionColor = [[UIView alloc] init];
+        selectionColor.backgroundColor = [UIColor colorWithRed:(250/255.0) green:(250/255.0) blue:(250/255.0) alpha:0.3f];
+        cell.selectedBackgroundView = selectionColor;
 
         [self configureCell:cell forRowAtIndexPath:indexPath];
 

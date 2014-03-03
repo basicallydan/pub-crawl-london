@@ -25,6 +25,9 @@
 		371AE6601882061500AA9557 /* AppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65E1882061500AA9557 /* AppIcon144x144.png */; };
 		371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */; };
 		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
+		3744F59718C51BC4000F6669 /* Default4inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59418C51BC4000F6669 /* Default4inch.png */; };
+		3744F59818C51BC4000F6669 /* Default35inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59518C51BC4000F6669 /* Default35inch.png */; };
+		3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59618C51BC4000F6669 /* Default35inch@2x.png */; };
 		375787C4184C9B4F005386CB /* UIColor+HexStringFromColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */; };
 		375787C9184DDA39005386CB /* LPCNorthernLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 375787C8184DDA39005386CB /* LPCNorthernLineTests.m */; };
 		37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 37625035182BD4BA0061F1F4 /* station-pubs.json */; };
@@ -120,6 +123,9 @@
 		371AE65E1882061500AA9557 /* AppIcon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon144x144.png; sourceTree = "<group>"; };
 		371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon144x144@2x.png"; sourceTree = "<group>"; };
 		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
+		3744F59418C51BC4000F6669 /* Default4inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default4inch.png; sourceTree = "<group>"; };
+		3744F59518C51BC4000F6669 /* Default35inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default35inch.png; sourceTree = "<group>"; };
+		3744F59618C51BC4000F6669 /* Default35inch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default35inch@2x.png"; sourceTree = "<group>"; };
 		375787C2184C9B4F005386CB /* UIColor+HexStringFromColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexStringFromColor.h"; sourceTree = "<group>"; };
 		375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexStringFromColor.m"; sourceTree = "<group>"; };
 		375787C8184DDA39005386CB /* LPCNorthernLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCNorthernLineTests.m; sourceTree = "<group>"; };
@@ -240,6 +246,9 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3744F59418C51BC4000F6669 /* Default4inch.png */,
+				3744F59518C51BC4000F6669 /* Default35inch.png */,
+				3744F59618C51BC4000F6669 /* Default35inch@2x.png */,
 				371AE65E1882061500AA9557 /* AppIcon144x144.png */,
 				371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */,
 				37D5D237187B3EB1002269A9 /* AppIcon60x60.png */,
@@ -510,7 +519,9 @@
 				376CD9B31823D51600D4C599 /* pub-icon.png in Resources */,
 				377174AD187B0DFA000C1242 /* station-help-iphone-4@2x.png in Resources */,
 				370FEA50180D489C00692418 /* tfl-tube-data.json in Resources */,
+				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
 				37D5D236187B3074002269A9 /* options-image@2x.png in Resources */,
+				3744F59818C51BC4000F6669 /* Default35inch.png in Resources */,
 				377174AC187B0DFA000C1242 /* station-help-iphone-4.png in Resources */,
 				37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */,
 				377D7B7B182A96FE0071B5D4 /* tube-line-button-normal.png in Resources */,
@@ -522,6 +533,7 @@
 				378E72AC187B1B1000CDF729 /* station-help-iphone-5.png in Resources */,
 				37D5D239187B3EB1002269A9 /* AppIcon60x60.png in Resources */,
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
+				3744F59718C51BC4000F6669 /* Default4inch.png in Resources */,
 				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
 				3769AD02186854E500D6F2B0 /* FontAwesome.ttf in Resources */,
 				37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */,
