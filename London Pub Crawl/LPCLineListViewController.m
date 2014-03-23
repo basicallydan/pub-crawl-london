@@ -12,6 +12,10 @@
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
 
+// In-App Purchases
+#import "LPCPurchaseHelper.h"
+#import <StoreKit/StoreKit.h>
+
 @interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate>
 
 @end
@@ -25,6 +29,12 @@ CGFloat const maxRowHeight = 101.45f;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     // Do any additional setup after loading the view, typically from a nib.
+    [[LPCPurchaseHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+//            [self.tableView reloadData];
+        }
+//        [self.refreshControl endRefreshing];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

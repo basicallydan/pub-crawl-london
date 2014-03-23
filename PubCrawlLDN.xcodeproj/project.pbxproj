@@ -83,6 +83,17 @@
 		37D5D239187B3EB1002269A9 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D237187B3EB1002269A9 /* AppIcon60x60.png */; };
 		37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D238187B3EB1002269A9 /* AppIcon60x60@2x.png */; };
 		37EF4B2D18DEF2BB0063B848 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */; };
+		37EF4B2F18DF2E020063B848 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EF4B2E18DF2E020063B848 /* StoreKit.framework */; };
+		37EF4B3218DF2EC60063B848 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF4B3118DF2EC60063B848 /* IAPHelper.m */; };
+		37EF4B3518DF35BD0063B848 /* LPCPurchaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF4B3418DF35BD0063B848 /* LPCPurchaseHelper.m */; };
+		37EF4B3918DF465C0063B848 /* Frame 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3718DF465C0063B848 /* Frame 3.png */; };
+		37EF4B3A18DF465C0063B848 /* Frame 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3818DF465C0063B848 /* Frame 3@2x.png */; };
+		37EF4B3F18DF468F0063B848 /* Frame 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3B18DF468F0063B848 /* Frame 1.png */; };
+		37EF4B4018DF468F0063B848 /* Frame 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3C18DF468F0063B848 /* Frame 1@2x.png */; };
+		37EF4B4118DF468F0063B848 /* Frame 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3D18DF468F0063B848 /* Frame 2.png */; };
+		37EF4B4218DF468F0063B848 /* Frame 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3E18DF468F0063B848 /* Frame 2@2x.png */; };
+		37EF4B4518DF48650063B848 /* Frame 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B4318DF48650063B848 /* Frame 4.png */; };
+		37EF4B4618DF48650063B848 /* Frame 4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B4418DF48650063B848 /* Frame 4@2x.png */; };
 		37F45A78184108E60025CC9B /* map-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A76184108E60025CC9B /* map-placeholder.png */; };
 		37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A77184108E60025CC9B /* map-placeholder@2x.png */; };
 		37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F45A7E1843ABB70025CC9B /* LPCVenue.m */; };
@@ -201,6 +212,19 @@
 		37D5D237187B3EB1002269A9 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
 		37D5D238187B3EB1002269A9 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
 		37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		37EF4B2E18DF2E020063B848 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		37EF4B3018DF2EC60063B848 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		37EF4B3118DF2EC60063B848 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		37EF4B3318DF35BD0063B848 /* LPCPurchaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCPurchaseHelper.h; sourceTree = "<group>"; };
+		37EF4B3418DF35BD0063B848 /* LPCPurchaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCPurchaseHelper.m; sourceTree = "<group>"; };
+		37EF4B3718DF465C0063B848 /* Frame 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 3.png"; sourceTree = "<group>"; };
+		37EF4B3818DF465C0063B848 /* Frame 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 3@2x.png"; sourceTree = "<group>"; };
+		37EF4B3B18DF468F0063B848 /* Frame 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 1.png"; sourceTree = "<group>"; };
+		37EF4B3C18DF468F0063B848 /* Frame 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 1@2x.png"; sourceTree = "<group>"; };
+		37EF4B3D18DF468F0063B848 /* Frame 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 2.png"; sourceTree = "<group>"; };
+		37EF4B3E18DF468F0063B848 /* Frame 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 2@2x.png"; sourceTree = "<group>"; };
+		37EF4B4318DF48650063B848 /* Frame 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 4.png"; sourceTree = "<group>"; };
+		37EF4B4418DF48650063B848 /* Frame 4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 4@2x.png"; sourceTree = "<group>"; };
 		37F45A76184108E60025CC9B /* map-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder.png"; sourceTree = "<group>"; };
 		37F45A77184108E60025CC9B /* map-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder@2x.png"; sourceTree = "<group>"; };
 		37F45A7D1843ABB70025CC9B /* LPCVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenue.h; sourceTree = "<group>"; };
@@ -216,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37EF4B2F18DF2E020063B848 /* StoreKit.framework in Frameworks */,
 				37EF4B2D18DEF2BB0063B848 /* SystemConfiguration.framework in Frameworks */,
 				37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */,
 				37BF4399180D31EC0091BE5F /* CoreGraphics.framework in Frameworks */,
@@ -249,6 +274,7 @@
 		370FEA68180D7F5200692418 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37EF4B3618DF465C0063B848 /* loading-images */,
 				3744F59418C51BC4000F6669 /* Default4inch.png */,
 				3744F59518C51BC4000F6669 /* Default35inch.png */,
 				3744F59618C51BC4000F6669 /* Default35inch@2x.png */,
@@ -340,6 +366,7 @@
 		37BF4395180D31EC0091BE5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37EF4B2E18DF2E020063B848 /* StoreKit.framework */,
 				37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */,
 				37A131D5180DC9C90048975C /* MapKit.framework */,
 				37BF4396180D31EC0091BE5F /* Foundation.framework */,
@@ -394,6 +421,10 @@
 				37BF439D180D31EC0091BE5F /* Supporting Files */,
 				375787C2184C9B4F005386CB /* UIColor+HexStringFromColor.h */,
 				375787C3184C9B4F005386CB /* UIColor+HexStringFromColor.m */,
+				37EF4B3018DF2EC60063B848 /* IAPHelper.h */,
+				37EF4B3118DF2EC60063B848 /* IAPHelper.m */,
+				37EF4B3318DF35BD0063B848 /* LPCPurchaseHelper.h */,
+				37EF4B3418DF35BD0063B848 /* LPCPurchaseHelper.m */,
 			);
 			path = "London Pub Crawl";
 			sourceTree = "<group>";
@@ -429,6 +460,21 @@
 				37BF43C1180D31ED0091BE5F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		37EF4B3618DF465C0063B848 /* loading-images */ = {
+			isa = PBXGroup;
+			children = (
+				37EF4B4318DF48650063B848 /* Frame 4.png */,
+				37EF4B4418DF48650063B848 /* Frame 4@2x.png */,
+				37EF4B3B18DF468F0063B848 /* Frame 1.png */,
+				37EF4B3C18DF468F0063B848 /* Frame 1@2x.png */,
+				37EF4B3D18DF468F0063B848 /* Frame 2.png */,
+				37EF4B3E18DF468F0063B848 /* Frame 2@2x.png */,
+				37EF4B3718DF465C0063B848 /* Frame 3.png */,
+				37EF4B3818DF465C0063B848 /* Frame 3@2x.png */,
+			);
+			path = "loading-images";
 			sourceTree = "<group>";
 		};
 		37FD3F0F18575FC2009B6306 /* Data Retrieval */ = {
@@ -534,6 +580,7 @@
 				377D7B7B182A96FE0071B5D4 /* tube-line-button-normal.png in Resources */,
 				377D7B7E182A96FE0071B5D4 /* tube-line-button-pressed@2x.png in Resources */,
 				370FEA66180D7EB300692418 /* Jubilee-Line-Start.png in Resources */,
+				37EF4B3F18DF468F0063B848 /* Frame 1.png in Resources */,
 				377D7B7D182A96FE0071B5D4 /* tube-line-button-pressed.png in Resources */,
 				378E72AD187B1B1000CDF729 /* station-help-iphone-5@2x.png in Resources */,
 				370FEA67180D7EB300692418 /* Jubilee-Line-Start@2x.png in Resources */,
@@ -542,22 +589,29 @@
 				377D7B72182A6E480071B5D4 /* tube-line-fork-central-line@2x.png in Resources */,
 				3744F59718C51BC4000F6669 /* Default4inch.png in Resources */,
 				376CD9B71823D7C700D4C599 /* station-icon.png in Resources */,
+				37EF4B3A18DF465C0063B848 /* Frame 3@2x.png in Resources */,
 				3769AD02186854E500D6F2B0 /* FontAwesome.ttf in Resources */,
 				37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */,
 				37944F6318450D9A0005379D /* tube-line-fork-double-sided@2x.png in Resources */,
 				37BF43B2180D31EC0091BE5F /* Images.xcassets in Resources */,
 				37BF43AA180D31EC0091BE5F /* Main_iPhone.storyboard in Resources */,
+				37EF4B4218DF468F0063B848 /* Frame 2@2x.png in Resources */,
+				37EF4B4118DF468F0063B848 /* Frame 2.png in Resources */,
 				376CD9B81823D7C700D4C599 /* station-icon@2x.png in Resources */,
 				370E5173188E8A05004C8AC1 /* LPCBrowserViewController.xib in Resources */,
+				37EF4B4618DF48650063B848 /* Frame 4@2x.png in Resources */,
 				376CD9B41823D51600D4C599 /* pub-icon@2x.png in Resources */,
 				376CD9BD1827B22B00D4C599 /* LPCForkViewController.xib in Resources */,
+				37EF4B4518DF48650063B848 /* Frame 4.png in Resources */,
 				3762503B1833CACB0061F1F4 /* LPCLineOptionModalViewController.xib in Resources */,
+				37EF4B4018DF468F0063B848 /* Frame 1@2x.png in Resources */,
 				370FEA64180D7EB300692418 /* Jubilee-Line-End.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
 				377D7B71182A6E480071B5D4 /* tube-line-fork-central-line.png in Resources */,
 				371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */,
 				37625036182BD4BA0061F1F4 /* station-pubs.json in Resources */,
 				37F45A78184108E60025CC9B /* map-placeholder.png in Resources */,
+				37EF4B3918DF465C0063B848 /* Frame 3.png in Resources */,
 				377D7B7C182A96FE0071B5D4 /* tube-line-button-normal@2x.png in Resources */,
 				370FEA5F180D7E7600692418 /* Jubilee-Line@2x.png in Resources */,
 				370FEA65180D7EB300692418 /* Jubilee-Line-End@2x.png in Resources */,
@@ -618,11 +672,13 @@
 			files = (
 				37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */,
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
+				37EF4B3218DF2EC60063B848 /* IAPHelper.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
 				37BF43B0180D31EC0091BE5F /* LPCLineListViewController.m in Sources */,
 				3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */,
 				3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */,
 				370E5172188E8A05004C8AC1 /* LPCBrowserViewController.m in Sources */,
+				37EF4B3518DF35BD0063B848 /* LPCPurchaseHelper.m in Sources */,
 				376CD9A6181D4B2500D4C599 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */,
 				37A131DC180DE9580048975C /* LPCThemeManager.m in Sources */,
@@ -709,7 +765,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Hough (7UC35A2T2B)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -749,7 +805,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Hough (7UC35A2T2B)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

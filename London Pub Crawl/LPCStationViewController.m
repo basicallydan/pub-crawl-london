@@ -146,6 +146,20 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.showHelpButton setTitle:[NSString fontAwesomeIconStringForEnum:FAIconQuestionSign]];
     
     isMapLoaded = NO;
+//    UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    self.loadingImageView.animationImages = [NSArray arrayWithObjects:
+                                         [UIImage imageNamed:@"Frame 1.png"],
+                                         [UIImage imageNamed:@"Frame 2.png"],
+                                         [UIImage imageNamed:@"Frame 3.png"],
+                                             [UIImage imageNamed:@"Frame 4.png"],
+                                             [UIImage imageNamed:@"Frame 3.png"],
+                                             [UIImage imageNamed:@"Frame 2.png"],
+                                             [UIImage imageNamed:@"Frame 1.png"],
+                                        nil];
+    self.loadingImageView.animationDuration = 0.5f;
+    self.loadingImageView.animationRepeatCount = 0;
+    [self.loadingImageView startAnimating];
+//    [self.view addSubview: animatedImageView];
     
     [self refreshVenues];
 }
@@ -203,6 +217,10 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
     currentVenue = venue;
     currentTipIndex = 0;
+    
+    // Hide the loading image
+    [self.loadingImageView stopAnimating];
+    self.loadingImageView.hidden = YES;
     
     self.pubNameLabel.text = currentVenue.name;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", currentVenue.distance];
@@ -277,6 +295,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     NSLog(@"Map URL is %@", mapImageUrl);
     
     [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
+    [self.mapImageView setImage:[UIImage imageNamed:@"map-placeholder.png"]];
     UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
     self.mapImageView.userInteractionEnabled = YES;
     [self.mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
