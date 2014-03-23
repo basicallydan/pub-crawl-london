@@ -26,7 +26,8 @@
     } else {
         self.formattedAddress = @"No address given :(";
     }
-    self.distance =[pubData valueForKeyPath:@"venue.location.distance"];
+    self.distance = [pubData valueForKeyPath:@"venue.location.distance"];
+//    self.distance = [NSNumber numberWithInteger:[pubData valueForKeyPath:@"venue.location.distance"]]
     NSNumber *pubLatitude = [pubData valueForKeyPath:@"venue.location.lat"];
     NSNumber *pubLongitude = [pubData valueForKeyPath:@"venue.location.lng"];
     if ([pubData valueForKeyPath:@"venue.location.mapZoomLevel"] != nil) {
@@ -36,7 +37,7 @@
     [self setArrayOfTips:[pubData valueForKey:@"tips"]];
     [self setArrayOfCoordinates:@[pubLatitude, pubLongitude]];
     self.priceTier = [pubData valueForKeyPath:@"venue.price.tier"];
-    self.priceMessage = [pubData valueForKeyPath:@"venue.price.message"];
+    self.priceMessage = [NSString stringWithString:[pubData valueForKeyPath:@"venue.price.message"]];
 }
 
 - (void)setArrayOfCoordinates:(NSArray *)coordinates {

@@ -3,10 +3,16 @@
 #import "Venue.h"
 #import <PonyDebugger/PonyDebugger.h>
 
+@interface LPCVenueRetrievalHandler()
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@end
+
 @implementation LPCVenueRetrievalHandler
 
 NSMutableDictionary *venues;
-NSManagedObjectContext *managedObjectContext;
+//NSManagedObjectContext *managedObjectContext;
 NSPersistentStoreCoordinator *persistentStoreCoordinator;
 NSManagedObjectModel *managedObjectModel;
 
@@ -26,20 +32,20 @@ NSManagedObjectModel *managedObjectModel;
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
-    NSManagedObjectContext *managedObjectContext = nil;
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-        [managedObjectContext setUndoManager:nil];
+    if (!_managedObjectContext) {
+        NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+        if (coordinator) {
+            _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+            [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+            [_managedObjectContext setUndoManager:nil];
+        }
     }
     
 //    // PonyDebugger Code
 //    PDDebugger *debugger = [PDDebugger defaultInstance];
 //    [debugger addManagedObjectContext:managedObjectContext withName:@"LPC MOC"];
     
-    return managedObjectContext;
+    return _managedObjectContext;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
