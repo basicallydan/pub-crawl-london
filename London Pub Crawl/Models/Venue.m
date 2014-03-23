@@ -36,8 +36,11 @@
     self.tips = [pubData valueForKey:@"tips"];
     [self setArrayOfTips:[pubData valueForKey:@"tips"]];
     [self setArrayOfCoordinates:@[pubLatitude, pubLongitude]];
-    self.priceTier = [pubData valueForKeyPath:@"venue.price.tier"];
-    self.priceMessage = [NSString stringWithString:[pubData valueForKeyPath:@"venue.price.message"]];
+    NSDictionary *priceInfo = [pubData valueForKeyPath:@"venue.price"];
+    if (priceInfo) {
+        self.priceTier = [pubData valueForKeyPath:@"venue.price.tier"];
+        self.priceMessage = [NSString stringWithString:[pubData valueForKeyPath:@"venue.price.message"]];
+    }
 }
 
 - (void)setArrayOfCoordinates:(NSArray *)coordinates {

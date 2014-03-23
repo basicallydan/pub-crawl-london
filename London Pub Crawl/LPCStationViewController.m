@@ -58,7 +58,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         reach.reachableBlock = ^(Reachability * reachability)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"Now reachable");
+//                NSLog(@"Now reachable");
                 reachable = YES;
             });
         };
@@ -66,7 +66,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         reach.unreachableBlock = ^(Reachability * reachability)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"Now no longer reachable");
+//                NSLog(@"Now no longer reachable");
                 reachable = NO;
             });
         };
@@ -82,12 +82,12 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     if([reach isReachable])
     {
-        NSLog(@"Reachable");
+//        NSLog(@"Reachable");
         reachable = YES;
     }
     else
     {
-        NSLog(@"Not reachable");
+//        NSLog(@"Not reachable");
         reachable = NO;
     }
 }
@@ -160,13 +160,13 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.loadingImageView startAnimating];
 //    [self.view addSubview: animatedImageView];
     
-//    [self refreshVenues];
+    [self refreshVenues];
 }
 
 # pragma mark - Private Methods
 
 - (void)loadVenues {
-    NSLog(@"Loading venues for %@", self.station.name);
+    NSLog(@"[%@]: Loading venues", self.station.name);
     NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
         if (!venues || [venues count] < 1) {
             [self updateVenuesAndRefresh:remoteVenues];
@@ -174,6 +174,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }];
     
     if (storedVenues) {
+        NSLog(@"[%@]: Displaying cached venues", self.station.name);
         [self updateVenuesAndRefresh:storedVenues];
     }
 }
@@ -196,6 +197,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (void)refreshVenues {
     if ([venues count] > 0) {
+        NSLog(@"[%@]: Showing the first of %d venues", self.station.name, [venues count]);
         currentVenue = [venues objectAtIndex:currentVenueIndex];
         [self populateVenueDetailsWithVenue:currentVenue];
         [self loadMapImage];
@@ -214,15 +216,24 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 }
 
 - (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
+    NSLog(@"[%@]: Populating details for %@", self.station.name, venue.name);
     currentVenue = venue;
     currentTipIndex = 0;
+    
+    // Populate text of labels
+    [self.pubNameLabel setTextColor:[UIColor blackColor]];
+    self.pubNameLabel.text = venue.name;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", currentVenue.distance];
+    self.addressLabel.text = currentVenue.formattedAddress;
     
     // Hide the loading image
     [self.loadingImageView stopAnimating];
     self.loadingImageView.hidden = YES;
     
-    self.pubNameLabel.text = currentVenue.name;
-    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", currentVenue.distance];
+    // Show the labels in their populated form
+    self.pubNameLabel.hidden = NO;
+    self.distanceLabel.hidden = NO;
+    self.addressLabel.hidden = NO;
     
     if (!currentVenue.tips || ![currentVenue.tips count] || [currentVenue.tips count] == 0) {
         self.noTipsLabel.hidden = NO;
@@ -237,7 +248,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         [self populateTipViewWithCurrentTip];
     }
     
-    self.addressLabel.text = currentVenue.formattedAddress;
+    NSLog(@"[%@]: Finished populating for %@", self.station.name, venue.name);
 }
 
 - (void)populateTipViewWithCurrentTip {
@@ -291,7 +302,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
     NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
     
-    NSLog(@"Map URL is %@", mapImageUrl);
+//    NSLog(@"Map URL is %@", mapImageUrl);
     
     [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     [self.mapImageView setImage:[UIImage imageNamed:@"map-placeholder.png"]];
