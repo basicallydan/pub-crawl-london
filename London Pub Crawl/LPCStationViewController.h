@@ -1,7 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#import <MapKit/MapKit.h>
-#import <MBXMapKit/MBXMapKit.h>
 #import "LPCStation.h"
 
 @protocol LPCStationViewControllerDelegate <NSObject>

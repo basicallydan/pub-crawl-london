@@ -82,6 +82,7 @@
 		37D5D236187B3074002269A9 /* options-image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D234187B3074002269A9 /* options-image@2x.png */; };
 		37D5D239187B3EB1002269A9 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D237187B3EB1002269A9 /* AppIcon60x60.png */; };
 		37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D238187B3EB1002269A9 /* AppIcon60x60@2x.png */; };
+		37EF4B2D18DEF2BB0063B848 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */; };
 		37F45A78184108E60025CC9B /* map-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A76184108E60025CC9B /* map-placeholder.png */; };
 		37F45A79184108E60025CC9B /* map-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F45A77184108E60025CC9B /* map-placeholder@2x.png */; };
 		37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F45A7E1843ABB70025CC9B /* LPCVenue.m */; };
@@ -175,23 +176,23 @@
 		37A131D5180DC9C90048975C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		37A131DA180DE9580048975C /* LPCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCThemeManager.h; sourceTree = "<group>"; };
 		37A131DB180DE9580048975C /* LPCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCThemeManager.m; sourceTree = "<group>"; };
-		37BF4393180D31EC0091BE5F /* London Pub Crawl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "London Pub Crawl.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37BF4393180D31EC0091BE5F /* PubCrawlLDN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PubCrawlLDN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BF4396180D31EC0091BE5F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37BF4398180D31EC0091BE5F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		37BF439A180D31EC0091BE5F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		37BF439E180D31EC0091BE5F /* London Pub Crawl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "London Pub Crawl-Info.plist"; sourceTree = "<group>"; };
+		37BF439E180D31EC0091BE5F /* PubCrawlLDN-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PubCrawlLDN-Info.plist"; sourceTree = "<group>"; };
 		37BF43A0180D31EC0091BE5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37BF43A2180D31EC0091BE5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		37BF43A4180D31EC0091BE5F /* London Pub Crawl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "London Pub Crawl-Prefix.pch"; sourceTree = "<group>"; };
+		37BF43A4180D31EC0091BE5F /* PubCrawlLDN-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PubCrawlLDN-Prefix.pch"; sourceTree = "<group>"; };
 		37BF43A5180D31EC0091BE5F /* LPCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCAppDelegate.h; sourceTree = "<group>"; };
 		37BF43A6180D31EC0091BE5F /* LPCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCAppDelegate.m; sourceTree = "<group>"; };
 		37BF43A9180D31EC0091BE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		37BF43AE180D31EC0091BE5F /* LPCLineListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPCLineListViewController.h; sourceTree = "<group>"; };
 		37BF43AF180D31EC0091BE5F /* LPCLineListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LPCLineListViewController.m; sourceTree = "<group>"; };
 		37BF43B1180D31EC0091BE5F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		37BF43B7180D31EC0091BE5F /* London Pub CrawlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "London Pub CrawlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37BF43B7180D31EC0091BE5F /* PubCrawlLDNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PubCrawlLDNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BF43B8180D31EC0091BE5F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		37BF43C0180D31ED0091BE5F /* London Pub CrawlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "London Pub CrawlTests-Info.plist"; sourceTree = "<group>"; };
+		37BF43C0180D31ED0091BE5F /* PubCrawlLDNTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PubCrawlLDNTests-Info.plist"; sourceTree = "<group>"; };
 		37BF43C2180D31ED0091BE5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37D5D230187B2748002269A9 /* LPCOptionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCOptionsCell.h; sourceTree = "<group>"; };
 		37D5D231187B2748002269A9 /* LPCOptionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCOptionsCell.m; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 		37D5D234187B3074002269A9 /* options-image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "options-image@2x.png"; sourceTree = "<group>"; };
 		37D5D237187B3EB1002269A9 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
 		37D5D238187B3EB1002269A9 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		37F45A76184108E60025CC9B /* map-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder.png"; sourceTree = "<group>"; };
 		37F45A77184108E60025CC9B /* map-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder@2x.png"; sourceTree = "<group>"; };
 		37F45A7D1843ABB70025CC9B /* LPCVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenue.h; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37EF4B2D18DEF2BB0063B848 /* SystemConfiguration.framework in Frameworks */,
 				37A131D6180DC9C90048975C /* MapKit.framework in Frameworks */,
 				37BF4399180D31EC0091BE5F /* CoreGraphics.framework in Frameworks */,
 				37BF439B180D31EC0091BE5F /* UIKit.framework in Frameworks */,
@@ -328,8 +331,8 @@
 		37BF4394180D31EC0091BE5F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37BF4393180D31EC0091BE5F /* London Pub Crawl.app */,
-				37BF43B7180D31EC0091BE5F /* London Pub CrawlTests.xctest */,
+				37BF4393180D31EC0091BE5F /* PubCrawlLDN.app */,
+				37BF43B7180D31EC0091BE5F /* PubCrawlLDNTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 		37BF4395180D31EC0091BE5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */,
 				37A131D5180DC9C90048975C /* MapKit.framework */,
 				37BF4396180D31EC0091BE5F /* Foundation.framework */,
 				37BF4398180D31EC0091BE5F /* CoreGraphics.framework */,
@@ -399,8 +403,8 @@
 			children = (
 				37625035182BD4BA0061F1F4 /* station-pubs.json */,
 				37BF439F180D31EC0091BE5F /* InfoPlist.strings */,
-				37BF439E180D31EC0091BE5F /* London Pub Crawl-Info.plist */,
-				37BF43A4180D31EC0091BE5F /* London Pub Crawl-Prefix.pch */,
+				37BF439E180D31EC0091BE5F /* PubCrawlLDN-Info.plist */,
+				37BF43A4180D31EC0091BE5F /* PubCrawlLDN-Prefix.pch */,
 				37BF43A2180D31EC0091BE5F /* main.m */,
 				370FEA4F180D489C00692418 /* tfl-tube-data.json */,
 			);
@@ -421,7 +425,7 @@
 		37BF43BF180D31ED0091BE5F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				37BF43C0180D31ED0091BE5F /* London Pub CrawlTests-Info.plist */,
+				37BF43C0180D31ED0091BE5F /* PubCrawlLDNTests-Info.plist */,
 				37BF43C1180D31ED0091BE5F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -439,9 +443,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		37BF4392180D31EC0091BE5F /* London Pub Crawl */ = {
+		37BF4392180D31EC0091BE5F /* PubCrawlLDN */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37BF43C8180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "London Pub Crawl" */;
+			buildConfigurationList = 37BF43C8180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "PubCrawlLDN" */;
 			buildPhases = (
 				014E55C0029E4978A67AA5E2 /* Check Pods Manifest.lock */,
 				37BF438F180D31EC0091BE5F /* Sources */,
@@ -453,14 +457,14 @@
 			);
 			dependencies = (
 			);
-			name = "London Pub Crawl";
+			name = PubCrawlLDN;
 			productName = "London Pub Crawl";
-			productReference = 37BF4393180D31EC0091BE5F /* London Pub Crawl.app */;
+			productReference = 37BF4393180D31EC0091BE5F /* PubCrawlLDN.app */;
 			productType = "com.apple.product-type.application";
 		};
-		37BF43B6180D31EC0091BE5F /* London Pub CrawlTests */ = {
+		37BF43B6180D31EC0091BE5F /* PubCrawlLDNTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37BF43CB180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "London Pub CrawlTests" */;
+			buildConfigurationList = 37BF43CB180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "PubCrawlLDNTests" */;
 			buildPhases = (
 				37BF43B3180D31EC0091BE5F /* Sources */,
 				37BF43B4180D31EC0091BE5F /* Frameworks */,
@@ -471,9 +475,9 @@
 			dependencies = (
 				37BF43BD180D31ED0091BE5F /* PBXTargetDependency */,
 			);
-			name = "London Pub CrawlTests";
+			name = PubCrawlLDNTests;
 			productName = "London Pub CrawlTests";
-			productReference = 37BF43B7180D31EC0091BE5F /* London Pub CrawlTests.xctest */;
+			productReference = 37BF43B7180D31EC0091BE5F /* PubCrawlLDNTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -494,7 +498,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 37BF438E180D31EC0091BE5F /* Build configuration list for PBXProject "London Pub Crawl" */;
+			buildConfigurationList = 37BF438E180D31EC0091BE5F /* Build configuration list for PBXProject "PubCrawlLDN" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -507,8 +511,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37BF4392180D31EC0091BE5F /* London Pub Crawl */,
-				37BF43B6180D31EC0091BE5F /* London Pub CrawlTests */,
+				37BF4392180D31EC0091BE5F /* PubCrawlLDN */,
+				37BF43B6180D31EC0091BE5F /* PubCrawlLDNTests */,
 			);
 		};
 /* End PBXProject section */
@@ -655,7 +659,7 @@
 /* Begin PBXTargetDependency section */
 		37BF43BD180D31ED0091BE5F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 37BF4392180D31EC0091BE5F /* London Pub Crawl */;
+			target = 37BF4392180D31EC0091BE5F /* PubCrawlLDN */;
 			targetProxy = 37BF43BC180D31ED0091BE5F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -771,9 +775,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "London Pub Crawl/London Pub Crawl-Prefix.pch";
-				INFOPLIST_FILE = "London Pub Crawl/London Pub Crawl-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "London Pub Crawl/PubCrawlLDN-Prefix.pch";
+				INFOPLIST_FILE = "London Pub Crawl/PubCrawlLDN-Info.plist";
+				PRODUCT_NAME = PubCrawlLDN;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -788,9 +792,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "London Pub Crawl/London Pub Crawl-Prefix.pch";
-				INFOPLIST_FILE = "London Pub Crawl/London Pub Crawl-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "London Pub Crawl/PubCrawlLDN-Prefix.pch";
+				INFOPLIST_FILE = "London Pub Crawl/PubCrawlLDN-Info.plist";
+				PRODUCT_NAME = PubCrawlLDN;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -812,8 +816,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "London Pub CrawlTests/London Pub CrawlTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "London Pub CrawlTests/PubCrawlLDNTests-Info.plist";
+				PRODUCT_NAME = PubCrawlLDNTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -831,8 +835,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "London Pub Crawl/London Pub Crawl-Prefix.pch";
-				INFOPLIST_FILE = "London Pub CrawlTests/London Pub CrawlTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "London Pub CrawlTests/PubCrawlLDNTests-Info.plist";
+				PRODUCT_NAME = PubCrawlLDNTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -841,7 +845,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37BF438E180D31EC0091BE5F /* Build configuration list for PBXProject "London Pub Crawl" */ = {
+		37BF438E180D31EC0091BE5F /* Build configuration list for PBXProject "PubCrawlLDN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37BF43C6180D31ED0091BE5F /* Debug */,
@@ -850,7 +854,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37BF43C8180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "London Pub Crawl" */ = {
+		37BF43C8180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "PubCrawlLDN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37BF43C9180D31ED0091BE5F /* Debug */,
@@ -859,7 +863,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37BF43CB180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "London Pub CrawlTests" */ = {
+		37BF43CB180D31ED0091BE5F /* Build configuration list for PBXNativeTarget "PubCrawlLDNTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37BF43CC180D31ED0091BE5F /* Debug */,

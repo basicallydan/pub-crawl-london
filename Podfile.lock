@@ -20,9 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
   - CMMapLauncher (0.0.1)
-  - MBXMapKit (0.1.0)
   - PonyDebugger (0.3.1):
     - SocketRocket
+  - Reachability (3.1.1)
   - SDWebImage (3.5):
     - SDWebImage/Core
   - SDWebImage/Core (3.5)
@@ -33,8 +33,8 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.0)
   - CMMapLauncher (= 0.0.1)
-  - MBXMapKit
   - PonyDebugger (~> 0.3.1)
+  - Reachability (~> 3.1)
   - SDWebImage (= 3.5)
   - SVProgressHUD
   - UIColor-HexString (~> 1.0.1)
@@ -42,11 +42,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
-  MBXMapKit: e621aa3ab2c1925d2312ee293f3c147f837ac27c
   PonyDebugger: d31607145d785b2315cd6f6a4ebaa378eb0c1340
+  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
   SocketRocket: 7ac946bcce46287a791dfff3c1f8daa692821dae
   SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
   UIColor-HexString: 8a3f512f71b6d94a2cf6bdeabcad2f3532f31b5a
 
-COCOAPODS: 0.26.2
+COCOAPODS: 0.29.0

@@ -10,8 +10,15 @@
 #import "NSString+FontAwesome.h"
 #import "UIColor+HexStringFromColor.h"
 #import "LPCVenueRetrievalHandler.h"
+#import <Reachability/Reachability.h>
 
 @interface LPCStationViewController () <UIActionSheetDelegate>
+
+@end
+
+@interface LPCStationViewController (private)
+
+-(void)reachabilityChanged:(NSNotification*)note;
 
 @end
 
@@ -24,6 +31,8 @@
     int currentTipIndex;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
     UIImageView *helpImageOverlay;
+//    Reachability *reach;
+    BOOL reachable;
 }
 
 NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
@@ -40,9 +49,47 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         currentTipIndex = 0;
         venues = nil;
         currentVenue = nil;
+        Reachability *reach = [Reachability reachabilityWithHostname:@"api.foursquare.com"];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reachabilityChanged:)
+                                                     name:kReachabilityChangedNotification
+                                                   object:nil];
+        
+        reach.reachableBlock = ^(Reachability * reachability)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Now reachable");
+                reachable = YES;
+            });
+        };
+        
+        reach.unreachableBlock = ^(Reachability * reachability)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Now no longer reachable");
+                reachable = NO;
+            });
+        };
+        
+        [reach startNotifier];
     }
     
     return self;
+}
+
+- (void)reachabilityChanged:(NSNotification*)note {
+    Reachability *reach = [note object];
+    
+    if([reach isReachable])
+    {
+        NSLog(@"Reachable");
+        reachable = YES;
+    }
+    else
+    {
+        NSLog(@"Not reachable");
+        reachable = NO;
+    }
 }
 
 - (id)initWithStation:(LPCStation *)station {
