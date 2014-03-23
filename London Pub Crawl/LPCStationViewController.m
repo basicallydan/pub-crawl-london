@@ -158,7 +158,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     self.loadingImageView.animationDuration = 1.5f;
     self.loadingImageView.animationRepeatCount = 0;
     [self.loadingImageView startAnimating];
-//    [self.view addSubview: animatedImageView];
     
     [self refreshVenues];
 }

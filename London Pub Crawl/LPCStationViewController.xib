@@ -38,6 +38,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kHa-pO-igP">
+                    <rect key="frame" x="88" y="60" width="144" height="144"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="144" id="HxT-Mr-0XM"/>
+                        <constraint firstAttribute="height" constant="144" id="gf3-9z-z8A"/>
+                    </constraints>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bfg-J1-eEi" userLabel="Map Image View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -59,14 +67,14 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finding you a pub" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6jA-zI-3lY" userLabel="Pub Name Label">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finding you a pub" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6jA-zI-3lY" userLabel="Pub Name Label">
                             <rect key="frame" x="20" y="20" width="280" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="UGd-GG-1Mb"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.76672114158163263" green="0.76672114158163263" blue="0.76672114158163263" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-oX-PZ2" userLabel="Left-hand tube line">
@@ -265,10 +273,6 @@
                                 <action selector="changeTip:" destination="-1" eventType="touchUpInside" id="YO5-5M-ptR"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHa-pO-igP">
-                            <rect key="frame" x="88" y="30" width="144" height="144"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
@@ -303,6 +307,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="kHa-pO-igP" secondAttribute="trailing" constant="88" id="0Qb-fX-Hnf"/>
                 <constraint firstItem="bfg-J1-eEi" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="CzY-FR-VZU"/>
                 <constraint firstAttribute="bottom" secondItem="yzW-Tc-zZN" secondAttribute="bottom" id="GZO-y5-FhU"/>
                 <constraint firstAttribute="trailing" secondItem="Obc-ul-Y9s" secondAttribute="trailing" id="I0j-md-RMe"/>
@@ -310,11 +315,14 @@
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="top" secondItem="bfg-J1-eEi" secondAttribute="bottom" id="Kg5-rw-082"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="QLd-ve-Ls8"/>
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="US4-AB-G6J"/>
+                <constraint firstItem="kHa-pO-igP" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="88" id="XnH-5E-KC3"/>
                 <constraint firstItem="yzW-Tc-zZN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ZZh-0l-yzu"/>
+                <constraint firstItem="kHa-pO-igP" firstAttribute="top" secondItem="1" secondAttribute="top" constant="60" id="amb-qt-6nV"/>
                 <constraint firstAttribute="trailing" secondItem="Obc-ul-Y9s" secondAttribute="trailing" id="eBo-EA-8lB"/>
                 <constraint firstItem="bfg-J1-eEi" firstAttribute="top" secondItem="1" secondAttribute="top" id="lr2-Gd-i0M"/>
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="moe-SS-vwg"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="bottom" id="nwZ-YU-2ZT"/>
+                <constraint firstItem="Obc-ul-Y9s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kHa-pO-igP" secondAttribute="bottom" priority="900" id="olz-p5-snU"/>
                 <constraint firstAttribute="trailing" secondItem="yzW-Tc-zZN" secondAttribute="trailing" id="r9a-um-GTs"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
