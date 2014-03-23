@@ -147,21 +147,20 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     isMapLoaded = NO;
 //    UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    self.loadingImageView.animationImages = [NSArray arrayWithObjects:
-                                         [UIImage imageNamed:@"Frame 1.png"],
-                                         [UIImage imageNamed:@"Frame 2.png"],
-                                         [UIImage imageNamed:@"Frame 3.png"],
-                                             [UIImage imageNamed:@"Frame 4.png"],
-                                             [UIImage imageNamed:@"Frame 3.png"],
-                                             [UIImage imageNamed:@"Frame 2.png"],
-                                             [UIImage imageNamed:@"Frame 1.png"],
-                                        nil];
-    self.loadingImageView.animationDuration = 0.5f;
+    NSMutableArray *animationImagesArray = [[NSMutableArray alloc] init];
+    for (int i = 1; i <= 23; i++) {
+        [animationImagesArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"Frame %d.png", i]]];
+    }
+    for (int i = 23; i >= 1; i--) {
+        [animationImagesArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"Frame %d.png", i]]];
+    }
+    self.loadingImageView.animationImages = [NSArray arrayWithArray:animationImagesArray];
+    self.loadingImageView.animationDuration = 1.5f;
     self.loadingImageView.animationRepeatCount = 0;
     [self.loadingImageView startAnimating];
 //    [self.view addSubview: animatedImageView];
     
-    [self refreshVenues];
+//    [self refreshVenues];
 }
 
 # pragma mark - Private Methods
