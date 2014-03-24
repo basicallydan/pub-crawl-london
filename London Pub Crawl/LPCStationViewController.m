@@ -55,11 +55,13 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                                                      name:kReachabilityChangedNotification
                                                    object:nil];
         
+        reachable = NO;
+        
         reach.reachableBlock = ^(Reachability * reachability)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
 //                NSLog(@"Now reachable");
-                reachable = YES;
+//                reachable = YES;
             });
         };
         
@@ -146,7 +148,13 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.showHelpButton setTitle:[NSString fontAwesomeIconStringForEnum:FAIconQuestionSign]];
     
     isMapLoaded = NO;
-//    UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    
+    [self showLoading];
+    
+    [self refreshVenues];
+}
+
+- (void)showLoading {
     NSMutableArray *animationImagesArray = [[NSMutableArray alloc] init];
     for (int i = 1; i <= 23; i++) {
         [animationImagesArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"Frame %d.png", i]]];
@@ -158,8 +166,17 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     self.loadingImageView.animationDuration = 1.5f;
     self.loadingImageView.animationRepeatCount = 0;
     [self.loadingImageView startAnimating];
+}
+
+- (void)showOffline {
+    [self.loadingImageView stopAnimating];
+    self.loadingImageView.animationImages = nil;
+    self.loadingImageView.animationDuration = 0;
+    self.loadingImageView.animationRepeatCount = 0;
     
-    [self refreshVenues];
+    [self.loadingImageView setImage:[UIImage imageNamed:@"Offline.png"]];
+    
+    [self.pubNameLabel setText:@"You're offline!"];
 }
 
 # pragma mark - Private Methods
@@ -175,6 +192,11 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     if (storedVenues) {
         NSLog(@"[%@]: Displaying cached venues", self.station.name);
         [self updateVenuesAndRefresh:storedVenues];
+    } else {
+        if (!reachable) {
+            // None cached and not online? Better report it!
+            [self showOffline];
+        }
     }
 }
 
@@ -200,6 +222,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         currentVenue = [venues objectAtIndex:currentVenueIndex];
         [self populateVenueDetailsWithVenue:currentVenue];
         [self loadMapImage];
+    } else {
+        [self showOffline];
     }
     
     if ([venues count] == 1) {
