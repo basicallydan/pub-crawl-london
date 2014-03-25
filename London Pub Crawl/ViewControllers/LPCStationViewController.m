@@ -23,7 +23,6 @@
 @end
 
 @implementation LPCStationViewController {
-    BOOL isMapLoaded;
     int zoomLevel;
     NSArray *venues;
     LPCVenue *currentVenue;
@@ -42,7 +41,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
-        isMapLoaded = NO;
         venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
         currentVenueIndex = 0;
         currentTipIndex = 0;
@@ -105,7 +103,18 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self configureView];
+    [self showLoading];
+    [self showVenues];
+}
+
+# pragma mark - Private Methods
+
+/*!
+ Configures the static visible elements of the view such as station
+ name and lines
+ */
+- (void)configureView {
     self.stationNameLabel.text = self.station.name;
     
     if (self.station.firstStation) {
@@ -145,12 +154,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.showHelpButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, fontAwesomeFont, NSFontAttributeName, nil] forState:UIControlStateNormal];
     [self.showHelpButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"#ffd204"], NSForegroundColorAttributeName, fontAwesomeFont, NSFontAttributeName, nil] forState:UIControlStateNormal];
     [self.showHelpButton setTitle:[NSString fontAwesomeIconStringForEnum:FAIconQuestionSign]];
-    
-    isMapLoaded = NO;
-    
-    [self showLoading];
-    
-    [self refreshVenues];
 }
 
 - (void)showLoading {
@@ -178,19 +181,17 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.pubNameLabel setText:@"You're offline!"];
 }
 
-# pragma mark - Private Methods
-
 - (void)loadVenues {
     NSLog(@"[%@]: Loading venues", self.station.name);
     NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
         if (!venues || [venues count] < 1) {
-            [self updateVenuesAndRefresh:remoteVenues];
+            [self updateAndShowInstanceVenues:remoteVenues];
         }
     }];
     
     if (storedVenues) {
         NSLog(@"[%@]: Displaying cached venues", self.station.name);
-        [self updateVenuesAndRefresh:storedVenues];
+        [self updateAndShowInstanceVenues:storedVenues];
     } else {
         if (!reachable) {
             // None cached and not online? Better report it!
@@ -199,7 +200,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
 }
 
-- (void)updateVenues:(NSArray *)coreDataVenues {
+- (void)updateInstanceVenues:(NSArray *)coreDataVenues {
     NSMutableArray *v = [[NSMutableArray alloc] initWithCapacity:[coreDataVenues count]];
     for (Venue *coreDataVenue in coreDataVenues) {
         LPCVenue *venue = [[LPCVenue alloc] init];
@@ -215,11 +216,10 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     venues = v;
 }
 
-- (void)refreshVenues {
+- (void)showVenues {
     if ([venues count] > 0) {
         NSLog(@"[%@]: Showing the first of %d venues", self.station.name, [venues count]);
-        currentVenue = [venues objectAtIndex:currentVenueIndex];
-        [self populateVenueDetailsWithVenue:currentVenue];
+        [self displayVenueAtIndex:currentVenueIndex];
         [self loadMapImage];
     } else {
         [self showOffline];
@@ -232,21 +232,23 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
 }
 
-- (void)updateVenuesAndRefresh:(NSArray *)coreDataVenues {
-    [self updateVenues:coreDataVenues];
-    [self refreshVenues];
+- (void)updateAndShowInstanceVenues:(NSArray *)coreDataVenues {
+    [self updateInstanceVenues:coreDataVenues];
+    [self showVenues];
 }
 
-- (void)populateVenueDetailsWithVenue:(LPCVenue *)venue {
+- (void)displayVenue:(LPCVenue *)venue {
     NSLog(@"[%@]: Populating details for %@", self.station.name, venue.name);
-    currentVenue = venue;
     currentTipIndex = 0;
+    
+    // We need to set the current venue for the tip method to use below
+    currentVenue = venue;
     
     // Populate text of labels
     [self.pubNameLabel setTextColor:[UIColor blackColor]];
     self.pubNameLabel.text = venue.name;
-    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", currentVenue.distance];
-    self.addressLabel.text = currentVenue.formattedAddress;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@m from the station", venue.distance];
+    self.addressLabel.text = venue.formattedAddress;
     
     // Hide the loading image
     [self.loadingImageView stopAnimating];
@@ -257,7 +259,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     self.distanceLabel.hidden = NO;
     self.addressLabel.hidden = NO;
     
-    if (!currentVenue.tips || ![currentVenue.tips count] || [currentVenue.tips count] == 0) {
+    if (!venue.tips || ![venue.tips count] || [venue.tips count] == 0) {
         self.noTipsLabel.hidden = NO;
         self.nextTipButton.hidden = YES;
         self.tipView.hidden = YES;
@@ -271,6 +273,10 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
     
     NSLog(@"[%@]: Finished populating for %@", self.station.name, venue.name);
+}
+
+- (void)displayVenueAtIndex:(NSInteger)index {
+    [self displayVenue:[venues objectAtIndex:index]];
 }
 
 - (void)populateTipViewWithCurrentTip {
@@ -341,14 +347,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 }
 
 # pragma mark - Private Methods
-
-- (void)zoomToRelevantLocation {
-    if (isMapLoaded) {
-        return;
-    }
-    isMapLoaded = YES;
-}
-
 - (void)respondToLongPressOfMapImage:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self openActionSheet:nil];
@@ -413,9 +411,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     if (currentVenueIndex >= [venues count]) {
         currentVenueIndex = 0;
     }
-    currentVenue = [venues objectAtIndex:currentVenueIndex];
     
-    [self populateVenueDetailsWithVenue:currentVenue];
+    [self displayVenueAtIndex:currentVenueIndex];
     [self loadMapImage];
 }
 
