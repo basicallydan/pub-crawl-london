@@ -31,7 +31,6 @@
     int currentTipIndex;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
     UIImageView *helpImageOverlay;
-//    Reachability *reach;
     BOOL reachable;
 }
 
