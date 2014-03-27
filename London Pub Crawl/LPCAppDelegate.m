@@ -3,6 +3,7 @@
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "LPCVenueRetrievalHandler.h"
 #import <PonyDebugger/PonyDebugger.h>
+#import <IAPHelper/IAPShare.h>
 
 @implementation LPCAppDelegate
 
@@ -37,6 +38,21 @@
 //    [debugger autoConnect];
 //    [debugger connectToURL:[NSURL URLWithString:@"ws://192.168.1.101:9000/device"]];
 //    [debugger enableCoreDataDebugging];
+    
+    // Set up IAPHelper
+    
+    if(![IAPShare sharedHelper].iap) {
+        
+        NSSet* dataSet = [[NSSet alloc] initWithObjects:
+                          @"com.happily.pubcrawl.northernline",
+                          @"com.happily.pubcrawl.allthelines", nil];
+        
+        // TODO: Set to YES before shipping
+        [IAPShare sharedHelper].iap.production = NO;
+        
+        [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
+        
+    }
     
     return YES;
 }

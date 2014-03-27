@@ -11,10 +11,11 @@
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
+#import <IAPHelper/IAPShare.h>
 
 // In-App Purchases
-#import "LPCPurchaseHelper.h"
-#import <StoreKit/StoreKit.h>
+//#import "LPCPurchaseHelper.h"
+//#import <StoreKit/StoreKit.h>
 
 @interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate>
 
@@ -29,12 +30,12 @@ CGFloat const maxRowHeight = 101.45f;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     // Do any additional setup after loading the view, typically from a nib.
-    [[LPCPurchaseHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-        if (success) {
-//            [self.tableView reloadData];
-        }
-//        [self.refreshControl endRefreshing];
-    }];
+//    [[LPCPurchaseHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+//        if (success) {
+////            [self.tableView reloadData];
+//        }
+////        [self.refreshControl endRefreshing];
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,6 +55,15 @@ CGFloat const maxRowHeight = 101.45f;
     NSDictionary *lineDictionary = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
     
     LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary andStations:appDelegate.stations];
+    
+    if (line.iapProductIdentifier) {
+        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier]) {
+            NSLog(@"The user owns this line. Take them to the line!");
+        } else {
+            NSLog(@"The user does not own this line. Will show the buy modal now");
+            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
+        }
+    }
     
 //    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
     
@@ -143,6 +153,15 @@ CGFloat const maxRowHeight = 101.45f;
     
     UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     UIColor *textColor = [UIColor colorWithHexString:[line valueForKey:@"text-color"]];
+    
+    NSString *iapProductIdentifier = [line valueForKey:@"iap-product-identifier"];
+    
+    if (iapProductIdentifier && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:iapProductIdentifier]) {
+        // TODO: Definitely get something better than a £ symbol to indicate non-ownership, if anything at all. Maybe just don't.
+        // It's ugly.
+        cell.ownershipIndicatorLabel.hidden = NO;
+        cell.ownershipIndicatorLabel.textColor = textColor;
+    }
     
     cell.backgroundColor = cellColor;
     cell.textLabel.textColor = textColor;

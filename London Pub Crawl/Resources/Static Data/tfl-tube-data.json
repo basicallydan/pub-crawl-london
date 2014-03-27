@@ -469,7 +469,8 @@
 		{
 			"background-color": "#000000",
 			"text-color": "#ffffff",
-			"name": "Northern",
+            "name": "Northern",
+            "iap-product-identifier":"com.happily.pubcrawl.northernline",
 			"top-direction":"Northbound",
 			"bottom-direction":"Southbound",
 			"stations": [

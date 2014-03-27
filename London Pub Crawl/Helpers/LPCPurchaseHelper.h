@@ -1,6 +1,6 @@
-#import "IAPHelper.h"
+#import "LPCIAPHelper.h"
 
-@interface LPCPurchaseHelper : IAPHelper
+@interface LPCPurchaseHelper : LPCIAPHelper
 
 + (LPCPurchaseHelper *)sharedInstance;
 

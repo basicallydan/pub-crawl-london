@@ -1,10 +1,10 @@
-#import "IAPHelper.h"
+#import "LPCIAPHelper.h"
 #import <StoreKit/StoreKit.h>
 
-@interface IAPHelper () <SKProductsRequestDelegate>
+@interface LPCIAPHelper () <SKProductsRequestDelegate>
 @end
 
-@implementation IAPHelper {
+@implementation LPCIAPHelper {
     SKProductsRequest * _productsRequest;
     RequestProductsCompletionHandler _completionHandler;
     NSSet * _productIdentifiers;

@@ -99,6 +99,7 @@ NSDictionary *stationPointers;
     self.lineColour = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     self.bottomOfLineDirection = [line valueForKey:@"bottom-direction"]; // Direction we're heading if we're going twd end of the array of stations
     self.topOfLineDirection = [line valueForKey:@"top-direction"]; // Direction we're heading if we're going twd start of the array of stations
+    self.iapProductIdentifier = [line valueForKey:@"iap-product-identifier"];
     
     return self;
 }

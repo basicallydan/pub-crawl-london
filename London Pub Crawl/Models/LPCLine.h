@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIColor *lineColour;
 @property (strong, nonatomic) NSString *topOfLineDirection;
 @property (strong, nonatomic) NSString *bottomOfLineDirection;
+@property (strong, nonatomic) NSString *iapProductIdentifier;
 
 - (id)initWithLine:(NSDictionary *)line andStations:(NSDictionary *)stations;
 

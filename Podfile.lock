@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
   - CMMapLauncher (0.0.1)
+  - IAPHelper (1.0.7)
   - PonyDebugger (0.3.1):
     - SocketRocket
   - Reachability (3.1.1)
@@ -33,6 +34,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.0)
   - CMMapLauncher (= 0.0.1)
+  - IAPHelper
   - PonyDebugger (~> 0.3.1)
   - Reachability (~> 3.1)
   - SDWebImage (= 3.5)
@@ -42,6 +44,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
+  IAPHelper: cbc2ab23f1650b480098b6fbfecad6c7a26adf8d
   PonyDebugger: d31607145d785b2315cd6f6a4ebaa378eb0c1340
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f
