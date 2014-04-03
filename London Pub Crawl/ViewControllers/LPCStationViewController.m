@@ -31,6 +31,7 @@
     LPCVenueRetrievalHandler *venueRetrievalHandler;
     UIImageView *helpImageOverlay;
     BOOL reachable;
+    BOOL refreshWhenReachable;
 }
 
 NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
@@ -53,22 +54,21 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                                                    object:nil];
         
         reachable = NO;
+        refreshWhenReachable = NO;
         
-        reach.reachableBlock = ^(Reachability * reachability)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"Now reachable");
+//        reach.reachableBlock = ^(Reachability * reachability)
+//        {
+//            dispatch_async(dispatch_get_main_queue(), ^{
 //                reachable = YES;
-            });
-        };
-        
-        reach.unreachableBlock = ^(Reachability * reachability)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"Now no longer reachable");
-                reachable = NO;
-            });
-        };
+//            });
+//        };
+//        
+//        reach.unreachableBlock = ^(Reachability * reachability)
+//        {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                reachable = NO;
+//            });
+//        };
         
         [reach startNotifier];
     }
@@ -81,12 +81,15 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     if([reach isReachable])
     {
-//        NSLog(@"Reachable");
+        NSLog(@"Reachable");
         reachable = YES;
+        if (refreshWhenReachable) {
+            [self loadVenues];
+        }
     }
     else
     {
-//        NSLog(@"Not reachable");
+        NSLog(@"Not reachable");
         reachable = NO;
     }
 }
@@ -179,11 +182,14 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.loadingImageView setImage:[UIImage imageNamed:@"Offline.png"]];
     
     [self.pubNameLabel setText:@"You're offline!"];
+    
+    refreshWhenReachable = YES;
 }
 
 - (void)loadVenues {
     NSLog(@"[%@]: Loading venues", self.station.name);
     NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
+        refreshWhenReachable = NO;
         if (!venues || [venues count] < 1) {
             [self updateAndShowInstanceVenues:remoteVenues];
         }

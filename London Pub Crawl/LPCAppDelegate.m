@@ -56,7 +56,11 @@
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {
          if(response > 0 ) {
-             NSLog(@"Got a bunch of products");
+             NSLog(@"Got a bunch of products. %d to be precise", [response.products count]);
+//             SKProduct* product = response.products;
+             for (SKProduct *product in [IAPShare sharedHelper].iap.products) {
+                 NSLog(@"Found product: %@ with price: %@", product.productIdentifier, product.priceLocale);
+             }
          } else {
              NSLog(@"No products");
          }
@@ -69,8 +73,8 @@
 }
 
 - (UIColor *)colorForLine:(NSString *)lineCode {
-    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSDictionary *line = [appDelegate.lines valueForKey:lineCode];
+//    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *line = [self.lines valueForKey:lineCode];
     
     UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
     return cellColor;
