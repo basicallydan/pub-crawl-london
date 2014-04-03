@@ -112,6 +112,7 @@
 		37EF4B9118DF61760063B848 /* Frame 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B6B18DF61760063B848 /* Frame 23.png */; };
 		37EF4B9218DF61760063B848 /* Frame 23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B6C18DF61760063B848 /* Frame 23@2x.png */; };
 		37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F45A7E1843ABB70025CC9B /* LPCVenue.m */; };
+		37F6736518EDE18400AE5B46 /* LPCBuyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */; };
 		37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FD3F1118575FEA009B6306 /* LPCVenueRetrievalHandler.m */; };
 		EAA99B8767694BFB85661A03 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A750CB56A43C5B6F882C5 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -259,6 +260,8 @@
 		37EF4B6C18DF61760063B848 /* Frame 23@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 23@2x.png"; sourceTree = "<group>"; };
 		37F45A7D1843ABB70025CC9B /* LPCVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenue.h; sourceTree = "<group>"; };
 		37F45A7E1843ABB70025CC9B /* LPCVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenue.m; sourceTree = "<group>"; };
+		37F6736318EDE18400AE5B46 /* LPCBuyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCBuyLineView.h; sourceTree = "<group>"; };
+		37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCBuyLineView.m; sourceTree = "<group>"; };
 		37FD3F1018575FEA009B6306 /* LPCVenueRetrievalHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenueRetrievalHandler.h; sourceTree = "<group>"; };
 		37FD3F1118575FEA009B6306 /* LPCVenueRetrievalHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenueRetrievalHandler.m; sourceTree = "<group>"; };
 		4DCF27477E104A96B73E0C6D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 		3787FE9E18E21CD6002B79C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				37F6736318EDE18400AE5B46 /* LPCBuyLineView.h */,
+				37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */,
 				3787FE9F18E21DF1002B79C2 /* LPCCircleView.h */,
 				3787FEA018E21DF1002B79C2 /* LPCCircleView.m */,
 				3787FEA118E21DF1002B79C2 /* LPCLineTableViewCell.h */,
@@ -799,6 +804,7 @@
 				3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */,
 				3787FEB218E21E4B002B79C2 /* LPCPurchaseHelper.m in Sources */,
 				3787FEC418E21E6A002B79C2 /* LPCBrowserViewController.m in Sources */,
+				37F6736518EDE18400AE5B46 /* LPCBuyLineView.m in Sources */,
 				3787FEAA18E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,
 				3750EF7F18E221D7007F11AB /* UIColor+HexStringFromColor.m in Sources */,
 				3787FEA518E21DF1002B79C2 /* LPCCircleView.m in Sources */,

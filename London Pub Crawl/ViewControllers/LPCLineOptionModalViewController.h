@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "LPCLine.h"
 #import "LPCStation.h"
+#import "LPCBuyLineView.h"
 
 @protocol LPCLineOptionModalViewControllerDelegate <NSObject>
 
@@ -13,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *startingStationsTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSMutableArray *filteredStationArray;
-@property (weak, nonatomic) IBOutlet UIView *buyView;
+@property (weak, nonatomic) IBOutlet LPCBuyLineView *buyView;
 
 @property (strong, nonatomic) id<LPCLineOptionModalViewControllerDelegate> delegate;
 

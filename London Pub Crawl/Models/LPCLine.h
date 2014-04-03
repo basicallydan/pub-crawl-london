@@ -5,6 +5,8 @@
 
 @interface LPCLine : NSObject
 
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *localPrice;
 @property (strong, nonatomic) NSArray *leafStations;
 // allStations is an array of all the stations on the line, only vaguely ordered but not to be taken as an accurate order
 @property (strong, nonatomic) NSArray *allStations;

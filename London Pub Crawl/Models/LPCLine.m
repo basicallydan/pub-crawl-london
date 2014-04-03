@@ -7,6 +7,8 @@
 NSDictionary *stationPointers;
 
 - (id)initWithLine:(NSDictionary *)line andStations:(NSDictionary *)stations {
+    self.name = [line valueForKey:@"name"];
+    
     NSArray *lineStations = [line valueForKey:@"stations"];
     
     NSMutableArray *leafStations = [[NSMutableArray alloc] init];

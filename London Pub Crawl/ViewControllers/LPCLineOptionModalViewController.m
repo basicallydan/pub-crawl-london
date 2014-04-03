@@ -3,7 +3,7 @@
 #import "LPCStation.h"
 #import <IAPHelper/IAPShare.h>
 
-@interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
 
 @end
 
@@ -56,6 +56,8 @@ LPCLine *selectedLine;
             self.buyView.hidden = YES;
         } else {
             self.buyView.hidden = NO;
+            self.buyView.delegate = self;
+            [self.buyView setLine:selectedLine];
             NSLog(@"The user does not own this line. Will show the buy modal now");
             //            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
         }
@@ -91,6 +93,21 @@ LPCLine *selectedLine;
     [self.filteredStationArray addObjectsFromArray:filteredArray];
     
     self.filteredStationArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
+}
+
+- (void)hideBuyView {
+    CGRect finalBuyFrame = self.buyView.frame;
+    finalBuyFrame.origin.y = -finalBuyFrame.size.height;
+    [UIView animateWithDuration:0.72f
+        delay:0.0f
+        options:UIViewAnimationOptionCurveEaseInOut
+        animations:^{
+            self.buyView.frame = finalBuyFrame;
+            self.buyView.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            self.buyView.hidden = YES;
+            NSLog(@"Animation over");
+        }];
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -134,6 +151,18 @@ LPCLine *selectedLine;
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     // TODO: Store something to reflect changes to improve the experience and performance here
     return YES;
+}
+
+#pragma mark - LPCBuyLineViewDelegate
+
+- (void)didChooseToBuyAll {
+    NSLog(@"Buying all of them!");
+    [self hideBuyView];
+}
+
+- (void)didChooseToBuyLine:(LPCLine *)line {
+    NSLog(@"Buying one line: %@!", line.name);
+    [self hideBuyView];
 }
 
 @end
