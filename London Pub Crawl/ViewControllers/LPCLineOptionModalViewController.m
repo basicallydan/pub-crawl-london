@@ -1,6 +1,7 @@
 #import "LPCLineOptionModalViewController.h"
 
 #import "LPCStation.h"
+#import <IAPHelper/IAPShare.h>
 
 @interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
@@ -49,6 +50,19 @@ LPCLine *selectedLine;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (selectedLine.iapProductIdentifier) {
+        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:selectedLine.iapProductIdentifier]) {
+            NSLog(@"The user already owns this line");
+            self.buyView.hidden = YES;
+        } else {
+            self.buyView.hidden = NO;
+            NSLog(@"The user does not own this line. Will show the buy modal now");
+            //            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
+        }
+    } else {
+        NSLog(@"This line is not buyable");
+        self.buyView.hidden = YES;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 

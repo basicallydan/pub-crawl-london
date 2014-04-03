@@ -56,14 +56,14 @@ CGFloat const maxRowHeight = 101.45f;
     
     LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary andStations:appDelegate.stations];
     
-    if (line.iapProductIdentifier) {
-        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier]) {
-            NSLog(@"The user owns this line. Take them to the line!");
-        } else {
-            NSLog(@"The user does not own this line. Will show the buy modal now");
-            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
-        }
-    }
+//    if (line.iapProductIdentifier) {
+//        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier]) {
+//            NSLog(@"The user owns this line. Take them to the line!");
+//        } else {
+//            NSLog(@"The user does not own this line. Will show the buy modal now");
+//            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
+//        }
+//    }
     
 //    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
     

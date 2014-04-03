@@ -47,12 +47,23 @@
                           @"com.happily.pubcrawl.northernline",
                           @"com.happily.pubcrawl.allthelines", nil];
         
-        // TODO: Set to YES before shipping
-        [IAPShare sharedHelper].iap.production = NO;
-        
         [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
-        
     }
+    
+    // TODO: Set to YES before shipping
+    [IAPShare sharedHelper].iap.production = NO;
+    
+    [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
+     {
+         if(response > 0 ) {
+             NSLog(@"Got a bunch of products");
+         } else {
+             NSLog(@"No products");
+         }
+     }];
+    
+    // TODO: Remove for production
+    [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
     
     return YES;
 }

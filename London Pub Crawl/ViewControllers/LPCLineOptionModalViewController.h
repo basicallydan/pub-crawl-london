@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *startingStationsTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSMutableArray *filteredStationArray;
+@property (weak, nonatomic) IBOutlet UIView *buyView;
 
 @property (strong, nonatomic) id<LPCLineOptionModalViewControllerDelegate> delegate;
 
