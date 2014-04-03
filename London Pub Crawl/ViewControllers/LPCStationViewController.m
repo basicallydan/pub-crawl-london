@@ -183,6 +183,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     [self.pubNameLabel setText:@"You're offline!"];
     
+    [self.offlineMessageLabel setHidden:NO];
+    
     refreshWhenReachable = YES;
 }
 
@@ -277,6 +279,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     } else { // So, there are some tips
         [self populateTipViewWithCurrentTip];
     }
+    
+    [self.offlineMessageLabel setHidden:YES];
     
     NSLog(@"[%@]: Finished populating for %@", self.station.name, venue.name);
 }
