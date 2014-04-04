@@ -71,16 +71,23 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)showCredits {
     CGRect creditsFrame = CGRectMake(0, 0, 0, 0);
-    creditsFrame.origin.y = 20.0f;
-    creditsFrame.origin.x = 0;
+    creditsFrame.origin.y = 0.0f;
+    creditsFrame.origin.x = self.tableView.frame.size.width;
     creditsFrame.size.height = (self.tableView.frame.size.height / ([self tableView:self.tableView numberOfRowsInSection:0] - 1));
     creditsFrame.size.width = self.tableView.frame.size.width;
     UIView *creditsView = [[UIView alloc] initWithFrame:creditsFrame];
     creditsView.backgroundColor = [UIColor purpleColor];
     
-    [self.tableView setContentOffset:CGPointMake(0, 0)];
-    
-    [self.view addSubview:creditsView];
+    [UIView animateWithDuration:0.2f animations:^{
+        self.tableView.contentOffset = CGPointMake(0, 0);
+    } completion:^(BOOL finished) {
+        [self.tableView addSubview:creditsView];
+        [UIView animateWithDuration:0.3f animations:^{
+            CGRect postAnimationFrame = creditsView.frame;
+            postAnimationFrame.origin.x = 0.0f;
+            creditsView.frame = postAnimationFrame;
+        }];
+    }];
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
