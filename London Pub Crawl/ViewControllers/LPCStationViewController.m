@@ -1,16 +1,16 @@
 #import "LPCStationViewController.h"
 
-#import <UIColor-HexString/UIColor+HexString.h>
-#import <UIImageView+WebCache.h>
-#import "NSArray+AsCLLocationCoordinate2D.h"
 #import "LPCMapAnnotation.h"
-#import "Venue.h"
 #import "LPCVenue.h"
-#import <CMMapLauncher/CMMapLauncher.h>
+#import "LPCVenueRetrievalHandler.h"
+#import "NSArray+AsCLLocationCoordinate2D.h"
 #import "NSString+FontAwesome.h"
 #import "UIColor+HexStringFromColor.h"
-#import "LPCVenueRetrievalHandler.h"
+#import "Venue.h"
+#import <CMMapLauncher/CMMapLauncher.h>
 #import <Reachability/Reachability.h>
+#import <UIColor-HexString/UIColor+HexString.h>
+#import <UIImageView+WebCache.h>
 
 @interface LPCStationViewController () <UIActionSheetDelegate>
 
@@ -37,9 +37,27 @@
 NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (void)reachabilityChanged:(NSNotification*)note {
+    Reachability *reach = [note object];
+    
+    if([reach isReachable])
+    {
+        NSLog(@"Reachable");
+        reachable = YES;
+        if (refreshWhenReachable) {
+            [self loadVenues];
+            [self updateView];
+        }
+    }
+    else
+    {
+        NSLog(@"Not reachable");
+        reachable = NO;
+    }
+}
+
+- (id)initWithStation:(LPCStation *)station {
+    self = [super initWithNibName:@"LPCStationViewController" bundle:nil];
     
     if (self) {
         venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
@@ -53,49 +71,11 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                                                      name:kReachabilityChangedNotification
                                                    object:nil];
         
-        reachable = NO;
+        reachable = [reach isReachable];
         refreshWhenReachable = NO;
-        
-//        reach.reachableBlock = ^(Reachability * reachability)
-//        {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                reachable = YES;
-//            });
-//        };
-//        
-//        reach.unreachableBlock = ^(Reachability * reachability)
-//        {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                reachable = NO;
-//            });
-//        };
         
         [reach startNotifier];
     }
-    
-    return self;
-}
-
-- (void)reachabilityChanged:(NSNotification*)note {
-    Reachability *reach = [note object];
-    
-    if([reach isReachable])
-    {
-        NSLog(@"Reachable");
-        reachable = YES;
-        if (refreshWhenReachable) {
-            [self loadVenues];
-        }
-    }
-    else
-    {
-        NSLog(@"Not reachable");
-        reachable = NO;
-    }
-}
-
-- (id)initWithStation:(LPCStation *)station {
-    self = [[LPCStationViewController alloc] initWithNibName:@"LPCStationViewController" bundle:nil];
     
     self.station = station;
     
@@ -104,11 +84,30 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     return self;
 }
 
+- (void)updateView {
+    [self showStationInfo];
+    if (!reachable) {
+        if ([venues count] == 0) {
+            // We're offline and there are no venues available
+            [self showOffline];
+        } else {
+            // We're offline and there are cached venues which have been loaded
+            [self showVenues];
+        }
+    } else {
+        if ([venues count] == 0) {
+            // We're online but we don't have any venues yet
+            [self showLoading];
+        } else {
+            // We're online and we've loaded some venues
+            [self showVenues];
+        }
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureView];
-    [self showLoading];
-    [self showVenues];
+    [self updateView];
 }
 
 # pragma mark - Private Methods
@@ -117,7 +116,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
  Configures the static visible elements of the view such as station
  name and lines
  */
-- (void)configureView {
+- (void)showStationInfo {
     self.stationNameLabel.text = self.station.name;
     
     if (self.station.firstStation) {
@@ -171,6 +170,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     self.loadingImageView.animationDuration = 1.5f;
     self.loadingImageView.animationRepeatCount = 0;
     [self.loadingImageView startAnimating];
+    [self.pubNameLabel setText:@"Finding a pub..."];
+    [self.offlineMessageLabel setHidden:YES];
 }
 
 - (void)showOffline {
@@ -192,19 +193,15 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     NSLog(@"[%@]: Loading venues", self.station.name);
     NSArray *storedVenues = [venueRetrievalHandler venuesForStation:self.station completion:^(NSArray *remoteVenues) {
         refreshWhenReachable = NO;
-        if (!venues || [venues count] < 1) {
-            [self updateAndShowInstanceVenues:remoteVenues];
+        if ((!venues || [venues count] < 1) && [remoteVenues count] > 0) {
+            [self updateInstanceVenues:remoteVenues];
+            [self updateView];
         }
     }];
     
     if (storedVenues) {
-        NSLog(@"[%@]: Displaying cached venues", self.station.name);
-        [self updateAndShowInstanceVenues:storedVenues];
-    } else {
-        if (!reachable) {
-            // None cached and not online? Better report it!
-            [self showOffline];
-        }
+        NSLog(@"[%@]: Cached venues are available", self.station.name);
+        [self updateInstanceVenues:storedVenues];
     }
 }
 
@@ -238,11 +235,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     } else if ([venues count] > 1) {
         self.nextPubButton.hidden = NO;
     }
-}
-
-- (void)updateAndShowInstanceVenues:(NSArray *)coreDataVenues {
-    [self updateInstanceVenues:coreDataVenues];
-    [self showVenues];
 }
 
 - (void)displayVenue:(LPCVenue *)venue {
@@ -317,34 +309,27 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
     
     long distanceInteger = [currentVenue.distance integerValue];
-
-//  TODO: Put something in to deal with custom zoom levels
-//    if (currentVenue.mapZoomLevel != nil) {
-//        zoomLevel = [currentVenue.mapZoomLevel intValue];
-//    } else {
-        zoomLevel = 13;
+    
+    zoomLevel = 13;
         
-        if (distanceInteger < 50) {
-            zoomLevel = 17;
-        } else if (distanceInteger < 200) {
-            zoomLevel = 16;
-        } else if (distanceInteger < 400) {
-            zoomLevel = 15;
-        } else if (distanceInteger < 500) {
-            zoomLevel = 14;
-        } else if (distanceInteger > 700) {
-            zoomLevel = 12;
-        }
-//    }
+    if (distanceInteger < 50) {
+        zoomLevel = 17;
+    } else if (distanceInteger < 200) {
+        zoomLevel = 16;
+    } else if (distanceInteger < 400) {
+        zoomLevel = 15;
+    } else if (distanceInteger < 500) {
+        zoomLevel = 14;
+    } else if (distanceInteger > 700) {
+        zoomLevel = 12;
+    }
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
     NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
     
-//    NSLog(@"Map URL is %@", mapImageUrl);
-    
     [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     [self.mapImageView setImage:[UIImage imageNamed:@"map-placeholder.png"]];
-    UILongPressGestureRecognizer *mapImageViewGestureRecogniser = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
+    UITapGestureRecognizer *mapImageViewGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
     self.mapImageView.userInteractionEnabled = YES;
     [self.mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
     
@@ -356,15 +341,14 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.tipLabel sizeToFit];
 }
 
-# pragma mark - Private Methods
-- (void)respondToLongPressOfMapImage:(UILongPressGestureRecognizer *)recognizer {
+- (void)respondToLongPressOfMapImage:(UITapGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self openActionSheet:nil];
         return;
     }
 }
 
--(void)openActionSheet:(id)sender {
+- (void)openActionSheet:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Open in Maps" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
     
     [actionSheet addButtonWithTitle:@"Apple Maps"];
@@ -374,8 +358,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     if ([CMMapLauncher isMapAppInstalled:CMMapAppCitymapper]) {
         [actionSheet addButtonWithTitle:@"Citymapper"];
     }
-    
-//    [actionSheet addButtonWithTitle:@"Never mind"];
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
@@ -401,11 +383,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+# pragma mark - IBActions
 
 - (IBAction)changeLine:(id)sender {
     // Dismiss this controller first
