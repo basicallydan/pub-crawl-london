@@ -113,6 +113,8 @@
 		37EF4B9218DF61760063B848 /* Frame 23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B6C18DF61760063B848 /* Frame 23@2x.png */; };
 		37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F45A7E1843ABB70025CC9B /* LPCVenue.m */; };
 		37F6736518EDE18400AE5B46 /* LPCBuyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */; };
+		37F6736918EF574000AE5B46 /* LPCCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6736718EF574000AE5B46 /* LPCCreditsViewController.m */; };
+		37F6736A18EF574000AE5B46 /* LPCCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37F6736818EF574000AE5B46 /* LPCCreditsViewController.xib */; };
 		37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FD3F1118575FEA009B6306 /* LPCVenueRetrievalHandler.m */; };
 		EAA99B8767694BFB85661A03 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A750CB56A43C5B6F882C5 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -262,6 +264,9 @@
 		37F45A7E1843ABB70025CC9B /* LPCVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenue.m; sourceTree = "<group>"; };
 		37F6736318EDE18400AE5B46 /* LPCBuyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCBuyLineView.h; sourceTree = "<group>"; };
 		37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCBuyLineView.m; sourceTree = "<group>"; };
+		37F6736618EF574000AE5B46 /* LPCCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCreditsViewController.h; sourceTree = "<group>"; };
+		37F6736718EF574000AE5B46 /* LPCCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCreditsViewController.m; sourceTree = "<group>"; };
+		37F6736818EF574000AE5B46 /* LPCCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPCCreditsViewController.xib; sourceTree = "<group>"; };
 		37FD3F1018575FEA009B6306 /* LPCVenueRetrievalHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenueRetrievalHandler.h; sourceTree = "<group>"; };
 		37FD3F1118575FEA009B6306 /* LPCVenueRetrievalHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenueRetrievalHandler.m; sourceTree = "<group>"; };
 		4DCF27477E104A96B73E0C6D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -377,6 +382,9 @@
 				3787FEB418E21E6A002B79C2 /* LPCBrowserViewController.h */,
 				3787FEB518E21E6A002B79C2 /* LPCBrowserViewController.m */,
 				3787FEB618E21E6A002B79C2 /* LPCBrowserViewController.xib */,
+				37F6736618EF574000AE5B46 /* LPCCreditsViewController.h */,
+				37F6736718EF574000AE5B46 /* LPCCreditsViewController.m */,
+				37F6736818EF574000AE5B46 /* LPCCreditsViewController.xib */,
 				3787FEB718E21E6A002B79C2 /* LPCForkViewController.h */,
 				3787FEB818E21E6A002B79C2 /* LPCForkViewController.m */,
 				3787FEB918E21E6A002B79C2 /* LPCForkViewController.xib */,
@@ -690,6 +698,7 @@
 				37EF4B8618DF61760063B848 /* Frame 17@2x.png in Resources */,
 				37EF4B7118DF61760063B848 /* Frame 7.png in Resources */,
 				3787FECA18E21E6A002B79C2 /* LPCLineOptionModalViewController.xib in Resources */,
+				37F6736A18EF574000AE5B46 /* LPCCreditsViewController.xib in Resources */,
 				37EF4B7518DF61760063B848 /* Frame 9.png in Resources */,
 				37EF4B7818DF61760063B848 /* Frame 10@2x.png in Resources */,
 				37EF4B7418DF61760063B848 /* Frame 8@2x.png in Resources */,
@@ -799,6 +808,7 @@
 				3787FECC18E21E6A002B79C2 /* LPCStationViewController.m in Sources */,
 				3787FEA718E21DF1002B79C2 /* LPCOptionsCell.m in Sources */,
 				3787FEC618E21E6A002B79C2 /* LPCForkViewController.m in Sources */,
+				37F6736918EF574000AE5B46 /* LPCCreditsViewController.m in Sources */,
 				3787FEA618E21DF1002B79C2 /* LPCLineTableViewCell.m in Sources */,
 				3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */,
 				3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */,

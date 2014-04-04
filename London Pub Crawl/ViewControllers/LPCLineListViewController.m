@@ -17,7 +17,7 @@
 //#import "LPCPurchaseHelper.h"
 //#import <StoreKit/StoreKit.h>
 
-@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate>
+@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate>
 
 @end
 
@@ -56,17 +56,6 @@ CGFloat const maxRowHeight = 101.45f;
     
     LPCLine *line = [[LPCLine alloc] initWithLine:lineDictionary andStations:appDelegate.stations];
     
-//    if (line.iapProductIdentifier) {
-//        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier]) {
-//            NSLog(@"The user owns this line. Take them to the line!");
-//        } else {
-//            NSLog(@"The user does not own this line. Will show the buy modal now");
-//            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
-//        }
-//    }
-    
-//    NSArray *lineStations = [lineDictionary valueForKey:@"stations"];
-    
     LPCLineOptionModalViewController *lineOptionController = [[LPCLineOptionModalViewController alloc] initWithLine:line];
     lineOptionController.delegate = self;
     
@@ -78,6 +67,20 @@ CGFloat const maxRowHeight = 101.45f;
     lineViewController.delegate = self;
     lineViewController.lineColour = line.lineColour;
     [self presentViewController:lineViewController animated:YES completion:nil];
+}
+
+- (void)showCredits {
+    CGRect creditsFrame = CGRectMake(0, 0, 0, 0);
+    creditsFrame.origin.y = 20.0f;
+    creditsFrame.origin.x = 0;
+    creditsFrame.size.height = (self.tableView.frame.size.height / ([self tableView:self.tableView numberOfRowsInSection:0] - 1));
+    creditsFrame.size.width = self.tableView.frame.size.width;
+    UIView *creditsView = [[UIView alloc] initWithFrame:creditsFrame];
+    creditsView.backgroundColor = [UIColor purpleColor];
+    
+    [self.tableView setContentOffset:CGPointMake(0, 0)];
+    
+    [self.view addSubview:creditsView];
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
@@ -124,6 +127,8 @@ CGFloat const maxRowHeight = 101.45f;
         if (!cell) {
             cell = [[LPCOptionsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        
+        cell.delegate = self;
         
         return cell;
     } else {
@@ -175,9 +180,13 @@ CGFloat const maxRowHeight = 101.45f;
     }
 }
 
-- (IBAction)helpButtonPressed:(id)sender {
+#pragma mark - LPCOptionsCellDelegate
+
+- (void)helpButtonClicked {
+    [self showCredits];
 }
 
-- (IBAction)happilyButtonPressed:(id)sender {
+- (void)happilyButtonClicked {
+    NSLog(@"Opening the Happily Website");
 }
 @end

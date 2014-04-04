@@ -1,14 +1,15 @@
-//
-//  LPCOptionsCell.h
-//  London Pub Crawl
-//
-//  Created by Daniel Hough on 06/01/2014.
-//  Copyright (c) 2014 LondonPubCrawl. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
+@protocol LPCOptionsCellDelegate <NSObject>
+
+- (void)happilyButtonClicked;
+- (void)helpButtonClicked;
+
+@end
+
 @interface LPCOptionsCell : UITableViewCell
+
+@property (weak, nonatomic) id<LPCOptionsCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *optionsImageView;
 - (IBAction)happilyButtonClicked:(id)sender;

@@ -11,8 +11,10 @@
 @implementation LPCOptionsCell
 
 - (IBAction)happilyButtonClicked:(id)sender {
+    [self.delegate happilyButtonClicked];
 }
 
 - (IBAction)helpButtonClicked:(id)sender {
+    [self.delegate helpButtonClicked];
 }
 @end
