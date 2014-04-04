@@ -157,10 +157,7 @@ CGFloat const maxRowHeight = 101.45f;
     NSString *iapProductIdentifier = [line valueForKey:@"iap-product-identifier"];
     
     if (iapProductIdentifier && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:iapProductIdentifier]) {
-        // TODO: Definitely get something better than a £ symbol to indicate non-ownership, if anything at all. Maybe just don't.
-        // It's ugly.
-        cell.ownershipIndicatorLabel.hidden = NO;
-        cell.ownershipIndicatorLabel.textColor = textColor;
+        NSLog(@"The user does not own the %@ line", cell.lineName);
     }
     
     cell.backgroundColor = cellColor;
