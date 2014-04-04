@@ -329,9 +329,16 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     [self.mapImageView setImage:[UIImage imageNamed:@"map-placeholder.png"]];
-    UITapGestureRecognizer *mapImageViewGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToLongPressOfMapImage:)];
+    
+    UITapGestureRecognizer *mapImageViewTapGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToMapImageTap:)];
+    mapImageViewTapGestureRecogniser.numberOfTapsRequired = 1;
     self.mapImageView.userInteractionEnabled = YES;
-    [self.mapImageView addGestureRecognizer:mapImageViewGestureRecogniser];
+    [self.mapImageView addGestureRecognizer:mapImageViewTapGestureRecogniser];
+    
+    UISwipeGestureRecognizer *mapImageViewSwipeGestureRecogniser = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(respondToMapImageSwipe:)];
+    mapImageViewSwipeGestureRecogniser.direction = UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown;
+    self.mapImageView.userInteractionEnabled = YES;
+    [self.mapImageView addGestureRecognizer:mapImageViewSwipeGestureRecogniser];
     
     [self.headerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
     [self.footerView setBackgroundColor:[UIColor colorWithHexString:@"#EEFFFFFF"]];
@@ -341,8 +348,15 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.tipLabel sizeToFit];
 }
 
-- (void)respondToLongPressOfMapImage:(UITapGestureRecognizer *)recognizer {
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
+- (void)respondToMapImageTap:(UITapGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        [self openActionSheet:nil];
+        return;
+    }
+}
+
+- (void)respondToMapImageSwipe:(UISwipeGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
         [self openActionSheet:nil];
         return;
     }
