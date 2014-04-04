@@ -9,9 +9,14 @@
 	<key>commit</key>
 	<string>b7d299b0a34651d1a0e066786b75aa36168d5809</string>
 	<key>fonts</key>
-	<array/>
+	<array>
+		<string>HelveticaNeue-Light</string>
+		<string>HelveticaNeue-Light</string>
+		<string>HelveticaNeue-Light</string>
+		<string>HelveticaNeue-Light</string>
+	</array>
 	<key>length</key>
-	<integer>188716</integer>
+	<integer>348298</integer>
 	<key>version</key>
 	<integer>18</integer>
 </dict>
