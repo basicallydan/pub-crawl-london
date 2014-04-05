@@ -21,7 +21,9 @@
 
 @end
 
-@implementation LPCLineListViewController
+@implementation LPCLineListViewController {
+    NSMutableArray *lineCells;
+}
 
 CGFloat const maxRowHeight = 101.45f;
 
@@ -29,13 +31,7 @@ CGFloat const maxRowHeight = 101.45f;
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    // Do any additional setup after loading the view, typically from a nib.
-//    [[LPCPurchaseHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-//        if (success) {
-////            [self.tableView reloadData];
-//        }
-////        [self.refreshControl endRefreshing];
-//    }];
+    lineCells = [[NSMutableArray alloc] initWithCapacity:10];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,24 +66,65 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 - (void)showCredits {
-    CGRect creditsFrame = CGRectMake(0, 0, 0, 0);
-    creditsFrame.origin.y = 0.0f;
-    creditsFrame.origin.x = self.tableView.frame.size.width;
-    creditsFrame.size.height = (self.tableView.frame.size.height / ([self tableView:self.tableView numberOfRowsInSection:0] - 1));
-    creditsFrame.size.width = self.tableView.frame.size.width;
-    UIView *creditsView = [[UIView alloc] initWithFrame:creditsFrame];
-    creditsView.backgroundColor = [UIColor purpleColor];
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        self.tableView.contentOffset = CGPointMake(0, 0);
-    } completion:^(BOOL finished) {
-        [self.tableView addSubview:creditsView];
-        [UIView animateWithDuration:0.3f animations:^{
-            CGRect postAnimationFrame = creditsView.frame;
-            postAnimationFrame.origin.x = 0.0f;
-            creditsView.frame = postAnimationFrame;
+    int cellNumber = 0;
+    for (LPCLineTableViewCell *cell in lineCells) {
+        CGRect startPosition = cell.frame;
+        startPosition.origin.x = startPosition.size.width / 4;
+        
+        CGRect finalPosition = cell.frame;
+        
+        UIView *creditsCell = [[UIView alloc] initWithFrame:startPosition];
+        creditsCell.backgroundColor = cell.backgroundColor;
+        creditsCell.alpha = 0.0f;
+        
+        UILabel *originalLabel = cell.textLabel;
+        
+        UILabel *creditsLabel = [[UILabel alloc] initWithFrame:originalLabel.frame];
+        creditsLabel.font = originalLabel.font;
+        creditsLabel.textColor = originalLabel.textColor;
+        
+        switch (cellNumber) {
+            case 0:
+                [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project"];
+                break;
+            case 1:
+                [creditsLabel setText:@"Created in London, UK"];
+                break;
+            default:
+                break;
+        }
+        
+        [creditsCell addSubview:creditsLabel];
+        
+        [self.tableView addSubview:creditsCell];
+        
+        [UIView animateWithDuration:0.4f animations:^{
+            creditsCell.frame = finalPosition;
+            creditsCell.alpha = 1.0f;
         }];
-    }];
+        
+        cellNumber++;
+    }
+    
+    
+//    CGRect creditsFrame = CGRectMake(0, 0, 0, 0);
+//    creditsFrame.origin.y = 0.0f;
+//    creditsFrame.origin.x = self.tableView.frame.size.width;
+//    creditsFrame.size.height = (self.tableView.frame.size.height / ([self tableView:self.tableView numberOfRowsInSection:0] - 1));
+//    creditsFrame.size.width = self.tableView.frame.size.width;
+//    UIView *creditsView = [[UIView alloc] initWithFrame:creditsFrame];
+//    creditsView.backgroundColor = [UIColor purpleColor];
+//    
+//    [UIView animateWithDuration:0.2f animations:^{
+//        self.tableView.contentOffset = CGPointMake(0, 0);
+//    } completion:^(BOOL finished) {
+//        [self.tableView addSubview:creditsView];
+//        [UIView animateWithDuration:0.3f animations:^{
+//            CGRect postAnimationFrame = creditsView.frame;
+//            postAnimationFrame.origin.x = 0.0f;
+//            creditsView.frame = postAnimationFrame;
+//        }];
+//    }];
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
@@ -151,6 +188,8 @@ CGFloat const maxRowHeight = 101.45f;
         cell.selectedBackgroundView = selectionColor;
 
         [self configureCell:cell forRowAtIndexPath:indexPath];
+        
+        [lineCells addObject:cell];
 
         return cell;
     }
