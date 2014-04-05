@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "37BF4392180D31EC0091BE5F"
-               BuildableName = "London Pub Crawl.app"
-               BlueprintName = "London Pub Crawl"
-               ReferencedContainer = "container:London Pub Crawl.xcodeproj">
+               BuildableName = "PubCrawlLDN.app"
+               BlueprintName = "PubCrawlLDN"
+               ReferencedContainer = "container:PubCrawlLDN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37BF4392180D31EC0091BE5F"
-            BuildableName = "London Pub Crawl.app"
-            BlueprintName = "London Pub Crawl"
-            ReferencedContainer = "container:London Pub Crawl.xcodeproj">
+            BuildableName = "PubCrawlLDN.app"
+            BlueprintName = "PubCrawlLDN"
+            ReferencedContainer = "container:PubCrawlLDN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
