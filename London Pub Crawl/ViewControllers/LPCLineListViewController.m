@@ -113,6 +113,9 @@ CGFloat const maxRowHeight = 101.45f;
                 [creditsCell addSubview:foursquareImageView];
                 [creditsCell addSubview:tflImageView];
                 [creditsCell addSubview:mapBoxImageView];
+            } else if (cellNumber == 4) {
+                [creditsCell addSubview:creditsLabel];
+                [creditsLabel setText:@"To get started, select a line.\nFor help whilst on a line, tap the '?'"];
             } else if (cellNumber == 9) {
                 UIButton *doneButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
                 [doneButton setTitle:@"Great!" forState:UIControlStateNormal];
