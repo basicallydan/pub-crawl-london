@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		37006A57185F1EC3000E0732 /* LPCDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37006A55185F1EC3000E0732 /* LPCDataModel.xcdatamodeld */; };
 		37006A66185F4361000E0732 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37006A65185F4361000E0732 /* Venue.m */; };
+		37074FDF18F3341900D86847 /* LPCCreditsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37074FDE18F3341900D86847 /* LPCCreditsCell.m */; };
+		37074FE218F334B500D86847 /* LPCCreditsTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37074FE118F334B500D86847 /* LPCCreditsTextLabel.m */; };
+		37074FE918F3368100D86847 /* foursquare-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE318F3368100D86847 /* foursquare-logo.png */; };
+		37074FEA18F3368100D86847 /* foursquare-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE418F3368100D86847 /* foursquare-logo@2x.png */; };
+		37074FEB18F3368100D86847 /* mapbox-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE518F3368100D86847 /* mapbox-logo.png */; };
+		37074FEC18F3368100D86847 /* mapbox-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE618F3368100D86847 /* mapbox-logo@2x.png */; };
+		37074FED18F3368100D86847 /* options-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE718F3368100D86847 /* options-image.png */; };
+		37074FEE18F3368100D86847 /* options-image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE818F3368100D86847 /* options-image@2x.png */; };
+		37074FF118F3369000D86847 /* map-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FEF18F3369000D86847 /* map-placeholder.png */; };
+		37074FF218F3369000D86847 /* map-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FF018F3369000D86847 /* map-placeholder@2x.png */; };
 		371AE6601882061500AA9557 /* AppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65E1882061500AA9557 /* AppIcon144x144.png */; };
 		371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */; };
 		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
@@ -133,6 +143,18 @@
 		37006A56185F1EC3000E0732 /* LPCDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LPCDataModel.xcdatamodel; sourceTree = "<group>"; };
 		37006A64185F4361000E0732 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		37006A65185F4361000E0732 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		37074FDD18F3341900D86847 /* LPCCreditsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCreditsCell.h; sourceTree = "<group>"; };
+		37074FDE18F3341900D86847 /* LPCCreditsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCreditsCell.m; sourceTree = "<group>"; };
+		37074FE018F334B500D86847 /* LPCCreditsTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCreditsTextLabel.h; sourceTree = "<group>"; };
+		37074FE118F334B500D86847 /* LPCCreditsTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCreditsTextLabel.m; sourceTree = "<group>"; };
+		37074FE318F3368100D86847 /* foursquare-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foursquare-logo.png"; sourceTree = "<group>"; };
+		37074FE418F3368100D86847 /* foursquare-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foursquare-logo@2x.png"; sourceTree = "<group>"; };
+		37074FE518F3368100D86847 /* mapbox-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapbox-logo.png"; sourceTree = "<group>"; };
+		37074FE618F3368100D86847 /* mapbox-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapbox-logo@2x.png"; sourceTree = "<group>"; };
+		37074FE718F3368100D86847 /* options-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "options-image.png"; sourceTree = "<group>"; };
+		37074FE818F3368100D86847 /* options-image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "options-image@2x.png"; sourceTree = "<group>"; };
+		37074FEF18F3369000D86847 /* map-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder.png"; sourceTree = "<group>"; };
+		37074FF018F3369000D86847 /* map-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder@2x.png"; sourceTree = "<group>"; };
 		371AE65E1882061500AA9557 /* AppIcon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon144x144.png; sourceTree = "<group>"; };
 		371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon144x144@2x.png"; sourceTree = "<group>"; };
 		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
@@ -409,6 +431,10 @@
 				37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */,
 				3787FE9F18E21DF1002B79C2 /* LPCCircleView.h */,
 				3787FEA018E21DF1002B79C2 /* LPCCircleView.m */,
+				37074FDD18F3341900D86847 /* LPCCreditsCell.h */,
+				37074FDE18F3341900D86847 /* LPCCreditsCell.m */,
+				37074FE018F334B500D86847 /* LPCCreditsTextLabel.h */,
+				37074FE118F334B500D86847 /* LPCCreditsTextLabel.m */,
 				3787FEA118E21DF1002B79C2 /* LPCLineTableViewCell.h */,
 				3787FEA218E21DF1002B79C2 /* LPCLineTableViewCell.m */,
 				3787FEA318E21DF1002B79C2 /* LPCOptionsCell.h */,
@@ -434,6 +460,14 @@
 		3787FECF18E21F96002B79C2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				37074FEF18F3369000D86847 /* map-placeholder.png */,
+				37074FF018F3369000D86847 /* map-placeholder@2x.png */,
+				37074FE318F3368100D86847 /* foursquare-logo.png */,
+				37074FE418F3368100D86847 /* foursquare-logo@2x.png */,
+				37074FE518F3368100D86847 /* mapbox-logo.png */,
+				37074FE618F3368100D86847 /* mapbox-logo@2x.png */,
+				37074FE718F3368100D86847 /* options-image.png */,
+				37074FE818F3368100D86847 /* options-image@2x.png */,
 				37EF4B3618DF465C0063B848 /* Loading */,
 				3787FECE18E21F85002B79C2 /* System */,
 			);
@@ -687,6 +721,7 @@
 				37EF4B8418DF61760063B848 /* Frame 16@2x.png in Resources */,
 				37EF4B7A18DF61760063B848 /* Frame 11@2x.png in Resources */,
 				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
+				37074FE918F3368100D86847 /* foursquare-logo.png in Resources */,
 				3744F59818C51BC4000F6669 /* Default35inch.png in Resources */,
 				37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */,
 				37D4F67118E06BD900661E20 /* Offline@2x.png in Resources */,
@@ -699,12 +734,15 @@
 				37EF4B7118DF61760063B848 /* Frame 7.png in Resources */,
 				3787FECA18E21E6A002B79C2 /* LPCLineOptionModalViewController.xib in Resources */,
 				37F6736A18EF574000AE5B46 /* LPCCreditsViewController.xib in Resources */,
+				37074FF118F3369000D86847 /* map-placeholder.png in Resources */,
+				37074FEA18F3368100D86847 /* foursquare-logo@2x.png in Resources */,
 				37EF4B7518DF61760063B848 /* Frame 9.png in Resources */,
 				37EF4B7818DF61760063B848 /* Frame 10@2x.png in Resources */,
 				37EF4B7418DF61760063B848 /* Frame 8@2x.png in Resources */,
 				37EF4B7E18DF61760063B848 /* Frame 13@2x.png in Resources */,
 				3787FEC718E21E6A002B79C2 /* LPCForkViewController.xib in Resources */,
 				37D5D239187B3EB1002269A9 /* AppIcon60x60.png in Resources */,
+				37074FEE18F3368100D86847 /* options-image@2x.png in Resources */,
 				37EF4B8118DF61760063B848 /* Frame 15.png in Resources */,
 				3744F59718C51BC4000F6669 /* Default4inch.png in Resources */,
 				37EF4B3A18DF465C0063B848 /* Frame 3@2x.png in Resources */,
@@ -727,6 +765,8 @@
 				37EF4B7B18DF61760063B848 /* Frame 12.png in Resources */,
 				37EF4B8518DF61760063B848 /* Frame 17.png in Resources */,
 				37EF4B7618DF61760063B848 /* Frame 9@2x.png in Resources */,
+				37074FF218F3369000D86847 /* map-placeholder@2x.png in Resources */,
+				37074FEB18F3368100D86847 /* mapbox-logo.png in Resources */,
 				37EF4B4518DF48650063B848 /* Frame 4.png in Resources */,
 				37EF4B6E18DF61760063B848 /* Frame 5@2x.png in Resources */,
 				37EF4B4018DF468F0063B848 /* Frame 1@2x.png in Resources */,
@@ -735,8 +775,10 @@
 				3787FEC518E21E6A002B79C2 /* LPCBrowserViewController.xib in Resources */,
 				37EF4B6D18DF61760063B848 /* Frame 5.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
+				37074FED18F3368100D86847 /* options-image.png in Resources */,
 				371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */,
 				37EF4B6F18DF61760063B848 /* Frame 6.png in Resources */,
+				37074FEC18F3368100D86847 /* mapbox-logo@2x.png in Resources */,
 				37EF4B3918DF465C0063B848 /* Frame 3.png in Resources */,
 				37EF4B7218DF61760063B848 /* Frame 7@2x.png in Resources */,
 				37EF4B7C18DF61760063B848 /* Frame 12@2x.png in Resources */,
@@ -802,6 +844,7 @@
 			files = (
 				3787FEC818E21E6A002B79C2 /* LPCLineListViewController.m in Sources */,
 				37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */,
+				37074FE218F334B500D86847 /* LPCCreditsTextLabel.m in Sources */,
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
 				3787FEB118E21E4B002B79C2 /* LPCIAPHelper.m in Sources */,
@@ -820,6 +863,7 @@
 				3787FEA518E21DF1002B79C2 /* LPCCircleView.m in Sources */,
 				3787FECB18E21E6A002B79C2 /* LPCLineViewController.m in Sources */,
 				37FD3F1218575FEA009B6306 /* LPCVenueRetrievalHandler.m in Sources */,
+				37074FDF18F3341900D86847 /* LPCCreditsCell.m in Sources */,
 				37006A57185F1EC3000E0732 /* LPCDataModel.xcdatamodeld in Sources */,
 				3762504F183BE9D30061F1F4 /* LPCFork.m in Sources */,
 				3787FEC918E21E6A002B79C2 /* LPCLineOptionModalViewController.m in Sources */,

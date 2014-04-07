@@ -12,6 +12,8 @@
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
 #import <IAPHelper/IAPShare.h>
+#import "LPCCreditsCell.h"
+#import "LPCCreditsTextLabel.h"
 
 // In-App Purchases
 //#import "LPCPurchaseHelper.h"
@@ -66,73 +68,56 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 - (void)showCredits {
+    UIImage *foursquareLogo = [[UIImage alloc] initWithContentsOfFile:@"foursquare-logo.png"];
+    UIImage *mapBox = [[UIImage alloc] initWithContentsOfFile:@"mapbox-logo.png"];
+    
+    UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
+    UIImageView *mapBoxImageView = [[UIImageView alloc] initWithImage:mapBox];
+    
+    CGRect creditsViewStartingFrame = self.tableView.frame;
+    creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;
+    UIView *creditsView = [[UIView alloc] initWithFrame:creditsViewStartingFrame];
+    int cellNumber = 0;
+    for (LPCLineTableViewCell *cell in lineCells) {
+        
+        UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
+        UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
+        
+        switch (cellNumber) {
+            case 0:
+                [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project\nCreated in London, UK"];
+                [creditsCell addSubview:creditsLabel];
+                break;
+            case 1:
+                [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
+                [creditsCell addSubview:creditsLabel];
+                break;
+            case 2:
+                [creditsCell addSubview:foursquareImageView];
+                break;
+            default:
+                break;
+        }
+        
+        [creditsView addSubview:creditsCell];
+        
+        cellNumber++;
+    }
+    
+    CGRect finalTableViewFrame = self.tableView.frame;
+    finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
+    CGRect finalCreditsViewFrame = self.tableView.frame;
+    
+    [self.view addSubview:creditsView];
     
     [UIView animateWithDuration:0.2f animations:^{
         self.tableView.contentOffset = CGPointMake(0, 0);
     } completion:^(BOOL finished) {
-        int cellNumber = 0;
-        for (LPCLineTableViewCell *cell in lineCells) {
-            CGRect startPosition = cell.frame;
-            startPosition.origin.x = startPosition.size.width;
-            
-            CGRect finalPosition = cell.frame;
-            CGRect finalCellPosition = cell.frame;
-            finalCellPosition.origin.x = -finalCellPosition.size.width;
-            
-            UIView *creditsCell = [[UIView alloc] initWithFrame:startPosition];
-            creditsCell.backgroundColor = cell.backgroundColor;
-            //        creditsCell.alpha = 0.0f;
-            
-            UILabel *originalLabel = cell.textLabel;
-            
-            UILabel *creditsLabel = [[UILabel alloc] initWithFrame:originalLabel.frame];
-            creditsLabel.font = originalLabel.font;
-            creditsLabel.textColor = originalLabel.textColor;
-            
-            switch (cellNumber) {
-                case 0:
-                    [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project"];
-                    break;
-                case 1:
-                    [creditsLabel setText:@"Created in London, UK"];
-                    break;
-                default:
-                    break;
-            }
-            
-            [creditsCell addSubview:creditsLabel];
-            
-            [self.tableView addSubview:creditsCell];
-            
-            [UIView animateWithDuration:0.4f animations:^{
-                cell.frame = finalCellPosition;
-                creditsCell.frame = finalPosition;
-                //            creditsCell.alpha = 1.0f;
-            }];
-            
-            cellNumber++;
-        }
+        [UIView animateWithDuration:0.4f animations:^{
+            creditsView.frame = finalCreditsViewFrame;
+            self.tableView.frame = finalTableViewFrame;
+        }];
     }];
-    
-    
-//    CGRect creditsFrame = CGRectMake(0, 0, 0, 0);
-//    creditsFrame.origin.y = 0.0f;
-//    creditsFrame.origin.x = self.tableView.frame.size.width;
-//    creditsFrame.size.height = (self.tableView.frame.size.height / ([self tableView:self.tableView numberOfRowsInSection:0] - 1));
-//    creditsFrame.size.width = self.tableView.frame.size.width;
-//    UIView *creditsView = [[UIView alloc] initWithFrame:creditsFrame];
-//    creditsView.backgroundColor = [UIColor purpleColor];
-//    
-//    [UIView animateWithDuration:0.2f animations:^{
-//        self.tableView.contentOffset = CGPointMake(0, 0);
-//    } completion:^(BOOL finished) {
-//        [self.tableView addSubview:creditsView];
-//        [UIView animateWithDuration:0.3f animations:^{
-//            CGRect postAnimationFrame = creditsView.frame;
-//            postAnimationFrame.origin.x = 0.0f;
-//            creditsView.frame = postAnimationFrame;
-//        }];
-//    }];
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
