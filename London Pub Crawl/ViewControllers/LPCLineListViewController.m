@@ -130,6 +130,10 @@ CGFloat const maxRowHeight = 101.45f;
             cellNumber++;
         }
         
+        UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
+        closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+        [creditsView addGestureRecognizer:closeCreditsSwipe];
+        
         [self.view addSubview:creditsView];
     }
     
