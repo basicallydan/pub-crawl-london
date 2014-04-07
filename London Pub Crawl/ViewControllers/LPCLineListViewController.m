@@ -84,11 +84,11 @@ CGFloat const maxRowHeight = 101.45f;
             UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
             
             if (cellNumber == 0) {
+                [creditsCell addSubview:creditsLabel];
                 [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project\nCreated in London, UK"];
-                [creditsCell addSubview:creditsLabel];
             } else if (cellNumber == 1) {
-                [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
                 [creditsCell addSubview:creditsLabel];
+                [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
             } else if (cellNumber == 2) {
                 UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
                 CGRect foursquareFrame = foursquareImageView.frame;
@@ -139,6 +139,7 @@ CGFloat const maxRowHeight = 101.45f;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.4f animations:^{
             creditsView.frame = finalCreditsViewFrame;
+            [creditsView setNeedsDisplay];
             self.tableView.frame = finalTableViewFrame;
         }];
     }];
