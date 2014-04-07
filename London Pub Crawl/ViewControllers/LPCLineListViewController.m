@@ -70,11 +70,9 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)showCredits {
     if (!creditsView) {
-        UIImage *foursquareLogo = [[UIImage alloc] initWithContentsOfFile:@"foursquare-logo.png"];
-        UIImage *mapBox = [[UIImage alloc] initWithContentsOfFile:@"mapbox-logo.png"];
-        
-        UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
-        UIImageView *mapBoxImageView = [[UIImageView alloc] initWithImage:mapBox];
+        UIImage *foursquareLogo = [UIImage imageNamed:@"foursquare-logo.png"];
+        UIImage *mapBoxLogo = [UIImage imageNamed:@"mapbox-logo.png"];
+        UIImage *tflLogo = [UIImage imageNamed:@"tfl-logo.png"];
         
         CGRect creditsViewStartingFrame = self.tableView.frame;
         creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;
@@ -91,6 +89,30 @@ CGFloat const maxRowHeight = 101.45f;
             } else if (cellNumber == 1) {
                 [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
                 [creditsCell addSubview:creditsLabel];
+            } else if (cellNumber == 2) {
+                UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
+                CGRect foursquareFrame = foursquareImageView.frame;
+                foursquareFrame.origin = creditsLabel.frame.origin;
+                foursquareFrame.origin.y = (creditsCell.frame.size.height - foursquareFrame.size.height) / 2;
+                foursquareImageView.frame = foursquareFrame;
+                
+                UIImageView *mapBoxImageView = [[UIImageView alloc] initWithImage:mapBoxLogo];
+                CGRect mapBoxFrame = mapBoxImageView.frame;
+                mapBoxFrame.origin.y = (creditsCell.frame.size.height - mapBoxFrame.size.height) / 2;
+                mapBoxFrame.origin.x = creditsCell.frame.size.width - mapBoxFrame.size.width - foursquareFrame.origin.x;
+                mapBoxImageView.frame = mapBoxFrame;
+                
+                UIImageView *tflImageView = [[UIImageView alloc] initWithImage:tflLogo];
+                CGRect tflFrame = tflImageView.frame;
+                tflFrame.origin.y = (creditsCell.frame.size.height - tflFrame.size.height) / 2;
+                CGFloat foursquareRightEdge = foursquareFrame.origin.x + foursquareFrame.size.width;
+                CGFloat middleSpace = mapBoxFrame.origin.x - foursquareRightEdge;
+                tflFrame.origin.x = foursquareRightEdge + ((middleSpace - tflFrame.size.width) / 2);
+                tflImageView.frame = tflFrame;
+                
+                [creditsCell addSubview:foursquareImageView];
+                [creditsCell addSubview:tflImageView];
+                [creditsCell addSubview:mapBoxImageView];
             } else if (cellNumber == 9) {
                 UIButton *doneButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
                 [doneButton setTitle:@"Great!" forState:UIControlStateNormal];

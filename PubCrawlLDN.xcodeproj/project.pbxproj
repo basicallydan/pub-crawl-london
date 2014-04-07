@@ -19,6 +19,8 @@
 		37074FEE18F3368100D86847 /* options-image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FE818F3368100D86847 /* options-image@2x.png */; };
 		37074FF118F3369000D86847 /* map-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FEF18F3369000D86847 /* map-placeholder.png */; };
 		37074FF218F3369000D86847 /* map-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FF018F3369000D86847 /* map-placeholder@2x.png */; };
+		37074FF418F34A9100D86847 /* tfl-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FF318F34A9100D86847 /* tfl-logo@2x.png */; };
+		37074FF618F34A9800D86847 /* tfl-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FF518F34A9800D86847 /* tfl-logo.png */; };
 		371AE6601882061500AA9557 /* AppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65E1882061500AA9557 /* AppIcon144x144.png */; };
 		371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */; };
 		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
@@ -155,6 +157,8 @@
 		37074FE818F3368100D86847 /* options-image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "options-image@2x.png"; sourceTree = "<group>"; };
 		37074FEF18F3369000D86847 /* map-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder.png"; sourceTree = "<group>"; };
 		37074FF018F3369000D86847 /* map-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-placeholder@2x.png"; sourceTree = "<group>"; };
+		37074FF318F34A9100D86847 /* tfl-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tfl-logo@2x.png"; sourceTree = "<group>"; };
+		37074FF518F34A9800D86847 /* tfl-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tfl-logo.png"; sourceTree = "<group>"; };
 		371AE65E1882061500AA9557 /* AppIcon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon144x144.png; sourceTree = "<group>"; };
 		371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon144x144@2x.png"; sourceTree = "<group>"; };
 		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
@@ -460,6 +464,8 @@
 		3787FECF18E21F96002B79C2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				37074FF518F34A9800D86847 /* tfl-logo.png */,
+				37074FF318F34A9100D86847 /* tfl-logo@2x.png */,
 				37074FEF18F3369000D86847 /* map-placeholder.png */,
 				37074FF018F3369000D86847 /* map-placeholder@2x.png */,
 				37074FE318F3368100D86847 /* foursquare-logo.png */,
@@ -718,6 +724,7 @@
 			files = (
 				37EF4B8218DF61760063B848 /* Frame 15@2x.png in Resources */,
 				3750EF7C18E2216F007F11AB /* FontAwesome.ttf in Resources */,
+				37074FF618F34A9800D86847 /* tfl-logo.png in Resources */,
 				37EF4B8418DF61760063B848 /* Frame 16@2x.png in Resources */,
 				37EF4B7A18DF61760063B848 /* Frame 11@2x.png in Resources */,
 				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
@@ -772,6 +779,7 @@
 				37EF4B4018DF468F0063B848 /* Frame 1@2x.png in Resources */,
 				37EF4B7918DF61760063B848 /* Frame 11.png in Resources */,
 				37EF4B9218DF61760063B848 /* Frame 23@2x.png in Resources */,
+				37074FF418F34A9100D86847 /* tfl-logo@2x.png in Resources */,
 				3787FEC518E21E6A002B79C2 /* LPCBrowserViewController.xib in Resources */,
 				37EF4B6D18DF61760063B848 /* Frame 5.png in Resources */,
 				37BF43A1180D31EC0091BE5F /* InfoPlist.strings in Resources */,
