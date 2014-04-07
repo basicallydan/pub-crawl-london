@@ -25,6 +25,7 @@
 
 @implementation LPCLineListViewController {
     NSMutableArray *lineCells;
+    UIView *creditsView;
 }
 
 CGFloat const maxRowHeight = 101.45f;
@@ -68,47 +69,64 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 - (void)showCredits {
-    UIImage *foursquareLogo = [[UIImage alloc] initWithContentsOfFile:@"foursquare-logo.png"];
-    UIImage *mapBox = [[UIImage alloc] initWithContentsOfFile:@"mapbox-logo.png"];
-    
-    UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
-    UIImageView *mapBoxImageView = [[UIImageView alloc] initWithImage:mapBox];
-    
-    CGRect creditsViewStartingFrame = self.tableView.frame;
-    creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;
-    UIView *creditsView = [[UIView alloc] initWithFrame:creditsViewStartingFrame];
-    int cellNumber = 0;
-    for (LPCLineTableViewCell *cell in lineCells) {
+    if (!creditsView) {
+        UIImage *foursquareLogo = [[UIImage alloc] initWithContentsOfFile:@"foursquare-logo.png"];
+        UIImage *mapBox = [[UIImage alloc] initWithContentsOfFile:@"mapbox-logo.png"];
         
-        UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
-        UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
+        UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
+        UIImageView *mapBoxImageView = [[UIImageView alloc] initWithImage:mapBox];
         
-        switch (cellNumber) {
-            case 0:
+        CGRect creditsViewStartingFrame = self.tableView.frame;
+        creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;
+        creditsView = [[UIView alloc] initWithFrame:creditsViewStartingFrame];
+        int cellNumber = 0;
+        for (LPCLineTableViewCell *cell in lineCells) {
+            
+            UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
+            UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
+            
+            if (cellNumber == 0) {
                 [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project\nCreated in London, UK"];
                 [creditsCell addSubview:creditsLabel];
-                break;
-            case 1:
+            } else if (cellNumber == 1) {
                 [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
                 [creditsCell addSubview:creditsLabel];
-                break;
-            case 2:
-                [creditsCell addSubview:foursquareImageView];
-                break;
-            default:
-                break;
+            } else if (cellNumber == 9) {
+                UIButton *doneButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
+                [doneButton setTitle:@"Great!" forState:UIControlStateNormal];
+                [doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                [doneButton addTarget:self action:@selector(hideCredits) forControlEvents:UIControlEventTouchUpInside];
+                doneButton.backgroundColor = [UIColor whiteColor];
+                [creditsCell addSubview:doneButton];
+            }
+            
+            [creditsView addSubview:creditsCell];
+            
+            cellNumber++;
         }
         
-        [creditsView addSubview:creditsCell];
-        
-        cellNumber++;
+        [self.view addSubview:creditsView];
     }
     
     CGRect finalTableViewFrame = self.tableView.frame;
     finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
     CGRect finalCreditsViewFrame = self.tableView.frame;
     
-    [self.view addSubview:creditsView];
+    [UIView animateWithDuration:0.2f animations:^{
+        self.tableView.contentOffset = CGPointMake(0, 0);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.4f animations:^{
+            creditsView.frame = finalCreditsViewFrame;
+            self.tableView.frame = finalTableViewFrame;
+        }];
+    }];
+}
+
+- (void)hideCredits {
+    CGRect finalTableViewFrame = self.tableView.frame;
+    finalTableViewFrame.origin.x = 0.0f;
+    CGRect finalCreditsViewFrame = self.tableView.frame;
+    finalCreditsViewFrame.origin.x = finalCreditsViewFrame.size.width;
     
     [UIView animateWithDuration:0.2f animations:^{
         self.tableView.contentOffset = CGPointMake(0, 0);

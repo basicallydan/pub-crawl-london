@@ -2,11 +2,8 @@
 
 @implementation LPCCreditsCell
 
-- (id)initBasedOnCell:(UITableViewCell *)cell {
-    CGRect startPosition = cell.frame;
-//    startPosition.origin.x = startPosition.size.width;
-    
-    self = [super initWithFrame:startPosition];
+- (id)initBasedOnCell:(UITableViewCell *)cell {    
+    self = [super initWithFrame:cell.frame];
     
     CGRect leftBorderFrame = cell.frame;
     leftBorderFrame.size.width = leftBorderFrame.size.width * 0.02;
