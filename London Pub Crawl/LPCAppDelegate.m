@@ -1,6 +1,7 @@
 #import "LPCAppDelegate.h"
 
 #import "Analytics/Analytics.h"
+#import "LPCSettingsHelper.h"
 #import "LPCVenueRetrievalHandler.h"
 #import <IAPHelper/IAPShare.h>
 #import <PonyDebugger/PonyDebugger.h>
@@ -15,8 +16,6 @@
     self.lines = [allTheData valueForKey:@"lines"];
     self.pubs = [self.class dictionaryWithContentsOfJSONString:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
-    
-    NSDictionary *settings = [self.class dictionaryWithContentsOfJSONString:@"settings.json"];
 
     for (NSString *line in self.lines) {
         [temporaryLinesArray addObject:line];
@@ -27,7 +26,7 @@
     
     // Initialize the Analytics instance with the
     // write key for happily/d_pubcrawllondon
-    [Analytics initializeWithSecret:[settings valueForKey:@"segment-io-key"]];
+    [Analytics initializeWithSecret:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"segment-io-key"]];
 
     self.linesArray = temporaryLinesArray;
 

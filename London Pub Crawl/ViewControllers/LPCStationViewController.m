@@ -11,6 +11,7 @@
 #import <Reachability/Reachability.h>
 #import <UIColor-HexString/UIColor+HexString.h>
 #import <UIImageView+WebCache.h>
+#import "LPCSettingsHelper.h"
 
 @interface LPCStationViewController () <UIActionSheetDelegate>
 
@@ -34,7 +35,7 @@
     BOOL refreshWhenReachable;
 }
 
-NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/basicallydan.map-ql3x67r6/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
+NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/%@/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 
 - (void)reachabilityChanged:(NSNotification*)note {
@@ -324,8 +325,10 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         zoomLevel = 12;
     }
     
+    NSString *mapKey = [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mapbox-map-key"];
+    
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, mapKey, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
     
     [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     [self.mapImageView setImage:[UIImage imageNamed:@"map-placeholder.png"]];

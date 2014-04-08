@@ -27,6 +27,10 @@
 		37074FFE18F3566800D86847 /* station-help-iphone-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FFA18F3566800D86847 /* station-help-iphone-5@2x.png */; };
 		371AE6601882061500AA9557 /* AppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65E1882061500AA9557 /* AppIcon144x144.png */; };
 		371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */; };
+		3738664A18F4855E00ED79F3 /* LPCSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3738664918F4855E00ED79F3 /* LPCSettingsHelper.m */; };
+		3738664D18F488F100ED79F3 /* NSDictionary+FromJSONFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3738664C18F488F100ED79F3 /* NSDictionary+FromJSONFile.m */; };
+		3738665018F48B8800ED79F3 /* tube-line-fork-double-sided.png in Resources */ = {isa = PBXBuildFile; fileRef = 3738664E18F48B8800ED79F3 /* tube-line-fork-double-sided.png */; };
+		3738665118F48B8800ED79F3 /* tube-line-fork-double-sided@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3738664F18F48B8800ED79F3 /* tube-line-fork-double-sided@2x.png */; };
 		373CB7C718561BE900066054 /* LPCDistrictLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 373CB7C618561BE900066054 /* LPCDistrictLineTests.m */; };
 		3744F59718C51BC4000F6669 /* Default4inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59418C51BC4000F6669 /* Default4inch.png */; };
 		3744F59818C51BC4000F6669 /* Default35inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59518C51BC4000F6669 /* Default35inch.png */; };
@@ -169,6 +173,12 @@
 		37074FFA18F3566800D86847 /* station-help-iphone-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station-help-iphone-5@2x.png"; sourceTree = "<group>"; };
 		371AE65E1882061500AA9557 /* AppIcon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon144x144.png; sourceTree = "<group>"; };
 		371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon144x144@2x.png"; sourceTree = "<group>"; };
+		3738664818F4855E00ED79F3 /* LPCSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCSettingsHelper.h; sourceTree = "<group>"; };
+		3738664918F4855E00ED79F3 /* LPCSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCSettingsHelper.m; sourceTree = "<group>"; };
+		3738664B18F488F100ED79F3 /* NSDictionary+FromJSONFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+FromJSONFile.h"; sourceTree = "<group>"; };
+		3738664C18F488F100ED79F3 /* NSDictionary+FromJSONFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FromJSONFile.m"; sourceTree = "<group>"; };
+		3738664E18F48B8800ED79F3 /* tube-line-fork-double-sided.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-double-sided.png"; sourceTree = "<group>"; };
+		3738664F18F48B8800ED79F3 /* tube-line-fork-double-sided@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tube-line-fork-double-sided@2x.png"; sourceTree = "<group>"; };
 		373CB7C618561BE900066054 /* LPCDistrictLineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCDistrictLineTests.m; sourceTree = "<group>"; };
 		3744F59418C51BC4000F6669 /* Default4inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default4inch.png; sourceTree = "<group>"; };
 		3744F59518C51BC4000F6669 /* Default35inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default35inch.png; sourceTree = "<group>"; };
@@ -387,6 +397,8 @@
 			children = (
 				3787FEA818E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.h */,
 				3787FEA918E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.m */,
+				3738664B18F488F100ED79F3 /* NSDictionary+FromJSONFile.h */,
+				3738664C18F488F100ED79F3 /* NSDictionary+FromJSONFile.m */,
 				3769ACFA1868509000D6F2B0 /* NSString+FontAwesome.h */,
 				3769ACFB1868509000D6F2B0 /* NSString+FontAwesome.m */,
 				3750EF7D18E221D7007F11AB /* UIColor+HexStringFromColor.h */,
@@ -404,6 +416,8 @@
 				3787FEAC18E21E4B002B79C2 /* LPCIAPHelper.m */,
 				3787FEAD18E21E4B002B79C2 /* LPCPurchaseHelper.h */,
 				3787FEAE18E21E4B002B79C2 /* LPCPurchaseHelper.m */,
+				3738664818F4855E00ED79F3 /* LPCSettingsHelper.h */,
+				3738664918F4855E00ED79F3 /* LPCSettingsHelper.m */,
 				3787FEAF18E21E4B002B79C2 /* LPCThemeManager.h */,
 				3787FEB018E21E4B002B79C2 /* LPCThemeManager.m */,
 			);
@@ -472,6 +486,8 @@
 		3787FECF18E21F96002B79C2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3738664E18F48B8800ED79F3 /* tube-line-fork-double-sided.png */,
+				3738664F18F48B8800ED79F3 /* tube-line-fork-double-sided@2x.png */,
 				37074FF718F3566800D86847 /* station-help-iphone-4.png */,
 				37074FF818F3566800D86847 /* station-help-iphone-4@2x.png */,
 				37074FF918F3566800D86847 /* station-help-iphone-5.png */,
@@ -742,6 +758,7 @@
 				37EF4B7A18DF61760063B848 /* Frame 11@2x.png in Resources */,
 				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
 				37074FFD18F3566800D86847 /* station-help-iphone-5.png in Resources */,
+				3738665118F48B8800ED79F3 /* tube-line-fork-double-sided@2x.png in Resources */,
 				37074FE918F3368100D86847 /* foursquare-logo.png in Resources */,
 				3744F59818C51BC4000F6669 /* Default35inch.png in Resources */,
 				37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */,
@@ -753,6 +770,7 @@
 				3750EF8618E22228007F11AB /* tfl-tube-data.json in Resources */,
 				37EF4B8618DF61760063B848 /* Frame 17@2x.png in Resources */,
 				37EF4B7118DF61760063B848 /* Frame 7.png in Resources */,
+				3738665018F48B8800ED79F3 /* tube-line-fork-double-sided.png in Resources */,
 				3787FECA18E21E6A002B79C2 /* LPCLineOptionModalViewController.xib in Resources */,
 				37F6736A18EF574000AE5B46 /* LPCCreditsViewController.xib in Resources */,
 				37074FF118F3369000D86847 /* map-placeholder.png in Resources */,
@@ -883,6 +901,7 @@
 			files = (
 				3787FEC818E21E6A002B79C2 /* LPCLineListViewController.m in Sources */,
 				37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */,
+				3738664D18F488F100ED79F3 /* NSDictionary+FromJSONFile.m in Sources */,
 				37074FE218F334B500D86847 /* LPCCreditsTextLabel.m in Sources */,
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
@@ -911,6 +930,7 @@
 				376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */,
 				3787FEB318E21E4B002B79C2 /* LPCThemeManager.m in Sources */,
 				37BF43A3180D31EC0091BE5F /* main.m in Sources */,
+				3738664A18F4855E00ED79F3 /* LPCSettingsHelper.m in Sources */,
 				37625049183A2F460061F1F4 /* LPCLinePosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

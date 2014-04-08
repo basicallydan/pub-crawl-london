@@ -944,11 +944,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/LPCAppDelegate.m"
-            timestampString = "418674416.21643"
+            timestampString = "418679347.822479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-applicationDidEnterBackground:"
             landmarkType = "5">
          </BreakpointContent>
@@ -956,16 +956,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/LPCAppDelegate.m"
-            timestampString = "418677936.551679"
+            filePath = "London Pub Crawl/ViewControllers/LPCStationViewController.m"
+            timestampString = "418679643.680456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "-loadMapImage"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
