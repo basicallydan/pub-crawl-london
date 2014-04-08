@@ -41,6 +41,7 @@
 		3762504318363BA30061F1F4 /* LPCStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504218363BA30061F1F4 /* LPCStation.m */; };
 		37625049183A2F460061F1F4 /* LPCLinePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 37625048183A2F460061F1F4 /* LPCLinePosition.m */; };
 		3762504F183BE9D30061F1F4 /* LPCFork.m in Sources */ = {isa = PBXBuildFile; fileRef = 3762504E183BE9D30061F1F4 /* LPCFork.m */; };
+		3767671C18F475C10095D18D /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 3767671B18F475C10095D18D /* settings.json */; };
 		3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3769ACFB1868509000D6F2B0 /* NSString+FontAwesome.m */; };
 		3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 3769ACFD1868509000D6F2B0 /* UIFont+FontAwesome.m */; };
 		376CD9B01823C43600D4C599 /* LPCMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 376CD9AF1823C43600D4C599 /* LPCMapAnnotation.m */; };
@@ -188,6 +189,7 @@
 		37625048183A2F460061F1F4 /* LPCLinePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCLinePosition.m; sourceTree = "<group>"; };
 		3762504D183BE9D30061F1F4 /* LPCFork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCFork.h; sourceTree = "<group>"; };
 		3762504E183BE9D30061F1F4 /* LPCFork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCFork.m; sourceTree = "<group>"; };
+		3767671B18F475C10095D18D /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		3769ACFA1868509000D6F2B0 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
 		3769ACFB1868509000D6F2B0 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		3769ACFC1868509000D6F2B0 /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 		37BF439D180D31EC0091BE5F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3767671B18F475C10095D18D /* settings.json */,
 				37BF439F180D31EC0091BE5F /* InfoPlist.strings */,
 				37BF439E180D31EC0091BE5F /* PubCrawlLDN-Info.plist */,
 				37BF43A4180D31EC0091BE5F /* PubCrawlLDN-Prefix.pch */,
@@ -742,6 +745,7 @@
 				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
 				37074FFD18F3566800D86847 /* station-help-iphone-5.png in Resources */,
 				37074FE918F3368100D86847 /* foursquare-logo.png in Resources */,
+				3767671C18F475C10095D18D /* settings.json in Resources */,
 				3744F59818C51BC4000F6669 /* Default35inch.png in Resources */,
 				37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */,
 				37D4F67118E06BD900661E20 /* Offline@2x.png in Resources */,

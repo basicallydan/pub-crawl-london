@@ -19,6 +19,9 @@ DerivedData
 *.xccheckout
 node_modules/
 */node_modules/*
+settings.json
+settings.debug.json
+settings.release.json
 
 #CocoaPods
 Pods

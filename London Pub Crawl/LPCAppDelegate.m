@@ -1,9 +1,10 @@
 #import "LPCAppDelegate.h"
 
-#import <UIColor-HexString/UIColor+HexString.h>
+#import "Analytics/Analytics.h"
 #import "LPCVenueRetrievalHandler.h"
-#import <PonyDebugger/PonyDebugger.h>
 #import <IAPHelper/IAPShare.h>
+#import <PonyDebugger/PonyDebugger.h>
+#import <UIColor-HexString/UIColor+HexString.h>
 
 @implementation LPCAppDelegate
 
@@ -19,12 +20,12 @@
         [temporaryLinesArray addObject:line];
     }
     
-//    for (NSString *station in self.pubs) {
-//        NSArray *pubs = [self.pubs objectForKey:station];
-//        for (NSDictionary *pub in pubs) {
-//            [venueRetrievalHandler addVenue:pub forStationCode:station];
-//        }
-//    }
+    // If you want to see debug logs from inside the SDK.
+    [Analytics debug:YES];
+    
+    // Initialize the Analytics instance with the
+    // write key for happily/d_pubcrawllondon
+    [Analytics initializeWithSecret:@"xm6ah210bs"];
 
     self.linesArray = temporaryLinesArray;
 
