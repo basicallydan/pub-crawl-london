@@ -6,15 +6,15 @@
 #import <IAPHelper/IAPShare.h>
 #import <PonyDebugger/PonyDebugger.h>
 #import <UIColor-HexString/UIColor+HexString.h>
+#import "NSDictionary+FromJSONFile.h"
 
 @implementation LPCAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    NSDictionary *allTheData = [self.class dictionaryWithContentsOfJSONString:@"tfl-tube-data.json"];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSDictionary *allTheData = [NSDictionary dictionaryWithContentsOfJSONFile:@"tfl-tube-data.json"];
     self.stations = [allTheData valueForKey:@"stations"];
     self.lines = [allTheData valueForKey:@"lines"];
-    self.pubs = [self.class dictionaryWithContentsOfJSONString:@"station-pubs.json"];
+    self.pubs = [NSDictionary dictionaryWithContentsOfJSONFile:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
 
     for (NSString *line in self.lines) {
@@ -34,12 +34,6 @@
     pageControl.pageIndicatorTintColor = [UIColor clearColor];
     pageControl.currentPageIndicatorTintColor = [UIColor clearColor];
     pageControl.backgroundColor = [UIColor clearColor];
-
-//    // PonyDebugger code
-//    PDDebugger *debugger = [PDDebugger defaultInstance];
-//    [debugger autoConnect];
-//    [debugger connectToURL:[NSURL URLWithString:@"ws://192.168.1.101:9000/device"]];
-//    [debugger enableCoreDataDebugging];
     
     // Set up IAPHelper
     
@@ -59,7 +53,6 @@
      {
          if(response > 0 ) {
              NSLog(@"Got a bunch of products. %d to be precise", [response.products count]);
-//             SKProduct* product = response.products;
              for (SKProduct *product in [IAPShare sharedHelper].iap.products) {
                  NSLog(@"Found product: %@ with price: %@", product.productIdentifier, product.priceLocale);
              }
@@ -110,19 +103,6 @@
 }
 
 #pragma mark - Static methods
-+ (NSDictionary *)dictionaryWithContentsOfJSONString:(NSString*)fileLocation{
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:[fileLocation stringByDeletingPathExtension] ofType:[fileLocation pathExtension]];
-    NSData* data = [NSData dataWithContentsOfFile:filePath];
-    __autoreleasing NSError* error = nil;
-    id result = [NSJSONSerialization JSONObjectWithData:data
-                                                options:kNilOptions error:&error];
-    // Be careful here. You add this as a category to NSDictionary
-    // but you get an id back, which means that result
-    // might be an NSArray as well!
-    if (error != nil) return nil;
-    return result;
-}
-
 + (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode atPosition:(LPCLinePosition *)position {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *stationDictionary = [appDelegate.stations objectForKey:nestoriaCode];
