@@ -1,19 +1,22 @@
 #import "LPCLineListViewController.h"
 
-#import <AFNetworking/AFHTTPSessionManager.h>
 #import "LPCAppDelegate.h"
-#import "LPCLine.h"
-#import "LPCLineTableViewCell.h"
-#import "LPCOptionsCell.h"
-#import "LPCLineViewController.h"
-#import "LPCLineOptionModalViewController.h"
-#import "LPCThemeManager.h"
-#import <UIColor-HexString/UIColor+HexString.h>
-#import "LPCVenue.h"
-#import "LPCVenueRetrievalHandler.h"
-#import <IAPHelper/IAPShare.h>
 #import "LPCCreditsCell.h"
 #import "LPCCreditsTextLabel.h"
+#import "LPCLine.h"
+#import "LPCLineOptionModalViewController.h"
+#import "LPCLineTableViewCell.h"
+#import "LPCLineViewController.h"
+#import "LPCOptionsCell.h"
+#import "LPCThemeManager.h"
+#import "LPCSettingsHelper.h"
+#import "LPCVenue.h"
+#import "LPCVenueRetrievalHandler.h"
+#import <AFNetworking/AFHTTPSessionManager.h>
+#import <Analytics/Analytics.h>
+#import <ChimpKit/ChimpKit.h>
+#import <IAPHelper/IAPShare.h>
+#import <UIColor-HexString/UIColor+HexString.h>
 
 // In-App Purchases
 //#import "LPCPurchaseHelper.h"
@@ -69,6 +72,7 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 - (void)showCredits {
+    [[Analytics sharedAnalytics] track:@"Opened credits"];
     if (!creditsView) {
         UIImage *foursquareLogo = [UIImage imageNamed:@"foursquare-logo.png"];
         UIImage *mapBoxLogo = [UIImage imageNamed:@"mapbox-logo.png"];
@@ -140,6 +144,21 @@ CGFloat const maxRowHeight = 101.45f;
     CGRect finalTableViewFrame = self.tableView.frame;
     finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
     CGRect finalCreditsViewFrame = self.tableView.frame;
+    
+    [[ChimpKit sharedKit] setApiKey:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-key"]];
+    
+    NSDictionary *params = @{@"id": [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-list-id"], @"email": @{@"email": @"daniel.hough@gmail.com"}, @"merge_vars": @{
+                                     @"groupings":@[
+                                            @{
+                                                @"name":[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-grouping-name"],
+                                                @"groups":@[[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-group-name"]]
+                                            }
+                                    ]}
+                            };
+    [[ChimpKit sharedKit] callApiMethod:@"lists/subscribe" withParams:params andCompletionHandler:^(ChimpKitRequest *request, NSError *error) {
+        NSLog(@"HTTP Status Code: %d", request.response.statusCode);
+        NSLog(@"Response String: %@", request.responseString);
+    }];
     
     [UIView animateWithDuration:0.2f animations:^{
         self.tableView.contentOffset = CGPointMake(0, 0);

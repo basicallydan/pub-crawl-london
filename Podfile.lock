@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
   - Analytics (0.10.3)
+  - ChimpKit (3.0.2)
   - CMMapLauncher (0.0.1)
   - IAPHelper (1.0.7)
   - PonyDebugger (0.3.1):
@@ -35,6 +36,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.0)
   - Analytics
+  - ChimpKit
   - CMMapLauncher (= 0.0.1)
   - IAPHelper
   - PonyDebugger (~> 0.3.1)
@@ -46,6 +48,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   Analytics: 70e672729483f7a1f7fe2ef1fbf3353b5bad6942
+  ChimpKit: e3a0677bdc5ba888ab02c0f7994147e6edd36bca
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
   IAPHelper: cbc2ab23f1650b480098b6fbfecad6c7a26adf8d
   PonyDebugger: d31607145d785b2315cd6f6a4ebaa378eb0c1340
