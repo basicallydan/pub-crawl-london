@@ -1,6 +1,8 @@
 #import "LPCVenueRetrievalHandler.h"
-#import <AFNetworking/AFHTTPSessionManager.h>
+
+#import "LPCSettingsHelper.h"
 #import "Venue.h"
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import <PonyDebugger/PonyDebugger.h>
 
 @interface LPCVenueRetrievalHandler()
@@ -113,8 +115,8 @@ NSManagedObjectModel *managedObjectModel;
     
     NSURL *URL = [NSURL URLWithString:@"https://api.foursquare.com"];
     
-    NSString *urlPathTemplate = @"/v2/venues/explore?client_id=%@&client_secret=%@&v=20131216&ll=%@,%@&section=drinks";
-    NSString *urlPath = [NSString stringWithFormat:urlPathTemplate, @"SNE54YCOV1IR5JP14ZOLOZU0Z43FQWLTTYDE0YDKYO03XMMH", @"44AI50PSJMHMXVBO1STMAUV0IZYQQEFZCSO1YXXKVTVM32OM&limit=6&sortByDistance=1", station.coordinate[0], station.coordinate[1]];
+    NSString *urlPathTemplate = @"/v2/venues/explore?client_id=%@&client_secret=%@&limit=6&sortByDistance=1&v=20131216&ll=%@,%@&section=drinks";
+    NSString *urlPath = [NSString stringWithFormat:urlPathTemplate, [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"foursquare-client-id"], [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"foursquare-client-secret"], station.coordinate[0], station.coordinate[1]];
     
     NSMutableArray *resources = [[NSMutableArray alloc] init];
     
