@@ -17,18 +17,19 @@
 #import <ChimpKit/ChimpKit.h>
 #import <IAPHelper/IAPShare.h>
 #import <UIColor-HexString/UIColor+HexString.h>
+#import "LPCCreditsView.h"
 
 // In-App Purchases
 //#import "LPCPurchaseHelper.h"
 //#import <StoreKit/StoreKit.h>
 
-@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate>
+@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate, LPCCreditsViewDelegate>
 
 @end
 
 @implementation LPCLineListViewController {
     NSMutableArray *lineCells;
-    UIView *creditsView;
+    LPCCreditsView *creditsView;
 }
 
 CGFloat const maxRowHeight = 101.45f;
@@ -42,12 +43,13 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark - Private Methods
@@ -74,65 +76,8 @@ CGFloat const maxRowHeight = 101.45f;
 - (void)showCredits {
     [[Analytics sharedAnalytics] track:@"Opened credits"];
     if (!creditsView) {
-        UIImage *foursquareLogo = [UIImage imageNamed:@"foursquare-logo.png"];
-        UIImage *mapBoxLogo = [UIImage imageNamed:@"mapbox-logo.png"];
-        UIImage *tflLogo = [UIImage imageNamed:@"tfl-logo.png"];
-        
-        CGRect creditsViewStartingFrame = self.tableView.frame;
-        creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;
-        creditsView = [[UIView alloc] initWithFrame:creditsViewStartingFrame];
-        int cellNumber = 0;
-        for (LPCLineTableViewCell *cell in lineCells) {
-            
-            UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
-            UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
-            
-            if (cellNumber == 0) {
-                [creditsCell addSubview:creditsLabel];
-                [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project\nCreated in London, UK"];
-            } else if (cellNumber == 1) {
-                [creditsCell addSubview:creditsLabel];
-                [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
-            } else if (cellNumber == 2) {
-                UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
-                CGRect foursquareFrame = foursquareImageView.frame;
-                foursquareFrame.origin = creditsLabel.frame.origin;
-                foursquareFrame.origin.y = (creditsCell.frame.size.height - foursquareFrame.size.height) / 2;
-                foursquareImageView.frame = foursquareFrame;
-                
-                UIImageView *mapBoxImageView = [[UIImageView alloc] initWithImage:mapBoxLogo];
-                CGRect mapBoxFrame = mapBoxImageView.frame;
-                mapBoxFrame.origin.y = (creditsCell.frame.size.height - mapBoxFrame.size.height) / 2;
-                mapBoxFrame.origin.x = creditsCell.frame.size.width - mapBoxFrame.size.width - foursquareFrame.origin.x;
-                mapBoxImageView.frame = mapBoxFrame;
-                
-                UIImageView *tflImageView = [[UIImageView alloc] initWithImage:tflLogo];
-                CGRect tflFrame = tflImageView.frame;
-                tflFrame.origin.y = (creditsCell.frame.size.height - tflFrame.size.height) / 2;
-                CGFloat foursquareRightEdge = foursquareFrame.origin.x + foursquareFrame.size.width;
-                CGFloat middleSpace = mapBoxFrame.origin.x - foursquareRightEdge;
-                tflFrame.origin.x = foursquareRightEdge + ((middleSpace - tflFrame.size.width) / 2);
-                tflImageView.frame = tflFrame;
-                
-                [creditsCell addSubview:foursquareImageView];
-                [creditsCell addSubview:tflImageView];
-                [creditsCell addSubview:mapBoxImageView];
-            } else if (cellNumber == 4) {
-                [creditsCell addSubview:creditsLabel];
-                [creditsLabel setText:@"To get started, select a line.\nFor help whilst on a line, tap the '?'"];
-            } else if (cellNumber == 9) {
-                UIButton *doneButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
-                [doneButton setTitle:@"Great!" forState:UIControlStateNormal];
-                [doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-                [doneButton addTarget:self action:@selector(hideCredits) forControlEvents:UIControlEventTouchUpInside];
-                doneButton.backgroundColor = [UIColor whiteColor];
-                [creditsCell addSubview:doneButton];
-            }
-            
-            [creditsView addSubview:creditsCell];
-            
-            cellNumber++;
-        }
+        creditsView = [[LPCCreditsView alloc] initFromTableView:self.tableView andCells:lineCells];
+        creditsView.delegate = self;
         
         UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
         closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
@@ -145,21 +90,6 @@ CGFloat const maxRowHeight = 101.45f;
     finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
     CGRect finalCreditsViewFrame = self.tableView.frame;
     
-    [[ChimpKit sharedKit] setApiKey:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-key"]];
-    
-    NSDictionary *params = @{@"id": [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-list-id"], @"email": @{@"email": @"daniel.hough@gmail.com"}, @"merge_vars": @{
-                                     @"groupings":@[
-                                            @{
-                                                @"name":[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-grouping-name"],
-                                                @"groups":@[[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-group-name"]]
-                                            }
-                                    ]}
-                            };
-    [[ChimpKit sharedKit] callApiMethod:@"lists/subscribe" withParams:params andCompletionHandler:^(ChimpKitRequest *request, NSError *error) {
-        NSLog(@"HTTP Status Code: %d", request.response.statusCode);
-        NSLog(@"Response String: %@", request.responseString);
-    }];
-    
     [UIView animateWithDuration:0.2f animations:^{
         self.tableView.contentOffset = CGPointMake(0, 0);
     } completion:^(BOOL finished) {
@@ -168,6 +98,23 @@ CGFloat const maxRowHeight = 101.45f;
             [creditsView setNeedsDisplay];
             self.tableView.frame = finalTableViewFrame;
         }];
+    }];
+}
+
+#pragma mark - keyboard movements
+- (void)keyboardWillShow:(NSNotification *)notification {
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = creditsView.frame;
+        f.origin.y = -35.0f;  //set the -35.0f to your required value
+        creditsView.frame = f;
+    }];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = creditsView.frame;
+        f.origin.y = 0.0f;
+        creditsView.frame = f;
     }];
 }
 
@@ -184,6 +131,25 @@ CGFloat const maxRowHeight = 101.45f;
             creditsView.frame = finalCreditsViewFrame;
             self.tableView.frame = finalTableViewFrame;
         }];
+    }];
+}
+
+#pragma mark - LPCCreditsViewDelegate
+
+- (void)didSubmitEmailAddress:(NSString *)emailAddress {
+    [[ChimpKit sharedKit] setApiKey:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-key"]];
+    
+    NSDictionary *params = @{@"id": [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-list-id"], @"email": @{@"email": emailAddress}, @"merge_vars": @{
+                                     @"groupings":@[
+                                             @{
+                                                 @"name":[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-grouping-name"],
+                                                 @"groups":@[[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-group-name"]]
+                                                 }
+                                             ]}
+                             };
+    [[ChimpKit sharedKit] callApiMethod:@"lists/subscribe" withParams:params andCompletionHandler:^(ChimpKitRequest *request, NSError *error) {
+        NSLog(@"HTTP Status Code: %d", request.response.statusCode);
+        NSLog(@"Response String: %@", request.responseString);
     }];
 }
 

@@ -976,12 +976,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/ViewControllers/LPCLineListViewController.m"
-            timestampString = "418684171.30636"
+            timestampString = "418861607.070155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-showCredits"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-didSubmitEmailAddress:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
