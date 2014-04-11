@@ -1,14 +1,33 @@
-//
-//  LPCThemeManager.m
-//  London Pub Crawl
-//
-//  Created by Daniel Hough on 15/10/2013.
-//  Copyright (c) 2013 LondonPubCrawl. All rights reserved.
-//
-
 #import "LPCThemeManager.h"
 
+#import <UIColor+HexString.h>
+
 @implementation LPCThemeManager
+
++ (UIColor *)getLightGrey
+{
+    return [UIColor colorWithHexString:@"#f1f1f1"];
+}
+
++ (UIColor *)getLinkColor
+{
+    return [UIColor colorWithHexString:@"#0066ff"];
+}
+
++ (UIColor *)getSelectedLinkColor
+{
+    return [UIColor colorWithHexString:@"#6699ff"];
+}
+
++ (UIColor *)getFacebookBlue
+{
+    return [UIColor colorWithRed:59/255.0f green:89/255.0f blue:152/255.0f alpha:1.0f];
+}
+
++ (UIColor *)getTwitterBlue
+{
+    return [UIColor colorWithRed:64/255.0f green:153/255.0f blue:255/255.0f alpha:1.0f];
+}
 
 + (UIImage *)tubeLineForkWithColor:(UIColor *)color {
     UIImage *image = [UIImage imageNamed:@"tube-line-fork-double-sided"];

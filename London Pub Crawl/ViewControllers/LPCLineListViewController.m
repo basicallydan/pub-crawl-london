@@ -113,7 +113,7 @@ CGFloat const maxRowHeight = 101.45f;
 -(void)keyboardWillHide:(NSNotification *)notification {
     [UIView animateWithDuration:0.3 animations:^{
         CGRect f = creditsView.frame;
-        f.origin.y = 0.0f;
+        f.origin.y = self.tableView.frame.origin.y;
         creditsView.frame = f;
     }];
 }

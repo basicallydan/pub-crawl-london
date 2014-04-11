@@ -22,7 +22,10 @@ PODS:
   - Analytics (0.10.3)
   - ChimpKit (3.0.2)
   - CMMapLauncher (0.0.1)
+  - fmemopen (0.0.1)
   - IAPHelper (1.0.7)
+  - NSAttributedStringMarkdownParser (0.0.1):
+    - fmemopen
   - PonyDebugger (0.3.1):
     - SocketRocket
   - Reachability (3.1.1)
@@ -39,6 +42,7 @@ DEPENDENCIES:
   - ChimpKit
   - CMMapLauncher (= 0.0.1)
   - IAPHelper
+  - NSAttributedStringMarkdownParser (~> 0.0)
   - PonyDebugger (~> 0.3.1)
   - Reachability (~> 3.1)
   - SDWebImage (= 3.5)
@@ -50,7 +54,9 @@ SPEC CHECKSUMS:
   Analytics: 70e672729483f7a1f7fe2ef1fbf3353b5bad6942
   ChimpKit: e3a0677bdc5ba888ab02c0f7994147e6edd36bca
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
+  fmemopen: 0c47f38f28a59216152d51fa80672c1549f80ea0
   IAPHelper: cbc2ab23f1650b480098b6fbfecad6c7a26adf8d
+  NSAttributedStringMarkdownParser: fb93a47c4be94a80f4bd5e81dd8067cce5f7f5eb
   PonyDebugger: d31607145d785b2315cd6f6a4ebaa378eb0c1340
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   SDWebImage: f1a72472f8a2d54445f1fedafe2090593d9caf7f

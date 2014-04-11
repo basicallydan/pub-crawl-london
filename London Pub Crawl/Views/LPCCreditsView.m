@@ -3,18 +3,25 @@
 #import "LPCLineTableViewCell.h"
 #import "LPCCreditsCell.h"
 #import "LPCCreditsTextLabel.h"
+#import "LPCThemeManager.h"
+#import <UIColor+HexString.h>
+#import <NSAttributedStringMarkdownParser/NSAttributedStringMarkdownParser.h>
 
 @interface LPCCreditsView () <UITextFieldDelegate>
 @end
 
 @implementation LPCCreditsView {
     UITextField *emailField;
+    UIButton *emailButton;
 }
 
 - (id)initFromTableView:(UITableView *)tableView andCells:(NSArray *)lineCells {
     UIImage *foursquareLogo = [UIImage imageNamed:@"foursquare-logo.png"];
     UIImage *mapBoxLogo = [UIImage imageNamed:@"mapbox-logo.png"];
     UIImage *tflLogo = [UIImage imageNamed:@"tfl-logo.png"];
+    
+    NSAttributedStringMarkdownParser* parser = [[NSAttributedStringMarkdownParser alloc] init];
+    [parser setParagraphFont:[UIFont systemFontOfSize:15.0f]];
     
     CGRect creditsViewStartingFrame = tableView.frame;
     creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;
@@ -23,14 +30,20 @@
     for (LPCLineTableViewCell *cell in lineCells) {
         UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
         UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
+        creditsLabel.numberOfLines = 3;
+        [creditsLabel setTextAlignment:NSTextAlignmentCenter];
         
         if (cellNumber == 0) {
             [creditsCell addSubview:creditsLabel];
-            [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project\nCreated in London, UK"];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"**To get started**, select a line and swipe from station-to-station."]];
         } else if (cellNumber == 1) {
             [creditsCell addSubview:creditsLabel];
-            [creditsLabel setText:@"For more visit happilyltd.co\nWe're very grateful for data from"];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"**Pub Crawl: LDN** is a Happily Project created in London, UK"]];
+//            [creditsLabel setText:@"Pub Crawl: LDN is a Happily Project\nCreated in London, UK"];
         } else if (cellNumber == 2) {
+            [creditsCell addSubview:creditsLabel];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"For more visit **happilyltd.co**\nWe're very grateful for data from..."]];
+        } else if (cellNumber == 3) {
             UIImageView *foursquareImageView = [[UIImageView alloc] initWithImage:foursquareLogo];
             CGRect foursquareFrame = foursquareImageView.frame;
             foursquareFrame.origin = creditsLabel.frame.origin;
@@ -56,23 +69,43 @@
             [creditsCell addSubview:mapBoxImageView];
         } else if (cellNumber == 4) {
             [creditsCell addSubview:creditsLabel];
-            [creditsLabel setText:@"To get started, select a line.\nFor help whilst on a line, tap the '?'"];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"To get in touch, **use the following email address**"]];
         } else if (cellNumber == 5) {
-            [creditsCell addSubview:creditsLabel];
-            [creditsLabel setText:@"To keep in the loop\nEnter your email address below."];
+            emailButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
+            [emailButton setTitleColor:[LPCThemeManager getLinkColor] forState:UIControlStateNormal];
+            [emailButton setTitleColor:[LPCThemeManager getSelectedLinkColor] forState:UIControlStateHighlighted];
+            [emailButton setTitle:@"info+pubcrawl@happilyltd.co" forState:UIControlStateNormal];
+            [emailButton addTarget:self action:@selector(sendEmail) forControlEvents:UIControlEventTouchUpInside];
+            
+            UILongPressGestureRecognizer *emailButtonLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToEmailLongPress:)];
+            emailButton.userInteractionEnabled = YES;
+            [emailButton addGestureRecognizer:emailButtonLongPress];
+            
+            emailButton.backgroundColor = [UIColor whiteColor];
+            [creditsCell addSubview:emailButton];
         } else if (cellNumber == 6) {
+            [creditsCell addSubview:creditsLabel];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"To keep in the loop, **enter your email address below** and hit **Go**"]];
+        } else if (cellNumber == 7) {
             emailField = [[UITextField alloc] initWithFrame:creditsLabel.frame];
+            emailField.clipsToBounds = YES;
+            emailField.layer.cornerRadius = 10.0f;
+            emailField.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
             [emailField setPlaceholder:@"your@emailaddress.com"];
             [emailField setReturnKeyType:UIReturnKeyGo];
             [emailField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
             [emailField setKeyboardType:UIKeyboardTypeEmailAddress];
+            emailField.textAlignment = NSTextAlignmentCenter;
             emailField.delegate = self;
             [creditsCell addSubview:emailField];
+        } else if (cellNumber == 8) {
+            [creditsCell addSubview:creditsLabel];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"Please, remember to drink responsibly :)"]];
         } else if (cellNumber == 9) {
             UIButton *doneButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
-            [doneButton setTitle:@"Great!" forState:UIControlStateNormal];
-            [doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//            [doneButton addTarget:self action:@selector(hideCredits) forControlEvents:UIControlEventTouchUpInside];
+            [doneButton setTitle:@"I promise. Back to the pubs!" forState:UIControlStateNormal];
+            [doneButton setTitleColor:[LPCThemeManager getLinkColor] forState:UIControlStateNormal];
+            [doneButton setTitleColor:[LPCThemeManager getSelectedLinkColor] forState:UIControlStateHighlighted];
             doneButton.backgroundColor = [UIColor whiteColor];
             [creditsCell addSubview:doneButton];
         }
@@ -104,6 +137,21 @@
         [emailField resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
+}
+
+- (void)respondToEmailLongPress:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [self copyEmail];
+        return;
+    }
+}
+
+- (void)sendEmail {
+    NSLog(@"Opening email!");
+}
+
+- (void)copyEmail {
+    NSLog(@"Copying email address!");
 }
 
 @end
