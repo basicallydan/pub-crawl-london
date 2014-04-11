@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.0.0):
     - AFNetworking/NSURLConnection
   - Analytics (0.10.3)
+  - CGLMail (0.1.0)
   - ChimpKit (3.0.2)
   - CMMapLauncher (0.0.1)
   - fmemopen (0.0.1)
@@ -39,6 +40,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.0)
   - Analytics
+  - CGLMail (~> 0.1)
   - ChimpKit
   - CMMapLauncher (= 0.0.1)
   - IAPHelper
@@ -52,6 +54,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   Analytics: 70e672729483f7a1f7fe2ef1fbf3353b5bad6942
+  CGLMail: 7aadf94de9e0c64671d72c5bb790735df7117fbc
   ChimpKit: e3a0677bdc5ba888ab02c0f7994147e6edd36bca
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
   fmemopen: 0c47f38f28a59216152d51fa80672c1549f80ea0

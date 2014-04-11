@@ -18,6 +18,7 @@
 #import <IAPHelper/IAPShare.h>
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "LPCCreditsView.h"
+#import <CGLMail/CGLMailHelper.h>
 
 // In-App Purchases
 //#import "LPCPurchaseHelper.h"
@@ -105,7 +106,7 @@ CGFloat const maxRowHeight = 101.45f;
 - (void)keyboardWillShow:(NSNotification *)notification {
     [UIView animateWithDuration:0.3 animations:^{
         CGRect f = creditsView.frame;
-        f.origin.y = -35.0f;  //set the -35.0f to your required value
+        f.origin.y = -90.0f;
         creditsView.frame = f;
     }];
 }
@@ -135,6 +136,14 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 #pragma mark - LPCCreditsViewDelegate
+- (void)didClickEmail:(NSString *)emailAddress {
+    UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:emailAddress subject:@"Pub Crawl: London" completion:nil];
+    [self presentViewController:mailVC animated:YES completion:nil];
+}
+
+- (void)didCloseCreditsView {
+    [self hideCredits];
+}
 
 - (void)didSubmitEmailAddress:(NSString *)emailAddress {
     [[ChimpKit sharedKit] setApiKey:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-key"]];

@@ -6,6 +6,7 @@
 #import "LPCThemeManager.h"
 #import <UIColor+HexString.h>
 #import <NSAttributedStringMarkdownParser/NSAttributedStringMarkdownParser.h>
+#import <CGLMail/CGLMailHelper.h>
 
 @interface LPCCreditsView () <UITextFieldDelegate>
 @end
@@ -14,6 +15,8 @@
     UITextField *emailField;
     UIButton *emailButton;
 }
+
+NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
 
 - (id)initFromTableView:(UITableView *)tableView andCells:(NSArray *)lineCells {
     UIImage *foursquareLogo = [UIImage imageNamed:@"foursquare-logo.png"];
@@ -74,9 +77,8 @@
             emailButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
             [emailButton setTitleColor:[LPCThemeManager getLinkColor] forState:UIControlStateNormal];
             [emailButton setTitleColor:[LPCThemeManager getSelectedLinkColor] forState:UIControlStateHighlighted];
-            [emailButton setTitle:@"info+pubcrawl@happilyltd.co" forState:UIControlStateNormal];
+            [emailButton setTitle:emailAddress forState:UIControlStateNormal];
             [emailButton addTarget:self action:@selector(sendEmail) forControlEvents:UIControlEventTouchUpInside];
-            
             UILongPressGestureRecognizer *emailButtonLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToEmailLongPress:)];
             emailButton.userInteractionEnabled = YES;
             [emailButton addGestureRecognizer:emailButtonLongPress];
@@ -106,6 +108,7 @@
             [doneButton setTitle:@"I promise. Back to the pubs!" forState:UIControlStateNormal];
             [doneButton setTitleColor:[LPCThemeManager getLinkColor] forState:UIControlStateNormal];
             [doneButton setTitleColor:[LPCThemeManager getSelectedLinkColor] forState:UIControlStateHighlighted];
+            [doneButton addTarget:self action:@selector(closeCredits) forControlEvents:UIControlEventTouchUpInside];
             doneButton.backgroundColor = [UIColor whiteColor];
             [creditsCell addSubview:doneButton];
         }
@@ -125,8 +128,8 @@
         }
         [emailField resignFirstResponder];
         [emailField setText:@""];
-//        [emailField setPlaceholder:@"Thanks!"];
-//        emailField.enabled = NO;
+        // TODO: Something better than this!
+        [emailField setPlaceholder:@"thanks@forsubscribing.com"];
     }
     return YES;
 }
@@ -147,11 +150,16 @@
 }
 
 - (void)sendEmail {
-    NSLog(@"Opening email!");
+    [self.delegate didClickEmail:emailAddress];
 }
 
 - (void)copyEmail {
-    NSLog(@"Copying email address!");
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = emailAddress;
+}
+
+- (void)closeCredits {
+    [self.delegate didCloseCreditsView];
 }
 
 @end

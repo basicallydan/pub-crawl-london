@@ -2,7 +2,9 @@
 
 @protocol LPCCreditsViewDelegate <NSObject>
 
+- (void)didClickEmail:(NSString *)emailAddress;
 - (void)didSubmitEmailAddress:(NSString *)emailAddress;
+- (void)didCloseCreditsView;
 
 @end
 
