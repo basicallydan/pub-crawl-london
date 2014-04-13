@@ -24,6 +24,7 @@ PODS:
   - ChimpKit (3.0.2)
   - CMMapLauncher (0.0.1)
   - fmemopen (0.0.1)
+  - FontAwesome+iOS (0.1.1)
   - IAPHelper (1.0.7)
   - NSAttributedStringMarkdownParser (0.0.1):
     - fmemopen
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - CGLMail (~> 0.1)
   - ChimpKit
   - CMMapLauncher (= 0.0.1)
+  - FontAwesome+iOS (~> 0.1)
   - IAPHelper
   - NSAttributedStringMarkdownParser (~> 0.0)
   - PonyDebugger (~> 0.3.1)
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   ChimpKit: e3a0677bdc5ba888ab02c0f7994147e6edd36bca
   CMMapLauncher: 469ca5e5669aa6857b547711c1a9bff102d24126
   fmemopen: 0c47f38f28a59216152d51fa80672c1549f80ea0
+  FontAwesome+iOS: 243c5309e90d5788909b0f859f75ecff4a20f88f
   IAPHelper: cbc2ab23f1650b480098b6fbfecad6c7a26adf8d
   NSAttributedStringMarkdownParser: fb93a47c4be94a80f4bd5e81dd8067cce5f7f5eb
   PonyDebugger: d31607145d785b2315cd6f6a4ebaa378eb0c1340

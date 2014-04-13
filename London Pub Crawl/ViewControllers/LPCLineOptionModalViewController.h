@@ -5,6 +5,7 @@
 
 @protocol LPCLineOptionModalViewControllerDelegate <NSObject>
 
+- (void)didCancelStationSelection:(BOOL)ownershipChanged;
 - (void)didSelectStartingStation:(LPCStation *)station forLine:(LPCLine *)line;
 
 @end

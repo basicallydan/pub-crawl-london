@@ -2,22 +2,25 @@
 
 #import "LPCStation.h"
 #import <IAPHelper/IAPShare.h>
+#import <Analytics/Analytics.h>
 
 @interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
 
 @end
 
-@implementation LPCLineOptionModalViewController
+@implementation LPCLineOptionModalViewController {
+    NSArray *startingStations;
+    NSArray *allStations;
+    LPCLine *selectedLine;
+    BOOL ownershipChanged;
+}
 
-NSArray *startingStations;
-NSArray *allStations;
-LPCLine *selectedLine;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        ownershipChanged = NO;
     }
     
     return self;
@@ -44,6 +47,12 @@ LPCLine *selectedLine;
 }
 
 - (IBAction)cancel:(id)sender {
+    [self.delegate didCancelStationSelection:ownershipChanged];
+    if (self.buyView.hidden == NO) {
+        [[Analytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
+    } else {
+        [[Analytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -54,12 +63,15 @@ LPCLine *selectedLine;
         if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:selectedLine.iapProductIdentifier]) {
             NSLog(@"The user already owns this line");
             self.buyView.hidden = YES;
+        } else if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey]) {
+            NSLog(@"The user already owns all the lines");
+            self.buyView.hidden = YES;
         } else {
             self.buyView.hidden = NO;
             self.buyView.delegate = self;
             [self.buyView setLine:selectedLine];
+            [[Analytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
             NSLog(@"The user does not own this line. Will show the buy modal now");
-            //            [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
         }
     } else {
         NSLog(@"This line is not buyable");
@@ -157,11 +169,17 @@ LPCLine *selectedLine;
 
 - (void)didChooseToBuyAll {
     NSLog(@"Buying all of them!");
+    ownershipChanged = YES;
+    [[Analytics sharedAnalytics] track:@"Chose to buy all the lines" properties: @{ @"line" : selectedLine.name }];
+    [[IAPShare sharedHelper].iap provideContent:allTheLinesKey];
     [self hideBuyView];
 }
 
 - (void)didChooseToBuyLine:(LPCLine *)line {
     NSLog(@"Buying one line: %@!", line.name);
+    ownershipChanged = YES;
+    [[Analytics sharedAnalytics] track:@"Chose to buy the current line" properties: @{ @"line" : selectedLine.name }];
+    [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
     [self hideBuyView];
 }
 

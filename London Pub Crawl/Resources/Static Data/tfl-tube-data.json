@@ -3,7 +3,8 @@
 		{
 			"background-color": "#E41F1F",
 			"text-color": "#ffffff",
-			"name": "Central",
+            "name": "Central",
+            "iap-product-identifier":"com.happily.pubcrawl.centralline",
 			"top-direction":"Westbound",
 			"bottom-direction":"Eastbound",
 			"stations": [
@@ -74,6 +75,7 @@
 			"background-color": "#0450A1",
 			"text-color": "#ffffff",
 			"name": "Piccadilly",
+            "iap-product-identifier":"com.happily.pubcrawl.piccadillyline",
 			"top-direction":"Eastbound",
 			"bottom-direction":"Westbound",
 			"stations": [
@@ -142,6 +144,7 @@
 			"background-color": "#009FE0",
 			"text-color": "#ffffff",
 			"name": "Victoria",
+            "iap-product-identifier":"com.happily.pubcrawl.victorialine",
 			"top-direction":"Northbound",
 			"bottom-direction":"Southbound",
 			"stations": [
@@ -289,6 +292,7 @@
 			"background-color": "#F8D42D",
 			"text-color": "#113892",
 			"name": "Circle",
+            "iap-product-identifier":"com.happily.pubcrawl.circleline",
 			"top-direction":"Anti-clockwise",
 			"bottom-direction":"Clockwise",
 			"stations": [
@@ -368,6 +372,7 @@
 			"background-color": "#E899A8",
 			"text-color": "#113892",
 			"name": "Hammersmith & City",
+            "iap-product-identifier":"com.happily.pubcrawl.handcline",
 			"top-direction":"Westbound",
 			"bottom-direction":"Eastbound",
 			"stations": [
@@ -407,6 +412,7 @@
 			"background-color": "#893267",
 			"text-color": "#ffffff",
 			"name": "Metropolitan",
+            "iap-product-identifier":"com.happily.pubcrawl.metline",
 			"top-direction":"Westbound",
 			"bottom-direction":"Eastbound",
 			"stations": [

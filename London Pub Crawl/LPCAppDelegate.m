@@ -41,13 +41,18 @@
         
         NSSet* dataSet = [[NSSet alloc] initWithObjects:
                           @"com.happily.pubcrawl.northernline",
-                          @"com.happily.pubcrawl.allthelines", nil];
+                          @"com.happily.pubcrawl.centralline",
+                          allTheLinesKey, nil];
         
         [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
     }
     
     // TODO: Set to YES before shipping
-    [IAPShare sharedHelper].iap.production = NO;
+    [IAPShare sharedHelper].iap.production = YES;
+    
+    [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest *request, SKProductsResponse *response) {
+        NSLog(@"DONE");
+    }];
     
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {

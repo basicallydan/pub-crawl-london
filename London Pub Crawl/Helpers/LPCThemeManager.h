@@ -8,6 +8,10 @@
 + (UIColor *)getFacebookBlue;
 + (UIColor *)getTwitterBlue;
 
++ (UIColor *)lightenColor:(UIColor *)color;
++ (UIColor *)darkenColor:(UIColor *)color;
++ (UIColor *)lightenOrDarkenColor:(UIColor *)color;
+
 + (UIImage *)tubeLineForkWithColor:(UIColor *)color;
 + (UIImage *)recolorImage:(UIImage *)image withColor:(UIColor *)color;
 

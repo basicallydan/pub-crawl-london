@@ -52,8 +52,6 @@
 		3787FEA618E21DF1002B79C2 /* LPCLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEA218E21DF1002B79C2 /* LPCLineTableViewCell.m */; };
 		3787FEA718E21DF1002B79C2 /* LPCOptionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEA418E21DF1002B79C2 /* LPCOptionsCell.m */; };
 		3787FEAA18E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEA918E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.m */; };
-		3787FEB118E21E4B002B79C2 /* LPCIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEAC18E21E4B002B79C2 /* LPCIAPHelper.m */; };
-		3787FEB218E21E4B002B79C2 /* LPCPurchaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEAE18E21E4B002B79C2 /* LPCPurchaseHelper.m */; };
 		3787FEB318E21E4B002B79C2 /* LPCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEB018E21E4B002B79C2 /* LPCThemeManager.m */; };
 		3787FEC418E21E6A002B79C2 /* LPCBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3787FEB518E21E6A002B79C2 /* LPCBrowserViewController.m */; };
 		3787FEC518E21E6A002B79C2 /* LPCBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3787FEB618E21E6A002B79C2 /* LPCBrowserViewController.xib */; };
@@ -213,10 +211,6 @@
 		3787FEA418E21DF1002B79C2 /* LPCOptionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCOptionsCell.m; sourceTree = "<group>"; };
 		3787FEA818E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AsCLLocationCoordinate2D.h"; sourceTree = "<group>"; };
 		3787FEA918E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AsCLLocationCoordinate2D.m"; sourceTree = "<group>"; };
-		3787FEAB18E21E4B002B79C2 /* LPCIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCIAPHelper.h; sourceTree = "<group>"; };
-		3787FEAC18E21E4B002B79C2 /* LPCIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCIAPHelper.m; sourceTree = "<group>"; };
-		3787FEAD18E21E4B002B79C2 /* LPCPurchaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCPurchaseHelper.h; sourceTree = "<group>"; };
-		3787FEAE18E21E4B002B79C2 /* LPCPurchaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCPurchaseHelper.m; sourceTree = "<group>"; };
 		3787FEAF18E21E4B002B79C2 /* LPCThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCThemeManager.h; sourceTree = "<group>"; };
 		3787FEB018E21E4B002B79C2 /* LPCThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCThemeManager.m; sourceTree = "<group>"; };
 		3787FEB418E21E6A002B79C2 /* LPCBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCBrowserViewController.h; sourceTree = "<group>"; };
@@ -415,10 +409,6 @@
 		3787FE9C18E21C32002B79C2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3787FEAB18E21E4B002B79C2 /* LPCIAPHelper.h */,
-				3787FEAC18E21E4B002B79C2 /* LPCIAPHelper.m */,
-				3787FEAD18E21E4B002B79C2 /* LPCPurchaseHelper.h */,
-				3787FEAE18E21E4B002B79C2 /* LPCPurchaseHelper.m */,
 				3738664818F4855E00ED79F3 /* LPCSettingsHelper.h */,
 				3738664918F4855E00ED79F3 /* LPCSettingsHelper.m */,
 				3787FEAF18E21E4B002B79C2 /* LPCThemeManager.h */,
@@ -911,7 +901,6 @@
 				37074FE218F334B500D86847 /* LPCCreditsTextLabel.m in Sources */,
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,
-				3787FEB118E21E4B002B79C2 /* LPCIAPHelper.m in Sources */,
 				3787FECC18E21E6A002B79C2 /* LPCStationViewController.m in Sources */,
 				3787FEA718E21DF1002B79C2 /* LPCOptionsCell.m in Sources */,
 				3787FEC618E21E6A002B79C2 /* LPCForkViewController.m in Sources */,
@@ -919,7 +908,6 @@
 				3787FEA618E21DF1002B79C2 /* LPCLineTableViewCell.m in Sources */,
 				3769ACFF1868509000D6F2B0 /* UIFont+FontAwesome.m in Sources */,
 				3769ACFE1868509000D6F2B0 /* NSString+FontAwesome.m in Sources */,
-				3787FEB218E21E4B002B79C2 /* LPCPurchaseHelper.m in Sources */,
 				3787FEC418E21E6A002B79C2 /* LPCBrowserViewController.m in Sources */,
 				37F6736518EDE18400AE5B46 /* LPCBuyLineView.m in Sources */,
 				3787FEAA18E21E2A002B79C2 /* NSArray+AsCLLocationCoordinate2D.m in Sources */,

@@ -3,22 +3,23 @@
 #import "LPCAppDelegate.h"
 #import "LPCCreditsCell.h"
 #import "LPCCreditsTextLabel.h"
+#import "LPCCreditsView.h"
 #import "LPCLine.h"
 #import "LPCLineOptionModalViewController.h"
 #import "LPCLineTableViewCell.h"
 #import "LPCLineViewController.h"
 #import "LPCOptionsCell.h"
-#import "LPCThemeManager.h"
 #import "LPCSettingsHelper.h"
+#import "LPCThemeManager.h"
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <Analytics/Analytics.h>
+#import <CGLMail/CGLMailHelper.h>
 #import <ChimpKit/ChimpKit.h>
 #import <IAPHelper/IAPShare.h>
+#import <NSString+FontAwesome.h>
 #import <UIColor-HexString/UIColor+HexString.h>
-#import "LPCCreditsView.h"
-#import <CGLMail/CGLMailHelper.h>
 
 // In-App Purchases
 //#import "LPCPurchaseHelper.h"
@@ -163,6 +164,11 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
+- (void)didCancelStationSelection:(BOOL)ownershipChanged {
+    if (ownershipChanged) {
+        [self.tableView reloadData];
+    }
+}
 
 - (void)didSelectStartingStation:(LPCStation *)station forLine:(LPCLine *)line {
     [self dismissViewControllerAnimated:NO completion:^{
@@ -174,10 +180,14 @@ CGFloat const maxRowHeight = 101.45f;
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LPCLineTableViewCell *cell = (LPCLineTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"Selected the %@ line", cell.lineName);
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (![cell isKindOfClass:[LPCLineTableViewCell class]]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
 
-    [self loadCrawlForLine:cell];
+    [self loadCrawlForLine:(LPCLineTableViewCell *)cell];
+    NSLog(@"Selected the %@ line", ((LPCLineTableViewCell *)cell).lineName);
 }
 
 #pragma mark - UITableViewDataSource
@@ -242,8 +252,15 @@ CGFloat const maxRowHeight = 101.45f;
     
     NSString *iapProductIdentifier = [line valueForKey:@"iap-product-identifier"];
     
-    if (iapProductIdentifier && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:iapProductIdentifier]) {
+    if (iapProductIdentifier && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:iapProductIdentifier] && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey]) {
         NSLog(@"The user does not own the %@ line", cell.lineName);
+        [cell.lockedLabel setText:[NSString fontAwesomeIconStringForEnum:FAIconLock]];
+        UIFont *font = [UIFont fontWithName:kFontAwesomeFamilyName size:22];
+        [cell.lockedLabel setHidden:NO];
+        [cell.lockedLabel setFont:font];
+        [cell.lockedLabel setTextColor:[LPCThemeManager lightenOrDarkenColor:cellColor]];
+    } else {
+        [cell.lockedLabel setHidden:YES];
     }
     
     cell.backgroundColor = cellColor;
@@ -254,9 +271,11 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)didClickChangeLine {
     if (self.presentedViewController.presentedViewController) {
+        [self.tableView reloadData];
         [self.presentedViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
         [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
     } else if (self.presentedViewController) {
+        [self.tableView reloadData];
         [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }

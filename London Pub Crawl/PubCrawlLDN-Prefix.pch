@@ -15,4 +15,5 @@
     #import <Foundation/Foundation.h>
     #import <SVProgressHUD/SVProgressHUD.h>
     #define isiPhone5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
+    #define allTheLinesKey @"com.happily.pubcrawl.allthelines"
 #endif
