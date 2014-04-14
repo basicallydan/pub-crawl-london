@@ -413,8 +413,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     // Dismiss this controller first
     [[Analytics sharedAnalytics] track:@"Changed line" properties: @{ @"station" : self.station.name }];
     
-    if (self.topLevelDelegate) {
-        [self.topLevelDelegate didClickChangeLine];
+    if (self.lineDelegate) {
+        [self.lineDelegate didClickChangeLine];
     }
 }
 

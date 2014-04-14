@@ -1,7 +1,6 @@
 #import "LPCForkViewController.h"
 
 #import "LPCAppDelegate.h"
-#import "LPCStationViewController.h"
 #import "LPCThemeManager.h"
 #import "LPCFork.h"
 #import <UIColor-HexString/UIColor+HexString.h>
@@ -122,8 +121,8 @@ LPCFork *currentFork;
 }
 
 - (IBAction)changeLine:(id)sender {
-    if (self.topLevelDelegate) {
-        [self.topLevelDelegate didClickChangeLine];
+    if (self.lineDelegate) {
+        [self.lineDelegate didClickChangeLine];
     }
 }
 

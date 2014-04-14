@@ -269,7 +269,7 @@ CGFloat const maxRowHeight = 101.45f;
     cell.textLabel.textColor = textColor;
 }
 
-#pragma mark - LPCStationViewControllerDelegate
+#pragma mark - LPCLineViewControllerDelegate
 
 - (void)didClickChangeLine {
     if (self.presentedViewController.presentedViewController) {

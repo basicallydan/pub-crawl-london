@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 #import "LPCStation.h"
+#import "LPCLineViewController.h"
 
 @protocol LPCStationViewControllerDelegate <NSObject>
 
@@ -13,7 +14,7 @@
 extern NSString *const kLPCMapBoxURLTemplate;
 extern NSString *const kLPCGoogleMapsURLTemplate;
 
-@property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
+@property (weak, nonatomic) id<LPCLineViewControllerDelegate> lineDelegate;
 
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *lineCode;

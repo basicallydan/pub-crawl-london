@@ -1,8 +1,8 @@
 #import <UIKit/UIKit.h>
 
-#import "LPCStationViewController.h"
 #import "LPCLinePosition.h"
 #import "LPCFork.h"
+#import "LPCLineViewController.h"
 
 @protocol LPCForkViewControllerDelegate <NSObject>
 
@@ -15,13 +15,11 @@
 @interface LPCForkViewController : UIViewController
 
 @property (weak, nonatomic) id<LPCForkViewControllerDelegate> forkDelegate;
-@property (weak, nonatomic) id<LPCStationViewControllerDelegate> topLevelDelegate;
+@property (weak, nonatomic) id<LPCLineViewControllerDelegate> lineDelegate;
 
 - (id)initWithFork:(LPCFork *)fork;
 
 @property (assign, nonatomic) NSInteger index;
-//@property (strong, nonatomic) NSString *topForkStationCode;
-//@property (strong, nonatomic) NSString *bottomForkStationCode;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
 @property (readonly, nonatomic) LPCLinePosition *linePosition;

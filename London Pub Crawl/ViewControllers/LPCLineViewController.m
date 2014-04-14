@@ -25,15 +25,8 @@
     LPCStation *currentStation;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
     UIViewController *initialViewController;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    int numStationViewsThisLineSession;
+    int numForkViewsThisLineSession;
 }
 
 - (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station completion:(void (^)())completion {
@@ -49,6 +42,9 @@
     venueRetrievalHandler = [LPCVenueRetrievalHandler sharedHandler];
     
     initialViewController = [self viewControllerForStation:station];
+    
+    numStationViewsThisLineSession = 0;
+    numForkViewsThisLineSession = 0;
     
     return self;
 }
@@ -72,7 +68,7 @@
         startingStationIndex = 0;
     }
 
-    UIViewController *initialViewController = [self viewControllerForStation:currentStation];
+//    UIViewController *initialViewController = [self viewControllerForStation:currentStation];
 
     NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
 
@@ -104,7 +100,7 @@
             previousViewController.directionForward = currentLine.bottomOfLineDirection;
             
             previousViewController.forkDelegate = self;
-            previousViewController.topLevelDelegate = self.delegate;
+            previousViewController.lineDelegate = self.delegate;
             
             return previousViewController;
         }
@@ -148,7 +144,7 @@
             nextViewController.directionForward = currentLine.bottomOfLineDirection;
             
             nextViewController.forkDelegate = self;
-            nextViewController.topLevelDelegate = self.delegate;
+            nextViewController.lineDelegate = self.delegate;
             
             return nextViewController;
         }
@@ -177,7 +173,6 @@
     }
 }
 
-
 - (UIViewController *)viewControllerForStation:(LPCStation *)st {
     LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st];
     
@@ -198,7 +193,7 @@
         childViewController.directionForward = currentLine.bottomOfLineDirection;
     }
     
-    childViewController.topLevelDelegate = self.delegate;
+    childViewController.lineDelegate = self.delegate;
     
     return childViewController;
 }
@@ -214,7 +209,6 @@
 }
 
 # pragma mark - LPCForkViewControllerDelegate methods
-
 - (void)didLeaveBranch {
     destinationBranch = nil;
     forkStations = nil;
