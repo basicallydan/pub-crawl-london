@@ -42,6 +42,10 @@ LPCFork *currentFork;
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.forkDelegate forkDidAppear];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

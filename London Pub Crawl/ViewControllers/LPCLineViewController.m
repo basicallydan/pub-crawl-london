@@ -9,7 +9,7 @@
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
 
-@interface LPCLineViewController () <LPCForkViewControllerDelegate>
+@interface LPCLineViewController () <LPCForkViewControllerDelegate, LPCStationViewControllerDelegate>
 
 @end
 
@@ -193,6 +193,7 @@
         childViewController.directionForward = currentLine.bottomOfLineDirection;
     }
     
+    childViewController.stationDelegate = self;
     childViewController.lineDelegate = self.delegate;
     
     return childViewController;
@@ -208,7 +209,24 @@
     return 0;
 }
 
+# pragma mark - LPCStationViewControllerDelegate methods
+- (int)numStationViewsThisLineSession {
+    return numStationViewsThisLineSession;
+}
+
+- (void)stationDidAppear {
+    numStationViewsThisLineSession += 1;
+}
+
 # pragma mark - LPCForkViewControllerDelegate methods
+- (int)numForkViewsThisLineSession {
+    return numForkViewsThisLineSession;
+}
+
+- (void)forkDidAppear {
+    numForkViewsThisLineSession += 1;
+}
+
 - (void)didLeaveBranch {
     destinationBranch = nil;
     forkStations = nil;

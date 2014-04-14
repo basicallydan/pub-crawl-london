@@ -6,6 +6,8 @@
 
 @protocol LPCForkViewControllerDelegate <NSObject>
 
+- (int)numForkViewsThisLineSession;
+- (void)forkDidAppear;
 - (void)didLeaveBranch;
 - (void)didChooseStationLeft:(LPCStation *)firstStationTowardDestination;
 - (void)didChooseStationRight:(LPCStation *)firstStationTowardDestination;
@@ -17,8 +19,6 @@
 @property (weak, nonatomic) id<LPCForkViewControllerDelegate> forkDelegate;
 @property (weak, nonatomic) id<LPCLineViewControllerDelegate> lineDelegate;
 
-- (id)initWithFork:(LPCFork *)fork;
-
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) NSString *lineCode;
 @property (strong, nonatomic) UIColor *lineColour;
@@ -26,12 +26,8 @@
 @property (strong, nonatomic) NSString *directionForward;
 @property (strong, nonatomic) NSString *directionBackward;
 
-@property (weak, nonatomic) IBOutlet UIView *leftLineView;
-@property (weak, nonatomic) IBOutlet UIView *topRightLineView;
-@property (weak, nonatomic) IBOutlet UIView *bottomRightLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *forkImageView;
 
-- (IBAction)changeLine:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
@@ -50,5 +46,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *mainLineStationLeftLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mainLineStationRightLabel;
+
+- (id)initWithFork:(LPCFork *)fork;
+- (IBAction)changeLine:(id)sender;
 
 @end

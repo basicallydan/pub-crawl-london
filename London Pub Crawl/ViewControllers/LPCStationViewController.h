@@ -5,7 +5,8 @@
 
 @protocol LPCStationViewControllerDelegate <NSObject>
 
-- (void)didClickChangeLine;
+- (int)numStationViewsThisLineSession;
+- (void)stationDidAppear;
 
 @end
 
@@ -14,6 +15,7 @@
 extern NSString *const kLPCMapBoxURLTemplate;
 extern NSString *const kLPCGoogleMapsURLTemplate;
 
+@property (weak, nonatomic) id<LPCStationViewControllerDelegate> stationDelegate;
 @property (weak, nonatomic) id<LPCLineViewControllerDelegate> lineDelegate;
 
 @property (assign, nonatomic) NSInteger index;
