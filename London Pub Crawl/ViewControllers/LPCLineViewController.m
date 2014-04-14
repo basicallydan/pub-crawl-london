@@ -13,19 +13,19 @@
 
 @end
 
-@implementation LPCLineViewController
-
-AFHTTPSessionManager *sessionManager;
-NSMutableDictionary *stationVenues;
-NSString *destinationBranch;
-NSDictionary *forkStations;
-LPCForkViewController *forkController;
-int startingStationIndex;
-LPCLinePosition *currentStationPointer;
-LPCLine *currentLine;
-LPCStation *currentStation;
-LPCVenueRetrievalHandler *venueRetrievalHandler;
-UIViewController *initialViewController;
+@implementation LPCLineViewController {
+    AFHTTPSessionManager *sessionManager;
+    NSMutableDictionary *stationVenues;
+    NSString *destinationBranch;
+    NSDictionary *forkStations;
+    LPCForkViewController *forkController;
+    int startingStationIndex;
+    LPCLinePosition *currentStationPointer;
+    LPCLine *currentLine;
+    LPCStation *currentStation;
+    LPCVenueRetrievalHandler *venueRetrievalHandler;
+    UIViewController *initialViewController;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
