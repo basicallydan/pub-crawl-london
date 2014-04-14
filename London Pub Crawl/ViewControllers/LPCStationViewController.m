@@ -12,6 +12,7 @@
 #import <UIColor-HexString/UIColor+HexString.h>
 #import <UIImageView+WebCache.h>
 #import "LPCSettingsHelper.h"
+#import <Analytics/Analytics.h>
 
 @interface LPCStationViewController () <UIActionSheetDelegate>
 
@@ -377,6 +378,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    
+    [[Analytics sharedAnalytics] track:@"Opened map options" properties: @{ @"station" : self.station.name }];
 }
 
 # pragma mark - UIActionSheetDelegate methods
@@ -386,17 +389,21 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     CLLocationCoordinate2D venueLocation = CLLocationCoordinate2DMake([currentVenue.latLng[0] floatValue], [currentVenue.latLng[1] floatValue]);
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Apple Maps"]) {
         [CMMapLauncher launchMapApp:CMMapAppAppleMaps forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+        [[Analytics sharedAnalytics] track:@"Directions in Apple Maps" properties: @{ @"station" : self.station.name }];
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Google Maps"]) {
         if ([CMMapLauncher isMapAppInstalled:CMMapAppGoogleMaps]) {
             [CMMapLauncher launchMapApp:CMMapAppGoogleMaps forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+            [[Analytics sharedAnalytics] track:@"Directions in Google Maps App" properties: @{ @"station" : self.station.name }];
         } else {
             // Open up web Google Maps instead
             NSString *stringURL = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@@%1.6f,%1.6f&z=%d", currentVenue.name, venueLocation.latitude, venueLocation.longitude, zoomLevel];
             NSURL *url = [NSURL URLWithString:stringURL];
             [[UIApplication sharedApplication] openURL:url];
+            [[Analytics sharedAnalytics] track:@"Directions in Google Maps Website" properties: @{ @"station" : self.station.name }];
         }
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Citymapper"]) {
         [CMMapLauncher launchMapApp:CMMapAppCitymapper forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+        [[Analytics sharedAnalytics] track:@"Directions in CityMapper" properties: @{ @"station" : self.station.name }];
     }
 }
 
@@ -404,6 +411,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (IBAction)changeLine:(id)sender {
     // Dismiss this controller first
+    [[Analytics sharedAnalytics] track:@"Changed line" properties: @{ @"station" : self.station.name }];
     
     if (self.topLevelDelegate) {
         [self.topLevelDelegate didClickChangeLine];
@@ -412,6 +420,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (IBAction)changePub:(id)sender {
     currentVenueIndex++;
+    
+    [[Analytics sharedAnalytics] track:@"Changed to a different pub" properties: @{ @"station" : self.station.name }];
     
     if (currentVenueIndex >= [venues count]) {
         currentVenueIndex = 0;
@@ -432,6 +442,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 }
 
 - (IBAction)showHelpOverlay:(id)sender {
+    [[Analytics sharedAnalytics] track:@"Clicked station help button" properties: @{ @"station" : self.station.name }];
+    
     if (isiPhone5) {
         helpImageOverlay = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"station-help-iphone-5.png"]];
     } else {
