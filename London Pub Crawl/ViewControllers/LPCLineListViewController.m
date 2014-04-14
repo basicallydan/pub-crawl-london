@@ -182,11 +182,13 @@ CGFloat const maxRowHeight = 101.45f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (![cell isKindOfClass:[LPCLineTableViewCell class]]) {
+        // Must be the options cell
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
 
     [self loadCrawlForLine:(LPCLineTableViewCell *)cell];
+    [[Analytics sharedAnalytics] track:@"Selected a line" properties: @{ @"line" : ((LPCLineTableViewCell *)cell).lineName }];
     NSLog(@"Selected the %@ line", ((LPCLineTableViewCell *)cell).lineName);
 }
 
