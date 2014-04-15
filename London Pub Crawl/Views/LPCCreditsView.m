@@ -38,7 +38,7 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
         
         if (cellNumber == 0) {
             [creditsCell addSubview:creditsLabel];
-            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"**To get started**, select a line and swipe from station-to-station."]];
+            [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"## Pub Crawl: London"]];
         } else if (cellNumber == 1) {
             [creditsCell addSubview:creditsLabel];
             [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"**Pub Crawl: LDN** is a Happily Project created in London, UK"]];

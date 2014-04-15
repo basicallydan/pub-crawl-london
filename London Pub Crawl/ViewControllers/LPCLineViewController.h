@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSString *topOfLineDirection;
 @property (strong, nonatomic) NSString *bottomOfLineDirection;
 
-- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)stationNestoriaCode completion:(void (^)())completion;
+- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)stationNestoriaCode withDelegate:(id<LPCLineViewControllerDelegate>)delegate completion:(void (^)())completion;
 - (void)addVenues:(NSArray *)venues forStationCode:(NSString *)stationCode;
 
 @end

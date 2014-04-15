@@ -69,8 +69,7 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 - (void)showLineViewStartingWith:(LPCLine *)line startingWith:(LPCStation *)station {
-    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station completion:nil];
-    lineViewController.delegate = self;
+    LPCLineViewController *lineViewController = [[LPCLineViewController alloc] initWithLine:line atStation:station withDelegate:self completion:nil];
     lineViewController.lineColour = line.lineColour;
     [self presentViewController:lineViewController animated:YES completion:nil];
 }
@@ -284,11 +283,15 @@ CGFloat const maxRowHeight = 101.45f;
 
 #pragma mark - LPCOptionsCellDelegate
 
-- (void)helpButtonClicked {
+- (void)aboutButtonClicked {
     [self showCredits];
 }
 
 - (void)happilyButtonClicked {
     NSLog(@"Opening the Happily Website");
+}
+
+- (void)helpButtonClicked {
+    
 }
 @end

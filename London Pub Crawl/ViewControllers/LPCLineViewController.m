@@ -29,10 +29,11 @@
     int numForkViewsThisLineSession;
 }
 
-- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station completion:(void (^)())completion {
+- (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station withDelegate:(id<LPCLineViewControllerDelegate>)delegate completion:(void (^)())completion {
     self = [super init];
     currentStation = station;
     currentLine = line;
+    self.delegate = delegate;
     
     self.stations = line.allStations;
     

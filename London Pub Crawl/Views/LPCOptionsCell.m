@@ -14,6 +14,10 @@
     [self.delegate happilyButtonClicked];
 }
 
+- (IBAction)aboutButtonClicked:(id)sender {
+    [self.delegate aboutButtonClicked];
+}
+
 - (IBAction)helpButtonClicked:(id)sender {
     [self.delegate helpButtonClicked];
 }

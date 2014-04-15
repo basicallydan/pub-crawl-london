@@ -3,6 +3,7 @@
 @protocol LPCOptionsCellDelegate <NSObject>
 
 - (void)happilyButtonClicked;
+- (void)aboutButtonClicked;
 - (void)helpButtonClicked;
 
 @end
@@ -13,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *optionsImageView;
 - (IBAction)happilyButtonClicked:(id)sender;
+- (IBAction)aboutButtonClicked:(id)sender;
 - (IBAction)helpButtonClicked:(id)sender;
 
 @end
