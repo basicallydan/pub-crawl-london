@@ -292,6 +292,9 @@ CGFloat const maxRowHeight = 101.45f;
 }
 
 - (void)helpButtonClicked {
-    
+    UIView *helpView = [[UIView alloc] initWithFrame:self.tableView.frame];
+    UIColor *transparentBlack = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    helpView.backgroundColor = transparentBlack;
+    [self.view addSubview:helpView];
 }
 @end
