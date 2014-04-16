@@ -289,6 +289,7 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)happilyButtonClicked {
     NSLog(@"Opening the Happily Website");
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.happilyltd.co"]];
 }
 
 - (void)helpButtonClicked {
