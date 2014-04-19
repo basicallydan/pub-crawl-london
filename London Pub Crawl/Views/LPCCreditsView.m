@@ -74,15 +74,12 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
             [creditsCell addSubview:creditsLabel];
             [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"To get in touch, **use the following email address**"]];
         } else if (cellNumber == 5) {
-            emailButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
-            [emailButton setTitleColor:[LPCThemeManager getLinkColor] forState:UIControlStateNormal];
-            [emailButton setTitleColor:[LPCThemeManager getSelectedLinkColor] forState:UIControlStateHighlighted];
+            emailButton = [UIButton buttonWithType:UIButtonTypeSystem];
+            emailButton.frame = creditsLabel.frame;
             [emailButton setTitle:emailAddress forState:UIControlStateNormal];
             [emailButton addTarget:self action:@selector(sendEmail) forControlEvents:UIControlEventTouchUpInside];
             UILongPressGestureRecognizer *emailButtonLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(respondToEmailLongPress:)];
-            emailButton.userInteractionEnabled = YES;
             [emailButton addGestureRecognizer:emailButtonLongPress];
-            
             emailButton.backgroundColor = [UIColor whiteColor];
             [creditsCell addSubview:emailButton];
         } else if (cellNumber == 6) {
@@ -104,12 +101,10 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
             [creditsCell addSubview:creditsLabel];
             [creditsLabel setAttributedText:[parser attributedStringFromMarkdownString:@"Please, remember to drink responsibly :)"]];
         } else if (cellNumber == 9) {
-            UIButton *doneButton = [[UIButton alloc] initWithFrame:creditsLabel.frame];
+            UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
+            doneButton.frame = creditsLabel.frame;
             [doneButton setTitle:@"I promise. Back to the pubs!" forState:UIControlStateNormal];
-            [doneButton setTitleColor:[LPCThemeManager getLinkColor] forState:UIControlStateNormal];
-            [doneButton setTitleColor:[LPCThemeManager getSelectedLinkColor] forState:UIControlStateHighlighted];
             [doneButton addTarget:self action:@selector(closeCredits) forControlEvents:UIControlEventTouchUpInside];
-            doneButton.backgroundColor = [UIColor whiteColor];
             [creditsCell addSubview:doneButton];
         }
         

@@ -90,10 +90,10 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self showStationInfo];
     if (!reachable) {
         if ([venues count] == 0) {
-            // We're offline and there are no venues available
+            // We're offline and there are no venues available. Should be the only time we show the offline image
             [self showOffline];
         } else {
-            // We're offline and there are cached venues which have been loaded
+            // We're offline and there are cached venues which have been loaded. Great stuff!
             [self showVenues];
         }
     } else {
@@ -188,6 +188,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 }
 
 - (void)showOffline {
+    [[Analytics sharedAnalytics] track:@"Offline view shown"];
     [self.loadingImageView stopAnimating];
     self.loadingImageView.animationImages = nil;
     self.loadingImageView.animationDuration = 0;
@@ -240,7 +241,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         [self displayVenueAtIndex:currentVenueIndex];
         [self loadMapImage];
     } else {
-        [self showOffline];
+        // This shouldn't happen, but if it does let's make sure we figure out what to show
+        [self updateView];
     }
     
     if ([venues count] == 1) {
