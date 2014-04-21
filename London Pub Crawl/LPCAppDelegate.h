@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "LPCStation.h"
 #import "LPCLinePosition.h"
+#import <StoreKit/StoreKit.h>
 
 @interface LPCAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -15,5 +16,7 @@
 - (UIColor *)colorForLine:(NSString *)lineCode;
 
 + (LPCStation *)stationWithNestoriaCode:(NSString *)nestoriaCode atPosition:(LPCLinePosition *)position;
++ (SKProduct *)productWithIdentifier:(NSString *)identifier;
++ (NSString *)priceStringForAllTheLines;
 
 @end

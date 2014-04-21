@@ -1,12 +1,5 @@
-//
-//  LPCBuyView.m
-//  PubCrawlLDN
-//
-//  Created by Daniel Hough on 03/04/2014.
-//  Copyright (c) 2014 LondonPubCrawl. All rights reserved.
-//
-
 #import "LPCBuyLineView.h"
+#import "LPCAppDelegate.h"
 
 @implementation LPCBuyLineView
 
@@ -21,6 +14,14 @@
 - (void)setLine:(LPCLine *)line {
     _line = line;
     [self.lineNameLabel setText:[NSString stringWithFormat:@"%@ Line", line.name]];
+//    LPCAppDelegate *appDelegate = ((LPCAppDelegate *)[[UIApplication sharedApplication] delegate]);
+    SKProduct *product = [LPCAppDelegate productWithIdentifier:line.iapProductIdentifier];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:product.priceLocale];
+    NSString *currencyString = [formatter stringFromNumber:product.price];
+    [self.buyAllButton setTitle:[NSString stringWithFormat:@"Buy all the lines for %@", [LPCAppDelegate priceStringForAllTheLines]] forState:UIControlStateNormal];
+    [self.buyThisButton setTitle:[NSString stringWithFormat:@"...or buy just this one for %@", currencyString] forState:UIControlStateNormal];
 }
 
 - (void)buyAllButtonPressed:(id)sender {

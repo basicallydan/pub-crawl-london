@@ -10,6 +10,8 @@
 
 @implementation LPCAppDelegate
 
+NSDictionary *allProducts;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSDictionary *allTheData = [NSDictionary dictionaryWithContentsOfJSONFile:@"tfl-tube-data.json"];
     self.stations = [allTheData valueForKey:@"stations"];
@@ -57,17 +59,20 @@
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {
          if(response > 0 ) {
+             NSMutableDictionary *products = [[NSMutableDictionary alloc] initWithCapacity:[response.products count]];
              NSLog(@"Got a bunch of products. %d to be precise", [response.products count]);
              for (SKProduct *product in [IAPShare sharedHelper].iap.products) {
+                 [products setValue:product forKey:product.productIdentifier];
                  NSLog(@"Found product: %@ with price: %@", product.productIdentifier, product.priceLocale);
              }
+             allProducts = [[NSDictionary alloc] initWithDictionary:products];
          } else {
              NSLog(@"No products");
          }
      }];
     
     // TODO: Remove for production
-    [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
+//    [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
     
     return YES;
 }
@@ -114,6 +119,22 @@
     LPCStation *station = [[LPCStation alloc] initWithStation:stationDictionary];
     station.linePosition = position;
     return station;
+}
+
++ (SKProduct *)productWithIdentifier:(NSString *)identifier {
+    if ([allProducts valueForKey:identifier]) {
+        return [allProducts valueForKey:identifier];
+    } else {
+        return nil;
+    }
+}
+
++ (NSString *)priceStringForAllTheLines {
+    SKProduct *product = [self productWithIdentifier:@"com.happily.pubcrawl.allthelines"];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:product.priceLocale];
+    return [formatter stringFromNumber:product.price];
 }
 
 @end
