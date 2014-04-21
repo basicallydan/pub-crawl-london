@@ -3,6 +3,8 @@
 #import "LPCStation.h"
 #import <IAPHelper/IAPShare.h>
 #import <Analytics/Analytics.h>
+#import <StoreKit/StoreKit.h>
+#import "LPCAppDelegate.h"
 
 @interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
 
@@ -171,16 +173,60 @@
     NSLog(@"Buying all of them!");
     ownershipChanged = YES;
     [[Analytics sharedAnalytics] track:@"Chose to buy all the lines" properties: @{ @"line" : selectedLine.name }];
-    [[IAPShare sharedHelper].iap provideContent:allTheLinesKey];
-    [self hideBuyView];
+    SKProduct *product = [LPCAppDelegate productWithIdentifier:allTheLinesKey];
+    [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
+        if(trans.error) {
+            NSLog(@"Fail %@",[trans.error localizedDescription]);
+        } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
+            [[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt onCompletion:^(NSString *response, NSError *error) {
+
+                //Convert JSON String to NSDictionary
+                NSDictionary* rec = [IAPShare toJSON:response];
+
+                if([rec[@"status"] integerValue]==0) {
+                    NSString *productIdentifier = trans.payment.productIdentifier;
+                    [[IAPShare sharedHelper].iap provideContent:productIdentifier];
+                    NSLog(@"SUCCESS %@", response);
+                    NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
+                    [self hideBuyView];
+                } else {
+                    NSLog(@"Fail");
+                }
+            }];
+        } else if (trans.transactionState == SKPaymentTransactionStateFailed) {
+            NSLog(@"Fail");
+        }
+    }];
 }
 
 - (void)didChooseToBuyLine:(LPCLine *)line {
     NSLog(@"Buying one line: %@!", line.name);
     ownershipChanged = YES;
     [[Analytics sharedAnalytics] track:@"Chose to buy the current line" properties: @{ @"line" : selectedLine.name }];
-    [[IAPShare sharedHelper].iap provideContent:line.iapProductIdentifier];
-    [self hideBuyView];
+    SKProduct *product = [LPCAppDelegate productWithIdentifier:line.iapProductIdentifier];
+    [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
+        if(trans.error) {
+            NSLog(@"Fail %@",[trans.error localizedDescription]);
+        } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
+            [[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt onCompletion:^(NSString *response, NSError *error) {
+                
+                //Convert JSON String to NSDictionary
+                NSDictionary* rec = [IAPShare toJSON:response];
+                
+                if([rec[@"status"] integerValue]==0) {
+                    NSString *productIdentifier = trans.payment.productIdentifier;
+                    [[IAPShare sharedHelper].iap provideContent:productIdentifier];
+                    NSLog(@"SUCCESS %@", response);
+                    NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
+                    [self hideBuyView];
+                } else {
+                    NSLog(@"Fail");
+                }
+            }];
+        } else if (trans.transactionState == SKPaymentTransactionStateFailed) {
+            NSLog(@"Fail");
+        }
+    }];
 }
 
 @end

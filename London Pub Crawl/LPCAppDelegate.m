@@ -44,13 +44,21 @@ NSDictionary *allProducts;
         NSSet* dataSet = [[NSSet alloc] initWithObjects:
                           @"com.happily.pubcrawl.northernline",
                           @"com.happily.pubcrawl.centralline",
+                          @"com.happily.pubcrawl.piccadillyline",
+                          @"com.happily.pubcrawl.victorialine",
+                          @"com.happily.pubcrawl.jubileeline",
+                          @"com.happily.pubcrawl.districtline",
+                          @"com.happily.pubcrawl.circleline",
+                          @"com.happily.pubcrawl.bakerlooline",
+                          @"com.happily.pubcrawl.handc",
+                          @"com.happily.pubcrawl.metline",
                           allTheLinesKey, nil];
         
         [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
     }
     
     // TODO: Set to YES before shipping
-    [IAPShare sharedHelper].iap.production = YES;
+    [IAPShare sharedHelper].iap.production = NO;
     
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest *request, SKProductsResponse *response) {
         NSLog(@"DONE");
@@ -72,7 +80,7 @@ NSDictionary *allProducts;
      }];
     
     // TODO: Remove for production
-//    [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
+    [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
     
     return YES;
 }

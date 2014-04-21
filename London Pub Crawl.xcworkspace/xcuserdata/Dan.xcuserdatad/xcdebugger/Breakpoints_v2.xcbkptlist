@@ -944,11 +944,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/LPCAppDelegate.m"
-            timestampString = "419804979.107941"
+            timestampString = "419810426.42475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "-applicationDidEnterBackground:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1007,13 +1007,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/Views/LPCBuyLineView.m"
-            timestampString = "419804806.138391"
+            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
+            timestampString = "419810208.102799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "-setLine:"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "-didChooseToBuyAll"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1023,13 +1023,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/LPCAppDelegate.m"
-            timestampString = "419804979.107941"
+            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
+            timestampString = "419810208.102799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "+productWithIdentifier:"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "-didChooseToBuyAll"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
