@@ -55,6 +55,23 @@ CGFloat const maxRowHeight = 101.45f;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (!creditsView) {
+        creditsView = [[LPCCreditsView alloc] initFromTableView:self.tableView andCells:lineCells];
+        creditsView.delegate = self;
+        
+        UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
+        closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+        [creditsView addGestureRecognizer:closeCreditsSwipe];
+        
+        [self.view addSubview:creditsView];
+        
+        [self.view setNeedsDisplay];
+        [self.view setNeedsLayout];
+        [self.view setNeedsUpdateConstraints];
+    }
+}
+
 #pragma mark - Private Methods
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
@@ -77,30 +94,22 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)showCredits {
     [[Analytics sharedAnalytics] track:@"Opened credits"];
-    if (!creditsView) {
-        creditsView = [[LPCCreditsView alloc] initFromTableView:self.tableView andCells:lineCells];
-        creditsView.delegate = self;
-        
-        UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
-        closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
-        [creditsView addGestureRecognizer:closeCreditsSwipe];
-        
-        [self.view addSubview:creditsView];
-    }
     
     CGRect finalTableViewFrame = self.tableView.frame;
     finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
     CGRect finalCreditsViewFrame = self.tableView.frame;
     
-    [UIView animateWithDuration:0.2f animations:^{
-        self.tableView.contentOffset = CGPointMake(0, 0);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.4f animations:^{
-            creditsView.frame = finalCreditsViewFrame;
-            [creditsView setNeedsDisplay];
-            self.tableView.frame = finalTableViewFrame;
-        }];
-    }];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    creditsView.frame = finalCreditsViewFrame;
+    self.tableView.frame = finalTableViewFrame;
+    [UIView commitAnimations];
+    
+//    [UIView animateWithDuration:0.2f animations:^{
+//        self.tableView.contentOffset = CGPointMake(0, 0);
+//    } completion:^(BOOL finished) {
+//    }];
 }
 
 #pragma mark - keyboard movements
@@ -126,14 +135,21 @@ CGFloat const maxRowHeight = 101.45f;
     CGRect finalCreditsViewFrame = self.tableView.frame;
     finalCreditsViewFrame.origin.x = finalCreditsViewFrame.size.width;
     
-    [UIView animateWithDuration:0.2f animations:^{
-        self.tableView.contentOffset = CGPointMake(0, 0);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.4f animations:^{
-            creditsView.frame = finalCreditsViewFrame;
-            self.tableView.frame = finalTableViewFrame;
-        }];
-    }];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    creditsView.frame = finalCreditsViewFrame;
+    self.tableView.frame = finalTableViewFrame;
+    [UIView commitAnimations];
+    
+//    [UIView animateWithDuration:0.4f animations:^{
+//        creditsView.frame = finalCreditsViewFrame;
+//        self.tableView.frame = finalTableViewFrame;
+//    }];
+//    [UIView animateWithDuration:0.2f animations:^{
+//        self.tableView.contentOffset = CGPointMake(0, 0);
+//    } completion:^(BOOL finished) {
+//    }];
 }
 
 #pragma mark - LPCCreditsViewDelegate

@@ -2,17 +2,17 @@
 
 @implementation LPCCreditsCell
 
-- (id)initBasedOnCell:(UITableViewCell *)cell {    
-    self = [super initWithFrame:cell.frame];
-    
+- (id)initBasedOnCell:(UITableViewCell *)cell {
     CGRect leftBorderFrame = cell.frame;
     leftBorderFrame.size.width = leftBorderFrame.size.width * 0.02;
-    leftBorderFrame.origin.y = 0;
-    UIView *leftBorderView = [[UIView alloc] initWithFrame:leftBorderFrame];
-    leftBorderView.backgroundColor = cell.backgroundColor;
-    [self addSubview:leftBorderView];
+//    leftBorderFrame.origin.y = 0;
     
-    self.backgroundColor = [UIColor whiteColor];
+    self = [super initWithFrame:leftBorderFrame];
+//    UIView *leftBorderView = [[UIView alloc] initWithFrame:leftBorderFrame];
+//    leftBorderView.backgroundColor = cell.backgroundColor;
+//    [self addSubview:leftBorderView];
+    
+    self.backgroundColor = cell.backgroundColor;
     
     return self;
 }
