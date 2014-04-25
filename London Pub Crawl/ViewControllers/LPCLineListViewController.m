@@ -6,6 +6,7 @@
 #import "LPCCreditsView.h"
 #import "LPCLine.h"
 #import "LPCLineOptionModalViewController.h"
+#import "LPCCreditsViewController.h"
 #import "LPCLineTableViewCell.h"
 #import "LPCLineViewController.h"
 #import "LPCOptionsCell.h"
@@ -95,16 +96,29 @@ CGFloat const maxRowHeight = 101.45f;
 - (void)showCredits {
     [[Analytics sharedAnalytics] track:@"Opened credits"];
     
-    CGRect finalTableViewFrame = self.tableView.frame;
-    finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
-    CGRect finalCreditsViewFrame = self.tableView.frame;
+//    CGRect finalTableViewFrame = self.tableView.frame;
+//    finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
+//    CGRect finalCreditsViewFrame = self.tableView.frame;
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    creditsView.frame = finalCreditsViewFrame;
-    self.tableView.frame = finalTableViewFrame;
-    [UIView commitAnimations];
+    LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithNibName:@"LPCCreditsViewController" bundle:[NSBundle mainBundle]];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.5];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    [[creditsViewController.view layer] addAnimation:animation forKey:@"SwitchToView"];
+    [[self.view.superview layer] addAnimation:animation forKey:@"SwitchToView"];
+    
+//    [self presentModalViewController:creditsViewController animated:NO];
+    [self presentViewController:creditsViewController animated:NO completion:nil];
+//    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:1.0];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//    creditsView.frame = finalCreditsViewFrame;
+//    self.tableView.frame = finalTableViewFrame;
+//    [UIView commitAnimations];
     
 //    [UIView animateWithDuration:0.2f animations:^{
 //        self.tableView.contentOffset = CGPointMake(0, 0);
