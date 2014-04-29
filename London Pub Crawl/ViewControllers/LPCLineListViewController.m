@@ -37,12 +37,24 @@
 }
 
 CGFloat const maxRowHeight = 101.45f;
+NSInteger const statusBarHeight = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     lineCells = [[NSMutableArray alloc] initWithCapacity:10];
+    UIEdgeInsets inset = UIEdgeInsetsMake(statusBarHeight, 0, 0, 0);
+    self.tableView.contentInset = inset;
+    [self.tableView setBackgroundColor:[self backgroundColorForLine:0]];
+    CGRect maskFrame = self.tableView.frame;
+    maskFrame.size.height /= 2;
+    maskFrame.origin.y = self.tableView.frame.size.height - [self standardRowHeight] - (statusBarHeight / 2);
+    UIView *bottomWhiteMask = [[UIView alloc] initWithFrame:maskFrame];
+    [bottomWhiteMask setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView addSubview:bottomWhiteMask];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,6 +87,10 @@ CGFloat const maxRowHeight = 101.45f;
 
 #pragma mark - Private Methods
 
+- (CGFloat)standardRowHeight {
+    return (self.tableView.frame.size.height - statusBarHeight) / ([self tableView:self.tableView numberOfRowsInSection:0] - 1);
+}
+
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *lineDictionary = [appDelegate.lines objectAtIndex:lineCell.lineIndex];
@@ -95,35 +111,26 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (void)showCredits {
     [[Analytics sharedAnalytics] track:@"Opened credits"];
+
+    CGFloat width = self.view.bounds.size.width;
+    LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithCells:lineCells andOffset:self.tableView.frame.origin.y - self.tableView.contentOffset.y];
+    creditsViewController.view.frame = CGRectMake(self.view.frame.origin.x + width, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view.superview addSubview:creditsViewController.view];
+    [UIView animateWithDuration:.5 animations:^{
+        self.view.center = CGPointMake(self.view.center.x - width, self.view.center.y);
+        creditsViewController.view.center = CGPointMake(creditsViewController.view.center.x - width, creditsViewController.view.center.y);
+        
+    } completion:^(BOOL finished) {
+        [self.navigationController pushViewController:creditsViewController animated:NO];
+    }];
+}
+
+- (UIColor *)backgroundColorForLine:(int)lineNumber {
+    LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *line = [appDelegate.lines objectAtIndex:lineNumber];
     
-//    CGRect finalTableViewFrame = self.tableView.frame;
-//    finalTableViewFrame.origin.x = -finalTableViewFrame.size.width;
-//    CGRect finalCreditsViewFrame = self.tableView.frame;
-    
-    LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithNibName:@"LPCCreditsViewController" bundle:[NSBundle mainBundle]];
-    
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:0.5];
-    [animation setType:kCATransitionPush];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-    [[creditsViewController.view layer] addAnimation:animation forKey:@"SwitchToView"];
-    [[self.view.superview layer] addAnimation:animation forKey:@"SwitchToView"];
-    
-//    [self presentModalViewController:creditsViewController animated:NO];
-    [self presentViewController:creditsViewController animated:NO completion:nil];
-//    
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:1.0];
-//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    creditsView.frame = finalCreditsViewFrame;
-//    self.tableView.frame = finalTableViewFrame;
-//    [UIView commitAnimations];
-    
-//    [UIView animateWithDuration:0.2f animations:^{
-//        self.tableView.contentOffset = CGPointMake(0, 0);
-//    } completion:^(BOOL finished) {
-//    }];
+    UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
+    return cellColor;
 }
 
 #pragma mark - keyboard movements
@@ -236,7 +243,7 @@ CGFloat const maxRowHeight = 101.45f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // The following will hide the options cell just below the fold
-    return self.tableView.frame.size.height / ([self tableView:tableView numberOfRowsInSection:indexPath.section] - 1);
+    return (self.tableView.frame.size.height - statusBarHeight) / ([self tableView:tableView numberOfRowsInSection:indexPath.section] - 1);
 //    return [indexPath row] * 20;
 }
 
@@ -279,7 +286,7 @@ CGFloat const maxRowHeight = 101.45f;
     cell.lineName = [line valueForKey:@"name"];
     cell.textLabel.text = cell.lineName;
     
-    UIColor *cellColor = [UIColor colorWithHexString:[line valueForKey:@"background-color"]];
+    UIColor *cellColor = [self backgroundColorForLine:indexPath.row];
     UIColor *textColor = [UIColor colorWithHexString:[line valueForKey:@"text-color"]];
     
     NSString *iapProductIdentifier = [line valueForKey:@"iap-product-identifier"];

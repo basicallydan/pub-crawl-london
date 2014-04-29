@@ -2,6 +2,6 @@
 
 @interface LPCCreditsCell : UIView
 
-- (id)initBasedOnCell:(UITableViewCell *)cell;
+- (id)initBasedOnCell:(UITableViewCell *)cell andOffset:(float)offset;
 
 @end

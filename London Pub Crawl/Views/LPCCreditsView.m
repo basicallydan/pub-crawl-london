@@ -16,8 +16,6 @@
     UIButton *emailButton;
 }
 
-NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
-
 - (id)initFromTableView:(UITableView *)tableView andCells:(NSArray *)lineCells {
     UIImage *foursquareLogo = [UIImage imageNamed:@"foursquare-logo.png"];
     UIImage *mapBoxLogo = [UIImage imageNamed:@"mapbox-logo.png"];
@@ -31,7 +29,7 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
     self = [super initWithFrame:creditsViewStartingFrame];
 //    int cellNumber = 0;
     for (LPCLineTableViewCell *cell in lineCells) {
-        UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
+//        UIView *creditsCell = [[LPCCreditsCell alloc] initBasedOnCell:cell];
 //        UILabel *creditsLabel = [[LPCCreditsTextLabel alloc] initForCell:cell];
 //        creditsLabel.numberOfLines = 3;
 //        [creditsLabel setTextAlignment:NSTextAlignmentCenter];
@@ -108,51 +106,51 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
 //            [creditsCell addSubview:doneButton];
 //        }
         
-        [self addSubview:creditsCell];
+//        [self addSubview:creditsCell];
     }
     return self;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == emailField) {
-        NSLog(@"Email address is %@", emailField.text);
-        if (self.delegate) {
-            [self.delegate didSubmitEmailAddress:emailField.text];
-        }
-        [emailField resignFirstResponder];
-        [emailField setText:@""];
-        // TODO: Something better than this!
-        [emailField setPlaceholder:@"thanks@forsubscribing.com"];
-    }
-    return YES;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [[event allTouches] anyObject];
-    if ([emailField isFirstResponder] && [touch view] != emailField) {
-        [emailField resignFirstResponder];
-    }
-    [super touchesBegan:touches withEvent:event];
-}
-
-- (void)respondToEmailLongPress:(UILongPressGestureRecognizer *)recognizer {
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        [self copyEmail];
-        return;
-    }
-}
-
-- (void)sendEmail {
-    [self.delegate didClickEmail:emailAddress];
-}
-
-- (void)copyEmail {
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = emailAddress;
-}
-
-- (void)closeCredits {
-    [self.delegate didCloseCreditsView];
-}
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    if (textField == emailField) {
+//        NSLog(@"Email address is %@", emailField.text);
+//        if (self.delegate) {
+//            [self.delegate didSubmitEmailAddress:emailField.text];
+//        }
+//        [emailField resignFirstResponder];
+//        [emailField setText:@""];
+//        // TODO: Something better than this!
+//        [emailField setPlaceholder:@"thanks@forsubscribing.com"];
+//    }
+//    return YES;
+//}
+//
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UITouch *touch = [[event allTouches] anyObject];
+//    if ([emailField isFirstResponder] && [touch view] != emailField) {
+//        [emailField resignFirstResponder];
+//    }
+//    [super touchesBegan:touches withEvent:event];
+//}
+//
+//- (void)respondToEmailLongPress:(UILongPressGestureRecognizer *)recognizer {
+//    if (recognizer.state == UIGestureRecognizerStateBegan) {
+//        [self copyEmail];
+//        return;
+//    }
+//}
+//
+//- (void)sendEmail {
+//    [self.delegate didClickEmail:emailAddress];
+//}
+//
+//- (void)copyEmail {
+//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//    pasteboard.string = emailAddress;
+//}
+//
+//- (void)closeCredits {
+//    [self.delegate didCloseCreditsView];
+//}
 
 @end
