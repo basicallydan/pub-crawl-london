@@ -81,7 +81,6 @@
 		37D4F67118E06BD900661E20 /* Offline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D4F66F18E06BD900661E20 /* Offline@2x.png */; };
 		37D5D239187B3EB1002269A9 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D237187B3EB1002269A9 /* AppIcon60x60.png */; };
 		37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D5D238187B3EB1002269A9 /* AppIcon60x60@2x.png */; };
-		37EA7B2C18F74BF600EEF9E6 /* LPCCreditsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EA7B2B18F74BF600EEF9E6 /* LPCCreditsView.m */; };
 		37EF4B2D18DEF2BB0063B848 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */; };
 		37EF4B2F18DF2E020063B848 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EF4B2E18DF2E020063B848 /* StoreKit.framework */; };
 		37EF4B3918DF465C0063B848 /* Frame 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B3718DF465C0063B848 /* Frame 3.png */; };
@@ -251,8 +250,6 @@
 		37D4F66F18E06BD900661E20 /* Offline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Offline@2x.png"; sourceTree = "<group>"; };
 		37D5D237187B3EB1002269A9 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
 		37D5D238187B3EB1002269A9 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
-		37EA7B2A18F74BF600EEF9E6 /* LPCCreditsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCCreditsView.h; sourceTree = "<group>"; };
-		37EA7B2B18F74BF600EEF9E6 /* LPCCreditsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCCreditsView.m; sourceTree = "<group>"; };
 		37EF4B2C18DEF2BB0063B848 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		37EF4B2E18DF2E020063B848 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		37EF4B3718DF465C0063B848 /* Frame 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 3.png"; sourceTree = "<group>"; };
@@ -458,8 +455,6 @@
 				3787FEA218E21DF1002B79C2 /* LPCLineTableViewCell.m */,
 				3787FEA318E21DF1002B79C2 /* LPCOptionsCell.h */,
 				3787FEA418E21DF1002B79C2 /* LPCOptionsCell.m */,
-				37EA7B2A18F74BF600EEF9E6 /* LPCCreditsView.h */,
-				37EA7B2B18F74BF600EEF9E6 /* LPCCreditsView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -897,7 +892,6 @@
 				3787FEC818E21E6A002B79C2 /* LPCLineListViewController.m in Sources */,
 				37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */,
 				3738664D18F488F100ED79F3 /* NSDictionary+FromJSONFile.m in Sources */,
-				37EA7B2C18F74BF600EEF9E6 /* LPCCreditsView.m in Sources */,
 				37074FE218F334B500D86847 /* LPCCreditsTextLabel.m in Sources */,
 				3762504018352F520061F1F4 /* LPCLine.m in Sources */,
 				37BF43A7180D31EC0091BE5F /* LPCAppDelegate.m in Sources */,

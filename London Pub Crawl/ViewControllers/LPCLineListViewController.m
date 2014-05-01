@@ -3,7 +3,6 @@
 #import "LPCAppDelegate.h"
 #import "LPCCreditsCell.h"
 #import "LPCCreditsTextLabel.h"
-#import "LPCCreditsView.h"
 #import "LPCLine.h"
 #import "LPCLineOptionModalViewController.h"
 #import "LPCCreditsViewController.h"
@@ -27,13 +26,12 @@
 //#import "LPCPurchaseHelper.h"
 //#import <StoreKit/StoreKit.h>
 
-@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate, LPCCreditsViewDelegate>
+@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate>
 
 @end
 
 @implementation LPCLineListViewController {
     NSMutableArray *lineCells;
-    LPCCreditsView *creditsView;
 }
 
 CGFloat const maxRowHeight = 101.45f;
@@ -49,7 +47,8 @@ NSInteger const statusBarHeight = 20;
     [self.tableView setBackgroundColor:[self backgroundColorForLine:0]];
     CGRect maskFrame = self.tableView.frame;
     maskFrame.size.height /= 2;
-    maskFrame.origin.y = self.tableView.frame.size.height - [self standardRowHeight] - (statusBarHeight / 2);
+//    maskFrame.origin.y = self.tableView.frame.size.height - [self standardRowHeight] - (statusBarHeight / 2);
+    maskFrame.origin.y = ([self standardRowHeight] * ([self tableView:self.tableView numberOfRowsInSection:0]));
     UIView *bottomWhiteMask = [[UIView alloc] initWithFrame:maskFrame];
     [bottomWhiteMask setBackgroundColor:[UIColor whiteColor]];
     [self.tableView addSubview:bottomWhiteMask];
@@ -69,26 +68,18 @@ NSInteger const statusBarHeight = 20;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (!creditsView) {
-        creditsView = [[LPCCreditsView alloc] initFromTableView:self.tableView andCells:lineCells];
-        creditsView.delegate = self;
-        
-        UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
-        closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
-        [creditsView addGestureRecognizer:closeCreditsSwipe];
-        
-        [self.view addSubview:creditsView];
-        
-        [self.view setNeedsDisplay];
-        [self.view setNeedsLayout];
-        [self.view setNeedsUpdateConstraints];
-    }
+    UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
+    closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.view setNeedsDisplay];
+    [self.view setNeedsLayout];
+    [self.view setNeedsUpdateConstraints];
 }
 
 #pragma mark - Private Methods
 
 - (CGFloat)standardRowHeight {
-    return (self.tableView.frame.size.height - statusBarHeight) / ([self tableView:self.tableView numberOfRowsInSection:0] - 1);
+    return (self.view.frame.size.height - statusBarHeight) / ([self tableView:self.tableView numberOfRowsInSection:0] - 1);
 }
 
 - (void)loadCrawlForLine:(LPCLineTableViewCell *)lineCell {
@@ -134,53 +125,26 @@ NSInteger const statusBarHeight = 20;
 }
 
 #pragma mark - keyboard movements
-- (void)keyboardWillShow:(NSNotification *)notification {
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect f = creditsView.frame;
-        f.origin.y = -90.0f;
-        creditsView.frame = f;
-    }];
-}
-
--(void)keyboardWillHide:(NSNotification *)notification {
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect f = creditsView.frame;
-        f.origin.y = self.tableView.frame.origin.y;
-        creditsView.frame = f;
-    }];
-}
-
-- (void)hideCredits {
-    CGRect finalTableViewFrame = self.tableView.frame;
-    finalTableViewFrame.origin.x = 0.0f;
-    CGRect finalCreditsViewFrame = self.tableView.frame;
-    finalCreditsViewFrame.origin.x = finalCreditsViewFrame.size.width;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    creditsView.frame = finalCreditsViewFrame;
-    self.tableView.frame = finalTableViewFrame;
-    [UIView commitAnimations];
-    
-//    [UIView animateWithDuration:0.4f animations:^{
-//        creditsView.frame = finalCreditsViewFrame;
-//        self.tableView.frame = finalTableViewFrame;
+//- (void)keyboardWillShow:(NSNotification *)notification {
+//    [UIView animateWithDuration:0.3 animations:^{
+//        CGRect f = creditsView.frame;
+//        f.origin.y = -90.0f;
+//        creditsView.frame = f;
 //    }];
-//    [UIView animateWithDuration:0.2f animations:^{
-//        self.tableView.contentOffset = CGPointMake(0, 0);
-//    } completion:^(BOOL finished) {
+//}
+
+//-(void)keyboardWillHide:(NSNotification *)notification {
+//    [UIView animateWithDuration:0.3 animations:^{
+//        CGRect f = creditsView.frame;
+//        f.origin.y = self.tableView.frame.origin.y;
+//        creditsView.frame = f;
 //    }];
-}
+//}
 
 #pragma mark - LPCCreditsViewDelegate
 - (void)didClickEmail:(NSString *)emailAddress {
     UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:emailAddress subject:@"Pub Crawl: London" completion:nil];
     [self presentViewController:mailVC animated:YES completion:nil];
-}
-
-- (void)didCloseCreditsView {
-    [self hideCredits];
 }
 
 - (void)didSubmitEmailAddress:(NSString *)emailAddress {
@@ -243,7 +207,7 @@ NSInteger const statusBarHeight = 20;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // The following will hide the options cell just below the fold
-    return (self.tableView.frame.size.height - statusBarHeight) / ([self tableView:tableView numberOfRowsInSection:indexPath.section] - 1);
+    return (self.view.frame.size.height - statusBarHeight) / ([self tableView:tableView numberOfRowsInSection:indexPath.section] - 1);
 //    return [indexPath row] * 20;
 }
 
