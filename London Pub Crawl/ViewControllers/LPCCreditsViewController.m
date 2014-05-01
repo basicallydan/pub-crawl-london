@@ -35,6 +35,10 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
     return self;
 }
 
+- (IBAction)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 //- (id)initFromTableView:(UITableView *)tableView andCells:(NSArray *)lineCells {
 //    CGRect creditsViewStartingFrame = tableView.frame;
 //    creditsViewStartingFrame.origin.x = creditsViewStartingFrame.size.width;

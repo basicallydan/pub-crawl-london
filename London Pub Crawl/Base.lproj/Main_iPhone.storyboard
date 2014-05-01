@@ -58,13 +58,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="options-image.png" translatesAutoresizingMaskIntoConstraints="NO" id="qfL-TX-Ulm" userLabel="Options Image">
-                                                    <rect key="frame" x="44" y="7" width="292" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="29U-VL-vQa"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mve-xT-9me">
                                                     <rect key="frame" x="151" y="0.0" width="169" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -101,19 +94,24 @@
                                                         <action selector="helpButtonClicked:" destination="WyJ-TU-g25" eventType="touchUpInside" id="3cz-rf-yUu"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Left menu image.png" translatesAutoresizingMaskIntoConstraints="NO" id="hSO-iV-EuZ">
+                                                    <rect key="frame" x="0.0" y="1" width="320" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="GRs-fa-jdy"/>
+                                                        <constraint firstAttribute="width" constant="320" id="kLY-31-3RN"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="qfL-TX-Ulm" secondAttribute="trailing" constant="-16" id="Cfl-Ah-ZKh"/>
+                                                <constraint firstItem="hSO-iV-EuZ" firstAttribute="leading" secondItem="NW0-o5-Rkz" secondAttribute="leading" id="HNm-VA-5md"/>
+                                                <constraint firstAttribute="trailing" secondItem="hSO-iV-EuZ" secondAttribute="trailing" id="JPP-0e-nul"/>
+                                                <constraint firstAttribute="bottom" secondItem="hSO-iV-EuZ" secondAttribute="bottom" constant="22" id="b4u-0s-Icc"/>
                                                 <constraint firstAttribute="bottom" secondItem="cTU-Ip-Lth" secondAttribute="bottom" constant="2" id="nad-jS-Caw"/>
                                                 <constraint firstAttribute="bottom" secondItem="olM-Xa-nv9" secondAttribute="bottom" constant="2" id="nvU-zj-ap7"/>
                                                 <constraint firstAttribute="bottom" secondItem="mve-xT-9me" secondAttribute="bottom" constant="2" id="oOz-lO-gu8"/>
-                                                <constraint firstItem="qfL-TX-Ulm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NW0-o5-Rkz" secondAttribute="top" constant="7" id="rLb-XO-7dk"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qfL-TX-Ulm" secondAttribute="bottom" constant="20" id="wXF-Se-1zL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="optionsImageView" destination="qfL-TX-Ulm" id="wvG-YB-Wcy"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -135,7 +133,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="options-image.png" width="292" height="17"/>
+        <image name="Left menu image.png" width="640" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
