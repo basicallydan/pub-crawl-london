@@ -4,6 +4,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UILabel *emailMessageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *happyEmailButton;
 - (id)initWithCells:(NSArray *)lineCells andOffset:(float)offset;
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)foursquareLogoPressed:(id)sender;
