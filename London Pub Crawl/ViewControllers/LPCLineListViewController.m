@@ -26,7 +26,7 @@
 //#import "LPCPurchaseHelper.h"
 //#import <StoreKit/StoreKit.h>
 
-@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate>
+@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate, LPCCreditsViewControllerDelegate>
 
 @end
 
@@ -112,7 +112,24 @@ NSInteger const statusBarHeight = 20;
         creditsViewController.view.center = CGPointMake(creditsViewController.view.center.x - width, creditsViewController.view.center.y);
         
     } completion:^(BOOL finished) {
-        [self.navigationController pushViewController:creditsViewController animated:NO];
+        [self presentViewController:creditsViewController animated:NO completion:nil];
+//        [self.navigationController pushViewController:creditsViewController animated:NO];
+    }];
+}
+
+- (void)hideCredits {
+    [[Analytics sharedAnalytics] track:@"Closed credits"];
+    
+    CGFloat width = self.view.bounds.size.width;
+    LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithCells:lineCells andOffset:self.tableView.frame.origin.y - self.tableView.contentOffset.y];
+    creditsViewController.view.frame = CGRectMake(self.view.frame.origin.x + width, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view.superview addSubview:creditsViewController.view];
+    [UIView animateWithDuration:.5 animations:^{
+        self.view.center = CGPointMake(self.view.center.x - width, self.view.center.y);
+        creditsViewController.view.center = CGPointMake(creditsViewController.view.center.x - width, creditsViewController.view.center.y);
+        
+    } completion:^(BOOL finished) {
+        [self.navigationController popToViewController:self animated:NO];
     }];
 }
 
@@ -141,7 +158,11 @@ NSInteger const statusBarHeight = 20;
 //    }];
 //}
 
-#pragma mark - LPCCreditsViewDelegate
+#pragma mark - LPCCreditsViewControllerDelegate
+- (void)didPressBackButton {
+    [self hideCredits];
+}
+
 - (void)didClickEmail:(NSString *)emailAddress {
     UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:emailAddress subject:@"Pub Crawl: London" completion:nil];
     [self presentViewController:mailVC animated:YES completion:nil];

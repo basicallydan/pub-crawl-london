@@ -2,6 +2,7 @@
 
 #import "LPCCreditsCell.h"
 #import "LPCLineTableViewCell.h"
+#import <Analytics/Analytics.h>
 
 @interface LPCCreditsViewController ()
 
@@ -36,7 +37,17 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [[Analytics sharedAnalytics] track:@"Closed credits"];
+    
+    CGFloat width = self.view.bounds.size.width;
+    [self.view.superview addSubview:self.presentingViewController.view];
+    [UIView animateWithDuration:.5 animations:^{
+        self.presentingViewController.view.center = CGPointMake(self.presentingViewController.view.center.x + width, self.presentingViewController.view.center.y);
+        self.view.center = CGPointMake(self.view.center.x + width, self.view.center.y);
+        
+    } completion:^(BOOL finished) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
 }
 
 //- (id)initFromTableView:(UITableView *)tableView andCells:(NSArray *)lineCells {
