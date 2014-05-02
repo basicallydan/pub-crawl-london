@@ -95,18 +95,23 @@ NSInteger const statusBarHeight = 20;
 
 - (void)showCredits {
     [[Analytics sharedAnalytics] track:@"Opened credits"];
-
-    CGFloat width = self.view.bounds.size.width;
-    LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithCells:lineCells andOffset:self.tableView.frame.origin.y - self.tableView.contentOffset.y];
-    creditsViewController.view.frame = CGRectMake(self.view.frame.origin.x + width, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view.superview addSubview:creditsViewController.view];
-    [UIView animateWithDuration:.5 animations:^{
-        self.view.center = CGPointMake(self.view.center.x - width, self.view.center.y);
-        creditsViewController.view.center = CGPointMake(creditsViewController.view.center.x - width, creditsViewController.view.center.y);
-        
+    
+//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
+    [UIView animateWithDuration:.2 animations:^{
+        self.tableView.contentOffset = CGPointMake(0, [self standardRowHeight] - statusBarHeight);
     } completion:^(BOOL finished) {
-        [self presentViewController:creditsViewController animated:NO completion:nil];
-//        [self.navigationController pushViewController:creditsViewController animated:NO];
+        CGFloat width = self.view.bounds.size.width;
+        LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithCells:lineCells andOffset:self.tableView.frame.origin.y - self.tableView.contentOffset.y];
+        creditsViewController.view.frame = CGRectMake(self.view.frame.origin.x + width, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+        [self.view.superview addSubview:creditsViewController.view];
+        [UIView animateWithDuration:.4 animations:^{
+            self.view.center = CGPointMake(self.view.center.x - width, self.view.center.y);
+            creditsViewController.view.center = CGPointMake(creditsViewController.view.center.x - width, creditsViewController.view.center.y);
+            
+        } completion:^(BOOL finished) {
+            [self presentViewController:creditsViewController animated:NO completion:nil];
+        }];
     }];
 }
 
