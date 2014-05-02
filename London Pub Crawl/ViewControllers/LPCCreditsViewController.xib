@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPCCreditsViewController">
             <connections>
+                <outlet property="emailMessageLabel" destination="xFW-mQ-VTS" id="mbq-QA-ovy"/>
+                <outlet property="emailTextField" destination="H1I-ae-Ojl" id="dcW-YW-7eF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -57,6 +59,9 @@
                             <state key="normal" title="happilyltd.co">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="happilyLinkPressed:" destination="-1" eventType="touchUpInside" id="HdV-mA-AjF"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -79,6 +84,9 @@
                                 <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="foursquareLogoPressed:" destination="-1" eventType="touchUpInside" id="kaa-3d-ewY"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLN-bu-DAH">
                             <rect key="frame" x="0.0" y="91" width="140" height="24"/>
@@ -86,6 +94,9 @@
                             <state key="normal" image="mapbox-logo.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="mapboxLogoPressed:" destination="-1" eventType="touchUpInside" id="v8X-L8-dMX"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yjt-EV-4kE">
                             <rect key="frame" x="0.0" y="131" width="140" height="24"/>
@@ -93,6 +104,9 @@
                             <state key="normal" image="tfl-logo.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="tflLogoPressed:" destination="-1" eventType="touchUpInside" id="MUC-mT-ig2"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ui-I7-duj" userLabel="Border View">
                             <rect key="frame" x="0.0" y="20" width="1" height="140"/>
@@ -122,6 +136,9 @@
                     <state key="normal" title="hi+pubcrawl@happilyltd.co">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="happilyEmailPressed:" destination="-1" eventType="touchUpInside" id="i1v-lX-Ym6"/>
+                    </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Keep in the loop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uq5-sS-Xo2">
                     <rect key="frame" x="20" y="303" width="280" height="21"/>
@@ -137,10 +154,13 @@
                     <rect key="frame" x="20" y="334" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="8eX-wc-9ZN"/>
+                    </connections>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Remember: have fun, know your limits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAF-4E-SSy">
-                    <rect key="frame" x="20" y="384" width="280" height="21"/>
+                    <rect key="frame" x="20" y="403" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,6 +190,17 @@
                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="xNp-Hj-498"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Thanks for subscribing :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFW-mQ-VTS">
+                    <rect key="frame" x="20" y="368" width="280" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="9JU-Rt-bLp"/>
+                        <constraint firstAttribute="height" constant="15" id="Aes-JW-11C"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="0.30921605229377747" green="0.58691680431365967" blue="0.12585216760635376" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -177,7 +208,6 @@
                 <constraint firstItem="xj5-V0-A0E" firstAttribute="top" secondItem="s3b-Zn-oU5" secondAttribute="bottom" id="2dC-ES-2da"/>
                 <constraint firstItem="rh2-2d-wSW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="8Cv-5G-mVH"/>
                 <constraint firstItem="s3b-Zn-oU5" firstAttribute="top" secondItem="rh2-2d-wSW" secondAttribute="bottom" id="HSl-L6-HUw"/>
-                <constraint firstItem="HAF-4E-SSy" firstAttribute="top" secondItem="H1I-ae-Ojl" secondAttribute="bottom" constant="20" id="JzF-TY-mmK"/>
                 <constraint firstItem="R0Y-ex-cEP" firstAttribute="top" secondItem="rh2-2d-wSW" secondAttribute="bottom" id="NC1-Z5-PlN"/>
                 <constraint firstAttribute="bottom" secondItem="s75-M9-PD9" secondAttribute="bottom" constant="22" id="O2a-s2-4sR"/>
                 <constraint firstItem="s75-M9-PD9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YQB-S7-K90"/>
@@ -185,6 +215,8 @@
                 <constraint firstItem="8QD-om-Snf" firstAttribute="top" secondItem="xj5-V0-A0E" secondAttribute="bottom" constant="10" id="krL-Um-nMs"/>
                 <constraint firstAttribute="bottom" secondItem="pvm-8J-rtT" secondAttribute="bottom" constant="2" id="m57-mC-zVX"/>
                 <constraint firstAttribute="trailing" secondItem="s75-M9-PD9" secondAttribute="trailing" id="vap-cc-N2S"/>
+                <constraint firstItem="xFW-mQ-VTS" firstAttribute="top" secondItem="H1I-ae-Ojl" secondAttribute="bottom" constant="4" id="vpt-e6-uR0"/>
+                <constraint firstItem="HAF-4E-SSy" firstAttribute="top" secondItem="xFW-mQ-VTS" secondAttribute="bottom" constant="20" id="yPv-Cn-LXA"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

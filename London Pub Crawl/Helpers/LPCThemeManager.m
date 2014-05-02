@@ -29,6 +29,14 @@
     return [UIColor colorWithRed:64/255.0f green:153/255.0f blue:255/255.0f alpha:1.0f];
 }
 
++ (UIColor *)getSuccessMessageTextColor {
+    return [UIColor colorWithRed:0.074 green:0.619 blue:0.128 alpha:1];
+}
+
++ (UIColor *)getErrorMessageTextColor {
+    return [UIColor colorWithRed:0.75 green:0.582 blue:0.078 alpha:1];
+}
+
 + (UIColor *)lightenColor:(UIColor *)color {
     CGFloat r, g, b, a;
     if ([color getRed:&r green:&g blue:&b alpha:&a])

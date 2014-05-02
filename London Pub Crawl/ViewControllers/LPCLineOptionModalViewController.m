@@ -48,16 +48,6 @@
     return self;
 }
 
-- (IBAction)cancel:(id)sender {
-    [self.delegate didCancelStationSelection:ownershipChanged];
-    if (self.buyView.hidden == NO) {
-        [[Analytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
-    } else {
-        [[Analytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -80,6 +70,20 @@
         self.buyView.hidden = YES;
     }
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self.delegate didCancelStationSelection:ownershipChanged];
+    if (self.buyView.hidden == NO) {
+        [[Analytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
+    } else {
+        [[Analytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

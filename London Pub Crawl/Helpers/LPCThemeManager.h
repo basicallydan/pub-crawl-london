@@ -8,6 +8,9 @@
 + (UIColor *)getFacebookBlue;
 + (UIColor *)getTwitterBlue;
 
++ (UIColor *)getSuccessMessageTextColor;
++ (UIColor *)getErrorMessageTextColor;
+
 + (UIColor *)lightenColor:(UIColor *)color;
 + (UIColor *)darkenColor:(UIColor *)color;
 + (UIColor *)lightenOrDarkenColor:(UIColor *)color;

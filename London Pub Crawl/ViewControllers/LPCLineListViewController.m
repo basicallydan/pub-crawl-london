@@ -26,7 +26,7 @@
 //#import "LPCPurchaseHelper.h"
 //#import <StoreKit/StoreKit.h>
 
-@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate, LPCCreditsViewControllerDelegate>
+@interface LPCLineListViewController () <LPCLineOptionModalViewControllerDelegate, LPCOptionsCellDelegate>
 
 @end
 
@@ -52,19 +52,12 @@ NSInteger const statusBarHeight = 20;
     UIView *bottomWhiteMask = [[UIView alloc] initWithFrame:maskFrame];
     [bottomWhiteMask setBackgroundColor:[UIColor whiteColor]];
     [self.tableView addSubview:bottomWhiteMask];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -166,23 +159,6 @@ NSInteger const statusBarHeight = 20;
 - (void)didClickEmail:(NSString *)emailAddress {
     UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:emailAddress subject:@"Pub Crawl: London" completion:nil];
     [self presentViewController:mailVC animated:YES completion:nil];
-}
-
-- (void)didSubmitEmailAddress:(NSString *)emailAddress {
-    [[ChimpKit sharedKit] setApiKey:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-key"]];
-    
-    NSDictionary *params = @{@"id": [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-list-id"], @"email": @{@"email": emailAddress}, @"merge_vars": @{
-                                     @"groupings":@[
-                                             @{
-                                                 @"name":[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-grouping-name"],
-                                                 @"groups":@[[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mailchimp-group-name"]]
-                                                 }
-                                             ]}
-                             };
-    [[ChimpKit sharedKit] callApiMethod:@"lists/subscribe" withParams:params andCompletionHandler:^(ChimpKitRequest *request, NSError *error) {
-        NSLog(@"HTTP Status Code: %d", request.response.statusCode);
-        NSLog(@"Response String: %@", request.responseString);
-    }];
 }
 
 #pragma mark - UILineOptionModalViewControllerDelegate 
