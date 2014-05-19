@@ -109,6 +109,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (void)viewDidAppear:(BOOL)animated {
     [self.stationDelegate stationDidAppear];
+    
+    [[Analytics sharedAnalytics] screen:@"Station view"];
 }
 
 - (void)viewDidLoad {

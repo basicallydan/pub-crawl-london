@@ -39,6 +39,10 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [[Analytics sharedAnalytics] screen:@"Credits view"];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

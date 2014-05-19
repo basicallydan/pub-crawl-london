@@ -76,6 +76,10 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [[Analytics sharedAnalytics] screen:@"Station select modal"];
+}
+
 - (IBAction)cancel:(id)sender {
     [self.delegate didCancelStationSelection:ownershipChanged];
     if (self.buyView.hidden == NO) {

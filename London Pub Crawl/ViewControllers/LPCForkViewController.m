@@ -4,6 +4,7 @@
 #import "LPCThemeManager.h"
 #import "LPCFork.h"
 #import <UIColor-HexString/UIColor+HexString.h>
+#import <Analytics/Analytics.h>
 
 @implementation LPCForkViewController
 
@@ -44,6 +45,8 @@ LPCFork *currentFork;
 
 - (void)viewDidAppear:(BOOL)animated {
     [self.forkDelegate forkDidAppear];
+    
+    [[Analytics sharedAnalytics] screen:@"Fork view"];
 }
 
 - (void)viewDidLoad
