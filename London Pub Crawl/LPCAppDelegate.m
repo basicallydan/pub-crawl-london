@@ -81,6 +81,7 @@ NSDictionary *allProducts;
     
     // TODO: Remove for production
     [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
+//    [[IAPShare sharedHelper].iap provideContent:allTheLinesKey];
     
     return YES;
 }

@@ -64,6 +64,8 @@ NSInteger const statusBarHeight = 20;
     UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
     closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
+    [[Analytics sharedAnalytics] screen:@"Line list"];
+    
     [self.view setNeedsDisplay];
     [self.view setNeedsLayout];
     [self.view setNeedsUpdateConstraints];
