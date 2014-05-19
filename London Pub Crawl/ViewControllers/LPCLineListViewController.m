@@ -58,6 +58,8 @@ NSInteger const statusBarHeight = 20;
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
     
+    [self setupAppForFirstRun];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
@@ -75,6 +77,25 @@ NSInteger const statusBarHeight = 20;
 }
 
 #pragma mark - Private Methods
+
+- (void)setupAppForFirstRun {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"HasSeenPopup"] || [[LPCSettingsHelper sharedInstance] booleanForSettingWithKey:@"force-restore"]) {
+        [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
+            int numberOfTransactions = payment.transactions.count;
+            NSLog(@"User has made %d purchases so far", numberOfTransactions);
+            
+            for (SKPaymentTransaction *transaction in payment.transactions)
+            {
+                NSString *purchased = transaction.payment.productIdentifier;
+                NSLog(@"Restoring product %@", purchased);
+                [[IAPShare sharedHelper].iap provideContent:purchased];
+            }
+            
+            [self.tableView reloadData];
+        }];
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"HasSeenPopup"];
+    }
+}
 
 - (CGFloat)standardRowHeight {
     return (self.view.frame.size.height - statusBarHeight) / ([self tableView:self.tableView numberOfRowsInSection:0] - 1);

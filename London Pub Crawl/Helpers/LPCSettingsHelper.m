@@ -34,4 +34,13 @@
     return [settings valueForKey:key];
 }
 
+- (BOOL)booleanForSettingWithKey:(NSString *)key {
+    id settingValue = [settings valueForKey:key];
+    if (settingValue != nil) {
+        return [settingValue boolValue];
+    } else {
+        return NO;
+    }
+}
+
 @end

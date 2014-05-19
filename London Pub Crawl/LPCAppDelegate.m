@@ -86,9 +86,15 @@ NSDictionary *allProducts;
          }
      }];
     
-    // TODO: Remove for production
-    [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
-//    [[IAPShare sharedHelper].iap provideContent:allTheLinesKey];
+    if ([[LPCSettingsHelper sharedInstance] booleanForSettingWithKey:@"enable-all-lines"]) {
+        [[IAPShare sharedHelper].iap provideContent:allTheLinesKey];
+    }
+    
+    if ([[LPCSettingsHelper sharedInstance] booleanForSettingWithKey:@"clear-purchases"]) {
+        [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
+    }
+    
+//    [self setupAppForFirstRun];
     
     return YES;
 }
