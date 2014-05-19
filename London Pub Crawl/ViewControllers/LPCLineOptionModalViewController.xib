@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -67,10 +67,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxt-c4-Xex">
-                            <rect key="frame" x="20" y="191" width="280" height="30"/>
+                            <rect key="frame" x="20" y="227" width="289" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <state key="normal" title="Buy all the lines for T3.00">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="Unlock all the lines for only %@">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -78,9 +78,9 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RX-zB-nDI">
-                            <rect key="frame" x="20" y="251" width="280" height="22"/>
+                            <rect key="frame" x="20" y="180" width="280" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="...or buy just this one for T1.00">
+                            <state key="normal" title="Unlock it for %@">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -98,19 +98,19 @@
                     <constraints>
                         <constraint firstItem="X1N-fl-h2x" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="1n5-GS-7LF"/>
                         <constraint firstAttribute="trailing" secondItem="Wxt-c4-Xex" secondAttribute="trailing" constant="20" id="4kX-pD-F1h"/>
+                        <constraint firstItem="Wxt-c4-Xex" firstAttribute="top" secondItem="4RX-zB-nDI" secondAttribute="bottom" constant="17" id="8R9-Ef-seG"/>
                         <constraint firstItem="Wxt-c4-Xex" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="BxK-HV-fyl"/>
                         <constraint firstItem="X1N-fl-h2x" firstAttribute="top" secondItem="ulF-cF-aeQ" secondAttribute="top" constant="84" id="Dy3-ij-Jo4"/>
                         <constraint firstItem="0ir-jE-u6f" firstAttribute="top" secondItem="RnZ-vU-wRs" secondAttribute="bottom" constant="8" id="Fqq-So-Va6"/>
                         <constraint firstAttribute="trailing" secondItem="RnZ-vU-wRs" secondAttribute="trailing" constant="20" id="Lry-B6-VOj"/>
                         <constraint firstItem="RnZ-vU-wRs" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="M5p-Vi-Svv"/>
-                        <constraint firstItem="4RX-zB-nDI" firstAttribute="top" secondItem="Wxt-c4-Xex" secondAttribute="bottom" constant="30" id="OAr-kf-dQm"/>
+                        <constraint firstItem="4RX-zB-nDI" firstAttribute="top" secondItem="0ir-jE-u6f" secondAttribute="bottom" constant="17" id="P2A-cp-J2q"/>
                         <constraint firstItem="4RX-zB-nDI" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="WXc-c3-u39"/>
                         <constraint firstAttribute="trailing" secondItem="X1N-fl-h2x" secondAttribute="trailing" constant="20" id="d2j-B4-hR6"/>
                         <constraint firstItem="RnZ-vU-wRs" firstAttribute="top" secondItem="X1N-fl-h2x" secondAttribute="bottom" constant="8" id="dNq-I2-aNk"/>
                         <constraint firstAttribute="trailing" secondItem="0ir-jE-u6f" secondAttribute="trailing" constant="20" id="fmW-EA-Tap"/>
                         <constraint firstItem="0ir-jE-u6f" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="jia-fc-k3g"/>
                         <constraint firstAttribute="trailing" secondItem="4RX-zB-nDI" secondAttribute="trailing" constant="20" id="lCY-0n-VOu"/>
-                        <constraint firstItem="Wxt-c4-Xex" firstAttribute="top" secondItem="0ir-jE-u6f" secondAttribute="bottom" constant="28" id="rcE-fQ-7pD"/>
                     </constraints>
                     <connections>
                         <outlet property="buyAllButton" destination="Wxt-c4-Xex" id="3d5-n9-Ynx"/>

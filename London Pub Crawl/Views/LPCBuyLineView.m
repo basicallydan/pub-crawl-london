@@ -20,8 +20,8 @@
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     [formatter setLocale:product.priceLocale];
     NSString *currencyString = [formatter stringFromNumber:product.price];
-    [self.buyAllButton setTitle:[NSString stringWithFormat:@"Buy all the lines for %@", [LPCAppDelegate priceStringForAllTheLines]] forState:UIControlStateNormal];
-    [self.buyThisButton setTitle:[NSString stringWithFormat:@"...or buy just this one for %@", currencyString] forState:UIControlStateNormal];
+    [self.buyAllButton setTitle:[NSString stringWithFormat:self.buyAllButton.titleLabel.text, [LPCAppDelegate priceStringForAllTheLines]] forState:UIControlStateNormal];
+    [self.buyThisButton setTitle:[NSString stringWithFormat:self.buyThisButton.titleLabel.text, currencyString] forState:UIControlStateNormal];
 }
 
 - (void)buyAllButtonPressed:(id)sender {
