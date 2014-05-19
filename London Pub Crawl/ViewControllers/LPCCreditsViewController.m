@@ -91,7 +91,11 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
 
 - (IBAction)happilyEmailPressed:(id)sender {
     UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:emailAddress subject:@"Pub Crawl: London" completion:nil];
-    [self presentViewController:mailVC animated:YES completion:nil];
+    if (mailVC) {
+        [self presentViewController:mailVC animated:YES completion:nil];
+    } else {
+        [[Analytics sharedAnalytics] track:@"Tried to send email without an account"];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

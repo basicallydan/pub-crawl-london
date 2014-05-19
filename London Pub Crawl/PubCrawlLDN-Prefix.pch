@@ -16,4 +16,8 @@
     #import <SVProgressHUD/SVProgressHUD.h>
     #define isiPhone5  ([[UIScreen mainScreen] bounds].size.height == 568)?TRUE:FALSE
     #define allTheLinesKey @"com.happily.pubcrawl.allthelines"
+    #define kNumberOfDaysUntilShowAgain 0
+    #define kAppStoreAddress @"https://itunes.apple.com/us/app/pub-crawl-london/id846500966"
+    #define kAppName @"Pub Crawl: London"
+    #define kHappilyEmailAddress @"info+pubcrawl@happilyltd.co"
 #endif

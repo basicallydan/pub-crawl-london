@@ -13,6 +13,7 @@
 #import <UIImageView+WebCache.h>
 #import "LPCSettingsHelper.h"
 #import <Analytics/Analytics.h>
+#import <TestFlightSDK/TestFlight.h>
 
 @interface LPCStationViewController () <UIActionSheetDelegate>
 
@@ -28,6 +29,7 @@
     int zoomLevel;
     NSArray *venues;
     LPCVenue *currentVenue;
+    LPCLine *currentLine;
     int currentVenueIndex;
     int currentTipIndex;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
@@ -58,7 +60,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
 }
 
-- (id)initWithStation:(LPCStation *)station {
+- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line {
     self = [super initWithNibName:@"LPCStationViewController" bundle:nil];
     
     if (self) {
@@ -66,7 +68,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
         currentVenueIndex = 0;
         currentTipIndex = 0;
         venues = nil;
-        currentVenue = nil;
+        currentLine = nil;
         Reachability *reach = [Reachability reachabilityWithHostname:@"api.foursquare.com"];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reachabilityChanged:)
@@ -80,6 +82,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
     
     self.station = station;
+    currentLine = line;
     
     [self loadVenues];
     
@@ -111,6 +114,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.stationDelegate stationDidAppear];
     
     [[Analytics sharedAnalytics] screen:@"Station view"];
+    
+    [TestFlight passCheckpoint:@"Station view"];
 }
 
 - (void)viewDidLoad {
@@ -124,7 +129,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
  Returns the standard analytics properties for any station-related event
  */
 - (id)analyticsProperties {
-    return @{ @"Station" : self.station.name, @"Station views in line session" : [NSNumber numberWithInt:[self.stationDelegate numStationViewsThisLineSession]] };
+    return @{ @"Station" : self.station.name, @"Station views in line session" : [NSNumber numberWithInt:[self.stationDelegate numStationViewsThisLineSession]], @"Line" : currentLine.name };
 }
 
 /*!
@@ -201,6 +206,8 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.pubNameLabel setText:@"You're offline!"];
     
     [self.offlineMessageLabel setHidden:NO];
+    
+    [[Analytics sharedAnalytics] track:@"Showed offline message" properties:[self analyticsProperties]];
     
     refreshWhenReachable = YES;
 }

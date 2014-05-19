@@ -5,6 +5,7 @@
 #import <Analytics/Analytics.h>
 #import <StoreKit/StoreKit.h>
 #import "LPCAppDelegate.h"
+#import <TestFlightSDK/TestFlight.h>
 
 @interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
 
@@ -78,6 +79,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [[Analytics sharedAnalytics] screen:@"Station select modal"];
+    
+    [TestFlight passCheckpoint:@"Station select modal"];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -158,7 +161,9 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate didSelectStartingStation:[self.filteredStationArray objectAtIndex:indexPath.row] forLine:selectedLine];
+    LPCStation *selectedStation = [self.filteredStationArray objectAtIndex:indexPath.row];
+    [[Analytics sharedAnalytics] track:@"Selected station" properties:@{ @"Station" : selectedStation.name }];
+    [self.delegate didSelectStartingStation:selectedStation forLine:selectedLine];
 }
 
 #pragma mark - UISearchBarDelegate

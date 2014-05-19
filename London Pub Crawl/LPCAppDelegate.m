@@ -7,6 +7,7 @@
 #import <PonyDebugger/PonyDebugger.h>
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "NSDictionary+FromJSONFile.h"
+#import <TestFlightSDK/TestFlight.h>
 
 @implementation LPCAppDelegate
 
@@ -18,6 +19,8 @@ NSDictionary *allProducts;
     self.lines = [allTheData valueForKey:@"lines"];
     self.pubs = [NSDictionary dictionaryWithContentsOfJSONFile:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
+    
+    [TestFlight takeOff:@"a6b7c761-1ac7-493a-ad7b-aa5dd4b10667"];
 
     for (NSString *line in self.lines) {
         [temporaryLinesArray addObject:line];
@@ -50,7 +53,7 @@ NSDictionary *allProducts;
                           @"com.happily.pubcrawl.districtline",
                           @"com.happily.pubcrawl.circleline",
                           @"com.happily.pubcrawl.bakerlooline",
-                          @"com.happily.pubcrawl.handc",
+                          @"com.happily.pubcrawl.handcline",
                           @"com.happily.pubcrawl.metline",
                           allTheLinesKey, nil];
         

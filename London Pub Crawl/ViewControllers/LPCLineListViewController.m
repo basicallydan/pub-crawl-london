@@ -21,6 +21,7 @@
 #import <NSString+FontAwesome.h>
 #import <UIColor-HexString/UIColor+HexString.h>
 #import <NSAttributedStringMarkdownParser/NSAttributedStringMarkdownParser.h>
+#import <TestFlightSDK/TestFlight.h>
 
 // In-App Purchases
 //#import "LPCPurchaseHelper.h"
@@ -65,6 +66,8 @@ NSInteger const statusBarHeight = 20;
     closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
     [[Analytics sharedAnalytics] screen:@"Line list"];
+    
+    [TestFlight passCheckpoint:@"Line list"];
     
     [self.view setNeedsDisplay];
     [self.view setNeedsLayout];

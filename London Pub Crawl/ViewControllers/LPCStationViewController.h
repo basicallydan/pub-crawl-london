@@ -29,7 +29,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) NSString *directionBackward;
 @property (strong, nonatomic) LPCStation *station;
 
-- (id)initWithStation:(LPCStation *)station;
+- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line;
 
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;

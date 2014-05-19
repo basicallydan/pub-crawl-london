@@ -5,6 +5,7 @@
 #import "LPCFork.h"
 #import <UIColor-HexString/UIColor+HexString.h>
 #import <Analytics/Analytics.h>
+#import <TestFlightSDK/TestFlight.h>
 
 @implementation LPCForkViewController
 
@@ -47,6 +48,8 @@ LPCFork *currentFork;
     [self.forkDelegate forkDidAppear];
     
     [[Analytics sharedAnalytics] screen:@"Fork view"];
+    
+    [TestFlight passCheckpoint:@"Fork view"];
 }
 
 - (void)viewDidLoad
