@@ -20,7 +20,11 @@ NSDictionary *allProducts;
     self.pubs = [NSDictionary dictionaryWithContentsOfJSONFile:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
     
-    [TestFlight takeOff:@"a6b7c761-1ac7-493a-ad7b-aa5dd4b10667"];
+    NSString *testFlightAppToken = [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"testflight-app-token"];
+    
+    if (testFlightAppToken && [testFlightAppToken length] > 0) {
+        [TestFlight takeOff:testFlightAppToken];
+    }
 
     for (NSString *line in self.lines) {
         [temporaryLinesArray addObject:line];
