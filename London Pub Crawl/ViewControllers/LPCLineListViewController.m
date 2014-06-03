@@ -321,14 +321,4 @@ NSInteger const statusBarHeight = 20;
     NSLog(@"Opening the Happily Website");
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.happilyltd.co"]];
 }
-
-- (void)helpButtonClicked {
-    NSAttributedStringMarkdownParser* parser = [[NSAttributedStringMarkdownParser alloc] init];
-    UIView *helpView = [[UIView alloc] initWithFrame:self.tableView.frame];
-    UIColor *transparentBlack = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
-    helpView.backgroundColor = transparentBlack;
-    UILabel *helpLabel = [[UILabel alloc] initWithFrame:((UITableViewCell *)lineCells[0]).frame];
-    [helpLabel setAttributedText:[parser attributedStringFromMarkdownString:@"Select a line to get started"]];
-    [self.view addSubview:helpView];
-}
 @end

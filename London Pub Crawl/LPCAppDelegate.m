@@ -8,12 +8,14 @@
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "NSDictionary+FromJSONFile.h"
 #import <TestFlightSDK/TestFlight.h>
+#import "Bugsnag.h"
 
 @implementation LPCAppDelegate
 
 NSDictionary *allProducts;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Bugsnag startBugsnagWithApiKey:@"750a2fe89ad883346f20f9e56703dd6e"];
     NSDictionary *allTheData = [NSDictionary dictionaryWithContentsOfJSONFile:@"tfl-tube-data.json"];
     self.stations = [allTheData valueForKey:@"stations"];
     self.lines = [allTheData valueForKey:@"lines"];
@@ -66,10 +68,6 @@ NSDictionary *allProducts;
     
     // TODO: Set to YES before shipping
     [IAPShare sharedHelper].iap.production = NO;
-    
-    [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest *request, SKProductsResponse *response) {
-        NSLog(@"DONE");
-    }];
     
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {

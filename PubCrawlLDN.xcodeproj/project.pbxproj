@@ -27,6 +27,8 @@
 		37074FFE18F3566800D86847 /* station-help-iphone-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37074FFA18F3566800D86847 /* station-help-iphone-5@2x.png */; };
 		371AE6601882061500AA9557 /* AppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65E1882061500AA9557 /* AppIcon144x144.png */; };
 		371AE6611882061500AA9557 /* AppIcon144x144@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */; };
+		372D7453193E62B700C9B54D /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 372D7451193E62B700C9B54D /* AppIcon29x29.png */; };
+		372D7454193E62B700C9B54D /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 372D7452193E62B700C9B54D /* AppIcon29x29@2x.png */; };
 		3738664A18F4855E00ED79F3 /* LPCSettingsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3738664918F4855E00ED79F3 /* LPCSettingsHelper.m */; };
 		3738664D18F488F100ED79F3 /* NSDictionary+FromJSONFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3738664C18F488F100ED79F3 /* NSDictionary+FromJSONFile.m */; };
 		3738665018F48B8800ED79F3 /* tube-line-fork-double-sided.png in Resources */ = {isa = PBXBuildFile; fileRef = 3738664E18F48B8800ED79F3 /* tube-line-fork-double-sided.png */; };
@@ -177,6 +179,8 @@
 		37074FFA18F3566800D86847 /* station-help-iphone-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station-help-iphone-5@2x.png"; sourceTree = "<group>"; };
 		371AE65E1882061500AA9557 /* AppIcon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon144x144.png; sourceTree = "<group>"; };
 		371AE65F1882061500AA9557 /* AppIcon144x144@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon144x144@2x.png"; sourceTree = "<group>"; };
+		372D7451193E62B700C9B54D /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
+		372D7452193E62B700C9B54D /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		3738664818F4855E00ED79F3 /* LPCSettingsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCSettingsHelper.h; sourceTree = "<group>"; };
 		3738664918F4855E00ED79F3 /* LPCSettingsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCSettingsHelper.m; sourceTree = "<group>"; };
 		3738664B18F488F100ED79F3 /* NSDictionary+FromJSONFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+FromJSONFile.h"; sourceTree = "<group>"; };
@@ -470,6 +474,8 @@
 		3787FECE18E21F85002B79C2 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				372D7451193E62B700C9B54D /* AppIcon29x29.png */,
+				372D7452193E62B700C9B54D /* AppIcon29x29@2x.png */,
 				3744F59418C51BC4000F6669 /* Default4inch.png */,
 				3744F59518C51BC4000F6669 /* Default35inch.png */,
 				3744F59618C51BC4000F6669 /* Default35inch@2x.png */,
@@ -768,6 +774,7 @@
 				37074FE918F3368100D86847 /* foursquare-logo.png in Resources */,
 				3744F59818C51BC4000F6669 /* Default35inch.png in Resources */,
 				37D5D23A187B3EB1002269A9 /* AppIcon60x60@2x.png in Resources */,
+				372D7453193E62B700C9B54D /* AppIcon29x29.png in Resources */,
 				37D4F67118E06BD900661E20 /* Offline@2x.png in Resources */,
 				37EF4B8A18DF61760063B848 /* Frame 19@2x.png in Resources */,
 				37EF4B8F18DF61760063B848 /* Frame 22.png in Resources */,
@@ -796,6 +803,7 @@
 				37EF4B3A18DF465C0063B848 /* Frame 3@2x.png in Resources */,
 				37EF4B8C18DF61760063B848 /* Frame 20@2x.png in Resources */,
 				37EF4B8718DF61760063B848 /* Frame 18.png in Resources */,
+				372D7454193E62B700C9B54D /* AppIcon29x29@2x.png in Resources */,
 				37E96E381912EFDC0001AD03 /* Left menu image@2x.png in Resources */,
 				37E96E371912EFDC0001AD03 /* Left menu image.png in Resources */,
 				37EF4B8E18DF61760063B848 /* Frame 21@2x.png in Resources */,
@@ -888,7 +896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo ${CONFIGURATION}\nif [ ${CONFIGURATION} == \"Debug\" ]; then\ncp ${PROJECT_DIR}/settings.debug.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\nfi";
+			shellScript = "echo ${CONFIGURATION}\nif [ ${CONFIGURATION} = \"Debug\" ]; then\ncp ${PROJECT_DIR}/settings.debug.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\nfi\nif [ ${CONFIGURATION} = \"Release\"]; then\ncp ${PROJECT_DIR}/settings.release.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\nfi";
 		};
 		48673DF67E4446A299F2E2B7 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1009,7 +1017,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Hough (7UC35A2T2B)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Happily Ltd (3G436HD8ZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Happily Ltd (3G436HD8ZY)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1027,6 +1036,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "98BB4845-A974-48C5-B323-7C43DBD9B501";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1048,7 +1058,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Hough (7UC35A2T2B)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Happily Ltd (3G436HD8ZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Happily Ltd (3G436HD8ZY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1059,6 +1070,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "98BB4845-A974-48C5-B323-7C43DBD9B501";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

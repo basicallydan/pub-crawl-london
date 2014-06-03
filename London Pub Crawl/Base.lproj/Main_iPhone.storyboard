@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -71,7 +71,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTU-Ip-Lth">
-                                                    <rect key="frame" x="92" y="0.0" width="41" height="42"/>
+                                                    <rect key="frame" x="30" y="0.0" width="41" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="About">
@@ -80,18 +80,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="aboutButtonClicked:" destination="WyJ-TU-g25" eventType="touchUpInside" id="X2i-kL-pfH"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olM-Xa-nv9">
-                                                    <rect key="frame" x="32" y="0.0" width="40" height="42"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="Help">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="helpButtonClicked:" destination="WyJ-TU-g25" eventType="touchUpInside" id="3cz-rf-yUu"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Left menu image.png" translatesAutoresizingMaskIntoConstraints="NO" id="hSO-iV-EuZ">
@@ -108,7 +96,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="hSO-iV-EuZ" secondAttribute="trailing" id="JPP-0e-nul"/>
                                                 <constraint firstAttribute="bottom" secondItem="hSO-iV-EuZ" secondAttribute="bottom" constant="22" id="b4u-0s-Icc"/>
                                                 <constraint firstAttribute="bottom" secondItem="cTU-Ip-Lth" secondAttribute="bottom" constant="2" id="nad-jS-Caw"/>
-                                                <constraint firstAttribute="bottom" secondItem="olM-Xa-nv9" secondAttribute="bottom" constant="2" id="nvU-zj-ap7"/>
                                                 <constraint firstAttribute="bottom" secondItem="mve-xT-9me" secondAttribute="bottom" constant="2" id="oOz-lO-gu8"/>
                                             </constraints>
                                         </tableViewCellContentView>
