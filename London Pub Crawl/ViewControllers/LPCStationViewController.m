@@ -13,7 +13,6 @@
 #import <UIImageView+WebCache.h>
 #import "LPCSettingsHelper.h"
 #import <Analytics/Analytics.h>
-#import <TestFlightSDK/TestFlight.h>
 
 @interface LPCStationViewController () <UIActionSheetDelegate>
 
@@ -114,8 +113,6 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [self.stationDelegate stationDidAppear];
     
     [[Analytics sharedAnalytics] screen:@"Station view"];
-    
-    [TestFlight passCheckpoint:@"Station view"];
 }
 
 - (void)viewDidLoad {

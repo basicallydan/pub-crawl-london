@@ -37,6 +37,9 @@
 		3744F59718C51BC4000F6669 /* Default4inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59418C51BC4000F6669 /* Default4inch.png */; };
 		3744F59818C51BC4000F6669 /* Default35inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59518C51BC4000F6669 /* Default35inch.png */; };
 		3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3744F59618C51BC4000F6669 /* Default35inch@2x.png */; };
+		37478F261940DC22004A86F9 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 37478F231940DC22004A86F9 /* AppIcon40x40.png */; };
+		37478F271940DC22004A86F9 /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37478F241940DC22004A86F9 /* AppIcon40x40@2x.png */; };
+		37478F281940DC22004A86F9 /* AppIcon144x144@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37478F251940DC22004A86F9 /* AppIcon144x144@2.png */; };
 		3750EF7C18E2216F007F11AB /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3750EF7B18E2216F007F11AB /* FontAwesome.ttf */; };
 		3750EF7F18E221D7007F11AB /* UIColor+HexStringFromColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3750EF7E18E221D7007F11AB /* UIColor+HexStringFromColor.m */; };
 		3750EF8418E22228007F11AB /* station-pubs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3750EF8118E22228007F11AB /* station-pubs.json */; };
@@ -191,6 +194,9 @@
 		3744F59418C51BC4000F6669 /* Default4inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default4inch.png; sourceTree = "<group>"; };
 		3744F59518C51BC4000F6669 /* Default35inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default35inch.png; sourceTree = "<group>"; };
 		3744F59618C51BC4000F6669 /* Default35inch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default35inch@2x.png"; sourceTree = "<group>"; };
+		37478F231940DC22004A86F9 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
+		37478F241940DC22004A86F9 /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		37478F251940DC22004A86F9 /* AppIcon144x144@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon144x144@2.png"; sourceTree = "<group>"; };
 		3750EF7B18E2216F007F11AB /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		3750EF7D18E221D7007F11AB /* UIColor+HexStringFromColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexStringFromColor.h"; sourceTree = "<group>"; };
 		3750EF7E18E221D7007F11AB /* UIColor+HexStringFromColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexStringFromColor.m"; sourceTree = "<group>"; };
@@ -474,6 +480,9 @@
 		3787FECE18E21F85002B79C2 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				37478F231940DC22004A86F9 /* AppIcon40x40.png */,
+				37478F241940DC22004A86F9 /* AppIcon40x40@2x.png */,
+				37478F251940DC22004A86F9 /* AppIcon144x144@2.png */,
 				372D7451193E62B700C9B54D /* AppIcon29x29.png */,
 				372D7452193E62B700C9B54D /* AppIcon29x29@2x.png */,
 				3744F59418C51BC4000F6669 /* Default4inch.png */,
@@ -770,6 +779,7 @@
 				37EF4B7A18DF61760063B848 /* Frame 11@2x.png in Resources */,
 				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
 				37074FFD18F3566800D86847 /* station-help-iphone-5.png in Resources */,
+				37478F281940DC22004A86F9 /* AppIcon144x144@2.png in Resources */,
 				3738665118F48B8800ED79F3 /* tube-line-fork-double-sided@2x.png in Resources */,
 				37074FE918F3368100D86847 /* foursquare-logo.png in Resources */,
 				3744F59818C51BC4000F6669 /* Default35inch.png in Resources */,
@@ -827,6 +837,7 @@
 				37EF4B8518DF61760063B848 /* Frame 17.png in Resources */,
 				37EF4B7618DF61760063B848 /* Frame 9@2x.png in Resources */,
 				37074FF218F3369000D86847 /* map-placeholder@2x.png in Resources */,
+				37478F261940DC22004A86F9 /* AppIcon40x40.png in Resources */,
 				37074FEB18F3368100D86847 /* mapbox-logo.png in Resources */,
 				37EF4B4518DF48650063B848 /* Frame 4.png in Resources */,
 				37EF4B6E18DF61760063B848 /* Frame 5@2x.png in Resources */,
@@ -854,6 +865,7 @@
 				37EF4B7D18DF61760063B848 /* Frame 13.png in Resources */,
 				37EF4B9018DF61760063B848 /* Frame 22@2x.png in Resources */,
 				379E2CD61913ABD6003BB3B1 /* Default4inch.png in Resources */,
+				37478F271940DC22004A86F9 /* AppIcon40x40@2x.png in Resources */,
 				37E96E391912EFDC0001AD03 /* Right menu image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,7 +908,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo ${CONFIGURATION}\nif [ ${CONFIGURATION} = \"Debug\" ]; then\ncp ${PROJECT_DIR}/settings.debug.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\nfi\nif [ ${CONFIGURATION} = \"Release\"]; then\ncp ${PROJECT_DIR}/settings.release.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\nfi";
+			shellScript = "echo ${BUILT_PRODUCTS_DIR}\necho ${CONFIGURATION}\necho ${PRODUCT_NAME}\nif [ ${CONFIGURATION} = \"Debug\" ]; then\n    cp ${PROJECT_DIR}/settings.debug.json ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\nelse\n    cp ${PROJECT_DIR}/settings.release.json \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/settings.json\"\nfi";
 		};
 		48673DF67E4446A299F2E2B7 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

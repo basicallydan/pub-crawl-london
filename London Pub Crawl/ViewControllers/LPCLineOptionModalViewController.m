@@ -5,7 +5,6 @@
 #import <Analytics/Analytics.h>
 #import <StoreKit/StoreKit.h>
 #import "LPCAppDelegate.h"
-#import <TestFlightSDK/TestFlight.h>
 
 @interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
 
@@ -79,8 +78,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [[Analytics sharedAnalytics] screen:@"Station select modal"];
-    
-    [TestFlight passCheckpoint:@"Station select modal"];
 }
 
 - (IBAction)cancel:(id)sender {

@@ -17,5 +17,4 @@ pod 'IAPHelper'
 pod 'NSAttributedStringMarkdownParser', '~> 0.0'
 pod 'CGLMail', '~> 0.1'
 pod 'FontAwesome+iOS', '~> 0.1'
-pod 'TestFlightSDK', '~> 3.0'
 pod 'RFRateMe', "~> 1.0.0"

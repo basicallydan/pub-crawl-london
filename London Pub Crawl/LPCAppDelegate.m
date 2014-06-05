@@ -7,7 +7,6 @@
 #import <PonyDebugger/PonyDebugger.h>
 #import <UIColor-HexString/UIColor+HexString.h>
 #import "NSDictionary+FromJSONFile.h"
-#import <TestFlightSDK/TestFlight.h>
 #import "Bugsnag.h"
 
 @implementation LPCAppDelegate
@@ -21,12 +20,6 @@ NSDictionary *allProducts;
     self.lines = [allTheData valueForKey:@"lines"];
     self.pubs = [NSDictionary dictionaryWithContentsOfJSONFile:@"station-pubs.json"];
     NSMutableArray *temporaryLinesArray = [[NSMutableArray alloc] init];
-    
-    NSString *testFlightAppToken = [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"testflight-app-token"];
-    
-    if (testFlightAppToken && [testFlightAppToken length] > 0) {
-        [TestFlight takeOff:testFlightAppToken];
-    }
 
     for (NSString *line in self.lines) {
         [temporaryLinesArray addObject:line];
