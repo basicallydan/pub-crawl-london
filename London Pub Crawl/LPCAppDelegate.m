@@ -66,7 +66,7 @@ NSDictionary *allProducts;
      {
          if(response > 0 ) {
              NSMutableDictionary *products = [[NSMutableDictionary alloc] initWithCapacity:[response.products count]];
-             NSLog(@"Got a bunch of products. %d to be precise", [response.products count]);
+             NSLog(@"Got a bunch of products. %i to be precise", (int)[response.products count]);
              for (SKProduct *product in [IAPShare sharedHelper].iap.products) {
                  [products setValue:product forKey:product.productIdentifier];
                  NSLog(@"Found product: %@ with price: %@", product.productIdentifier, product.priceLocale);

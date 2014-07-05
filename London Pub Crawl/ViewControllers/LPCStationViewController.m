@@ -243,7 +243,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (void)showVenues {
     if ([venues count] > 0) {
-        NSLog(@"[%@]: Showing the first of %d venues", self.station.name, [venues count]);
+        NSLog(@"[%@]: Showing the first of %i venues", self.station.name, (int)[venues count]);
         [self displayVenueAtIndex:currentVenueIndex];
         [self loadMapImage];
     } else {
@@ -392,9 +392,9 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     [actionSheet addButtonWithTitle:@"Google Maps"];
     
-    if ([CMMapLauncher isMapAppInstalled:CMMapAppCitymapper]) {
+//    if ([CMMapLauncher isMapAppInstalled:CMMapAppCitymapper]) {
         [actionSheet addButtonWithTitle:@"Citymapper"];
-    }
+//    }
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     

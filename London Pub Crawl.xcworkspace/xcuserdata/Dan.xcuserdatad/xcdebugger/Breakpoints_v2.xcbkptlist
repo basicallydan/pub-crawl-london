@@ -949,8 +949,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
             endingLineNumber = "112"
-            landmarkName = "-applicationWillResignActive:"
-            landmarkType = "5">
+            landmarkName = "@implementation LPCAppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -992,11 +992,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "422209442.138621"
+            timestampString = "426259685.039003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-didChooseToBuyAll"
             landmarkType = "5">
          </BreakpointContent>
@@ -1008,13 +1008,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "422209442.138621"
+            timestampString = "426259685.039003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-didChooseToBuyAll"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__53-[LPCLineOptionModalViewController didChooseToBuyAll]_block_invoke"
+                  moduleName = "PubCrawlLDN"
+                  urlString = "file:///Users/dan/Development/pub-crawl-london/London%20Pub%20Crawl/ViewControllers/LPCLineOptionModalViewController.m"
+                  timestampString = "426259686.013144"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "406">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__53-[LPCLineOptionModalViewController didChooseToBuyAll]_block_invoke_2"
+                  moduleName = "PubCrawlLDN"
+                  urlString = "file:///Users/dan/Development/pub-crawl-london/London%20Pub%20Crawl/ViewControllers/LPCLineOptionModalViewController.m"
+                  timestampString = "426259686.014123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "83">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

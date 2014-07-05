@@ -118,7 +118,7 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
             if (error) {
                 NSLog(@"Error: %@", error);
             }
-            NSLog(@"HTTP Status Code: %d", request.response.statusCode);
+            NSLog(@"HTTP Status Code: %ld", (long)request.response.statusCode);
             NSLog(@"Response String: %@", request.responseString);
             
             if (request.response.statusCode != 200) {

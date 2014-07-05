@@ -188,7 +188,9 @@
         if(trans.error) {
             NSLog(@"Fail %@",[trans.error localizedDescription]);
         } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
-            [[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt onCompletion:^(NSString *response, NSError *error) {
+            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+            NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
+            [[IAPShare sharedHelper].iap checkReceipt:receipt onCompletion:^(NSString *response, NSError *error) {
 
                 //Convert JSON String to NSDictionary
                 NSDictionary* rec = [IAPShare toJSON:response];
@@ -218,7 +220,9 @@
         if(trans.error) {
             NSLog(@"Fail %@",[trans.error localizedDescription]);
         } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
-            [[IAPShare sharedHelper].iap checkReceipt:trans.transactionReceipt onCompletion:^(NSString *response, NSError *error) {
+            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+            NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
+            [[IAPShare sharedHelper].iap checkReceipt:receipt onCompletion:^(NSString *response, NSError *error) {
                 
                 //Convert JSON String to NSDictionary
                 NSDictionary* rec = [IAPShare toJSON:response];

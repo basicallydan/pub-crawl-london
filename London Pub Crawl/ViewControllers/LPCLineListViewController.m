@@ -78,7 +78,7 @@ NSInteger const statusBarHeight = 20;
 - (void)setupAppForFirstRun {
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"HasSeenPopup"] || [[LPCSettingsHelper sharedInstance] booleanForSettingWithKey:@"force-restore"]) {
         [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
-            int numberOfTransactions = payment.transactions.count;
+            int numberOfTransactions = (int)payment.transactions.count;
             NSLog(@"User has made %d purchases so far", numberOfTransactions);
             
             for (SKPaymentTransaction *transaction in payment.transactions)
@@ -271,11 +271,11 @@ NSInteger const statusBarHeight = 20;
 - (void)configureCell:(LPCLineTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     LPCAppDelegate *appDelegate = (LPCAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *line = [appDelegate.lines objectAtIndex:indexPath.row];
-    cell.lineIndex = indexPath.row;
+    cell.lineIndex = (int)indexPath.row;
     cell.lineName = [line valueForKey:@"name"];
     cell.textLabel.text = cell.lineName;
     
-    UIColor *cellColor = [self backgroundColorForLine:indexPath.row];
+    UIColor *cellColor = [self backgroundColorForLine:(int)indexPath.row];
     UIColor *textColor = [UIColor colorWithHexString:[line valueForKey:@"text-color"]];
     
     NSString *iapProductIdentifier = [line valueForKey:@"iap-product-identifier"];

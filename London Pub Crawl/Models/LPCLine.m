@@ -40,7 +40,7 @@ NSDictionary *stationPointers;
                 [stationArrayPointers setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKey:st.nestoriaCode];
                 [stationPositions setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKeyPath:[position description]];
             } else {
-                int existingStationArrayPointer = [[stationArrayPointers valueForKey:st.nestoriaCode] integerValue];
+                int existingStationArrayPointer = (int)[[stationArrayPointers valueForKey:st.nestoriaCode] integerValue];
                 NSLog(@"%@ is in there more than once, using station at position %d!", st.nestoriaCode, existingStationArrayPointer);
                 [stationPositions setValue:[NSNumber numberWithInteger:existingStationArrayPointer] forKeyPath:[position description]];
             }
@@ -82,7 +82,7 @@ NSDictionary *stationPointers;
                             [stationArrayPointers setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKey:st.nestoriaCode];
                             [stationPositions setValue:[NSNumber numberWithInteger:[allStations count] - 1] forKeyPath:[position description]];
                         } else {
-                            int existingStationArrayPointer = [[stationArrayPointers valueForKey:st.nestoriaCode] integerValue];
+                            int existingStationArrayPointer = (int)[[stationArrayPointers valueForKey:st.nestoriaCode] integerValue];
                             NSLog(@"%@ is in there more than once, using station at position %d!", st.nestoriaCode, existingStationArrayPointer);
                             [stationPositions setValue:[NSNumber numberWithInteger:existingStationArrayPointer] forKeyPath:[position description]];
                         }
@@ -281,7 +281,7 @@ NSDictionary *stationPointers;
 
 - (int)countOfStationsOnBranchOfStationPosition:(LPCLinePosition *)position {
     NSArray *stations = [self.stationPositions valueForKeyPath:[NSString stringWithFormat:@"%d.%@", position.mainLineIndex, position.branchCode]];
-    return [stations count];
+    return (int)[stations count];
 }
 
 - (BOOL)branchEndsWithPosition:(LPCLinePosition *)position {
@@ -289,7 +289,7 @@ NSDictionary *stationPointers;
         [NSException raise:@"Position is not on a branch" format:@"%@ is not a branch position", position];
     }
     NSDictionary *stationsOnBranch = [self.stationPositions valueForKeyPath:[NSString stringWithFormat:@"%d.%@", position.mainLineIndex, position.branchCode]];
-    int count = [stationsOnBranch count];
+    int count = (int)[stationsOnBranch count];
     NSString *stringLast = [NSString stringWithFormat:@"%d", (count - 1)];
     
     LPCStation *firstStation = [self.allStations objectAtIndex:[[stationsOnBranch valueForKey:@"0"] integerValue]];
