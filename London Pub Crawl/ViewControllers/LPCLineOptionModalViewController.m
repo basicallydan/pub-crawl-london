@@ -244,7 +244,21 @@
 }
 
 - (void)didChooseToRestoreLine:(LPCLine *)line {
-    // TODO: Implement restore code
+    // TODO: Check on an actual phone
+    [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
+        int numberOfTransactions = (int)payment.transactions.count;
+        NSLog(@"User has made %d purchases so far", numberOfTransactions);
+        
+        for (SKPaymentTransaction *transaction in payment.transactions)
+        {
+            NSString *purchased = transaction.payment.productIdentifier;
+            if([purchased isEqualToString:line.iapProductIdentifier])
+            {
+                NSLog(@"Restoring product %@", purchased);
+                [[IAPShare sharedHelper].iap provideContent:purchased];
+            }
+        }
+    }];
 }
 
 @end
