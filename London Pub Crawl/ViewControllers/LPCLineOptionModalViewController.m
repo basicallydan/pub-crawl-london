@@ -252,10 +252,17 @@
         for (SKPaymentTransaction *transaction in payment.transactions)
         {
             NSString *purchased = transaction.payment.productIdentifier;
-            if([purchased isEqualToString:line.iapProductIdentifier])
-            {
+            if([purchased isEqualToString:line.iapProductIdentifier]) {
                 NSLog(@"Restoring product %@", purchased);
                 [[IAPShare sharedHelper].iap provideContent:purchased];
+                [self hideBuyView];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
+                                                               message:@"We couldn't find a previous purchase of this line, sorry."
+                                                              delegate:self
+                                                     cancelButtonTitle:@"Fair enough."
+                                                     otherButtonTitles:nil,nil];
+                [alert show];
             }
         }
     }];
