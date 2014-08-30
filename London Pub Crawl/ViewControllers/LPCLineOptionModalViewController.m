@@ -243,4 +243,8 @@
     }];
 }
 
+- (void)didChooseToRestoreLine:(LPCLine *)line {
+    // TODO: Implement restore code
+}
+
 @end

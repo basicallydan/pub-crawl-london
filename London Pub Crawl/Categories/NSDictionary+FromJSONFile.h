@@ -10,6 +10,6 @@
 
 @interface NSDictionary (FromJSONFile)
 
-+ (id)dictionaryWithContentsOfJSONFile:(NSString *)path;
++ (NSDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path;
 
 @end

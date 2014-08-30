@@ -60,7 +60,7 @@ NSDictionary *allProducts;
     }
     
     // TODO: Set to YES before shipping
-    [IAPShare sharedHelper].iap.production = NO;
+    [IAPShare sharedHelper].iap.production = YES;
     
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {
@@ -84,8 +84,6 @@ NSDictionary *allProducts;
     if ([[LPCSettingsHelper sharedInstance] booleanForSettingWithKey:@"clear-purchases"]) {
         [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
     }
-    
-//    [self setupAppForFirstRun];
     
     return YES;
 }

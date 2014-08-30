@@ -10,10 +10,18 @@
 
 @implementation NSDictionary (FromJSONFile)
 
-+ (id)dictionaryWithContentsOfJSONFile:(NSString *)path {
++ (NSDictionary *)dictionaryWithContentsOfJSONFile:(NSString *)path {
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:[path stringByDeletingPathExtension] ofType:[path pathExtension]];
+//    
+//    //création d'un string avec le contenu du JSON
+//    NSString *myJSON = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+//    
+//    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[myJSON dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+//    return json;
+    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:[path stringByDeletingPathExtension] ofType:[path pathExtension]];
     NSData* data = [NSData dataWithContentsOfFile:filePath];
-    __autoreleasing NSError* error = nil;
+    NSError *error;
     id result = [NSJSONSerialization JSONObjectWithData:data
                                                 options:kNilOptions error:&error];
     // Be careful here. You add this as a category to NSDictionary

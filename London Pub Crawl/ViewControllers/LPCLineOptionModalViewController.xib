@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -93,9 +93,28 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ow2-oq-tHD">
+                            <rect key="frame" x="74" y="454" width="172" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="Restore my purchase">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="restoreButtonPressed:" destination="ulF-cF-aeQ" eventType="touchUpInside" id="cMP-0X-GDQ"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I already own this line!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4k8-nx-Bpk">
+                            <rect key="frame" x="75" y="425" width="170" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="ow2-oq-tHD" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="74" id="1go-ki-sIE"/>
                         <constraint firstItem="X1N-fl-h2x" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="1n5-GS-7LF"/>
                         <constraint firstAttribute="trailing" secondItem="Wxt-c4-Xex" secondAttribute="trailing" constant="20" id="4kX-pD-F1h"/>
                         <constraint firstItem="Wxt-c4-Xex" firstAttribute="top" secondItem="4RX-zB-nDI" secondAttribute="bottom" constant="17" id="8R9-Ef-seG"/>
@@ -111,6 +130,9 @@
                         <constraint firstAttribute="trailing" secondItem="0ir-jE-u6f" secondAttribute="trailing" constant="20" id="fmW-EA-Tap"/>
                         <constraint firstItem="0ir-jE-u6f" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="jia-fc-k3g"/>
                         <constraint firstAttribute="trailing" secondItem="4RX-zB-nDI" secondAttribute="trailing" constant="20" id="lCY-0n-VOu"/>
+                        <constraint firstAttribute="bottom" secondItem="ow2-oq-tHD" secondAttribute="bottom" constant="16" id="lTf-uX-MHw"/>
+                        <constraint firstItem="ow2-oq-tHD" firstAttribute="top" secondItem="4k8-nx-Bpk" secondAttribute="bottom" constant="8" id="sHT-aX-qWx"/>
+                        <constraint firstAttribute="trailing" secondItem="ow2-oq-tHD" secondAttribute="trailing" constant="74" id="w2P-hs-9fY"/>
                     </constraints>
                     <connections>
                         <outlet property="buyAllButton" destination="Wxt-c4-Xex" id="3d5-n9-Ynx"/>

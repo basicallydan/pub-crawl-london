@@ -32,4 +32,8 @@
     [self.delegate didChooseToBuyLine:self.line];
 }
 
+- (void)restoreButtonPressed:(id)sender {
+    [self.delegate didChooseToRestoreLine:self.line];
+}
+
 @end

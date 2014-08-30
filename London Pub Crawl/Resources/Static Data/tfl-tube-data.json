@@ -4,7 +4,6 @@
 			"background-color": "#E41F1F",
 			"text-color": "#ffffff",
             "name": "Central",
-            "iap-product-identifier":"com.happily.pubcrawl.centralline",
 			"top-direction":"Westbound",
 			"bottom-direction":"Eastbound",
 			"stations": [
@@ -75,7 +74,6 @@
 			"background-color": "#0450A1",
 			"text-color": "#ffffff",
 			"name": "Piccadilly",
-            "iap-product-identifier":"com.happily.pubcrawl.piccadillyline",
 			"top-direction":"Eastbound",
 			"bottom-direction":"Westbound",
 			"stations": [
@@ -170,6 +168,7 @@
 			"background-color": "#686E72",
 			"text-color": "#ffffff",
 			"name": "Jubilee",
+            "iap-product-identifier":"com.happily.pubcrawl.jubileeline",
 			"top-direction":"Northbound",
 			"bottom-direction":"Southbound",
 			"stations": [
@@ -206,6 +205,7 @@
 			"background-color": "#007229",
 			"text-color": "#ffffff",
 			"name": "District",
+            "iap-product-identifier":"com.happily.pubcrawl.districtline",
 			"top-direction":"Westbound",
 			"bottom-direction":"Eastbound",
 			"stations": [
@@ -338,6 +338,7 @@
 			"background-color": "#AE6118",
 			"text-color": "#ffffff",
 			"name": "Bakerloo",
+            "iap-product-identifier":"com.happily.pubcrawl.bakerlooline",
 			"top-direction":"Northbound",
 			"bottom-direction":"Southbound",
 			"stations": [

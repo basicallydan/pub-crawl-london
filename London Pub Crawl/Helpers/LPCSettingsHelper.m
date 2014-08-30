@@ -35,12 +35,16 @@
 }
 
 - (BOOL)booleanForSettingWithKey:(NSString *)key {
-    id settingValue = [settings valueForKey:key];
-    if (settingValue != nil) {
-        return [settingValue boolValue];
-    } else {
-        return NO;
-    }
+    NSDictionary *s = [NSDictionary dictionaryWithContentsOfJSONFile:@"settings.json"];
+    NSNumber *settingValue = [s valueForKey:key];
+    BOOL settingBool = settingValue.boolValue;
+    return settingBool;
+//    if (settingValue != nil) {
+//        BOOL settingBool = [settingValue boolValue];
+//        return settingBool;
+//    } else {
+//        return NO;
+//    }
 }
 
 @end
