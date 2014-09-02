@@ -7,6 +7,7 @@
 - (void)didChooseToBuyAll;
 - (void)didChooseToBuyLine:(LPCLine *)line;
 - (void)didChooseToRestoreLine:(LPCLine *)line;
+- (void)didChooseToRestoreAll;
 
 @end
 
@@ -23,5 +24,6 @@
 - (IBAction)buyAllButtonPressed:(id)sender;
 - (IBAction)buyLineButtonPressed:(id)sender;
 - (IBAction)restoreButtonPressed:(id)sender;
+- (IBAction)restoreAllButtonPressed:(id)sender;
 
 @end

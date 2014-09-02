@@ -93,28 +93,29 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ow2-oq-tHD">
-                            <rect key="frame" x="74" y="454" width="172" height="34"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qj0-6V-WRN">
+                            <rect key="frame" x="7" y="454" width="307" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <state key="normal" title="Restore my purchase">
+                            <state key="normal" title="I already own all the lines, restore them">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="restoreButtonPressed:" destination="ulF-cF-aeQ" eventType="touchUpInside" id="cMP-0X-GDQ"/>
+                                <action selector="restoreAllButtonPressed:" destination="ulF-cF-aeQ" eventType="touchUpInside" id="jN4-zz-cm3"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I already own this line!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4k8-nx-Bpk">
-                            <rect key="frame" x="75" y="425" width="170" height="21"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTi-DB-lmq">
+                            <rect key="frame" x="52" y="416" width="216" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <state key="normal" title="I own this line already, restore it">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="restoreButtonPressed:" destination="ulF-cF-aeQ" eventType="touchUpInside" id="ZfL-fq-rTU"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="ow2-oq-tHD" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="74" id="1go-ki-sIE"/>
                         <constraint firstItem="X1N-fl-h2x" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="1n5-GS-7LF"/>
                         <constraint firstAttribute="trailing" secondItem="Wxt-c4-Xex" secondAttribute="trailing" constant="20" id="4kX-pD-F1h"/>
                         <constraint firstItem="Wxt-c4-Xex" firstAttribute="top" secondItem="4RX-zB-nDI" secondAttribute="bottom" constant="17" id="8R9-Ef-seG"/>
@@ -123,16 +124,19 @@
                         <constraint firstItem="0ir-jE-u6f" firstAttribute="top" secondItem="RnZ-vU-wRs" secondAttribute="bottom" constant="8" id="Fqq-So-Va6"/>
                         <constraint firstAttribute="trailing" secondItem="RnZ-vU-wRs" secondAttribute="trailing" constant="20" id="Lry-B6-VOj"/>
                         <constraint firstItem="RnZ-vU-wRs" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="M5p-Vi-Svv"/>
+                        <constraint firstItem="Qj0-6V-WRN" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="7" id="NNZ-tq-ZNx"/>
                         <constraint firstItem="4RX-zB-nDI" firstAttribute="top" secondItem="0ir-jE-u6f" secondAttribute="bottom" constant="17" id="P2A-cp-J2q"/>
+                        <constraint firstAttribute="trailing" secondItem="Qj0-6V-WRN" secondAttribute="trailing" constant="6" id="VQk-yF-bJz"/>
                         <constraint firstItem="4RX-zB-nDI" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="WXc-c3-u39"/>
                         <constraint firstAttribute="trailing" secondItem="X1N-fl-h2x" secondAttribute="trailing" constant="20" id="d2j-B4-hR6"/>
+                        <constraint firstItem="Qj0-6V-WRN" firstAttribute="top" secondItem="sTi-DB-lmq" secondAttribute="bottom" constant="8" id="dJ6-Ax-SLy"/>
                         <constraint firstItem="RnZ-vU-wRs" firstAttribute="top" secondItem="X1N-fl-h2x" secondAttribute="bottom" constant="8" id="dNq-I2-aNk"/>
                         <constraint firstAttribute="trailing" secondItem="0ir-jE-u6f" secondAttribute="trailing" constant="20" id="fmW-EA-Tap"/>
+                        <constraint firstItem="sTi-DB-lmq" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="52" id="i3d-0V-YGD"/>
                         <constraint firstItem="0ir-jE-u6f" firstAttribute="leading" secondItem="ulF-cF-aeQ" secondAttribute="leading" constant="20" id="jia-fc-k3g"/>
+                        <constraint firstAttribute="trailing" secondItem="sTi-DB-lmq" secondAttribute="trailing" constant="52" id="l7p-zZ-cqb"/>
                         <constraint firstAttribute="trailing" secondItem="4RX-zB-nDI" secondAttribute="trailing" constant="20" id="lCY-0n-VOu"/>
-                        <constraint firstAttribute="bottom" secondItem="ow2-oq-tHD" secondAttribute="bottom" constant="16" id="lTf-uX-MHw"/>
-                        <constraint firstItem="ow2-oq-tHD" firstAttribute="top" secondItem="4k8-nx-Bpk" secondAttribute="bottom" constant="8" id="sHT-aX-qWx"/>
-                        <constraint firstAttribute="trailing" secondItem="ow2-oq-tHD" secondAttribute="trailing" constant="74" id="w2P-hs-9fY"/>
+                        <constraint firstAttribute="bottom" secondItem="Qj0-6V-WRN" secondAttribute="bottom" constant="20" id="wMa-fD-rKs"/>
                     </constraints>
                     <connections>
                         <outlet property="buyAllButton" destination="Wxt-c4-Xex" id="3d5-n9-Ynx"/>

@@ -36,4 +36,8 @@
     [self.delegate didChooseToRestoreLine:self.line];
 }
 
+- (void)restoreAllButtonPressed:(id)sender {
+    [self.delegate didChooseToRestoreAll];
+}
+
 @end

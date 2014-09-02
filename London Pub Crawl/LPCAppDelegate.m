@@ -60,7 +60,7 @@ NSDictionary *allProducts;
     }
     
     // TODO: Set to YES before shipping
-    [IAPShare sharedHelper].iap.production = YES;
+    [IAPShare sharedHelper].iap.production = NO;
     
     [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
      {
