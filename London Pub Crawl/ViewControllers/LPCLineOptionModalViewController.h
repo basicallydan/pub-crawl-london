@@ -7,6 +7,7 @@
 
 - (void)didCancelStationSelection:(BOOL)ownershipChanged;
 - (void)didSelectStartingStation:(LPCStation *)station forLine:(LPCLine *)line;
+- (void)shouldUpdateList;
 
 @end
 

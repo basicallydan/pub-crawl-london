@@ -62,8 +62,7 @@ NSDictionary *allProducts;
     // TODO: Set to YES before shipping
     [IAPShare sharedHelper].iap.production = NO;
     
-    [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
-     {
+    [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response) {
          if(response > 0 ) {
              NSMutableDictionary *products = [[NSMutableDictionary alloc] initWithCapacity:[response.products count]];
              NSLog(@"Got a bunch of products. %i to be precise", (int)[response.products count]);
@@ -83,6 +82,12 @@ NSDictionary *allProducts;
     
     if ([[LPCSettingsHelper sharedInstance] booleanForSettingWithKey:@"clear-purchases"]) {
         [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
+    }
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"HasBeenRun"]) {
+        // If it's the first run, clear all the saved purchases
+        [[IAPShare sharedHelper].iap clearSavedPurchasedProducts];
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"HasBeenRun"];
     }
     
     return YES;

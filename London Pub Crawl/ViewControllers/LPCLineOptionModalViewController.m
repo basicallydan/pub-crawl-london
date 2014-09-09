@@ -257,24 +257,30 @@
     // TODO: Check on an actual phone
     [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
         int numberOfTransactions = (int)payment.transactions.count;
+        BOOL userHasBoughtLine = NO;
         NSLog(@"User has made %d purchases so far", numberOfTransactions);
         
         for (SKPaymentTransaction *transaction in payment.transactions)
         {
             NSString *purchased = transaction.payment.productIdentifier;
-            if([purchased isEqualToString:line.iapProductIdentifier]) {
+            if([purchased isEqualToString:line.iapProductIdentifier] && purchased != nil) {
                 NSLog(@"Restoring product %@", purchased);
                 [[IAPShare sharedHelper].iap provideContent:purchased];
                 [self hideBuyView];
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
-                                                               message:@"We couldn't find a previous purchase of this line, sorry."
-                                                              delegate:self
-                                                     cancelButtonTitle:@"Fair enough."
-                                                     otherButtonTitles:nil,nil];
-                [alert show];
-                return;
+                userHasBoughtLine = YES;
+                break;
             }
+        }
+        
+        [self.delegate shouldUpdateList];
+        
+        if (!userHasBoughtLine) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
+                                                           message:@"We couldn't find a previous purchase of this line, sorry."
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Fair enough."
+                                                 otherButtonTitles:nil,nil];
+            [alert show];
         }
     }];
 }
@@ -283,24 +289,30 @@
     // TODO: Check on an actual phone
     [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
         int numberOfTransactions = (int)payment.transactions.count;
+        BOOL userHasBoughtAll = NO;
         NSLog(@"User has made %d purchases so far", numberOfTransactions);
         
         for (SKPaymentTransaction *transaction in payment.transactions)
         {
             NSString *purchased = transaction.payment.productIdentifier;
-            if([purchased isEqualToString:allTheLinesKey]) {
+            if([purchased isEqualToString:allTheLinesKey] && purchased != nil) {
                 NSLog(@"Restoring product %@", purchased);
                 [[IAPShare sharedHelper].iap provideContent:purchased];
                 [self hideBuyView];
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
-                                                               message:@"We couldn't find a previous purchase of all lines, sorry."
-                                                              delegate:self
-                                                     cancelButtonTitle:@"Fair enough."
-                                                     otherButtonTitles:nil,nil];
-                [alert show];
-                return;
+                userHasBoughtAll = YES;
+                break;
             }
+        }
+        
+        [self.delegate shouldUpdateList];
+        
+        if (!userHasBoughtAll) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
+                                                           message:@"We couldn't find a previous purchase of all lines, sorry."
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Fair enough."
+                                                 otherButtonTitles:nil,nil];
+            [alert show];
         }
     }];
 }

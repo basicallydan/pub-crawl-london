@@ -182,6 +182,10 @@ NSInteger const statusBarHeight = 20;
     }];
 }
 
+- (void)shouldUpdateList {
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
