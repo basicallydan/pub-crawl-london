@@ -4,6 +4,7 @@
 			"background-color": "#E41F1F",
 			"text-color": "#ffffff",
             "name": "Central",
+            "iap-product-identifier":"com.happily.pubcrawl.centralline",
 			"top-direction":"Westbound",
 			"bottom-direction":"Eastbound",
 			"stations": [
@@ -74,6 +75,7 @@
 			"background-color": "#0450A1",
 			"text-color": "#ffffff",
 			"name": "Piccadilly",
+            "iap-product-identifier":"com.happily.pubcrawl.piccadillyline",
 			"top-direction":"Eastbound",
 			"bottom-direction":"Westbound",
 			"stations": [
