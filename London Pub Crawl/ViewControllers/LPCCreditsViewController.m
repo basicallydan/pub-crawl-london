@@ -114,14 +114,22 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
                                                      }
                                                  ]}
                                  };
-        [[ChimpKit sharedKit] callApiMethod:@"lists/subscribe" withParams:params andCompletionHandler:^(ChimpKitRequest *request, NSError *error) {
+        [[ChimpKit sharedKit] callApiMethod:@"lists/subscribe" withParams:params andCompletionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             if (error) {
                 NSLog(@"Error: %@", error);
             }
-            NSLog(@"HTTP Status Code: %ld", (long)request.response.statusCode);
-            NSLog(@"Response String: %@", request.responseString);
             
-            if (request.response.statusCode != 200) {
+            NSHTTPURLResponse *httpResponse;
+            
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                httpResponse = (NSHTTPURLResponse*)response;
+                // do stuff
+            }
+            
+            NSLog(@"HTTP Status Code: %ld", (long)httpResponse.statusCode);
+//            NSLog(@"Response String: %@", request.responseString);
+            
+            if (httpResponse.statusCode != 200) {
                 NSLog(@"Something failed in the subscription");
                 [self showErroneousEmailMessageWithText:@"Can't subscribe :( Try re-entering."];
             } else {

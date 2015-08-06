@@ -218,7 +218,7 @@
 - (void)incrementNumberOfStations {
     numStationViewsThisLineSession += 1;
     if (numStationViewsThisLineSession == [self.stations count]) {
-        [[Analytics sharedAnalytics] track:@"Visited all stations" properties:@{ @"Line": currentLine.name }];
+        [[SEGAnalytics sharedAnalytics] track:@"Visited all stations" properties:@{ @"Line": currentLine.name }];
     }
     
     if (numStationViewsThisLineSession == 5) {
@@ -247,10 +247,10 @@
         if (mailVC) {
             [self presentViewController:mailVC animated:YES completion:nil];
         } else {
-            [[Analytics sharedAnalytics] track:@"Tried to complain by email without an account"];
+            [[SEGAnalytics sharedAnalytics] track:@"Tried to complain by email without an account"];
         }
 	} else { // Yes
-        [[Analytics sharedAnalytics] track:@"Clicked \"Great!\" in the alert"];
+        [[SEGAnalytics sharedAnalytics] track:@"Clicked \"Great!\" in the alert"];
         [RFRateMe showRateAlert];
     }
 }
