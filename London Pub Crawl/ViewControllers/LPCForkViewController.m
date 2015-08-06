@@ -46,7 +46,7 @@ LPCFork *currentFork;
 - (void)viewDidAppear:(BOOL)animated {
     [self.forkDelegate forkDidAppear];
     
-    [[Analytics sharedAnalytics] screen:@"Fork view"];
+    [[SEGAnalytics sharedAnalytics] screen:@"Fork view"];
 }
 
 - (void)viewDidLoad

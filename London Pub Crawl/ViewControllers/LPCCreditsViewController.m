@@ -40,7 +40,7 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [[Analytics sharedAnalytics] screen:@"Credits view"];
+    [[SEGAnalytics sharedAnalytics] screen:@"Credits view"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +60,7 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
 }
 
 - (IBAction)backButtonPressed:(id)sender {
-    [[Analytics sharedAnalytics] track:@"Closed credits"];
+    [[SEGAnalytics sharedAnalytics] track:@"Closed credits"];
     
     CGFloat width = self.view.bounds.size.width;
     [self.view.superview addSubview:self.presentingViewController.view];
@@ -94,7 +94,7 @@ NSString *const emailAddress = @"info+pubcrawl@happilyltd.co";
     if (mailVC) {
         [self presentViewController:mailVC animated:YES completion:nil];
     } else {
-        [[Analytics sharedAnalytics] track:@"Tried to send email without an account"];
+        [[SEGAnalytics sharedAnalytics] track:@"Tried to send email without an account"];
     }
 }
 

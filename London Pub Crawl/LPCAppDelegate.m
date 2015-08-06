@@ -26,11 +26,12 @@ NSDictionary *allProducts;
     }
     
     // If you want to see debug logs from inside the SDK.
-    [Analytics debug:YES];
+    [SEGAnalytics debug:YES];
     
     // Initialize the Analytics instance with the
-    // write key for happily/d_pubcrawllondon
-    [Analytics initializeWithSecret:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"segment-io-key"]];
+    [SEGAnalytics setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:[[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"segment-io-key"]]];
+     
+    
 
     self.linesArray = temporaryLinesArray;
 

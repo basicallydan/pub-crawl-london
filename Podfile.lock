@@ -20,198 +20,97 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Amplitude-iOS (2.5.1)
-  - Analytics (1.12.5):
-    - Analytics/Amplitude (= 1.12.5)
-    - Analytics/AppsFlyer (= 1.12.5)
-    - Analytics/Apptimize (= 1.12.5)
-    - Analytics/Bugsnag (= 1.12.5)
-    - Analytics/Core-iOS (= 1.12.5)
-    - Analytics/Countly (= 1.12.5)
-    - Analytics/Crittercism (= 1.12.5)
-    - Analytics/Flurry (= 1.12.5)
-    - Analytics/GoogleAnalytics (= 1.12.5)
-    - Analytics/Kahuna (= 1.12.5)
-    - Analytics/Localytics (= 1.12.5)
-    - Analytics/Mixpanel (= 1.12.5)
-    - Analytics/MoEngage (= 1.12.5)
-    - Analytics/Optimizely (= 1.12.5)
-    - Analytics/Quantcast (= 1.12.5)
-    - Analytics/Segmentio (= 1.12.5)
-    - Analytics/Taplytics (= 1.12.5)
-    - Analytics/Tapstream (= 1.12.5)
-    - Analytics/UXCam (= 1.12.5)
-  - Analytics/Amplitude (1.12.5):
-    - Amplitude-iOS (= 2.5.1)
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-  - Analytics/AppsFlyer (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - AppsFlyer-SDK (= 2.5.3.15.1)
-  - Analytics/Apptimize (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Apptimize (= 2.11.0.1)
-  - Analytics/Bugsnag (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Bugsnag (= 4.0.7)
   - Analytics/Core-iOS (1.12.5):
     - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
-  - Analytics/Countly (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Countly (= 15.06.01)
-  - Analytics/Crittercism (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - CrittercismSDK (= 5.2.0)
-  - Analytics/Flurry (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - FlurrySDK (= 6.5.0)
   - Analytics/GoogleAnalytics (1.12.5):
     - Analytics/Core-iOS
     - Analytics/Segmentio
     - GoogleAnalytics (= 3.12.0)
     - GoogleIDFASupport (= 3.12.0)
-  - Analytics/Kahuna (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - KahunaSDK (= 1.0.571)
-  - Analytics/Localytics (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Localytics (= 3.3.0)
   - Analytics/Mixpanel (1.12.5):
     - Analytics/Core-iOS
     - Analytics/Segmentio
     - Mixpanel (= 2.8.1)
-  - Analytics/MoEngage (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - MoEngage-iOS-SDK (= 1.4.3)
-  - Analytics/Optimizely (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Optimizely-iOS-SDK (= 1.0.86)
-  - Analytics/Quantcast (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Quantcast-Measure (= 1.4.7)
   - Analytics/Segmentio (1.12.5):
     - Analytics/Core-iOS
-  - Analytics/Taplytics (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Taplytics (= 2.3.12)
-  - Analytics/Tapstream (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - Tapstream (= 2.9.0)
-  - Analytics/UXCam (1.12.5):
-    - Analytics/Core-iOS
-    - Analytics/Segmentio
-    - UXCam (= 2.0.5)
-  - AppsFlyer-SDK (2.5.3.15.1)
-  - Apptimize (2.11.0.1)
   - Bugsnag (4.0.7):
     - Bugsnag/no-arc (= 4.0.7)
   - Bugsnag/no-arc (4.0.7)
   - CGLMail (0.1.1)
   - ChimpKit (3.1.1)
   - CMMapLauncher (0.0.1)
-  - Countly (15.06.01)
-  - CrittercismSDK (5.2.0)
-  - FlurrySDK (6.5.0):
-    - FlurrySDK/FlurrySDK (= 6.5.0)
-  - FlurrySDK/FlurrySDK (6.5.0)
   - fmemopen (0.0.1)
   - FontAwesome+iOS (0.1.4)
   - GoogleAnalytics (3.12.0)
   - GoogleIDFASupport (3.12.0)
   - IAPHelper (1.0.7)
-  - KahunaSDK (1.0.571)
-  - Localytics (3.3.0)
   - Mixpanel (2.8.1):
     - Mixpanel/Mixpanel (= 2.8.1)
   - Mixpanel/Mixpanel (2.8.1):
     - Mixpanel/MPCategoryHelpers
   - Mixpanel/MPCategoryHelpers (2.8.1)
-  - MoEngage-iOS-SDK (1.4.3)
   - NSAttributedStringMarkdownParser (0.0.1):
     - fmemopen
-  - Optimizely-iOS-SDK (1.0.86)
-  - PonyDebugger (0.3.1):
+  - PonyDebugger (0.4.5):
     - SocketRocket
-  - Quantcast-Measure (1.4.7):
-    - Quantcast-Measure/Core (= 1.4.7)
-  - Quantcast-Measure/Core (1.4.7)
   - Reachability (3.2)
   - RFRateMe (1.0.0)
-  - SDWebImage (3.5):
-    - SDWebImage/Core (= 3.5)
-  - SDWebImage/Core (3.5)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - SocketRocket (0.4)
   - SVProgressHUD (1.1.3)
-  - Taplytics (2.3.12)
-  - Tapstream (2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - UIColor-HexString (1.0.1)
-  - UXCam (2.0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - Analytics
+  - Analytics/GoogleAnalytics
+  - Analytics/Mixpanel
+  - Bugsnag (from `https://github.com/bugsnag/bugsnag-cocoa.git`)
   - CGLMail (~> 0.1)
   - ChimpKit
   - CMMapLauncher (= 0.0.1)
   - FontAwesome+iOS (~> 0.1)
   - IAPHelper
   - NSAttributedStringMarkdownParser (~> 0.0)
-  - PonyDebugger (~> 0.3.1)
+  - PonyDebugger (~> 0.4)
   - Reachability (~> 3.1)
   - RFRateMe (~> 1.0.0)
-  - SDWebImage (= 3.5)
+  - SDWebImage (~> 3.7)
   - SVProgressHUD
   - UIColor-HexString (~> 1.0.1)
 
+EXTERNAL SOURCES:
+  Bugsnag:
+    :git: https://github.com/bugsnag/bugsnag-cocoa.git
+
+CHECKOUT OPTIONS:
+  Bugsnag:
+    :commit: 10842c8160496dec55cf8c4f4fb9729ac3e3ea97
+    :git: https://github.com/bugsnag/bugsnag-cocoa.git
+
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  Amplitude-iOS: 1108012e40096d339d768cb8a6d79c774f47da2c
   Analytics: e1144eebecb3fa0b8b46fa2ef00dc6089f76dbb2
-  AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
-  Apptimize: 5ec482ca36dbec7bd5017f546509136229aa1822
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
   CGLMail: 91fbbf8a1c0283bb804798dce471f840b0f58488
   ChimpKit: d020126089544daa349397a91f1489a3f271b791
   CMMapLauncher: 173be009a080aa4a47d47044513970da4577a2c9
-  Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
-  CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
-  FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
   fmemopen: dc31f7d3004644b33deee95e047305d23f8cfdd4
   FontAwesome+iOS: 9070b682a9255ca0fdc34bcfb129ad0ba2b73b87
   GoogleAnalytics: ef2e0b800ef3c1e62688cdfc959e0d3132bc246c
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
   IAPHelper: 60a2d5b6ef2d121ce041cf942cd6fc87dc3ab3a3
-  KahunaSDK: 2c2fbacf67efc206258021ff7056d2bf0a722e4f
-  Localytics: 64ada284cde3f2b30fb04272d5d735d49657d0ab
   Mixpanel: 93c4825025e6380ced273ed7178496282e385077
-  MoEngage-iOS-SDK: 81be7a433349a7d535c905a08629359eeefe0952
   NSAttributedStringMarkdownParser: 989a13e9088f74ceeedacdc011681c3b080c2faf
-  Optimizely-iOS-SDK: 6c247b8eb907d9de290ff6ee37fb0c157a7f3444
-  PonyDebugger: f2d08583b7656c6c66fd257e48b71ae3654fb8ec
-  Quantcast-Measure: de15122f2b48380afe42443d132f40f382df8ae7
+  PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RFRateMe: 07fbc459799535254db3bd221e930817e8c8ffff
-  SDWebImage: 9cb47504ed17de4357295f28186a1a490a4b397d
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
-  Taplytics: bef7be1e5883375fdc8e18abf8e513edcd04ec31
-  Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
   UIColor-HexString: 3b6e52edc3ba2d9053128c7eea60b4558526feb2
-  UXCam: 995df5a0300732f447fa6a94b6f7523236bf1e4e
 
 COCOAPODS: 0.38.2

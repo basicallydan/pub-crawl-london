@@ -64,7 +64,7 @@ NSInteger const statusBarHeight = 20;
     UISwipeGestureRecognizer *closeCreditsSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideCredits)];
     closeCreditsSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
-    [[Analytics sharedAnalytics] screen:@"Line list"];
+    [[SEGAnalytics sharedAnalytics] screen:@"Line list"];
     
     [self.view setNeedsDisplay];
     [self.view setNeedsLayout];
@@ -96,7 +96,7 @@ NSInteger const statusBarHeight = 20;
 }
 
 - (void)showCredits {
-    [[Analytics sharedAnalytics] track:@"Opened credits"];
+    [[SEGAnalytics sharedAnalytics] track:@"Opened credits"];
     
 //    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     
@@ -118,7 +118,7 @@ NSInteger const statusBarHeight = 20;
 }
 
 - (void)hideCredits {
-    [[Analytics sharedAnalytics] track:@"Closed credits"];
+    [[SEGAnalytics sharedAnalytics] track:@"Closed credits"];
     
     CGFloat width = self.view.bounds.size.width;
     LPCCreditsViewController *creditsViewController = [[LPCCreditsViewController alloc] initWithCells:lineCells andOffset:self.tableView.frame.origin.y - self.tableView.contentOffset.y];
@@ -197,7 +197,7 @@ NSInteger const statusBarHeight = 20;
     }
 
     [self loadCrawlForLine:(LPCLineTableViewCell *)cell];
-    [[Analytics sharedAnalytics] track:@"Selected a line" properties: @{ @"line" : ((LPCLineTableViewCell *)cell).lineName }];
+    [[SEGAnalytics sharedAnalytics] track:@"Selected a line" properties: @{ @"line" : ((LPCLineTableViewCell *)cell).lineName }];
     NSLog(@"Selected the %@ line", ((LPCLineTableViewCell *)cell).lineName);
 }
 
