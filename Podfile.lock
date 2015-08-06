@@ -1,24 +1,25 @@
 PODS:
-  - AFNetworking (2.0.0):
-    - AFNetworking/NSURLConnection (= 2.0.0)
-    - AFNetworking/NSURLSession (= 2.0.0)
-    - AFNetworking/Reachability (= 2.0.0)
-    - AFNetworking/Security (= 2.0.0)
-    - AFNetworking/Serialization (= 2.0.0)
-    - AFNetworking/UIKit (= 2.0.0)
-  - AFNetworking/NSURLConnection (2.0.0):
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.0.0):
+  - AFNetworking/NSURLSession (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.0.0)
-  - AFNetworking/Security (2.0.0)
-  - AFNetworking/Serialization (2.0.0)
-  - AFNetworking/UIKit (2.0.0):
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - Amplitude-iOS (2.5.1)
   - Analytics (1.12.5):
     - Analytics/Amplitude (= 1.12.5)
@@ -161,7 +162,7 @@ PODS:
   - UXCam (2.0.5)
 
 DEPENDENCIES:
-  - AFNetworking (= 2.0)
+  - AFNetworking (~> 2.0)
   - Analytics
   - CGLMail (~> 0.1)
   - ChimpKit
@@ -177,7 +178,7 @@ DEPENDENCIES:
   - UIColor-HexString (~> 1.0.1)
 
 SPEC CHECKSUMS:
-  AFNetworking: e25f18c97427ae47e620026ecbaea03570e82251
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Amplitude-iOS: 1108012e40096d339d768cb8a6d79c774f47da2c
   Analytics: e1144eebecb3fa0b8b46fa2ef00dc6089f76dbb2
   AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
