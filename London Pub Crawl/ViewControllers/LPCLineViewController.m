@@ -2,6 +2,7 @@
 
 #import "LPCAppDelegate.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
+#import <IAPHelper/IAPShare.h>
 #import "LPCFork.h"
 #import "LPCForkViewController.h"
 #import "LPCLinePosition.h"
@@ -28,6 +29,7 @@
     LPCStation *currentStation;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
     UIViewController *initialViewController;
+    int maxStationViewsThisLineSession;
     int numStationViewsThisLineSession;
     int numForkViewsThisLineSession;
 }
@@ -37,6 +39,12 @@
     currentStation = station;
     currentLine = line;
     self.delegate = delegate;
+    
+    if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier] == NO) {
+        maxStationViewsThisLineSession = 2;
+    } else {
+        maxStationViewsThisLineSession = 0;
+    }
     
     self.stations = line.allStations;
     
@@ -93,6 +101,10 @@
     if ([viewController isKindOfClass:[LPCStationViewController class]]) {
         LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
         
+        if (maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession) {
+            NSLog(@"Now over the limit");
+        }
+        
         if ([currentLine isForkBeforePosition:currentViewController.station.linePosition]) {
             NSLog(@"It's a fork behind us!");
             LPCFork *fork = [currentLine forkBeforePosition:currentViewController.station.linePosition];
@@ -136,6 +148,10 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[LPCStationViewController class]]) {
         LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
+        
+        if (maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession) {
+            NSLog(@"Now over the limit");
+        }
         
         if ([currentLine isForkAfterPosition:currentViewController.station.linePosition]) {
             NSLog(@"It's a fork next!");
@@ -261,6 +277,7 @@
 }
 
 - (void)stationDidAppear {
+    
     [self incrementNumberOfStations];
 }
 

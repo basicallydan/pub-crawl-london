@@ -59,11 +59,13 @@
             NSLog(@"The user already owns all the lines");
             self.buyView.hidden = YES;
         } else {
-            self.buyView.hidden = NO;
-            self.buyView.delegate = self;
-            [self.buyView setLine:selectedLine];
-            [[SEGAnalytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
-            NSLog(@"The user does not own this line. Will show the buy modal now");
+            NSLog(@"The user does not own this line but not showing the thing");
+            self.buyView.hidden = YES;
+//            self.buyView.hidden = NO;
+//            self.buyView.delegate = self;
+//            [self.buyView setLine:selectedLine];
+//            [[SEGAnalytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
+//            NSLog(@"The user does not own this line. Will show the buy modal now");
         }
     } else {
         NSLog(@"This line is not buyable");
