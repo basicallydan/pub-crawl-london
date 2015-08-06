@@ -62,7 +62,7 @@
             self.buyView.hidden = NO;
             self.buyView.delegate = self;
             [self.buyView setLine:selectedLine];
-            [[Analytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
+            [[SEGAnalytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
             NSLog(@"The user does not own this line. Will show the buy modal now");
         }
     } else {
@@ -77,15 +77,15 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [[Analytics sharedAnalytics] screen:@"Station select modal"];
+    [[SEGAnalytics sharedAnalytics] screen:@"Station select modal"];
 }
 
 - (IBAction)cancel:(id)sender {
     [self.delegate didCancelStationSelection:ownershipChanged];
     if (self.buyView.hidden == NO) {
-        [[Analytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
+        [[SEGAnalytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
     } else {
-        [[Analytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
+        [[SEGAnalytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -159,7 +159,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LPCStation *selectedStation = [self.filteredStationArray objectAtIndex:indexPath.row];
-    [[Analytics sharedAnalytics] track:@"Selected station" properties:@{ @"Station" : selectedStation.name }];
+    [[SEGAnalytics sharedAnalytics] track:@"Selected station" properties:@{ @"Station" : selectedStation.name }];
     [self.delegate didSelectStartingStation:selectedStation forLine:selectedLine];
 }
 
@@ -182,7 +182,7 @@
 - (void)didChooseToBuyAll {
     NSLog(@"Buying all of them!");
     ownershipChanged = YES;
-    [[Analytics sharedAnalytics] track:@"Chose to buy all the lines" properties: @{ @"line" : selectedLine.name }];
+    [[SEGAnalytics sharedAnalytics] track:@"Chose to buy all the lines" properties: @{ @"line" : selectedLine.name }];
     SKProduct *product = [LPCAppDelegate productWithIdentifier:allTheLinesKey];
     [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
         if(trans.error) {
@@ -214,7 +214,7 @@
 - (void)didChooseToBuyLine:(LPCLine *)line {
     NSLog(@"Buying one line: %@!", line.name);
     ownershipChanged = YES;
-    [[Analytics sharedAnalytics] track:@"Chose to buy the current line" properties: @{ @"line" : selectedLine.name }];
+    [[SEGAnalytics sharedAnalytics] track:@"Chose to buy the current line" properties: @{ @"line" : selectedLine.name }];
     SKProduct *product = [LPCAppDelegate productWithIdentifier:line.iapProductIdentifier];
     [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
         if(trans.error) {

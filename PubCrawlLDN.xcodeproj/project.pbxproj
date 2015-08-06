@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -159,6 +159,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06555AC2B8EC4864EC013374 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		37006A56185F1EC3000E0732 /* LPCDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LPCDataModel.xcdatamodel; sourceTree = "<group>"; };
 		37006A64185F4361000E0732 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		37006A65185F4361000E0732 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
@@ -328,7 +329,7 @@
 		37F6736818EF574000AE5B46 /* LPCCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPCCreditsViewController.xib; sourceTree = "<group>"; };
 		37FD3F1018575FEA009B6306 /* LPCVenueRetrievalHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenueRetrievalHandler.h; sourceTree = "<group>"; };
 		37FD3F1118575FEA009B6306 /* LPCVenueRetrievalHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenueRetrievalHandler.m; sourceTree = "<group>"; };
-		4DCF27477E104A96B73E0C6D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A642237AC3383CEF76C7C32D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B94A750CB56A43C5B6F882C5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -360,6 +361,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06F9F5121B73518EB7864320 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				06555AC2B8EC4864EC013374 /* Pods.debug.xcconfig */,
+				A642237AC3383CEF76C7C32D /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		37006A54185F1E6A000E0732 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,7 +554,7 @@
 				37BF43BE180D31ED0091BE5F /* London Pub CrawlTests */,
 				37BF4395180D31EC0091BE5F /* Frameworks */,
 				37BF4394180D31EC0091BE5F /* Products */,
-				4DCF27477E104A96B73E0C6D /* Pods.xcconfig */,
+				06F9F5121B73518EB7864320 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -749,7 +759,7 @@
 				};
 			};
 			buildConfigurationList = 37BF438E180D31EC0091BE5F /* Build configuration list for PBXProject "PubCrawlLDN" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -922,7 +932,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1091,7 +1101,7 @@
 		};
 		37BF43C9180D31ED0091BE5F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DCF27477E104A96B73E0C6D /* Pods.xcconfig */;
+			baseConfigurationReference = 06555AC2B8EC4864EC013374 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1100,7 +1110,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "London Pub Crawl/PubCrawlLDN-Prefix.pch";
 				INFOPLIST_FILE = "London Pub Crawl/PubCrawlLDN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				PRODUCT_NAME = PubCrawlLDN;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1110,7 +1120,7 @@
 		};
 		37BF43CA180D31ED0091BE5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DCF27477E104A96B73E0C6D /* Pods.xcconfig */;
+			baseConfigurationReference = A642237AC3383CEF76C7C32D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1119,7 +1129,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "London Pub Crawl/PubCrawlLDN-Prefix.pch";
 				INFOPLIST_FILE = "London Pub Crawl/PubCrawlLDN-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				PRODUCT_NAME = PubCrawlLDN;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
