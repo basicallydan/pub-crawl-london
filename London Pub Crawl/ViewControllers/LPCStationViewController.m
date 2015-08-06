@@ -37,7 +37,8 @@
     BOOL refreshWhenReachable;
 }
 
-NSString *const kLPCMapBoxURLTemplate = @"http://api.tiles.mapbox.com/v3/%@/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png";
+//[NSString stringWithFormat:kLPCMapBoxURLTemplate, mapKey, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina], mapBoxAccessToken;
+NSString *const kLPCMapBoxURLTemplate = @"https://api.mapbox.com/v4/%@/pin-m-beer+%@(%.04f,%.04f),pin-m-rail+%@(%.04f,%.04f)/%.04f,%.04f,%d/%.0fx%.0f%@.png?access_token=%@";
 NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/api/staticmap?markers=color:grey%%7C%.04f,%.04f&center=%.04f,%.04f&zoom=%d&size=%.0fx%.0f%@&sensor=false%@&visual_refresh=true";
 
 - (void)reachabilityChanged:(NSNotification*)note {
@@ -346,11 +347,12 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
     
     NSString *mapKey = [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mapbox-map-key"];
+    NSString *mapboxAccessToken = [[LPCSettingsHelper sharedInstance] stringForSettingWithKey:@"mapbox-access-token"];
     
     NSString *lineColourHexCode = [self.lineColour hexStringValueWithHash:NO];
-    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, mapKey, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina];
+    NSString *mapImageUrl = [NSString stringWithFormat:kLPCMapBoxURLTemplate, mapKey, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina, mapboxAccessToken];
     
-    [self.mapImageView setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
+    [self.mapImageView sd_setImageWithURL:[NSURL URLWithString:mapImageUrl] placeholderImage:[UIImage imageNamed:@"map-placeholder.png"]];
     [self.mapImageView setImage:[UIImage imageNamed:@"map-placeholder.png"]];
     
     UITapGestureRecognizer *mapImageViewTapGestureRecogniser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToMapImageTap:)];
