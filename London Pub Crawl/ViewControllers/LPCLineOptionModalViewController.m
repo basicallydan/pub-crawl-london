@@ -6,7 +6,7 @@
 #import <StoreKit/StoreKit.h>
 #import "LPCAppDelegate.h"
 
-@interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
+@interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @end
 
@@ -14,16 +14,12 @@
     NSArray *startingStations;
     NSArray *allStations;
     LPCLine *selectedLine;
-    BOOL ownershipChanged;
 }
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        ownershipChanged = NO;
-    }
     
     return self;
 }
@@ -51,27 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (selectedLine.iapProductIdentifier) {
-        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:selectedLine.iapProductIdentifier]) {
-            NSLog(@"The user already owns this line");
-            self.buyView.hidden = YES;
-        } else if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey]) {
-            NSLog(@"The user already owns all the lines");
-            self.buyView.hidden = YES;
-        } else {
-            NSLog(@"The user does not own this line but not showing the thing");
-            self.buyView.hidden = YES;
-//            self.buyView.hidden = NO;
-//            self.buyView.delegate = self;
-//            [self.buyView setLine:selectedLine];
-//            [[SEGAnalytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
-//            NSLog(@"The user does not own this line. Will show the buy modal now");
-        }
-    } else {
-        NSLog(@"This line is not buyable");
-        self.buyView.hidden = YES;
-    }
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,12 +58,8 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.delegate didCancelStationSelection:ownershipChanged];
-    if (self.buyView.hidden == NO) {
-        [[SEGAnalytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
-    } else {
-        [[SEGAnalytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
-    }
+    [self.delegate didCancelStationSelection:NO];
+    [[SEGAnalytics sharedAnalytics] track:@"Canceled station select modal" properties: @{ @"line" : selectedLine.name }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -117,21 +88,6 @@
     [self.filteredStationArray addObjectsFromArray:filteredArray];
     
     self.filteredStationArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
-}
-
-- (void)hideBuyView {
-    CGRect finalBuyFrame = self.buyView.frame;
-    finalBuyFrame.origin.y = -finalBuyFrame.size.height;
-    [UIView animateWithDuration:0.72f
-        delay:0.0f
-        options:UIViewAnimationOptionCurveEaseInOut
-        animations:^{
-            self.buyView.frame = finalBuyFrame;
-            self.buyView.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            self.buyView.hidden = YES;
-            NSLog(@"Animation over");
-        }];
 }
 
 #pragma mark - UITableViewDataSource methods

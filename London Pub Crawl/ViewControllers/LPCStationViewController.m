@@ -131,6 +131,9 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [super viewDidLoad];
     [self.blurView setLine:currentLine];
     self.blurView.hidden = !isBlurredOver;
+    if (isBlurredOver) {
+        [[SEGAnalytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : currentLine.name }];
+    }
     self.blurView.delegate = self;
     [self updateView];
 }

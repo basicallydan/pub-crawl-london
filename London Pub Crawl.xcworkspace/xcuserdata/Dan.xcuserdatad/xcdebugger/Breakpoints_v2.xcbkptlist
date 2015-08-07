@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/ViewControllers/LPCStationViewController.m"
-            timestampString = "460636985.120771"
+            timestampString = "460637638.062196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "-didChooseToBuyAll"
             landmarkType = "5">
          </BreakpointContent>
