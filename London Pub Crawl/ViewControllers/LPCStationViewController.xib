@@ -194,7 +194,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
+                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
                             <rect key="frame" x="20" y="0.0" width="280" height="203"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L88-39-NVf">
@@ -336,10 +336,23 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQj-OI-MKP">
+                                <rect key="frame" x="52" y="448" width="216" height="30"/>
+                                <state key="normal" title="I own this line already, restore it">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lne-dq-WxI">
+                                <rect key="frame" x="7" y="486" width="307" height="30"/>
+                                <state key="normal" title="I already own all the lines, restore them">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="s3O-R9-bpk" firstAttribute="top" secondItem="jgq-4p-Tup" secondAttribute="bottom" constant="8" id="ItT-jK-mc5"/>
                             <constraint firstItem="uuV-4X-fQV" firstAttribute="top" secondItem="s3O-R9-bpk" secondAttribute="bottom" constant="8" id="MYc-w0-8HR"/>
+                            <constraint firstItem="lne-dq-WxI" firstAttribute="top" secondItem="DQj-OI-MKP" secondAttribute="bottom" constant="8" id="UMK-O0-HZT"/>
                             <constraint firstItem="Ejl-If-SBF" firstAttribute="top" secondItem="uuV-4X-fQV" secondAttribute="bottom" constant="17" id="oLw-aQ-AQD"/>
                             <constraint firstItem="3SI-FK-7TH" firstAttribute="top" secondItem="Ejl-If-SBF" secondAttribute="bottom" constant="17" id="yDk-kC-2JM"/>
                         </constraints>
