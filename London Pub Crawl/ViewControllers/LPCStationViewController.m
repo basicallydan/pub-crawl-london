@@ -12,9 +12,12 @@
 #import <UIColor-HexString/UIColor+HexString.h>
 #import <UIImageView+WebCache.h>
 #import "LPCSettingsHelper.h"
+#import <IAPHelper/IAPShare.h>
 #import <Analytics/Analytics.h>
+#import <StoreKit/StoreKit.h>
+#import "LPCAppDelegate.h"
 
-@interface LPCStationViewController () <UIActionSheetDelegate>
+@interface LPCStationViewController () <UIActionSheetDelegate, LPCBuyLineViewDelegate>
 
 @end
 
@@ -36,6 +39,7 @@
     BOOL reachable;
     BOOL refreshWhenReachable;
     BOOL isBlurredOver;
+    BOOL ownershipChanged;
 }
 
 //[NSString stringWithFormat:kLPCMapBoxURLTemplate, mapKey, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina], mapBoxAccessToken;
@@ -127,6 +131,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [super viewDidLoad];
     [self.blurView setLine:currentLine];
     self.blurView.hidden = !isBlurredOver;
+    self.blurView.delegate = self;
     [self updateView];
 }
 
@@ -412,6 +417,21 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     [[SEGAnalytics sharedAnalytics] track:@"Opened map options" properties: [self analyticsProperties]];
 }
 
+- (void)hideBuyView {
+    CGRect finalBuyFrame = self.blurView.frame;
+    finalBuyFrame.origin.y = -finalBuyFrame.size.height;
+    [UIView animateWithDuration:0.72f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.blurView.frame = finalBuyFrame;
+                         self.blurView.alpha = 0.0f;
+                     } completion:^(BOOL finished) {
+                         self.blurView.hidden = YES;
+                         NSLog(@"Animation over");
+                     }];
+}
+
 # pragma mark - UIActionSheetDelegate methods
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -506,6 +526,143 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
             }];
         }
     }
+}
+
+
+#pragma mark - LPCBuyLineViewDelegate
+
+- (void)didChooseToBuyAll {
+    NSLog(@"Buying all of them!");
+    ownershipChanged = YES;
+    [[SEGAnalytics sharedAnalytics] track:@"Chose to buy all the lines" properties: @{ @"line" : currentLine.name }];
+    SKProduct *product = [LPCAppDelegate productWithIdentifier:allTheLinesKey];
+    [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
+        if(trans.error) {
+            NSLog(@"Fail %@",[trans.error localizedDescription]);
+        } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
+            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+            NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
+            [[IAPShare sharedHelper].iap checkReceipt:receipt onCompletion:^(NSString *response, NSError *error) {
+                
+                //Convert JSON String to NSDictionary
+                NSDictionary* rec = [IAPShare toJSON:response];
+                
+                if([rec[@"status"] integerValue]==0) {
+                    NSString *productIdentifier = trans.payment.productIdentifier;
+                    [[IAPShare sharedHelper].iap provideContent:productIdentifier];
+                    NSLog(@"SUCCESS %@", response);
+                    NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
+                    [self hideBuyView];
+                } else {
+                    NSLog(@"Fail");
+                }
+            }];
+        } else if (trans.transactionState == SKPaymentTransactionStateFailed) {
+            NSLog(@"Fail");
+        }
+    }];
+}
+
+- (void)didChooseToBuyLine:(LPCLine *)line {
+    NSLog(@"Buying one line: %@!", line.name);
+    ownershipChanged = YES;
+    [[SEGAnalytics sharedAnalytics] track:@"Chose to buy the current line" properties: @{ @"line" : currentLine.name }];
+    SKProduct *product = [LPCAppDelegate productWithIdentifier:line.iapProductIdentifier];
+    [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
+        if(trans.error) {
+            NSLog(@"Fail %@",[trans.error localizedDescription]);
+        } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
+            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+            NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
+            [[IAPShare sharedHelper].iap checkReceipt:receipt onCompletion:^(NSString *response, NSError *error) {
+                
+                //Convert JSON String to NSDictionary
+                NSDictionary* rec = [IAPShare toJSON:response];
+                
+                if([rec[@"status"] integerValue]==0) {
+                    NSString *productIdentifier = trans.payment.productIdentifier;
+                    [[IAPShare sharedHelper].iap provideContent:productIdentifier];
+                    NSLog(@"SUCCESS %@", response);
+                    NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
+                    [self hideBuyView];
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Your purchase failed"
+                                                                   message:@"Something went wrong with the purchase. Please try again."
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"OK"
+                                                         otherButtonTitles:nil,nil];
+                    [alert show];
+                }
+            }];
+        } else if (trans.transactionState == SKPaymentTransactionStateFailed) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Your purchase failed"
+                                                           message:@"Something went wrong with the purchase. Please try again."
+                                                          delegate:self
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    }];
+}
+
+- (void)didChooseToRestoreLine:(LPCLine *)line {
+    // TODO: Check on an actual phone
+    [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
+        int numberOfTransactions = (int)payment.transactions.count;
+        BOOL userHasBoughtLine = NO;
+        NSLog(@"User has made %d purchases so far", numberOfTransactions);
+        
+        for (SKPaymentTransaction *transaction in payment.transactions)
+        {
+            NSString *purchased = transaction.payment.productIdentifier;
+            if([purchased isEqualToString:line.iapProductIdentifier] && purchased != nil) {
+                NSLog(@"Restoring product %@", purchased);
+                [[IAPShare sharedHelper].iap provideContent:purchased];
+                [self hideBuyView];
+                userHasBoughtLine = YES;
+                break;
+            }
+        }
+        
+        if (!userHasBoughtLine) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
+                                                           message:@"We couldn't find a previous purchase of this line, sorry."
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Fair enough."
+                                                 otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    }];
+}
+
+- (void)didChooseToRestoreAll {
+    // TODO: Check on an actual phone
+    [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
+        int numberOfTransactions = (int)payment.transactions.count;
+        BOOL userHasBoughtAll = NO;
+        NSLog(@"User has made %d purchases so far", numberOfTransactions);
+        
+        for (SKPaymentTransaction *transaction in payment.transactions)
+        {
+            NSString *purchased = transaction.payment.productIdentifier;
+            if([purchased isEqualToString:allTheLinesKey] && purchased != nil) {
+                NSLog(@"Restoring product %@", purchased);
+                [[IAPShare sharedHelper].iap provideContent:purchased];
+                [self hideBuyView];
+                userHasBoughtAll = YES;
+                break;
+            }
+        }
+        
+        if (!userHasBoughtAll) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
+                                                           message:@"We couldn't find a previous purchase of all lines, sorry."
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Fair enough."
+                                                 otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    }];
 }
 
 

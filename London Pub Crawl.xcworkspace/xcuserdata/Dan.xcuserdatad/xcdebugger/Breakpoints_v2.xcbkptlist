@@ -48,80 +48,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
+            filePath = "London Pub Crawl/Views/LPCBuyLineView.m"
+            timestampString = "460636267.874802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "-didChooseToBuyAll"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-didChooseToBuyAll"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "-didChooseToBuyAll"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-didChooseToBuyAll"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "-didChooseToBuyAll"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-buyAllButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -131,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
+            filePath = "London Pub Crawl/Views/LPCBuyLineView.m"
+            timestampString = "460636268.645493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
-            landmarkName = "-didChooseToBuyLine:"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-buyLineButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -147,29 +83,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
+            filePath = "London Pub Crawl/Views/LPCBuyLineView.m"
+            timestampString = "460636269.771498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "-didChooseToBuyLine:"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-restoreButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "London Pub Crawl/ViewControllers/LPCLineOptionModalViewController.m"
-            timestampString = "460544291.197617"
+            filePath = "London Pub Crawl/Views/LPCBuyLineView.m"
+            timestampString = "460636274.380868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "-didChooseToRestoreLine:"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-restoreAllButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
