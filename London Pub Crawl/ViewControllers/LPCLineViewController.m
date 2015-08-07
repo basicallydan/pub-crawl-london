@@ -32,6 +32,7 @@
     int maxStationViewsThisLineSession;
     int numStationViewsThisLineSession;
     int numForkViewsThisLineSession;
+    NSMutableArray *stationsVisitedInSession;
 }
 
 - (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station withDelegate:(id<LPCLineViewControllerDelegate>)delegate completion:(void (^)())completion {
@@ -39,6 +40,8 @@
     currentStation = station;
     currentLine = line;
     self.delegate = delegate;
+    
+    stationsVisitedInSession = [[NSMutableArray alloc] init];
     
     if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier] == NO) {
         maxStationViewsThisLineSession = 2;
@@ -186,7 +189,13 @@
 }
 
 - (UIViewController *)viewControllerForStation:(LPCStation *)st {
-    BOOL stationWillBeBlurred = maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession;
+    BOOL stationAlreadyVisited = [stationsVisitedInSession containsObject:st.nestoriaCode];
+    BOOL stationWillBeBlurred = maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession && !stationAlreadyVisited;
+    
+    if (!stationAlreadyVisited && !stationWillBeBlurred) {
+        [stationsVisitedInSession addObject:st.nestoriaCode];
+    }
+    
     LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st andLine:currentLine andBlurred:stationWillBeBlurred];
     
     childViewController.lineColour = currentLine.lineColour;
