@@ -101,10 +101,6 @@
     if ([viewController isKindOfClass:[LPCStationViewController class]]) {
         LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
         
-        if (maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession) {
-            NSLog(@"Now over the limit");
-        }
-        
         if ([currentLine isForkBeforePosition:currentViewController.station.linePosition]) {
             NSLog(@"It's a fork behind us!");
             LPCFork *fork = [currentLine forkBeforePosition:currentViewController.station.linePosition];
@@ -127,7 +123,7 @@
             return nil;
         }
         
-        UIViewController *previousViewController = [self viewControllerForStation:previousStation];
+        LPCStationViewController *previousViewController = (LPCStationViewController *)[self viewControllerForStation:previousStation];
         
         return previousViewController;
     } else {
@@ -148,10 +144,6 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     if ([viewController isKindOfClass:[LPCStationViewController class]]) {
         LPCStationViewController *currentViewController = (LPCStationViewController *)viewController;
-        
-        if (maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession) {
-            NSLog(@"Now over the limit");
-        }
         
         if ([currentLine isForkAfterPosition:currentViewController.station.linePosition]) {
             NSLog(@"It's a fork next!");
@@ -175,7 +167,7 @@
             return nil;
         }
         
-        UIViewController *nextViewController = [self viewControllerForStation:nextStation];
+        LPCStationViewController *nextViewController = (LPCStationViewController *)[self viewControllerForStation:nextStation];
         
         return nextViewController;
     } else {
@@ -194,7 +186,8 @@
 }
 
 - (UIViewController *)viewControllerForStation:(LPCStation *)st {
-    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st andLine:currentLine];
+    BOOL stationWillBeBlurred = maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession;
+    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st andLine:currentLine andBlurred:stationWillBeBlurred];
     
     childViewController.lineColour = currentLine.lineColour;
     

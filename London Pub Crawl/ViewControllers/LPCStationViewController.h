@@ -29,8 +29,9 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) NSString *directionBackward;
 @property (strong, nonatomic) LPCStation *station;
 
-- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line;
+- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line andBlurred:(BOOL) blurred;
 
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *blurView;
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
 @property (strong, nonatomic) IBOutlet UIView *view;

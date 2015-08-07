@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPCStationViewController">
             <connections>
                 <outlet property="addressLabel" destination="xab-37-N6k" id="5gz-N0-Plz"/>
+                <outlet property="blurView" destination="VP2-GJ-9yL" id="Ovz-km-JSh"/>
                 <outlet property="circleRectView" destination="EqS-sd-6dj" id="dcG-KV-EDK"/>
                 <outlet property="destinationLeftLabel" destination="URP-xh-YJS" id="Ott-M2-g5d"/>
                 <outlet property="destinationRightLabel" destination="ZLm-Fw-zwG" id="a7G-aO-WA0"/>
@@ -193,7 +194,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
+                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
                             <rect key="frame" x="20" y="0.0" width="280" height="203"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L88-39-NVf">
@@ -300,6 +301,51 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VP2-GJ-9yL">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="MRK-XC-pBj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Metropolitan Line" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgq-4p-Tup">
+                                <rect key="frame" x="20" y="107" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You've hit the free station limit." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-R9-bpk">
+                                <rect key="frame" x="20" y="136" width="280" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejl-If-SBF">
+                                <rect key="frame" x="20" y="248" width="280" height="30"/>
+                                <state key="normal" title="Unlock this line for %@">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Removing the limit is easy:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuV-4X-fQV">
+                                <rect key="frame" x="20" y="170" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3SI-FK-7TH">
+                                <rect key="frame" x="16" y="286" width="289" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Unlock all the lines for only %@">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="s3O-R9-bpk" firstAttribute="top" secondItem="jgq-4p-Tup" secondAttribute="bottom" constant="8" id="ItT-jK-mc5"/>
+                            <constraint firstItem="uuV-4X-fQV" firstAttribute="top" secondItem="s3O-R9-bpk" secondAttribute="bottom" constant="8" id="MYc-w0-8HR"/>
+                            <constraint firstItem="Ejl-If-SBF" firstAttribute="top" secondItem="uuV-4X-fQV" secondAttribute="bottom" constant="17" id="oLw-aQ-AQD"/>
+                            <constraint firstItem="3SI-FK-7TH" firstAttribute="top" secondItem="Ejl-If-SBF" secondAttribute="bottom" constant="17" id="yDk-kC-2JM"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -312,6 +358,8 @@
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="top" secondItem="bfg-J1-eEi" secondAttribute="bottom" id="Kg5-rw-082"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="bottom" id="PEp-Ga-DSx"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="QLd-ve-Ls8"/>
+                <constraint firstItem="VP2-GJ-9yL" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Qeg-VL-LgH"/>
+                <constraint firstAttribute="trailing" secondItem="VP2-GJ-9yL" secondAttribute="trailing" id="SRI-4f-scz"/>
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="US4-AB-G6J"/>
                 <constraint firstItem="kHa-pO-igP" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="88" id="XnH-5E-KC3"/>
                 <constraint firstItem="yzW-Tc-zZN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ZZh-0l-yzu"/>
@@ -320,6 +368,7 @@
                 <constraint firstItem="yzW-Tc-zZN" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="bottom" id="gk9-O3-Fl0"/>
                 <constraint firstAttribute="bottom" secondItem="yzW-Tc-zZN" secondAttribute="bottom" id="jYv-Ly-Rhr"/>
                 <constraint firstItem="bfg-J1-eEi" firstAttribute="top" secondItem="1" secondAttribute="top" id="lr2-Gd-i0M"/>
+                <constraint firstItem="VP2-GJ-9yL" firstAttribute="top" secondItem="1" secondAttribute="top" id="mmU-AS-NJS"/>
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="moe-SS-vwg"/>
                 <constraint firstItem="02M-Rc-fik" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="bottom" id="nwZ-YU-2ZT"/>
                 <constraint firstItem="Obc-ul-Y9s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kHa-pO-igP" secondAttribute="bottom" priority="900" id="olz-p5-snU"/>

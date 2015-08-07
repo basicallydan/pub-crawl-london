@@ -35,6 +35,7 @@
     UIImageView *helpImageOverlay;
     BOOL reachable;
     BOOL refreshWhenReachable;
+    BOOL isBlurredOver;
 }
 
 //[NSString stringWithFormat:kLPCMapBoxURLTemplate, mapKey, lineColourHexCode, [currentVenue.latLng[1] floatValue], [currentVenue.latLng[0] floatValue], lineColourHexCode, [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], [self.station.coordinate[1] floatValue], [self.station.coordinate[0] floatValue], zoomLevel, self.mapImageView.frame.size.width, self.mapImageView.frame.size.height, mapBoxImageRetina], mapBoxAccessToken;
@@ -60,7 +61,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     }
 }
 
-- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line {
+- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line andBlurred:(BOOL)blurred {
     self = [super initWithNibName:@"LPCStationViewController" bundle:nil];
     
     if (self) {
@@ -83,6 +84,12 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     self.station = station;
     currentLine = line;
+    
+    isBlurredOver = blurred;
+    
+    if (blurred) {
+        self.blurView.hidden = NO;
+    }
     
     [self loadVenues];
     
@@ -118,6 +125,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.blurView.hidden = !isBlurredOver;
     [self updateView];
 }
 
