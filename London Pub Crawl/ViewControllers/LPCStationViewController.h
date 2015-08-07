@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 #import "LPCStation.h"
+#import "LPCBuyLineView.h"
 #import "LPCLineViewController.h"
 
 @protocol LPCStationViewControllerDelegate <NSObject>
@@ -31,7 +32,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 
 - (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line andBlurred:(BOOL) blurred;
 
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *blurView;
+@property (weak, nonatomic) IBOutlet LPCBuyLineView *blurView;
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
 @property (strong, nonatomic) IBOutlet UIView *view;

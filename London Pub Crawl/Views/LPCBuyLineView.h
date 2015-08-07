@@ -11,7 +11,7 @@
 
 @end
 
-@interface LPCBuyLineView : UIView
+@interface LPCBuyLineView : UIVisualEffectView
 
 @property (strong, nonatomic) LPCLine *line;
 

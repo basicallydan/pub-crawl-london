@@ -125,6 +125,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.blurView setLine:currentLine];
     self.blurView.hidden = !isBlurredOver;
     [self updateView];
 }
