@@ -40,76 +40,69 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kHa-pO-igP">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHa-pO-igP">
                     <rect key="frame" x="88" y="60" width="144" height="144"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="144" id="kPF-Up-wLs"/>
-                        <constraint firstAttribute="width" constant="144" id="yiU-Ka-Ksk"/>
-                    </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bfg-J1-eEi" userLabel="Map Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfg-J1-eEi" userLabel="Map Image View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="204" id="qhs-Tj-G5Y"/>
-                    </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obc-ul-Y9s" userLabel="Info View">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obc-ul-Y9s" userLabel="Info View">
                     <rect key="frame" x="0.0" y="204" width="320" height="117"/>
                     <subviews>
-                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1200m from the station" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56V-92-ndJ">
-                            <rect key="frame" x="0.0" y="-204" width="97.5" height="12"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xab-37-N6k">
-                            <rect key="frame" x="0.0" y="-204" width="60" height="12"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finding you a pub" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6jA-zI-3lY" userLabel="Pub Name Label">
-                            <rect key="frame" x="0.0" y="-204" width="182" height="26.5"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                            <color key="textColor" red="0.76672114158163263" green="0.76672114158163263" blue="0.76672114158163263" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Station Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSM-lh-ny5" userLabel="Station Label">
-                            <rect key="frame" x="0.0" y="-204" width="104.5" height="20.5"/>
+                            <rect key="frame" x="20" y="48" width="280" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finding you a pub" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="6jA-zI-3lY" userLabel="Pub Name Label">
+                            <rect key="frame" x="20" y="20" width="280" height="34"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <color key="textColor" red="0.76672114158163263" green="0.76672114158163263" blue="0.76672114158163263" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VRr-oX-PZ2" userLabel="Left-hand tube line">
-                            <rect key="frame" x="0.0" y="-204" width="0.0" height="0.0"/>
+                            <rect key="frame" x="0.0" y="88" width="160" height="12"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rmd-EJ-p5B" userLabel="Right-hand tube line.">
-                            <rect key="frame" x="0.0" y="-204" width="0.0" height="0.0"/>
+                            <rect key="frame" x="160" y="88" width="160" height="12"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DfY-KP-bYW" userLabel="Full-width Tube Line">
-                            <rect key="frame" x="0.0" y="-204" width="0.0" height="0.0"/>
+                            <rect key="frame" x="0.0" y="88" width="320" height="12"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EqS-sd-6dj" userLabel="Tube Station Circle View" customClass="LPCCircleView">
-                            <rect key="frame" x="0.0" y="-204" width="0.0" height="0.0"/>
+                            <rect key="frame" x="142" y="76" width="36" height="36"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Branch Name Right" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLm-Fw-zwG">
-                            <rect key="frame" x="0.0" y="-204" width="82.5" height="11"/>
+                            <rect key="frame" x="186" y="102" width="114" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Branch Name Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URP-xh-YJS">
-                            <rect key="frame" x="0.0" y="-204" width="76.5" height="11"/>
+                            <rect key="frame" x="20" y="102" width="119" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1200m from the station" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56V-92-ndJ">
+                            <rect key="frame" x="200" y="5" width="100" height="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xab-37-N6k">
+                            <rect key="frame" x="20" y="5" width="178" height="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GO6-dd-lhN" userLabel="Change Pub Button">
-                            <rect key="frame" x="0.0" y="-204" width="49" height="23"/>
+                            <rect key="frame" x="251" y="77" width="49" height="11"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="9"/>
                             <state key="normal" title="Change Pub">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,44 +113,33 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="117" id="N0a-J4-nAa"/>
-                    </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02M-Rc-fik" userLabel="Footer View">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02M-Rc-fik" userLabel="Footer View">
                     <rect key="frame" x="0.0" y="321" width="320" height="203"/>
                     <subviews>
                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We'll load you some pubs once you're back online." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="cdr-mk-wqf" userLabel="Pub load offline message">
-                            <rect key="frame" x="0.0" y="-321" width="244.5" height="41"/>
+                            <rect key="frame" x="20" y="0.0" width="280" height="203"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
+                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
                             <rect key="frame" x="20" y="0.0" width="280" height="203"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L88-39-NVf">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L88-39-NVf">
                                     <rect key="frame" x="72" y="0.0" width="208" height="27"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="27" id="XpI-YZ-im1"/>
-                                        <constraint firstAttribute="width" constant="208" id="f9d-6D-XG6"/>
-                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A tip from" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-TA-TSl">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A tip from" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-TA-TSl">
                                     <rect key="frame" x="0.0" y="0.0" width="77" height="27"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="27" id="ajw-0O-IXa"/>
-                                        <constraint firstAttribute="width" constant="77" id="l6u-aF-lkz"/>
-                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="kiy-QG-fkK">
-                                    <rect key="frame" x="0.0" y="35" width="280" height="15.5"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="kiy-QG-fkK">
+                                    <rect key="frame" x="0.0" y="35" width="280" height="16"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Tip">
                                             <attributes>
@@ -170,25 +152,15 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <constraints>
-                                <constraint firstItem="kiy-QG-fkK" firstAttribute="top" secondItem="Vgb-mt-l1d" secondAttribute="top" constant="35" id="1gQ-jD-wza"/>
-                                <constraint firstItem="kiy-QG-fkK" firstAttribute="leading" secondItem="Vgb-mt-l1d" secondAttribute="leading" id="7u0-e1-dlR"/>
-                                <constraint firstAttribute="trailing" secondItem="kiy-QG-fkK" secondAttribute="trailing" id="KMe-f0-wnJ"/>
-                                <constraint firstItem="Jw0-TA-TSl" firstAttribute="top" secondItem="Vgb-mt-l1d" secondAttribute="top" id="T0R-LT-JNo"/>
-                                <constraint firstItem="L88-39-NVf" firstAttribute="leading" secondItem="Vgb-mt-l1d" secondAttribute="leading" constant="72" id="eYL-Re-4Xb"/>
-                                <constraint firstItem="L88-39-NVf" firstAttribute="top" secondItem="Vgb-mt-l1d" secondAttribute="top" id="fvf-u8-LvX"/>
-                                <constraint firstItem="Jw0-TA-TSl" firstAttribute="leading" secondItem="Vgb-mt-l1d" secondAttribute="leading" id="m58-sr-fkb"/>
-                                <constraint firstAttribute="trailing" secondItem="L88-39-NVf" secondAttribute="trailing" id="p11-bs-tU5"/>
-                            </constraints>
                         </scrollView>
                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D'oh! This pub has no tips." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNQ-HG-KuB" userLabel="No tips here label">
-                            <rect key="frame" x="0.0" y="-321" width="168" height="18"/>
+                            <rect key="frame" x="20" y="2" width="280" height="21"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP9-vA-XzK" userLabel="Tips: Change Pub Button">
-                            <rect key="frame" x="0.0" y="-321" width="161" height="30"/>
+                            <rect key="frame" x="76" y="22" width="167" height="32"/>
                             <state key="normal" title="Let's see another, then.">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -197,7 +169,7 @@
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3M-Or-91f">
-                            <rect key="frame" x="0.0" y="-321" width="43" height="23"/>
+                            <rect key="frame" x="257" y="-2" width="43" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="9"/>
                             <state key="normal" title="Change tip">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,18 +180,9 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="Vgb-mt-l1d" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" id="Esf-sq-9mX"/>
-                        <constraint firstItem="Vgb-mt-l1d" firstAttribute="leading" secondItem="02M-Rc-fik" secondAttribute="leading" constant="20" id="MN5-VJ-iDn"/>
-                        <constraint firstAttribute="trailing" secondItem="Vgb-mt-l1d" secondAttribute="trailing" constant="20" id="VXR-YW-ksq"/>
-                        <constraint firstAttribute="bottom" secondItem="Vgb-mt-l1d" secondAttribute="bottom" id="nt7-Wk-2gh"/>
-                    </constraints>
                 </view>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzW-Tc-zZN">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yzW-Tc-zZN">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="EhV-M5-KYj"/>
-                    </constraints>
                     <items>
                         <barButtonItem title="Change Line" id="tbp-Kg-XmV">
                             <connections>
@@ -235,22 +198,24 @@
                     </items>
                 </toolbar>
                 <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VP2-GJ-9yL" customClass="LPCBuyLineView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MRK-XC-pBj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Metropolitan Line" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgq-4p-Tup">
-                                <rect key="frame" x="0.0" y="0.0" width="177" height="26.5"/>
+                                <rect key="frame" x="20" y="107" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You've hit the free station limit." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-R9-bpk">
-                                <rect key="frame" x="0.0" y="0.0" width="258" height="23"/>
+                                <rect key="frame" x="20" y="136" width="280" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejl-If-SBF">
-                                <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
+                                <rect key="frame" x="20" y="248" width="280" height="30"/>
                                 <state key="normal" title="Unlock this line for %@">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -259,12 +224,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Removing the limit is easy:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuV-4X-fQV">
-                                <rect key="frame" x="0.0" y="0.0" width="205" height="20.5"/>
+                                <rect key="frame" x="20" y="170" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3SI-FK-7TH">
-                                <rect key="frame" x="0.0" y="0.0" width="262" height="34"/>
+                                <rect key="frame" x="16" y="286" width="289" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Unlock all the lines for only %@">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -274,7 +239,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lne-dq-WxI">
-                                <rect key="frame" x="0.0" y="0.0" width="268" height="30"/>
+                                <rect key="frame" x="7" y="486" width="307" height="30"/>
                                 <state key="normal" title="I already own all the lines, restore them">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -283,7 +248,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQj-OI-MKP">
-                                <rect key="frame" x="0.0" y="0.0" width="216" height="30"/>
+                                <rect key="frame" x="52" y="448" width="216" height="30"/>
                                 <state key="normal" title="I own this line already, restore it">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -302,24 +267,6 @@
                 </visualEffectView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="kHa-pO-igP" secondAttribute="trailing" constant="88" id="1M0-uC-vk1"/>
-                <constraint firstItem="bfg-J1-eEi" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="2Dd-R8-n3W"/>
-                <constraint firstItem="02M-Rc-fik" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="2Jh-fP-PeO"/>
-                <constraint firstAttribute="trailing" secondItem="Obc-ul-Y9s" secondAttribute="trailing" id="9Sk-jY-kVl"/>
-                <constraint firstItem="Obc-ul-Y9s" firstAttribute="top" secondItem="bfg-J1-eEi" secondAttribute="bottom" id="AkA-dd-iAI"/>
-                <constraint firstItem="kHa-pO-igP" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="88" id="EAU-6f-eOm"/>
-                <constraint firstAttribute="trailing" secondItem="bfg-J1-eEi" secondAttribute="trailing" id="KG9-9x-nuV"/>
-                <constraint firstItem="Obc-ul-Y9s" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="R5s-pO-wQS"/>
-                <constraint firstItem="bfg-J1-eEi" firstAttribute="top" secondItem="1" secondAttribute="top" id="Ser-Mt-Hzi"/>
-                <constraint firstItem="02M-Rc-fik" firstAttribute="top" secondItem="Obc-ul-Y9s" secondAttribute="bottom" id="UUa-p5-gEf"/>
-                <constraint firstItem="yzW-Tc-zZN" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="XBm-W9-hkd"/>
-                <constraint firstAttribute="trailing" secondItem="02M-Rc-fik" secondAttribute="trailing" id="ZcK-bM-Wxq"/>
-                <constraint firstItem="kHa-pO-igP" firstAttribute="top" secondItem="1" secondAttribute="top" constant="60" id="gaW-XK-9xo"/>
-                <constraint firstItem="yzW-Tc-zZN" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="bottom" id="ha1-Gb-SKN"/>
-                <constraint firstAttribute="trailing" secondItem="yzW-Tc-zZN" secondAttribute="trailing" id="sRi-yi-gGI"/>
-                <constraint firstAttribute="bottom" secondItem="yzW-Tc-zZN" secondAttribute="bottom" id="uUt-Aq-8TN"/>
-            </constraints>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
