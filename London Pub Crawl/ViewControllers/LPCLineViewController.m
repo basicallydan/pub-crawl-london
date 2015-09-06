@@ -28,6 +28,8 @@
     LPCLine *currentLine;
     LPCStation *currentStation;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
+    LPCStationViewController *previousStationViewController;
+    LPCStationViewController *nextStationViewController;
     UIViewController *initialViewController;
     int maxStationViewsThisLineSession;
     int numStationViewsThisLineSession;
@@ -43,7 +45,8 @@
     
     stationsVisitedInSession = [[NSMutableArray alloc] init];
     
-    if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier] == NO) {
+    if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier] == NO &&
+        [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey] == NO) {
         maxStationViewsThisLineSession = 2;
     } else {
         maxStationViewsThisLineSession = 0;
@@ -126,9 +129,9 @@
             return nil;
         }
         
-        LPCStationViewController *previousViewController = (LPCStationViewController *)[self viewControllerForStation:previousStation];
+        previousStationViewController = (LPCStationViewController *)[self viewControllerForStation:previousStation];
         
-        return previousViewController;
+        return previousStationViewController;
     } else {
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
         
@@ -138,9 +141,9 @@
             return nil;
         }
         
-        UIViewController *previousViewController = [self viewControllerForStation:previousStation];
+        previousStationViewController = [self viewControllerForStation:previousStation];
         
-        return previousViewController;
+        return previousStationViewController;
     }
 }
 
@@ -170,9 +173,9 @@
             return nil;
         }
         
-        LPCStationViewController *nextViewController = (LPCStationViewController *)[self viewControllerForStation:nextStation];
+        nextStationViewController = (LPCStationViewController *)[self viewControllerForStation:nextStation];
         
-        return nextViewController;
+        return nextStationViewController;
     } else {
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
         
@@ -182,15 +185,16 @@
             return nil;
         }
         
-        UIViewController *nextViewController = [self viewControllerForStation:nextStation];
+        nextStationViewController = [self viewControllerForStation:nextStation];
         
-        return nextViewController;
+        return nextStationViewController;
     }
 }
 
-- (UIViewController *)viewControllerForStation:(LPCStation *)st {
+- (LPCStationViewController *)viewControllerForStation:(LPCStation *)st {
+    BOOL lineAndAllLinesUnowned = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:currentLine.iapProductIdentifier] == NO && [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey] == NO;
     BOOL stationAlreadyVisited = [stationsVisitedInSession containsObject:st.nestoriaCode];
-    BOOL stationWillBeBlurred = maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession && !stationAlreadyVisited;
+    BOOL stationWillBeBlurred = maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession && !stationAlreadyVisited && lineAndAllLinesUnowned;
     
     if (!stationAlreadyVisited && !stationWillBeBlurred) {
         [stationsVisitedInSession addObject:st.nestoriaCode];
@@ -278,8 +282,12 @@
     return numStationViewsThisLineSession;
 }
 
+- (void)didUnlockLine {
+    [nextStationViewController hideBuyView];
+    [previousStationViewController hideBuyView];
+}
+
 - (void)stationDidAppear {
-    
     [self incrementNumberOfStations];
 }
 

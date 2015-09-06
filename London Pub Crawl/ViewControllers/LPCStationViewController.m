@@ -556,6 +556,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                     NSLog(@"SUCCESS %@", response);
                     NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
                     [self hideBuyView];
+                    [self.stationDelegate didUnlockLine];
                 } else {
                     NSLog(@"Fail");
                 }
@@ -588,6 +589,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                     NSLog(@"SUCCESS %@", response);
                     NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
                     [self hideBuyView];
+                    [self.stationDelegate didUnlockLine];
                 } else {
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Your purchase failed"
                                                                    message:@"Something went wrong with the purchase. Please try again."
@@ -622,6 +624,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                 NSLog(@"Restoring product %@", purchased);
                 [[IAPShare sharedHelper].iap provideContent:purchased];
                 [self hideBuyView];
+                [self.stationDelegate didUnlockLine];
                 userHasBoughtLine = YES;
                 break;
             }
@@ -652,6 +655,7 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
                 NSLog(@"Restoring product %@", purchased);
                 [[IAPShare sharedHelper].iap provideContent:purchased];
                 [self hideBuyView];
+                [self.stationDelegate didUnlockLine];
                 userHasBoughtAll = YES;
                 break;
             }

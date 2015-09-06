@@ -52,12 +52,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "London Pub Crawl/ViewControllers/LPCStationViewController.m"
-            timestampString = "460637638.062196"
+            timestampString = "463215573.542199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "558"
             endingLineNumber = "558"
             landmarkName = "-didChooseToBuyAll"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "London Pub Crawl/ViewControllers/LPCLineViewController.m"
+            timestampString = "463215573.542199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "-viewControllerForStation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

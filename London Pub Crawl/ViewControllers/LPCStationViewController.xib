@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -194,7 +193,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
+                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
                             <rect key="frame" x="20" y="0.0" width="280" height="203"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L88-39-NVf">
@@ -209,7 +208,7 @@
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="kiy-QG-fkK">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="kiy-QG-fkK">
                                     <rect key="frame" x="0.0" y="35" width="280" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="280" id="JAI-Jm-i8R"/>
@@ -230,7 +229,9 @@
                             <constraints>
                                 <constraint firstItem="kiy-QG-fkK" firstAttribute="top" secondItem="Jw0-TA-TSl" secondAttribute="bottom" constant="8" id="5JM-bz-obW"/>
                                 <constraint firstAttribute="bottom" secondItem="kiy-QG-fkK" secondAttribute="bottom" id="9qR-TI-fce"/>
+                                <constraint firstAttribute="trailing" secondItem="kiy-QG-fkK" secondAttribute="trailing" id="FzK-og-7Ld"/>
                                 <constraint firstAttribute="width" constant="280" id="a7F-YU-RK6"/>
+                                <constraint firstItem="kiy-QG-fkK" firstAttribute="leading" secondItem="Vgb-mt-l1d" secondAttribute="leading" id="gd8-dB-oXi"/>
                             </constraints>
                         </scrollView>
                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D'oh! This pub has no tips." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNQ-HG-KuB" userLabel="No tips here label">
@@ -365,7 +366,6 @@
                             <constraint firstItem="s3O-R9-bpk" firstAttribute="top" secondItem="jgq-4p-Tup" secondAttribute="bottom" constant="8" id="ItT-jK-mc5"/>
                             <constraint firstItem="uuV-4X-fQV" firstAttribute="top" secondItem="s3O-R9-bpk" secondAttribute="bottom" constant="8" id="MYc-w0-8HR"/>
                             <constraint firstItem="lne-dq-WxI" firstAttribute="top" secondItem="DQj-OI-MKP" secondAttribute="bottom" constant="8" id="UMK-O0-HZT"/>
-                            <constraint firstItem="Ejl-If-SBF" firstAttribute="top" secondItem="uuV-4X-fQV" secondAttribute="bottom" constant="17" id="oLw-aQ-AQD"/>
                             <constraint firstItem="3SI-FK-7TH" firstAttribute="top" secondItem="Ejl-If-SBF" secondAttribute="bottom" constant="17" id="yDk-kC-2JM"/>
                         </constraints>
                     </view>

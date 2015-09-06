@@ -7,6 +7,7 @@
 @protocol LPCStationViewControllerDelegate <NSObject>
 
 - (int)numStationViewsThisLineSession;
+- (void)didUnlockLine;
 - (void)stationDidAppear;
 
 @end
@@ -61,6 +62,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 - (IBAction)changePub:(id)sender;
 - (IBAction)changeTip:(id)sender;
 - (IBAction)showHelpOverlay:(id)sender;
+- (void)hideBuyView;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;
