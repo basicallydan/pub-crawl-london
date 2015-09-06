@@ -409,11 +409,17 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     
     [actionSheet addButtonWithTitle:@"Apple Maps"];
     
-    [actionSheet addButtonWithTitle:@"Google Maps"];
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppGoogleMaps]) {
+        [actionSheet addButtonWithTitle:@"Google Maps"];
+    }
     
-//    if ([CMMapLauncher isMapAppInstalled:CMMapAppCitymapper]) {
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppCitymapper]) {
         [actionSheet addButtonWithTitle:@"Citymapper"];
-//    }
+    }
+    
+    if ([CMMapLauncher isMapAppInstalled:CMMapAppWaze]) {
+        [actionSheet addButtonWithTitle:@"Waze"];
+    }
     
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
@@ -457,6 +463,9 @@ NSString *const kLPCGoogleMapsURLTemplate = @"http://maps.googleapis.com/maps/ap
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Citymapper"]) {
         [CMMapLauncher launchMapApp:CMMapAppCitymapper forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
         [[SEGAnalytics sharedAnalytics] track:@"Directions in CityMapper" properties: [self analyticsProperties]];
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Waze"]) {
+        [CMMapLauncher launchMapApp:CMMapAppWaze forDirectionsTo:[CMMapPoint mapPointWithName:self.pubNameLabel.text coordinate:venueLocation]];
+        [[SEGAnalytics sharedAnalytics] track:@"Directions in Waze" properties: [self analyticsProperties]];
     }
 }
 

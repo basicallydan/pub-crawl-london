@@ -140,6 +140,9 @@
 		37EF4B9018DF61760063B848 /* Frame 22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B6A18DF61760063B848 /* Frame 22@2x.png */; };
 		37EF4B9118DF61760063B848 /* Frame 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B6B18DF61760063B848 /* Frame 23.png */; };
 		37EF4B9218DF61760063B848 /* Frame 23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF4B6C18DF61760063B848 /* Frame 23@2x.png */; };
+		37F41AFD1B9C81CF00678011 /* Happily Logo Trimmed Transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F41AFA1B9C81CF00678011 /* Happily Logo Trimmed Transparent.png */; };
+		37F41AFE1B9C81CF00678011 /* Happily Logo Trimmed Transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F41AFB1B9C81CF00678011 /* Happily Logo Trimmed Transparent@2x.png */; };
+		37F41AFF1B9C81CF00678011 /* Happily Logo Trimmed Transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37F41AFC1B9C81CF00678011 /* Happily Logo Trimmed Transparent@3x.png */; };
 		37F45A7F1843ABB70025CC9B /* LPCVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F45A7E1843ABB70025CC9B /* LPCVenue.m */; };
 		37F6736518EDE18400AE5B46 /* LPCBuyLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6736418EDE18400AE5B46 /* LPCBuyLineView.m */; };
 		37F6736918EF574000AE5B46 /* LPCCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6736718EF574000AE5B46 /* LPCCreditsViewController.m */; };
@@ -320,6 +323,9 @@
 		37EF4B6A18DF61760063B848 /* Frame 22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 22@2x.png"; sourceTree = "<group>"; };
 		37EF4B6B18DF61760063B848 /* Frame 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 23.png"; sourceTree = "<group>"; };
 		37EF4B6C18DF61760063B848 /* Frame 23@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 23@2x.png"; sourceTree = "<group>"; };
+		37F41AFA1B9C81CF00678011 /* Happily Logo Trimmed Transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Happily Logo Trimmed Transparent.png"; sourceTree = "<group>"; };
+		37F41AFB1B9C81CF00678011 /* Happily Logo Trimmed Transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Happily Logo Trimmed Transparent@2x.png"; sourceTree = "<group>"; };
+		37F41AFC1B9C81CF00678011 /* Happily Logo Trimmed Transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Happily Logo Trimmed Transparent@3x.png"; sourceTree = "<group>"; };
 		37F45A7D1843ABB70025CC9B /* LPCVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCVenue.h; sourceTree = "<group>"; };
 		37F45A7E1843ABB70025CC9B /* LPCVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPCVenue.m; sourceTree = "<group>"; };
 		37F6736318EDE18400AE5B46 /* LPCBuyLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPCBuyLineView.h; sourceTree = "<group>"; };
@@ -509,6 +515,9 @@
 		3787FECF18E21F96002B79C2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				37F41AFA1B9C81CF00678011 /* Happily Logo Trimmed Transparent.png */,
+				37F41AFB1B9C81CF00678011 /* Happily Logo Trimmed Transparent@2x.png */,
+				37F41AFC1B9C81CF00678011 /* Happily Logo Trimmed Transparent@3x.png */,
 				379E2CD21913ABD6003BB3B1 /* Default4inch.png */,
 				379E2CD31913ABD6003BB3B1 /* Default4inch@2x.png */,
 				379E2CD41913ABD6003BB3B1 /* Default35inch.png */,
@@ -788,6 +797,7 @@
 				37074FF618F34A9800D86847 /* tfl-logo.png in Resources */,
 				37EF4B8418DF61760063B848 /* Frame 16@2x.png in Resources */,
 				37EF4B7A18DF61760063B848 /* Frame 11@2x.png in Resources */,
+				37F41AFF1B9C81CF00678011 /* Happily Logo Trimmed Transparent@3x.png in Resources */,
 				3744F59918C51BC4000F6669 /* Default35inch@2x.png in Resources */,
 				37074FFD18F3566800D86847 /* station-help-iphone-5.png in Resources */,
 				37478F281940DC22004A86F9 /* AppIcon144x144@2.png in Resources */,
@@ -824,6 +834,7 @@
 				37EF4B3A18DF465C0063B848 /* Frame 3@2x.png in Resources */,
 				37EF4B8C18DF61760063B848 /* Frame 20@2x.png in Resources */,
 				37EF4B8718DF61760063B848 /* Frame 18.png in Resources */,
+				37F41AFE1B9C81CF00678011 /* Happily Logo Trimmed Transparent@2x.png in Resources */,
 				372D7454193E62B700C9B54D /* AppIcon29x29@2x.png in Resources */,
 				37E96E381912EFDC0001AD03 /* Left menu image@2x.png in Resources */,
 				37E96E371912EFDC0001AD03 /* Left menu image.png in Resources */,
@@ -866,6 +877,7 @@
 				37EF4B7218DF61760063B848 /* Frame 7@2x.png in Resources */,
 				37EF4B7C18DF61760063B848 /* Frame 12@2x.png in Resources */,
 				37EF4B7318DF61760063B848 /* Frame 8.png in Resources */,
+				37F41AFD1B9C81CF00678011 /* Happily Logo Trimmed Transparent.png in Resources */,
 				3787FECD18E21E6A002B79C2 /* LPCStationViewController.xib in Resources */,
 				37EF4B7F18DF61760063B848 /* Frame 14.png in Resources */,
 				37EF4B7718DF61760063B848 /* Frame 10.png in Resources */,
