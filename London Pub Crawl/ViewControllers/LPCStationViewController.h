@@ -1,11 +1,13 @@
 #import <UIKit/UIKit.h>
 
 #import "LPCStation.h"
+#import "LPCBuyLineView.h"
 #import "LPCLineViewController.h"
 
 @protocol LPCStationViewControllerDelegate <NSObject>
 
 - (int)numStationViewsThisLineSession;
+- (void)didUnlockLine;
 - (void)stationDidAppear;
 
 @end
@@ -29,11 +31,11 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 @property (strong, nonatomic) NSString *directionBackward;
 @property (strong, nonatomic) LPCStation *station;
 
-- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line;
+- (id)initWithStation:(LPCStation *)station andLine:(LPCLine *)line andBlurred:(BOOL) blurred;
 
+@property (weak, nonatomic) IBOutlet LPCBuyLineView *blurView;
 @property (strong, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pubNameLabel;
-@property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
@@ -59,6 +61,7 @@ extern NSString *const kLPCGoogleMapsURLTemplate;
 - (IBAction)changePub:(id)sender;
 - (IBAction)changeTip:(id)sender;
 - (IBAction)showHelpOverlay:(id)sender;
+- (void)hideBuyView;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *wayOutButton;

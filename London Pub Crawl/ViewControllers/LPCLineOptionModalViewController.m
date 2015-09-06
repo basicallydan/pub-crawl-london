@@ -6,7 +6,7 @@
 #import <StoreKit/StoreKit.h>
 #import "LPCAppDelegate.h"
 
-@interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, LPCBuyLineViewDelegate>
+@interface LPCLineOptionModalViewController () <UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @end
 
@@ -14,16 +14,12 @@
     NSArray *startingStations;
     NSArray *allStations;
     LPCLine *selectedLine;
-    BOOL ownershipChanged;
 }
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        ownershipChanged = NO;
-    }
     
     return self;
 }
@@ -51,25 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (selectedLine.iapProductIdentifier) {
-        if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:selectedLine.iapProductIdentifier]) {
-            NSLog(@"The user already owns this line");
-            self.buyView.hidden = YES;
-        } else if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey]) {
-            NSLog(@"The user already owns all the lines");
-            self.buyView.hidden = YES;
-        } else {
-            self.buyView.hidden = NO;
-            self.buyView.delegate = self;
-            [self.buyView setLine:selectedLine];
-            [[SEGAnalytics sharedAnalytics] track:@"Presented buy modal" properties: @{ @"line" : selectedLine.name }];
-            NSLog(@"The user does not own this line. Will show the buy modal now");
-        }
-    } else {
-        NSLog(@"This line is not buyable");
-        self.buyView.hidden = YES;
-    }
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,12 +58,8 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.delegate didCancelStationSelection:ownershipChanged];
-    if (self.buyView.hidden == NO) {
-        [[SEGAnalytics sharedAnalytics] track:@"Canceled buy modal" properties: @{ @"line" : selectedLine.name }];
-    } else {
-        [[SEGAnalytics sharedAnalytics] track:@"Canceled station select select modal" properties: @{ @"line" : selectedLine.name }];
-    }
+    [self.delegate didCancelStationSelection:NO];
+    [[SEGAnalytics sharedAnalytics] track:@"Canceled station select modal" properties: @{ @"line" : selectedLine.name }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -115,21 +88,6 @@
     [self.filteredStationArray addObjectsFromArray:filteredArray];
     
     self.filteredStationArray = [NSMutableArray arrayWithArray:[allStations filteredArrayUsingPredicate:predicate]];
-}
-
-- (void)hideBuyView {
-    CGRect finalBuyFrame = self.buyView.frame;
-    finalBuyFrame.origin.y = -finalBuyFrame.size.height;
-    [UIView animateWithDuration:0.72f
-        delay:0.0f
-        options:UIViewAnimationOptionCurveEaseInOut
-        animations:^{
-            self.buyView.frame = finalBuyFrame;
-            self.buyView.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            self.buyView.hidden = YES;
-            NSLog(@"Animation over");
-        }];
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -175,146 +133,6 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     // TODO: Store something to reflect changes to improve the experience and performance here
     return YES;
-}
-
-#pragma mark - LPCBuyLineViewDelegate
-
-- (void)didChooseToBuyAll {
-    NSLog(@"Buying all of them!");
-    ownershipChanged = YES;
-    [[SEGAnalytics sharedAnalytics] track:@"Chose to buy all the lines" properties: @{ @"line" : selectedLine.name }];
-    SKProduct *product = [LPCAppDelegate productWithIdentifier:allTheLinesKey];
-    [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
-        if(trans.error) {
-            NSLog(@"Fail %@",[trans.error localizedDescription]);
-        } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
-            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-            NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
-            [[IAPShare sharedHelper].iap checkReceipt:receipt onCompletion:^(NSString *response, NSError *error) {
-
-                //Convert JSON String to NSDictionary
-                NSDictionary* rec = [IAPShare toJSON:response];
-
-                if([rec[@"status"] integerValue]==0) {
-                    NSString *productIdentifier = trans.payment.productIdentifier;
-                    [[IAPShare sharedHelper].iap provideContent:productIdentifier];
-                    NSLog(@"SUCCESS %@", response);
-                    NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
-                    [self hideBuyView];
-                } else {
-                    NSLog(@"Fail");
-                }
-            }];
-        } else if (trans.transactionState == SKPaymentTransactionStateFailed) {
-            NSLog(@"Fail");
-        }
-    }];
-}
-
-- (void)didChooseToBuyLine:(LPCLine *)line {
-    NSLog(@"Buying one line: %@!", line.name);
-    ownershipChanged = YES;
-    [[SEGAnalytics sharedAnalytics] track:@"Chose to buy the current line" properties: @{ @"line" : selectedLine.name }];
-    SKProduct *product = [LPCAppDelegate productWithIdentifier:line.iapProductIdentifier];
-    [[IAPShare sharedHelper].iap buyProduct:product onCompletion:^(SKPaymentTransaction* trans) {
-        if(trans.error) {
-            NSLog(@"Fail %@",[trans.error localizedDescription]);
-        } else if (trans.transactionState == SKPaymentTransactionStatePurchased) {
-            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-            NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
-            [[IAPShare sharedHelper].iap checkReceipt:receipt onCompletion:^(NSString *response, NSError *error) {
-                
-                //Convert JSON String to NSDictionary
-                NSDictionary* rec = [IAPShare toJSON:response];
-                
-                if([rec[@"status"] integerValue]==0) {
-                    NSString *productIdentifier = trans.payment.productIdentifier;
-                    [[IAPShare sharedHelper].iap provideContent:productIdentifier];
-                    NSLog(@"SUCCESS %@", response);
-                    NSLog(@"Purchases %@", [IAPShare sharedHelper].iap.purchasedProducts);
-                    [self hideBuyView];
-                } else {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Your purchase failed"
-                                                                   message:@"Something went wrong with the purchase. Please try again."
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"OK"
-                                                         otherButtonTitles:nil,nil];
-                    [alert show];
-                }
-            }];
-        } else if (trans.transactionState == SKPaymentTransactionStateFailed) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Your purchase failed"
-                                                           message:@"Something went wrong with the purchase. Please try again."
-                                                          delegate:self
-                                                 cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:nil,nil];
-            [alert show];
-        }
-    }];
-}
-
-- (void)didChooseToRestoreLine:(LPCLine *)line {
-    // TODO: Check on an actual phone
-    [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
-        int numberOfTransactions = (int)payment.transactions.count;
-        BOOL userHasBoughtLine = NO;
-        NSLog(@"User has made %d purchases so far", numberOfTransactions);
-        
-        for (SKPaymentTransaction *transaction in payment.transactions)
-        {
-            NSString *purchased = transaction.payment.productIdentifier;
-            if([purchased isEqualToString:line.iapProductIdentifier] && purchased != nil) {
-                NSLog(@"Restoring product %@", purchased);
-                [[IAPShare sharedHelper].iap provideContent:purchased];
-                [self hideBuyView];
-                userHasBoughtLine = YES;
-                break;
-            }
-        }
-        
-        [self.delegate shouldUpdateList];
-        
-        if (!userHasBoughtLine) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
-                                                           message:@"We couldn't find a previous purchase of this line, sorry."
-                                                          delegate:self
-                                                 cancelButtonTitle:@"Fair enough."
-                                                 otherButtonTitles:nil,nil];
-            [alert show];
-        }
-    }];
-}
-
-- (void)didChooseToRestoreAll {
-    // TODO: Check on an actual phone
-    [[IAPShare sharedHelper].iap restoreProductsWithCompletion:^(SKPaymentQueue *payment, NSError *error) {
-        int numberOfTransactions = (int)payment.transactions.count;
-        BOOL userHasBoughtAll = NO;
-        NSLog(@"User has made %d purchases so far", numberOfTransactions);
-        
-        for (SKPaymentTransaction *transaction in payment.transactions)
-        {
-            NSString *purchased = transaction.payment.productIdentifier;
-            if([purchased isEqualToString:allTheLinesKey] && purchased != nil) {
-                NSLog(@"Restoring product %@", purchased);
-                [[IAPShare sharedHelper].iap provideContent:purchased];
-                [self hideBuyView];
-                userHasBoughtAll = YES;
-                break;
-            }
-        }
-        
-        [self.delegate shouldUpdateList];
-        
-        if (!userHasBoughtAll) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No purchase found"
-                                                           message:@"We couldn't find a previous purchase of all lines, sorry."
-                                                          delegate:self
-                                                 cancelButtonTitle:@"Fair enough."
-                                                 otherButtonTitles:nil,nil];
-            [alert show];
-        }
-    }];
 }
 
 @end

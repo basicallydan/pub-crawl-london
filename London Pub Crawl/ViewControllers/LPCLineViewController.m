@@ -2,6 +2,7 @@
 
 #import "LPCAppDelegate.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
+#import <IAPHelper/IAPShare.h>
 #import "LPCFork.h"
 #import "LPCForkViewController.h"
 #import "LPCLinePosition.h"
@@ -9,7 +10,6 @@
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
 #import <Analytics/Analytics.h>
-#import <RFRateMe/RFRateMe.h>
 #import <CGLMail/CGLMailHelper.h>
 
 @interface LPCLineViewController () <LPCForkViewControllerDelegate, LPCStationViewControllerDelegate, UIAlertViewDelegate>
@@ -27,9 +27,13 @@
     LPCLine *currentLine;
     LPCStation *currentStation;
     LPCVenueRetrievalHandler *venueRetrievalHandler;
+    LPCStationViewController *previousStationViewController;
+    LPCStationViewController *nextStationViewController;
     UIViewController *initialViewController;
+    int maxStationViewsThisLineSession;
     int numStationViewsThisLineSession;
     int numForkViewsThisLineSession;
+    NSMutableArray *stationsVisitedInSession;
 }
 
 - (id)initWithLine:(LPCLine *)line atStation:(LPCStation *)station withDelegate:(id<LPCLineViewControllerDelegate>)delegate completion:(void (^)())completion {
@@ -37,6 +41,15 @@
     currentStation = station;
     currentLine = line;
     self.delegate = delegate;
+    
+    stationsVisitedInSession = [[NSMutableArray alloc] init];
+    
+    if ([[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:line.iapProductIdentifier] == NO &&
+        [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey] == NO) {
+        maxStationViewsThisLineSession = 2;
+    } else {
+        maxStationViewsThisLineSession = 0;
+    }
     
     self.stations = line.allStations;
     
@@ -115,9 +128,9 @@
             return nil;
         }
         
-        UIViewController *previousViewController = [self viewControllerForStation:previousStation];
+        previousStationViewController = (LPCStationViewController *)[self viewControllerForStation:previousStation];
         
-        return previousViewController;
+        return previousStationViewController;
     } else {
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
         
@@ -127,9 +140,9 @@
             return nil;
         }
         
-        UIViewController *previousViewController = [self viewControllerForStation:previousStation];
+        previousStationViewController = [self viewControllerForStation:previousStation];
         
-        return previousViewController;
+        return previousStationViewController;
     }
 }
 
@@ -159,9 +172,9 @@
             return nil;
         }
         
-        UIViewController *nextViewController = [self viewControllerForStation:nextStation];
+        nextStationViewController = (LPCStationViewController *)[self viewControllerForStation:nextStation];
         
-        return nextViewController;
+        return nextStationViewController;
     } else {
         LPCForkViewController *currentViewController = (LPCForkViewController *)viewController;
         
@@ -171,14 +184,22 @@
             return nil;
         }
         
-        UIViewController *nextViewController = [self viewControllerForStation:nextStation];
+        nextStationViewController = [self viewControllerForStation:nextStation];
         
-        return nextViewController;
+        return nextStationViewController;
     }
 }
 
-- (UIViewController *)viewControllerForStation:(LPCStation *)st {
-    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st andLine:currentLine];
+- (LPCStationViewController *)viewControllerForStation:(LPCStation *)st {
+    BOOL lineAndAllLinesUnowned = [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:currentLine.iapProductIdentifier] == NO && [[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey] == NO;
+    BOOL stationAlreadyVisited = [stationsVisitedInSession containsObject:st.nestoriaCode];
+    BOOL stationWillBeBlurred = maxStationViewsThisLineSession > 0 && numStationViewsThisLineSession > maxStationViewsThisLineSession && !stationAlreadyVisited && lineAndAllLinesUnowned;
+    
+    if (!stationAlreadyVisited && !stationWillBeBlurred) {
+        [stationsVisitedInSession addObject:st.nestoriaCode];
+    }
+    
+    LPCStationViewController *childViewController = [[LPCStationViewController alloc] initWithStation:st andLine:currentLine andBlurred:stationWillBeBlurred];
     
     childViewController.lineColour = currentLine.lineColour;
     
@@ -220,44 +241,16 @@
     if (numStationViewsThisLineSession == [self.stations count]) {
         [[SEGAnalytics sharedAnalytics] track:@"Visited all stations" properties:@{ @"Line": currentLine.name }];
     }
-    
-    if (numStationViewsThisLineSession == 5) {
-        [self showRateAlert];
-    }
-}
-
-- (void) showRateAlert {
-    // A quick and dirty popup, displayed only once
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"HasSeenPopup"])
-    {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Question"
-                                                       message:@"How's your pub crawl going?"
-                                                      delegate:self
-                                             cancelButtonTitle:@"Awful"
-                                             otherButtonTitles:@"Great!",nil];
-        [alert show];
-        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"HasSeenPopup"];
-    }	
-}
-
-# pragma mark - UIAlertViewDelegate
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) { // No
-        UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:kHappilyEmailAddress subject:@"My Pub Crawl: London experience wasn't great" completion:nil];
-        if (mailVC) {
-            [self presentViewController:mailVC animated:YES completion:nil];
-        } else {
-            [[SEGAnalytics sharedAnalytics] track:@"Tried to complain by email without an account"];
-        }
-	} else { // Yes
-        [[SEGAnalytics sharedAnalytics] track:@"Clicked \"Great!\" in the alert"];
-        [RFRateMe showRateAlert];
-    }
 }
 
 # pragma mark - LPCStationViewControllerDelegate methods
 - (int)numStationViewsThisLineSession {
     return numStationViewsThisLineSession;
+}
+
+- (void)didUnlockLine {
+    [nextStationViewController hideBuyView];
+    [previousStationViewController hideBuyView];
 }
 
 - (void)stationDidAppear {

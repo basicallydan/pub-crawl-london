@@ -265,13 +265,6 @@ NSInteger const statusBarHeight = 20;
     
     if (iapProductIdentifier && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:iapProductIdentifier] && ![[IAPShare sharedHelper].iap isPurchasedProductsIdentifier:allTheLinesKey]) {
         NSLog(@"The user does not own the %@ line", cell.lineName);
-        [cell.lockedLabel setText:[NSString fontAwesomeIconStringForEnum:FAIconLock]];
-        UIFont *font = [UIFont fontWithName:kFontAwesomeFamilyName size:22];
-        [cell.lockedLabel setHidden:NO];
-        [cell.lockedLabel setFont:font];
-        [cell.lockedLabel setTextColor:[LPCThemeManager lightenOrDarkenColor:cellColor]];
-    } else {
-        [cell.lockedLabel setHidden:YES];
     }
     
     cell.backgroundColor = cellColor;

@@ -15,7 +15,6 @@ pod 'IAPHelper'
 pod 'NSAttributedStringMarkdownParser', '~> 0.0'
 pod 'CGLMail', '~> 0.1'
 pod 'FontAwesome+iOS', '~> 0.1'
-pod 'RFRateMe', "~> 1.0.0"
 pod 'Analytics/GoogleAnalytics'
 pod 'Analytics/Mixpanel'
 pod 'Bugsnag', :git => "https://github.com/bugsnag/bugsnag-cocoa.git"

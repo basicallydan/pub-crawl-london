@@ -54,7 +54,6 @@ PODS:
   - PonyDebugger (0.4.5):
     - SocketRocket
   - Reachability (3.2)
-  - RFRateMe (1.0.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -76,7 +75,6 @@ DEPENDENCIES:
   - NSAttributedStringMarkdownParser (~> 0.0)
   - PonyDebugger (~> 0.4)
   - Reachability (~> 3.1)
-  - RFRateMe (~> 1.0.0)
   - SDWebImage (~> 3.7)
   - SVProgressHUD
   - UIColor-HexString (~> 1.0.1)
@@ -106,7 +104,6 @@ SPEC CHECKSUMS:
   NSAttributedStringMarkdownParser: 989a13e9088f74ceeedacdc011681c3b080c2faf
   PonyDebugger: 1c60f7c876bdb6a8b6bf0f0269087f8a234fafa7
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  RFRateMe: 07fbc459799535254db3bd221e930817e8c8ffff
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
