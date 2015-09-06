@@ -10,7 +10,6 @@
 #import "LPCVenue.h"
 #import "LPCVenueRetrievalHandler.h"
 #import <Analytics/Analytics.h>
-#import <RFRateMe/RFRateMe.h>
 #import <CGLMail/CGLMailHelper.h>
 
 @interface LPCLineViewController () <LPCForkViewControllerDelegate, LPCStationViewControllerDelegate, UIAlertViewDelegate>
@@ -241,39 +240,6 @@
     numStationViewsThisLineSession += 1;
     if (numStationViewsThisLineSession == [self.stations count]) {
         [[SEGAnalytics sharedAnalytics] track:@"Visited all stations" properties:@{ @"Line": currentLine.name }];
-    }
-    
-    if (numStationViewsThisLineSession == 5) {
-        [self showRateAlert];
-    }
-}
-
-- (void) showRateAlert {
-    // A quick and dirty popup, displayed only once
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"HasSeenPopup"])
-    {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Question"
-                                                       message:@"How's your pub crawl going?"
-                                                      delegate:self
-                                             cancelButtonTitle:@"Awful"
-                                             otherButtonTitles:@"Great!",nil];
-        [alert show];
-        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"HasSeenPopup"];
-    }	
-}
-
-# pragma mark - UIAlertViewDelegate
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) { // No
-        UIViewController *mailVC = [CGLMailHelper supportMailViewControllerWithRecipient:kHappilyEmailAddress subject:@"My Pub Crawl: London experience wasn't great" completion:nil];
-        if (mailVC) {
-            [self presentViewController:mailVC animated:YES completion:nil];
-        } else {
-            [[SEGAnalytics sharedAnalytics] track:@"Tried to complain by email without an account"];
-        }
-	} else { // Yes
-        [[SEGAnalytics sharedAnalytics] track:@"Clicked \"Great!\" in the alert"];
-        [RFRateMe showRateAlert];
     }
 }
 

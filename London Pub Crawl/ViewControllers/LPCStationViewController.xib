@@ -193,7 +193,7 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
+                        <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-mt-l1d" userLabel="Tip View">
                             <rect key="frame" x="20" y="0.0" width="280" height="203"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L88-39-NVf">
@@ -271,6 +271,7 @@
                         <constraint firstItem="QNQ-HG-KuB" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" constant="2" id="8uN-2j-we7"/>
                         <constraint firstItem="RP9-vA-XzK" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" constant="22" id="EHA-Cx-MJk"/>
                         <constraint firstAttribute="width" constant="320" id="HNd-DA-11C"/>
+                        <constraint firstAttribute="trailing" secondItem="Vgb-mt-l1d" secondAttribute="trailing" constant="20" id="JdA-dO-6Rq"/>
                         <constraint firstAttribute="trailing" secondItem="RP9-vA-XzK" secondAttribute="trailing" constant="77" id="KOk-2i-2Vh"/>
                         <constraint firstItem="Vgb-mt-l1d" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" id="Kmi-vC-xyz"/>
                         <constraint firstItem="QNQ-HG-KuB" firstAttribute="leading" secondItem="02M-Rc-fik" secondAttribute="leading" constant="20" id="ZuP-sc-6NL"/>
@@ -281,6 +282,7 @@
                         <constraint firstAttribute="bottom" secondItem="Vgb-mt-l1d" secondAttribute="bottom" id="shU-dR-vH8"/>
                         <constraint firstAttribute="trailing" secondItem="QNQ-HG-KuB" secondAttribute="trailing" constant="20" id="so8-Xv-ZUf"/>
                         <constraint firstItem="cdr-mk-wqf" firstAttribute="top" secondItem="02M-Rc-fik" secondAttribute="top" id="uwG-TS-Qez"/>
+                        <constraint firstItem="Vgb-mt-l1d" firstAttribute="leading" secondItem="02M-Rc-fik" secondAttribute="leading" constant="20" id="xFx-yo-fHV"/>
                     </constraints>
                 </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yzW-Tc-zZN">
